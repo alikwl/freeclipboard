@@ -80,14 +80,31 @@
       ]
     }
     </script>
+
+    <!-- GitHub Pages SPA deep-link handler: consume ?p= and rewrite history before app loads -->
+    <script>
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var encoded = params.get('p');
+        if (encoded) {
+          try {
+            var target = decodeURIComponent(encoded);
+            // Replace current history entry to the intended SPA route
+            window.history.replaceState(null, '', target);
+          } catch (e) {
+            // Fallback: go to root
+            window.history.replaceState(null, '', '/');
+          }
+        }
+      })();
+    </script>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JHGQJK8CCH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){dataLayer.push(arguments);} 
       gtag('js', new Date());
-
       gtag('config', 'G-JHGQJK8CCH');
     </script>
     <script type="module" crossorigin src="/assets/index-DJ8OSqhx.js"></script>
