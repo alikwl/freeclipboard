@@ -1,0 +1,79 @@
+---
+layout: tool
+title: Hash Generator - Generate MD5, SHA-1, SHA-256 Hashes Online
+description: Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from text or files instantly. Free online hash generator for developers and security professionals. Secure and private.
+keywords: hash generator, md5 generator, sha256 generator, sha1 generator, sha512 generator, hash calculator, checksum generator, crypto hash
+schema_type: WebApplication
+permalink: /tools/hash-generator/
+category_name: Generators & Security
+category_url: /text-utilities/
+rating: 4.7
+rating_count: 780
+features:
+  - MD5 hash generation
+  - SHA-1, SHA-256, SHA-512
+  - Text and file hashing
+  - Instant results
+  - 100% private
+  - Works offline
+---
+
+<div class="input-area">
+  <div class="mode-toggle">
+    <button class="toggle-btn active" onclick="switchMode('text')">Text Input</button>
+    <button class="toggle-btn" onclick="switchMode('file')">File Upload</button>
+  </div>
+  
+  <div id="textMode">
+    <div class="label-row">
+      <label for="textInput">Enter text to hash:</label>
+      <button class="btn-sm btn-outline" onclick="clearInput()">Clear</button>
+    </div>
+    <textarea id="textInput" placeholder="Enter text here..."></textarea>
+  </div>
+  
+  <div id="fileMode" style="display: none;">
+    <div class="file-upload-area">
+      <input type="file" id="fileInput" onchange="handleFile()" style="display: none;">
+      <button class="btn-sm" onclick="document.getElementById('fileInput').click()">Choose File</button>
+      <span id="fileName">No file selected</span>
+    </div>
+  </div>
+</div>
+
+<div class="hash-outputs">
+  <div class="hash-result">
+    <div class="label-row">
+      <label>MD5:</label>
+      <button class="btn-sm" onclick="copyHash('md5')">Copy</button>
+    </div>
+    <div class="hash-output" id="md5Output">-</div>
+  </div>
+  
+  <div class="hash-result">
+    <div class="label-row">
+      <label>SHA-1:</label>
+      <button class="btn-sm" onclick="copyHash('sha1')">Copy</button>
+    </div>
+    <div class="hash-output" id="sha1Output">-</div>
+  </div>
+  
+  <div class="hash-result">
+    <div class="label-row">
+      <label>SHA-256:</label>
+      <button class="btn-sm" onclick="copyHash('sha256')">Copy</button>
+    </div>
+    <div class="hash-output" id="sha256Output">-</div>
+  </div>
+  
+  <div class="hash-result">
+    <div class="label-row">
+      <label>SHA-512:</label>
+      <button class="btn-sm" onclick="copyHash('sha512')">Copy</button>
+    </div>
+    <div class="hash-output" id="sha512Output">-</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/assets/js/hash-generator.js"></script>

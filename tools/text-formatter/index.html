@@ -1,0 +1,65 @@
+---
+layout: tool
+title: Text Formatter - Transform & Format Text Online Free
+description: Transform text case, remove extra spaces, sort lines, and apply various text formatting operations. Free online text formatter for uppercase, lowercase, title case, and more.
+keywords: text formatter, text transformer, case converter, uppercase converter, lowercase converter, title case, text formatting tool
+schema_type: WebApplication
+permalink: /tools/text-formatter/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.6
+rating_count: 720
+features:
+  - Multiple case transformations
+  - Remove extra spaces
+  - Sort lines alphabetically
+  - Reverse text
+  - Remove line breaks
+  - Works offline
+---
+
+<div class="input-area">
+  <div class="label-row">
+    <label for="textInput">Input Text:</label>
+    <div class="toolbar">
+      <button class="btn-sm btn-outline" onclick="clearText()">Clear</button>
+    </div>
+  </div>
+  <textarea id="textInput" placeholder="Enter text to format..."></textarea>
+</div>
+
+<div class="formatting-actions">
+  <h3>Text Transformations</h3>
+  <div class="action-grid">
+    <button class="action-btn" onclick="applyFormat('uppercase')">UPPERCASE</button>
+    <button class="action-btn" onclick="applyFormat('lowercase')">lowercase</button>
+    <button class="action-btn" onclick="applyFormat('titlecase')">Title Case</button>
+    <button class="action-btn" onclick="applyFormat('sentencecase')">Sentence case</button>
+    <button class="action-btn" onclick="applyFormat('camelcase')">camelCase</button>
+    <button class="action-btn" onclick="applyFormat('snakecase')">snake_case</button>
+    <button class="action-btn" onclick="applyFormat('kebabcase')">kebab-case</button>
+    <button class="action-btn" onclick="applyFormat('reverse')">esreveR</button>
+  </div>
+  
+  <h3>Text Operations</h3>
+  <div class="action-grid">
+    <button class="action-btn" onclick="applyFormat('trim')">Trim Spaces</button>
+    <button class="action-btn" onclick="applyFormat('removespaces')">Remove All Spaces</button>
+    <button class="action-btn" onclick="applyFormat('removelinebreaks')">Remove Line Breaks</button>
+    <button class="action-btn" onclick="applyFormat('removeduplicate')">Remove Duplicate Lines</button>
+    <button class="action-btn" onclick="applyFormat('sortasc')">Sort A-Z</button>
+    <button class="action-btn" onclick="applyFormat('sortdesc')">Sort Z-A</button>
+    <button class="action-btn" onclick="applyFormat('shuffle')">Shuffle Lines</button>
+    <button class="action-btn" onclick="applyFormat('numberedlist')">Add Line Numbers</button>
+  </div>
+</div>
+
+<div class="output-section">
+  <div class="label-row">
+    <label for="outputText">Output:</label>
+    <button class="btn-sm" onclick="copyOutput()">Copy</button>
+  </div>
+  <textarea id="outputText" readonly placeholder="Formatted text will appear here..."></textarea>
+</div>
+
+<script src="/assets/js/text-formatter.js"></script>

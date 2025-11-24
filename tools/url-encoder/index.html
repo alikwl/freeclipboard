@@ -1,0 +1,156 @@
+---
+layout: tool
+title: URL Encoder/Decoder - Encode & Decode URLs Online Free
+description: Encode text to URL-safe strings or decode URLs back to normal text. Free online URL encoder for developers to safely encode special characters in URLs and query strings.
+keywords: url encoder, url decoder, encode url, decode url, url escape, url unescape, percent encoding, url converter
+schema_type: WebApplication
+permalink: /tools/url-encoder/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.7
+rating_count: 760
+features:
+  - Encode URLs
+  - Decode URLs
+  - Percent encoding
+  - Query string encoding
+  - Instant results
+  - Works offline
+---
+
+<div class="tool-wrapper">
+  <div class="mode-toggle">
+    <button id="modeEncode" class="toggle-btn active">Encoder</button>
+    <button id="modeDecode" class="toggle-btn">Decoder</button>
+  </div>
+
+  <div class="input-area">
+    <div class="label-row">
+      <label id="inputLabel">Text to Encode:</label>
+      <div class="toolbar">
+        <button id="pasteBtn" class="btn-sm">Paste</button>
+        <button id="clearBtn" class="btn-sm btn-outline">Clear</button>
+      </div>
+    </div>
+    <textarea id="inputBox" placeholder="Type text here (e.g. 'Hello World?')" spellcheck="false"></textarea>
+  </div>
+
+  <div class="input-area output-section">
+    <div class="label-row">
+      <label>Result:</label>
+      <div class="toolbar">
+        <button id="copyBtn" class="btn-sm">Copy Result</button>
+      </div>
+    </div>
+    <textarea id="outputBox" readonly placeholder="Result will appear here..."></textarea>
+  </div>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/url-encoder.js"></script>
+
+</section>
+
+<section class="tool-content-section">
+  <div class="content-body">
+    <h2>About This URL Encoder/Decoder</h2>
+    <p>Our free online URL encoder and decoder helps developers safely encode special characters in URLs and query strings. Perfect for web development, API integration, and ensuring URLs are properly formatted for transmission over the internet.</p>
+    
+    <h2>Key Features</h2>
+    <div class="features-list">
+      <div class="feature-item-text">
+        <strong>🔄 Encode & Decode</strong>
+        <p>Switch between encoding text to URL-safe format and decoding URLs back to readable text.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>⚡ Real-Time Conversion</strong>
+        <p>Instant encoding and decoding as you type. See results immediately without clicking buttons.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>📋 Quick Copy</strong>
+        <p>Copy encoded or decoded URLs to clipboard with one click for easy use in your projects.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔒 100% Private</strong>
+        <p>All processing happens locally in your browser. Your URLs never leave your device.</p>
+      </div>
+    </div>
+    
+    <h2>How to Use the URL Encoder</h2>
+    <ol class="instructions-list">
+      <li><strong>Choose Mode:</strong> Click "Encoder" to encode or "Decoder" to decode URLs</li>
+      <li><strong>Enter Text:</strong> Type or paste your text or URL in the input box</li>
+      <li><strong>View Result:</strong> The conversion happens automatically in real-time</li>
+      <li><strong>Copy Result:</strong> Click "Copy Result" to copy the output to clipboard</li>
+    </ol>
+    
+    <h2>What is URL Encoding?</h2>
+    <p>URL encoding (also called percent-encoding) converts characters into a format that can be safely transmitted over the internet. Special characters are replaced with a "%" followed by two hexadecimal digits.</p>
+    
+    <h3>Common Encodings:</h3>
+    <ul>
+      <li><strong>Space:</strong> %20 or +</li>
+      <li><strong>!:</strong> %21</li>
+      <li><strong>#:</strong> %23</li>
+      <li><strong>$:</strong> %24</li>
+      <li><strong>&:</strong> %26</li>
+      <li><strong>=:</strong> %3D</li>
+      <li><strong>?:</strong> %3F</li>
+    </ul>
+    
+    <h2>Why Use URL Encoding?</h2>
+    <ul>
+      <li><strong>Query Parameters:</strong> Safely pass data in URL query strings</li>
+      <li><strong>API Requests:</strong> Encode parameters for REST API calls</li>
+      <li><strong>Form Submissions:</strong> Encode form data for GET requests</li>
+      <li><strong>Special Characters:</strong> Handle spaces, symbols, and non-ASCII characters</li>
+      <li><strong>Security:</strong> Prevent URL injection and parsing errors</li>
+      <li><strong>Compatibility:</strong> Ensure URLs work across all browsers and servers</li>
+    </ul>
+    
+    <h2>Common Use Cases</h2>
+    <div class="features-list">
+      <div class="feature-item-text">
+        <strong>🔗 Query Strings</strong>
+        <p>Encode parameters for URLs: <code>?name=John%20Doe&city=New%20York</code></p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🌐 API Integration</strong>
+        <p>Encode data for REST API endpoints and search queries.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>📝 Form Data</strong>
+        <p>Encode form submissions sent via GET method.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔍 Search Queries</strong>
+        <p>Encode search terms with special characters and spaces.</p>
+      </div>
+    </div>
+    
+    <h2>Characters That Need Encoding</h2>
+    <p>These characters have special meaning in URLs and must be encoded:</p>
+    <ul>
+      <li><strong>Reserved Characters:</strong> : / ? # [ ] @ ! $ & ' ( ) * + , ; =</li>
+      <li><strong>Unsafe Characters:</strong> Space " < > % { } | \ ^ ~</li>
+      <li><strong>Non-ASCII Characters:</strong> Any character outside ASCII range (0-127)</li>
+    </ul>
+    
+    <h2>URL Encoding Best Practices</h2>
+    <ul>
+      <li>Always encode user input before adding to URLs</li>
+      <li>Encode query parameter values, not the entire URL</li>
+      <li>Use UTF-8 encoding for international characters</li>
+      <li>Don't double-encode already encoded URLs</li>
+      <li>Test encoded URLs in different browsers</li>
+    </ul>
+    
+    <h2>Related Tools</h2>
+    <p>Enhance your web development workflow with these related tools:</p>
+    <ul class="related-tools-list">
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode data for transmission</li>
+      <li><a href="{{ site.baseurl }}/tools/html-encoder/">HTML Encoder</a> - Encode HTML entities</li>
+      <li><a href="{{ site.baseurl }}/tools/json-formatter/">JSON Formatter</a> - Format and validate JSON</li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Developer Tools</a></li>
+    </ul>
+  </div>
+</section>

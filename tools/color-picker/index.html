@@ -1,0 +1,83 @@
+---
+layout: tool
+title: Color Picker & Converter - HEX, RGB, HSL Color Tool Online
+description: Pick colors, convert between HEX, RGB, HSL, and HSV formats with live preview. Free online color picker for designers and developers with instant color conversion.
+keywords: color picker, color converter, hex to rgb, rgb to hex, hsl converter, color tool, color palette, hex color picker
+schema_type: WebApplication
+permalink: /tools/color-picker/
+category_name: Image & Visual Tools
+category_url: /image-tools/
+rating: 4.7
+rating_count: 890
+features:
+  - Visual color picker
+  - HEX, RGB, HSL, HSV conversion
+  - Live color preview
+  - Copy color codes
+  - Color palette creation
+  - Works offline
+---
+
+<div class="color-picker-main">
+  <div class="color-display">
+    <div class="color-preview" id="colorPreview"></div>
+    <input type="color" id="colorInput" value="#2563EB">
+  </div>
+  
+  <div class="color-formats">
+    <div class="format-group">
+      <label>HEX:</label>
+      <div class="input-with-copy">
+        <input type="text" id="hexInput" value="#2563EB">
+        <button class="btn-sm" onclick="copyFormat('hex')">Copy</button>
+      </div>
+    </div>
+    
+    <div class="format-group">
+      <label>RGB:</label>
+      <div class="input-with-copy">
+        <input type="text" id="rgbInput" readonly>
+        <button class="btn-sm" onclick="copyFormat('rgb')">Copy</button>
+      </div>
+    </div>
+    
+    <div class="format-group">
+      <label>HSL:</label>
+      <div class="input-with-copy">
+        <input type="text" id="hslInput" readonly>
+        <button class="btn-sm" onclick="copyFormat('hsl')">Copy</button>
+      </div>
+    </div>
+    
+    <div class="format-group">
+      <label>HSV:</label>
+      <div class="input-with-copy">
+        <input type="text" id="hsvInput" readonly>
+        <button class="btn-sm" onclick="copyFormat('hsv')">Copy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="color-shades">
+  <h3>Color Shades</h3>
+  <div class="shades-grid" id="shadesGrid"></div>
+</div>
+
+<div class="color-harmonies">
+  <h3>Color Harmonies</h3>
+  <div class="harmony-section">
+    <h4>Complementary</h4>
+    <div class="harmony-colors" id="complementary"></div>
+  </div>
+  <div class="harmony-section">
+    <h4>Analogous</h4>
+    <div class="harmony-colors" id="analogous"></div>
+  </div>
+  <div class="harmony-section">
+    <h4>Triadic</h4>
+    <div class="harmony-colors" id="triadic"></div>
+  </div>
+</div>
+
+<script src="/assets/js/color-picker.js"></script>

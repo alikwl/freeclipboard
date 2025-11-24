@@ -1,0 +1,71 @@
+---
+layout: tool
+title: Code Snippet Generator - Generate Code Templates Online Free
+description: Generate common code snippets for various programming languages and frameworks. Free code snippet generator for developers with templates for JavaScript, Python, React, and more.
+keywords: code snippet generator, code template, code generator, snippet generator, boilerplate code, code examples, programming templates
+schema_type: WebApplication
+permalink: /tools/code-snippet-generator/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.5
+rating_count: 580
+features:
+  - Multiple language support
+  - Framework templates
+  - Copy to clipboard
+  - Syntax highlighting
+  - Customizable snippets
+  - Works offline
+---
+
+<div class="snippet-selector">
+  <div class="selector-group">
+    <label for="languageSelect">Language:</label>
+    <select id="languageSelect" onchange="updateCategories()">
+      <option value="javascript">JavaScript</option>
+      <option value="python">Python</option>
+      <option value="java">Java</option>
+      <option value="csharp">C#</option>
+      <option value="php">PHP</option>
+      <option value="go">Go</option>
+      <option value="rust">Rust</option>
+      <option value="sql">SQL</option>
+    </select>
+  </div>
+  
+  <div class="selector-group">
+    <label for="categorySelect">Category:</label>
+    <select id="categorySelect" onchange="updateSnippets()">
+      <option value="basics">Basics</option>
+      <option value="arrays">Arrays/Lists</option>
+      <option value="functions">Functions</option>
+      <option value="async">Async/Promises</option>
+      <option value="classes">Classes/OOP</option>
+      <option value="files">File Operations</option>
+      <option value="api">API Calls</option>
+    </select>
+  </div>
+  
+  <div class="selector-group">
+    <label for="snippetSelect">Snippet:</label>
+    <select id="snippetSelect" onchange="generateSnippet()">
+    </select>
+  </div>
+</div>
+
+<div class="snippet-output">
+  <div class="label-row">
+    <label>Generated Code:</label>
+    <div class="toolbar">
+      <button class="btn-sm" onclick="copySnippet()">Copy Code</button>
+    </div>
+  </div>
+  <pre><code id="codeOutput" class="language-javascript"></code></pre>
+</div>
+
+<div class="snippet-description">
+  <h3>Description</h3>
+  <p id="snippetDescription">Select a snippet to see its description.</p>
+</div>
+
+<script src="/assets/js/code-snippet-generator.js"></script>

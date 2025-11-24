@@ -1,0 +1,147 @@
+---
+layout: tool
+title: Base64 Encoder/Decoder - Encode & Decode Base64 Online Free
+description: Encode text to Base64 or decode Base64 strings back to text instantly. Free online Base64 encoder and decoder tool for developers.
+keywords: base64 encoder, base64 decoder, encode base64, decode base64, base64 converter, base64 tool
+schema_type: WebApplication
+permalink: /tools/base64-encoder/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.7
+rating_count: 880
+features:
+  - Encode to Base64
+  - Decode from Base64
+  - Instant conversion
+  - Copy to clipboard
+  - 100% private
+  - Works offline
+---
+
+<section class="tool-wrapper" aria-labelledby="base64-heading">
+  <h2 id="base64-heading" class="sr-only">Base64 Encoder and Decoder</h2>
+  <div class="mode-toggle" role="tablist" aria-label="Encoder or Decoder mode">
+    <button id="modeEncode" class="toggle-btn active" role="tab" aria-selected="true" aria-controls="encode-panel">Encoder</button>
+    <button id="modeDecode" class="toggle-btn" role="tab" aria-selected="false" aria-controls="decode-panel">Decoder</button>
+  </div>
+
+  <div class="input-area">
+    <div class="label-row">
+      <label id="inputLabel">Text to Encode:</label>
+      <div class="toolbar">
+        <button id="pasteBtn" class="btn-sm">Paste</button>
+        <button id="clearBtn" class="btn-sm btn-outline">Clear</button>
+      </div>
+    </div>
+    <textarea id="inputBox" placeholder="Type or paste content here..." spellcheck="false"></textarea>
+  </div>
+
+  <div class="input-area output-section">
+    <div class="label-row">
+      <label>Result:</label>
+      <div class="toolbar">
+        <button id="copyBtn" class="btn-sm">Copy Result</button>
+      </div>
+    </div>
+    <textarea id="outputBox" readonly placeholder="Result will appear here..."></textarea>
+  </div>
+</div>
+
+<script src="{{ site.baseurl }}/assets/js/base64.js"></script>
+
+</section>
+
+<section class="tool-content-section">
+  <div class="content-body">
+    <h2>About This Base64 Encoder/Decoder</h2>
+    <p>Our free online Base64 encoder and decoder helps developers convert text to Base64 format and back instantly. Perfect for encoding data for APIs, email attachments, data URIs, and secure data transmission. Fast, accurate, and 100% private.</p>
+    
+    <h2>Key Features</h2>
+    <div class="features-list">
+      <div class="feature-item-text">
+        <strong>🔄 Encode & Decode</strong>
+        <p>Switch between encoding text to Base64 and decoding Base64 back to text with one click.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>⚡ Instant Conversion</strong>
+        <p>Real-time encoding and decoding as you type or paste. No waiting, no delays.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>📋 One-Click Copy</strong>
+        <p>Copy encoded or decoded results to clipboard with a single click.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔒 100% Private</strong>
+        <p>All encoding happens in your browser. Your data never leaves your device.</p>
+      </div>
+    </div>
+    
+    <h2>How to Use the Base64 Encoder</h2>
+    <ol class="instructions-list">
+      <li><strong>Choose Mode:</strong> Click "Encoder" to encode or "Decoder" to decode</li>
+      <li><strong>Paste Data:</strong> Enter your text or Base64 string in the input box</li>
+      <li><strong>View Result:</strong> The conversion happens automatically in real-time</li>
+      <li><strong>Copy Result:</strong> Click "Copy Result" to copy the output to clipboard</li>
+    </ol>
+    
+    <h2>What is Base64 Encoding?</h2>
+    <p>Base64 is an encoding scheme that converts binary data into ASCII text format using 64 printable characters (A-Z, a-z, 0-9, +, /). It's widely used in web development and data transmission.</p>
+    
+    <h2>Why Use Base64 Encoding?</h2>
+    <ul>
+      <li><strong>Email Attachments:</strong> Encode binary files for email transmission (MIME)</li>
+      <li><strong>Data URIs:</strong> Embed images and files directly in HTML/CSS</li>
+      <li><strong>API Communication:</strong> Send binary data in JSON or XML</li>
+      <li><strong>Authentication:</strong> Encode credentials for HTTP Basic Auth</li>
+      <li><strong>Data Storage:</strong> Store binary data in text-based databases</li>
+      <li><strong>URL Safety:</strong> Make binary data URL-safe for transmission</li>
+    </ul>
+    
+    <h2>Common Use Cases</h2>
+    <div class="features-list">
+      <div class="feature-item-text">
+        <strong>🖼️ Image Embedding</strong>
+        <p>Convert images to Base64 for inline embedding in HTML or CSS without external files.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔐 Basic Authentication</strong>
+        <p>Encode username:password for HTTP Basic Authentication headers.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>📧 Email Encoding</strong>
+        <p>Encode attachments and special characters for email transmission.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔗 Data URIs</strong>
+        <p>Create data URIs for embedding resources directly in web pages.</p>
+      </div>
+    </div>
+    
+    <h2>Base64 Format Explained</h2>
+    <p>Base64 uses 64 characters to represent data:</p>
+    <ul>
+      <li><strong>A-Z:</strong> Uppercase letters (26 characters)</li>
+      <li><strong>a-z:</strong> Lowercase letters (26 characters)</li>
+      <li><strong>0-9:</strong> Digits (10 characters)</li>
+      <li><strong>+, /:</strong> Special characters (2 characters)</li>
+      <li><strong>=:</strong> Padding character</li>
+    </ul>
+    
+    <h2>Important Notes</h2>
+    <ul>
+      <li>Base64 increases data size by approximately 33%</li>
+      <li>It's encoding, not encryption (not secure by itself)</li>
+      <li>Padding (=) is added to make length divisible by 4</li>
+      <li>URL-safe Base64 uses - and _ instead of + and /</li>
+    </ul>
+    
+    <h2>Related Tools</h2>
+    <p>Enhance your encoding workflow with these related tools:</p>
+    <ul class="related-tools-list">
+      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Encode URLs and query strings</li>
+      <li><a href="{{ site.baseurl }}/tools/html-encoder/">HTML Encoder</a> - Encode HTML entities</li>
+      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate secure hashes</li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Encoding Tools</a></li>
+    </ul>
+  </div>
+</section>

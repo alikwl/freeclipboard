@@ -1,0 +1,66 @@
+{
+  "id": "json-formatter",
+  "name": "JSON Formatter & Validator",
+  "version": "1.0.0",
+  "description": "Beautify, validate, and format your JSON code instantly. Fix syntax errors, minify for production, and validate JSON structure online for free.",
+  "shortDescription": "Beautify & validate JSON",
+  "category": "text",
+  "subcategory": "formatting",
+  "keywords": [
+    "json formatter",
+    "json validator",
+    "beautify json",
+    "format json",
+    "json beautifier",
+    "validate json",
+    "json minifier",
+    "json parser"
+  ],
+  "tags": ["json", "formatter", "validator", "developer", "api"],
+  "thumbnail": "/assets/images/tools/json-formatter.png",
+  "icon": "{ }",
+  "color": "#F59E0B",
+  "featured": false,
+  "popular": true,
+  "new": false,
+  "url": "/tools/json-formatter/",
+  "rating": 4.9,
+  "ratingCount": 1120,
+  "usageCount": 35000,
+  "lastUpdated": "2025-11-25",
+  "features": [
+    "Beautify JSON with proper indentation",
+    "Validate JSON syntax",
+    "Minify JSON for production",
+    "Error detection and highlighting",
+    "Copy formatted JSON",
+    "Clear and paste functions",
+    "Real-time formatting",
+    "Works offline"
+  ],
+  "useCases": [
+    "Debugging API responses",
+    "Formatting configuration files",
+    "Validating JSON data",
+    "Preparing JSON for production",
+    "Learning JSON structure"
+  ],
+  "browserSupport": {
+    "chrome": "90+",
+    "firefox": "88+",
+    "safari": "14+",
+    "edge": "90+"
+  },
+  "privacy": {
+    "dataCollection": false,
+    "localStorage": false,
+    "serverUpload": false,
+    "tracking": false
+  },
+  "seo": {
+    "title": "JSON Formatter & Validator - Beautify & Validate JSON Online",
+    "metaDescription": "Beautify, validate, and format your JSON code instantly. Fix syntax errors, minify for production, and validate JSON structure online for free.",
+    "ogImage": "/assets/images/og/json-formatter.png",
+    "canonicalUrl": "https://freeclipboard.com/tools/json-formatter/"
+  }
+}

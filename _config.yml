@@ -1,0 +1,69 @@
+# _config.yml - Full Configuration
+
+title: FreeClipboard - Free Online Tools
+description: "Free online tools for developers, writers, and professionals. Clipboard manager, text utilities, QR code generator, password generator, and 17+ more tools. No signup required, 100% privacy-focused."
+url: "https://freeclipboard.com"
+baseurl: ""
+author: "FreeClipboard Team"
+keywords: "free online tools, clipboard manager, text tools, developer tools, online utilities"
+
+# Social
+twitter_username: freeclipboard
+github_username: freeclipboard
+
+# Essential for GitHub Pages
+github: [metadata]
+
+# Jekyll plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-minifier
+  - jekyll-include-cache
+
+# Plugin configurations
+jekyll-minifier:
+  compress_css: true
+  compress_javascript: true
+  compress_html: true
+
+# Front matter defaults
+defaults:
+  - scope:
+      path: "tools/*"
+    values:
+      layout: tool
+      type: tool
+
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
+# Markdown processor
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  parse_block_html: true
+
+# Exclude from processing
+exclude:
+  - .gitignore
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Output settings
+timezone: UTC
+permalink: /:categories/:title/
+
+# Collections (for tools)
+collections:
+  tools:
+    output: true
+    permalink: /tools/:name/

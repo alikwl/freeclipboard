@@ -1,0 +1,157 @@
+---
+layout: tool
+title: Image Converter - Convert PNG, JPG, WebP, SVG Online Free
+description: Convert images between PNG, JPG, WebP, SVG formats quickly and easily online. Free image converter with resize, compression, and quality control.
+keywords: image converter, convert png to jpg, convert jpg to png, webp converter, image format converter, resize image, compress image
+schema_type: WebApplication
+permalink: /tools/image-converter/
+category_name: Image & Visual Tools
+category_url: /image-tools/
+rating: 4.8
+rating_count: 1100
+features:
+  - Convert image formats
+  - Resize images
+  - Compress images
+  - Quality control
+  - Batch conversion
+  - 100% private
+---
+
+<div class="tool-instructions">
+  <h2>How to Use the Image Converter</h2>
+  <ol>
+    <li><strong>Upload Image:</strong> Click the upload area or drag and drop your image file (PNG, JPG, WebP, SVG)</li>
+    <li><strong>Select Format:</strong> Choose your desired output format from the dropdown</li>
+    <li><strong>Adjust Settings:</strong> Optionally resize the image or adjust quality/compression</li>
+    <li><strong>Convert:</strong> Click "Convert Image" to process your file</li>
+    <li><strong>Download:</strong> Save the converted image to your device</li>
+  </ol>
+  <p><strong>Note:</strong> All conversions happen in your browser. Your images are never uploaded to our servers.</p>
+</div>
+
+<div class="image-converter-container">
+  <!-- Upload Area -->
+  <div class="upload-section">
+    <div class="upload-area" id="uploadArea">
+      <div class="upload-icon">📁</div>
+      <h3>Drop image here or click to upload</h3>
+      <p>Supports: PNG, JPG, JPEG, WebP, SVG (Max 10MB)</p>
+      <input type="file" id="imageInput" accept="image/*" style="display: none;">
+    </div>
+    <div id="uploadedFileName" class="uploaded-file-name"></div>
+  </div>
+
+  <!-- Conversion Controls -->
+  <div class="conversion-controls" id="conversionControls" style="display: none;">
+    <div class="control-section">
+      <h3>Conversion Settings</h3>
+      
+      <div class="control-group">
+        <label for="outputFormat">Output Format:</label>
+        <select id="outputFormat" class="format-select">
+          <option value="image/png">PNG</option>
+          <option value="image/jpeg">JPG</option>
+          <option value="image/webp">WebP</option>
+        </select>
+      </div>
+
+      <div class="control-group" id="qualityControl">
+        <label for="quality">Quality: <span id="qualityValue">0.9</span></label>
+        <input type="range" id="quality" min="0.1" max="1.0" step="0.1" value="0.9">
+        <p class="control-hint">Higher quality = larger file size</p>
+      </div>
+
+      <div class="control-group">
+        <label>
+          <input type="checkbox" id="enableResize">
+          Enable Resize
+        </label>
+      </div>
+
+      <div class="resize-controls" id="resizeControls" style="display: none;">
+        <div class="resize-inputs">
+          <div class="input-group">
+            <label for="width">Width (px):</label>
+            <input type="number" id="width" min="1" placeholder="Auto">
+          </div>
+          <div class="input-group">
+            <label for="height">Height (px):</label>
+            <input type="number" id="height" min="1" placeholder="Auto">
+          </div>
+        </div>
+        <label class="aspect-ratio-lock">
+          <input type="checkbox" id="lockAspectRatio" checked>
+          Lock Aspect Ratio
+        </label>
+        <p class="control-hint">Original: <span id="originalDimensions"></span></p>
+      </div>
+
+      <button id="convertBtn" class="btn-primary">Convert Image</button>
+      <button id="resetBtn" class="btn-outline">Reset</button>
+    </div>
+  </div>
+
+  <!-- Preview Area -->
+  <div class="preview-section" id="previewSection" style="display: none;">
+    <h3>Preview</h3>
+    <div class="preview-container">
+      <div class="preview-box">
+        <h4>Original</h4>
+        <img id="originalPreview" alt="Original image">
+        <p class="image-info" id="originalInfo"></p>
+      </div>
+      <div class="preview-arrow">→</div>
+      <div class="preview-box">
+        <h4>Converted</h4>
+        <img id="convertedPreview" alt="Converted image">
+        <p class="image-info" id="convertedInfo"></p>
+      </div>
+    </div>
+    <button id="downloadBtn" class="btn-primary" style="display: none;">
+      Download Converted Image
+    </button>
+  </div>
+
+  <!-- Error Message -->
+  <div id="errorMessage" class="error-message" style="display: none;"></div>
+</div>
+
+<div class="tool-features">
+  <h2>Features</h2>
+  <div class="features-grid">
+    <div class="feature-item">
+      <div class="feature-icon">🔄</div>
+      <h4>Multiple Formats</h4>
+      <p>Convert between PNG, JPG, WebP formats</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">📏</div>
+      <h4>Resize Images</h4>
+      <p>Adjust dimensions while maintaining aspect ratio</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">⚙️</div>
+      <h4>Quality Control</h4>
+      <p>Adjust compression for optimal file size</p>
+    </div>
+    <div class="feature-item">
+      <div class="feature-icon">🔒</div>
+      <h4>100% Private</h4>
+      <p>All processing happens in your browser</p>
+    </div>
+  </div>
+</div>
+
+<div class="related-links">
+  <h3>Related Tools</h3>
+  <p>Check out our other image and utility tools:</p>
+  <div class="link-buttons">
+    <a href="{{ site.baseurl }}/" class="btn-outline">← Back to Home</a>
+    <a href="{{ site.baseurl }}/image-tools/" class="btn-outline">All Image Tools</a>
+    <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="btn-outline">QR Code Generator</a>
+    <a href="{{ site.baseurl }}/tools/color-picker/" class="btn-outline">Color Picker</a>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/image-converter.js' | relative_url }}"></script>

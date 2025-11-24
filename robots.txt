@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /*.json$
+Sitemap: https://freeclipboard.com/sitemap.xml
+Crawl-delay: 1

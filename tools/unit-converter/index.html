@@ -1,0 +1,58 @@
+---
+layout: tool
+title: Unit Converter - Convert Length, Weight, Temperature Online Free
+description: Convert between different units of length, weight, temperature, volume, and more. Free online unit converter with support for metric and imperial units. Fast and accurate.
+keywords: unit converter, convert units, length converter, weight converter, temperature converter, metric converter, imperial converter, measurement converter
+schema_type: WebApplication
+permalink: /tools/unit-converter/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.6
+rating_count: 720
+features:
+  - Length conversion
+  - Weight conversion
+  - Temperature conversion
+  - Volume conversion
+  - Instant results
+  - Works offline
+---
+
+<div class="converter-selector">
+  <label for="categorySelect">Category:</label>
+  <select id="categorySelect" onchange="updateUnits()">
+    <option value="length">Length</option>
+    <option value="weight">Weight</option>
+    <option value="temperature">Temperature</option>
+    <option value="volume">Volume</option>
+    <option value="area">Area</option>
+    <option value="speed">Speed</option>
+    <option value="time">Time</option>
+    <option value="data">Data Storage</option>
+  </select>
+</div>
+
+<div class="converter-interface">
+  <div class="converter-input">
+    <label for="fromValue">From:</label>
+    <input type="number" id="fromValue" value="1" step="any">
+    <select id="fromUnit"></select>
+  </div>
+  
+  <div class="converter-swap">
+    <button class="btn-sm" onclick="swapUnits()">⇄ Swap</button>
+  </div>
+  
+  <div class="converter-output">
+    <label for="toValue">To:</label>
+    <input type="number" id="toValue" readonly>
+    <select id="toUnit"></select>
+  </div>
+</div>
+
+<div class="common-conversions">
+  <h3>Common Conversions</h3>
+  <div id="commonList"></div>
+</div>
+
+<script src="/assets/js/unit-converter.js"></script>

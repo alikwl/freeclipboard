@@ -1,0 +1,67 @@
+- name: Free Clipboard Manager
+  url: /tools/free-clipboard/
+  description: Store, manage, and organize unlimited clipboard items with search, categories, and favorites.
+
+- name: Word Counter
+  url: /tools/word-counter/
+  description: Count words, characters, sentences, and reading time in real-time.
+  
+- name: Character Counter
+  url: /tools/character-counter/
+  description: Count characters, letters, numbers, and special characters in your text.
+
+- name: Base64 Converter
+  url: /tools/base64-encoder/
+  description: Encode text to Base64 or decode Base64 strings back to text.
+
+- name: JSON Formatter
+  url: /tools/json-formatter/
+  description: Beautify and validate JSON data with syntax highlighting.
+
+- name: URL Encoder
+  url: /tools/url-encoder/
+  description: Encode text to URL-safe strings or decode URLs.
+
+- name: HTML Encoder
+  url: /tools/html-encoder/
+  description: Encode HTML entities or decode HTML strings safely.
+
+- name: Unit Converter
+  url: /tools/unit-converter/
+  description: Convert between different units of measurement instantly.
+
+- name: Code Snippet Generator
+  url: /tools/code-snippet-generator/
+  description: Generate formatted code snippets in multiple programming languages.
+
+- name: QR Code Generator
+  url: /tools/qr-code-generator/
+  description: Create QR codes from text, URLs, or any data instantly.
+
+- name: Text Formatter
+  url: /tools/text-formatter/
+  description: Transform text case, remove spaces, and format text in various ways.
+
+- name: Color Picker
+  url: /tools/color-picker/
+  description: Pick colors and convert between HEX, RGB, and HSL formats.
+
+- name: Regex Tester
+  url: /tools/regex-tester/
+  description: Test and debug regular expressions with live pattern matching.
+
+- name: Hash Generator
+  url: /tools/hash-generator/
+  description: Generate MD5, SHA-1, SHA-256, and other hash values from text.
+
+- name: UUID Generator
+  url: /tools/uuid-generator/
+  description: Generate unique UUIDs (v4) for your applications instantly.
+
+- name: Password Generator
+  url: /tools/password-generator/
+  description: Create strong, secure random passwords with custom options.
+
+- name: Image Converter
+  url: /tools/image-converter/
+  description: Convert images between PNG, JPG, WebP formats with resize and compression options.

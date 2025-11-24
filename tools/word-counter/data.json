@@ -1,0 +1,65 @@
+{
+  "id": "word-counter",
+  "name": "Word Counter",
+  "version": "1.0.0",
+  "description": "Count words, characters, sentences, paragraphs, and reading time in real-time. Perfect for writers, students, and content creators who need accurate text analysis.",
+  "shortDescription": "Count words & characters",
+  "category": "clipboard",
+  "subcategory": "text-analysis",
+  "keywords": [
+    "word counter",
+    "character counter",
+    "word count",
+    "character count",
+    "text analysis",
+    "reading time calculator",
+    "sentence counter",
+    "paragraph counter"
+  ],
+  "tags": ["writing", "text", "analysis", "counter", "productivity"],
+  "thumbnail": "/assets/images/tools/word-counter.png",
+  "icon": "📝",
+  "color": "#8B5CF6",
+  "featured": true,
+  "popular": true,
+  "new": false,
+  "url": "/tools/word-counter/",
+  "rating": 4.8,
+  "ratingCount": 980,
+  "usageCount": 38000,
+  "lastUpdated": "2025-11-25",
+  "features": [
+    "Real-time word counting",
+    "Character count (with and without spaces)",
+    "Sentence counter",
+    "Paragraph counter",
+    "Reading time estimation",
+    "Speaking time calculation",
+    "Copy and clear functions",
+    "Works offline"
+  ],
+  "useCases": [
+    "Writers meeting word count requirements",
+    "Students writing essays and papers",
+    "Content creators optimizing posts",
+    "SEO professionals analyzing content length"
+  ],
+  "browserSupport": {
+    "chrome": "90+",
+    "firefox": "88+",
+    "safari": "14+",
+    "edge": "90+"
+  },
+  "privacy": {
+    "dataCollection": false,
+    "localStorage": false,
+    "serverUpload": false,
+    "tracking": false
+  },
+  "seo": {
+    "title": "Word Counter - Free Online Word & Character Counter Tool",
+    "metaDescription": "Count words, characters, sentences, paragraphs, and reading time in real-time. Free online word counter tool for writers, students, and content creators.",
+    "ogImage": "/assets/images/og/word-counter.png",
+    "canonicalUrl": "https://freeclipboard.com/tools/word-counter/"
+  }
+}

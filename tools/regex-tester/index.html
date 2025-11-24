@@ -1,0 +1,73 @@
+---
+layout: tool
+title: Regex Tester - Test Regular Expressions Online Free
+description: Test and debug regular expressions with real-time matching, highlighting, and detailed explanations. Free regex tester for developers with pattern validation and match highlighting.
+keywords: regex tester, regular expression tester, regex validator, test regex, regex debugger, regex pattern tester, regexp tester
+schema_type: WebApplication
+permalink: /tools/regex-tester/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.8
+rating_count: 920
+features:
+  - Real-time regex testing
+  - Match highlighting
+  - Pattern validation
+  - Multiple flags support
+  - Detailed match results
+  - Works offline
+---
+
+<div class="regex-input-section">
+  <div class="label-row">
+    <label for="regexInput">Regular Expression:</label>
+    <div class="toolbar">
+      <button class="btn-sm btn-outline" onclick="clearRegex()">Clear</button>
+    </div>
+  </div>
+  <div class="regex-input-wrapper">
+    <span class="regex-delimiter">/</span>
+    <input type="text" id="regexInput" placeholder="Enter regex pattern...">
+    <span class="regex-delimiter">/</span>
+    <input type="text" id="flagsInput" placeholder="flags" maxlength="5" style="width: 80px;">
+  </div>
+  <div class="flags-helper">
+    <label><input type="checkbox" value="g" onchange="updateFlags()"> g (global)</label>
+    <label><input type="checkbox" value="i" onchange="updateFlags()"> i (case-insensitive)</label>
+    <label><input type="checkbox" value="m" onchange="updateFlags()"> m (multiline)</label>
+    <label><input type="checkbox" value="s" onchange="updateFlags()"> s (dotAll)</label>
+  </div>
+</div>
+
+<div class="test-string-section">
+  <div class="label-row">
+    <label for="testString">Test String:</label>
+    <button class="btn-sm btn-outline" onclick="clearTest()">Clear</button>
+  </div>
+  <textarea id="testString" placeholder="Enter text to test against the regex..."></textarea>
+</div>
+
+<div class="results-section">
+  <div class="match-stats">
+    <div class="stat-box">
+      <span class="stat-value" id="matchCount">0</span>
+      <span class="stat-label">Matches</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-value" id="isValid">✓</span>
+      <span class="stat-label">Valid Regex</span>
+    </div>
+  </div>
+  
+  <div class="highlighted-output">
+    <h3>Highlighted Matches:</h3>
+    <div id="highlightedText" class="highlight-box"></div>
+  </div>
+  
+  <div class="matches-list">
+    <h3>Match Details:</h3>
+    <div id="matchesList" class="matches-box"></div>
+  </div>
+</div>
+
+<script src="/assets/js/regex-tester.js"></script>

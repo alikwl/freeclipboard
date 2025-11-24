@@ -1,0 +1,65 @@
+---
+layout: default
+title: Blog - Free Online Tools Tips, Tutorials & Guides
+description: Learn how to use online tools effectively with our tutorials, tips, and guides. Stay updated with the latest productivity tools and techniques.
+keywords: online tools blog, productivity tips, tool tutorials, web tools guides
+---
+
+<div class="page-header">
+  <h1>📚 Blog</h1>
+  <p class="lead">Tips, tutorials, and guides for using online tools effectively</p>
+</div>
+
+{% include ads.html %}
+
+<div class="blog-grid">
+  {% for post in site.posts limit:12 %}
+  <article class="blog-card">
+    {% if post.image %}
+    <div class="blog-image">
+      <img src="{{ post.image }}" alt="{{ post.title }}">
+    </div>
+    {% endif %}
+    <div class="blog-content">
+      <div class="blog-meta">
+        <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
+        {% if post.category %}
+        <span class="blog-category">{{ post.category }}</span>
+        {% endif %}
+      </div>
+      <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+      <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+      <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
+{% if site.posts.size == 0 %}
+<div class="empty-state">
+  <div class="empty-icon">📝</div>
+  <h3>No blog posts yet</h3>
+  <p>Check back soon for helpful tutorials and guides!</p>
+</div>
+{% endif %}
+
+<div class="blog-sidebar">
+  <div class="sidebar-widget">
+    <h3>Categories</h3>
+    <ul class="category-list">
+      <li><a href="{{ site.baseurl }}/blog/category/tutorials/">Tutorials</a></li>
+      <li><a href="{{ site.baseurl }}/blog/category/tips/">Tips & Tricks</a></li>
+      <li><a href="{{ site.baseurl }}/blog/category/guides/">Guides</a></li>
+      <li><a href="{{ site.baseurl }}/blog/category/updates/">Updates</a></li>
+    </ul>
+  </div>
+
+  <div class="sidebar-widget">
+    <h3>Popular Posts</h3>
+    <ul class="popular-posts">
+      <li><a href="#">How to Use Clipboard Manager Effectively</a></li>
+      <li><a href="#">10 Text Formatting Tips for Writers</a></li>
+      <li><a href="#">QR Code Best Practices for Business</a></li>
+    </ul>
+  </div>
+</div>

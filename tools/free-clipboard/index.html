@@ -1,0 +1,112 @@
+---
+layout: tool
+title: Free Clipboard Manager - Store & Organize Clipboard History
+description: Store, manage, and organize unlimited clipboard items with smart categorization, search, favorites, and export/import. Never lose your copied text again.
+keywords: clipboard manager, clipboard history, clipboard organizer, copy paste manager, text storage, clipboard tool
+schema_type: WebApplication
+permalink: /tools/free-clipboard/
+category_name: Clipboard & Text Tools
+category_url: /clipboard-tools/
+rating: 4.9
+rating_count: 1350
+features:
+  - Unlimited clipboard storage
+  - Smart categorization
+  - Search and filter
+  - Favorites and tags
+  - Export/import data
+  - 100% private
+---
+
+<section class="clipboard-container" aria-labelledby="clipboard-heading">
+  <h2 id="clipboard-heading" class="sr-only">Clipboard Manager Interface</h2>
+
+<div class="clipboard-container">
+  <!-- Quick Actions Bar -->
+  <div class="quick-actions" role="toolbar" aria-label="Clipboard actions">
+    <label for="searchInput" class="sr-only">Search clipboard history</label>
+    <input 
+      type="search" 
+      id="searchInput" 
+      placeholder="🔍 Search clipboard history..." 
+      class="search-input"
+      aria-label="Search clipboard items">
+    <div class="action-buttons">
+      <button onclick="clearAllClipboard()" class="btn-sm btn-outline" aria-label="Clear all clipboard items">Clear All</button>
+      <button onclick="exportClipboard()" class="btn-sm" aria-label="Export clipboard data">Export</button>
+      <button onclick="importClipboard()" class="btn-sm" aria-label="Import clipboard data">Import</button>
+    </div>
+  </div>
+
+  <!-- Category Filter -->
+  <nav class="category-filter" role="navigation" aria-label="Filter clipboard by category">
+    <button onclick="filterCategory('all')" class="category-btn active" data-category="all" aria-pressed="true">All</button>
+    <button onclick="filterCategory('text')" class="category-btn" data-category="text" aria-pressed="false">📝 Text</button>
+    <button onclick="filterCategory('code')" class="category-btn" data-category="code" aria-pressed="false">💻 Code</button>
+    <button onclick="filterCategory('url')" class="category-btn" data-category="url" aria-pressed="false">🔗 URLs</button>
+    <button onclick="filterCategory('email')" class="category-btn" data-category="email" aria-pressed="false">📧 Emails</button>
+    <button onclick="filterCategory('favorite')" class="category-btn" data-category="favorite" aria-pressed="false">⭐ Favorites</button>
+  </nav>
+
+  <!-- New Clipboard Entry -->
+  <form class="new-entry-section" onsubmit="event.preventDefault(); addClipboardItem();" aria-labelledby="new-entry-heading">
+    <h3 id="new-entry-heading" class="sr-only">Add New Clipboard Item</h3>
+    <label for="newClipboardText" class="sr-only">Enter text to add to clipboard</label>
+    <textarea 
+      id="newClipboardText" 
+      placeholder="Paste or type your text here..." 
+      rows="4"
+      aria-label="Text content for new clipboard item"></textarea>
+    <div class="entry-options">
+      <label for="entryCategory" class="sr-only">Select category</label>
+      <select id="entryCategory" class="category-select" aria-label="Category for clipboard item">
+        <option value="text">Text</option>
+        <option value="code">Code</option>
+        <option value="url">URL</option>
+        <option value="email">Email</option>
+      </select>
+      <label for="entryTitle" class="sr-only">Optional title</label>
+      <input 
+        type="text" 
+        id="entryTitle" 
+        placeholder="Add a title (optional)" 
+        class="title-input"
+        aria-label="Optional title for clipboard item">
+      <button type="submit" class="btn-primary" aria-label="Add item to clipboard">Add to Clipboard</button>
+    </div>
+  </form>
+
+  <!-- Stats -->
+  <div class="clipboard-stats" role="region" aria-live="polite" aria-label="Clipboard statistics">
+    <div class="stat-item">
+      <span class="stat-number" id="totalItems" aria-label="Total clipboard items">0</span>
+      <span class="stat-label">Total Items</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" id="favoriteCount" aria-label="Favorite items count">0</span>
+      <span class="stat-label">Favorites</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number" id="storageUsed" aria-label="Storage space used">0 KB</span>
+      <span class="stat-label">Storage Used</span>
+    </div>
+  </div>
+
+  <!-- Clipboard Items List -->
+  <div id="clipboardList" class="clipboard-list" role="list" aria-label="Clipboard items">
+    <!-- Items will be dynamically inserted here -->
+  </div>
+
+  <!-- Empty State -->
+  <div id="emptyState" class="empty-state" role="status" aria-live="polite">
+    <div class="empty-icon" aria-hidden="true">📋</div>
+    <h3>Your clipboard is empty</h3>
+    <p>Start by adding text above or copying text from anywhere!</p>
+  </div>
+</section>
+
+<!-- Hidden file input for import -->
+<label for="importFile" class="sr-only">Import clipboard data file</label>
+<input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)" aria-label="Import clipboard JSON file">
+
+<script src="{{ '/assets/js/free-clipboard.js' | relative_url }}"></script>

@@ -1,0 +1,59 @@
+---
+layout: tool
+title: HTML Encoder/Decoder - Encode & Decode HTML Entities Online
+description: Encode and decode HTML entities, special characters, and escape sequences instantly. Free HTML encoder for developers to safely display special characters in web pages.
+keywords: html encoder, html decoder, html entities, encode html, decode html, html escape, html special characters, html entity converter
+schema_type: WebApplication
+permalink: /tools/html-encoder/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.7
+rating_count: 680
+features:
+  - Encode HTML entities
+  - Decode HTML entities
+  - Special character conversion
+  - Instant results
+  - Copy to clipboard
+  - Works offline
+---
+
+<div class="mode-toggle">
+  <button class="toggle-btn active" onclick="setMode('encode')">Encode</button>
+  <button class="toggle-btn" onclick="setMode('decode')">Decode</button>
+</div>
+
+<div class="input-area">
+  <div class="label-row">
+    <label for="inputBox">Input:</label>
+    <div class="toolbar">
+      <button class="btn-sm btn-outline" onclick="clearAll()">Clear</button>
+      <button class="btn-sm" onclick="processText()">Process</button>
+    </div>
+  </div>
+  <textarea id="inputBox" placeholder="Enter HTML to encode or decode..."></textarea>
+</div>
+
+<div class="output-section">
+  <div class="label-row">
+    <label for="outputBox">Output:</label>
+    <button class="btn-sm" onclick="copyOutput()">Copy</button>
+  </div>
+  <textarea id="outputBox" readonly placeholder="Result will appear here..."></textarea>
+</div>
+
+<div class="encoding-options">
+  <h3>Encoding Options</h3>
+  <div class="checkbox-group">
+    <label class="checkbox-label">
+      <input type="checkbox" id="encodeAll" onchange="processText()">
+      <span>Encode all characters (including alphanumeric)</span>
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="useHex" onchange="processText()">
+      <span>Use hexadecimal entities (&#x...;)</span>
+    </label>
+  </div>
+</div>
+
+<script src="/assets/js/html-encoder.js"></script>

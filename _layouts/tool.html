@@ -1,0 +1,54 @@
+---
+layout: default
+---
+<article class="tool-page" itemscope itemtype="https://schema.org/WebApplication">
+  <nav aria-label="Breadcrumb">
+    {% include breadcrumb.html %}
+  </nav>
+  
+  <header class="tool-header">
+    <h1 itemprop="name">{{ page.title }}</h1>
+    <p class="lead" itemprop="description">{{ page.description }}</p>
+  </header>
+
+  <!-- Top Ad -->
+  <aside aria-label="Advertisement">
+    {% include ads.html %}
+  </aside>
+
+  <main class="tool-interface" role="main" aria-label="Tool interface">
+    {{ content }}
+  </main>
+
+  {% if page.instructions %}
+  <section class="tool-instructions" aria-labelledby="instructions-heading">
+    <h2 id="instructions-heading">How to Use</h2>
+    {{ page.instructions }}
+  </section>
+  {% endif %}
+
+  <!-- Bottom Ad -->
+  <aside class="ad-container" style="margin-top: 3rem;" aria-label="Advertisement">
+    <span class="ad-label">Advertisement</span>
+  </aside>
+
+  <section class="related-tools" aria-labelledby="related-tools-heading">
+    <h2 id="related-tools-heading">Related Tools</h2>
+    <div class="tools-grid" role="list">
+      {% for tool in site.data.tools limit:3 %}
+        {% if tool.url != page.url %}
+        <a href="{{ site.baseurl }}{{ tool.url }}" class="tool-card" role="listitem">
+          <h3>{{ tool.name }}</h3>
+          <p>{{ tool.description }}</p>
+          <span class="card-link" aria-hidden="true">Use Tool →</span>
+        </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <nav class="tool-footer-nav" aria-label="Tool navigation">
+    <a href="{{ site.baseurl }}/" class="btn-outline" aria-label="Go back to homepage">← Back to Home</a>
+    <a href="{{ site.baseurl }}/clipboard-tools/" class="btn-outline" aria-label="View all available tools">View All Tools →</a>
+  </nav>
+</article>

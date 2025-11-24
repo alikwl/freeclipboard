@@ -1,0 +1,7 @@
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+  <a href="{{ site.baseurl }}/">Home</a>
+  {% if page.url != "/" %}
+    <span>/</span>
+    <span>{{ page.title }}</span>
+  {% endif %}
+</nav>

@@ -1,0 +1,58 @@
+---
+layout: tool
+title: Markdown Preview - Live Markdown Editor & Viewer Online Free
+description: Write and preview Markdown in real-time with syntax highlighting and export options. Free online Markdown editor for writers and developers with live preview and HTML export.
+keywords: markdown preview, markdown editor, markdown viewer, live markdown, markdown to html, markdown converter, markdown online
+schema_type: WebApplication
+permalink: /tools/markdown-preview/
+category_name: Text Utilities
+category_url: /text-utilities/
+rating: 4.7
+rating_count: 810
+features:
+  - Live Markdown preview
+  - Syntax highlighting
+  - HTML export
+  - Split-screen editor
+  - GitHub-flavored Markdown
+  - Works offline
+---
+
+<div class="markdown-container">
+  <div class="markdown-editor">
+    <div class="label-row">
+      <label for="markdownInput">Markdown Input:</label>
+      <div class="toolbar">
+        <button class="btn-sm btn-outline" onclick="clearMarkdown()">Clear</button>
+        <button class="btn-sm" onclick="insertTemplate()">Insert Template</button>
+      </div>
+    </div>
+    <textarea id="markdownInput" placeholder="# Enter Markdown here...
+
+## Heading 2
+**Bold text** and *italic text*
+
+- List item 1
+- List item 2
+
+[Link](https://example.com)
+
+```javascript
+console.log('Code block');
+```"></textarea>
+  </div>
+  
+  <div class="markdown-preview">
+    <div class="label-row">
+      <label>Preview:</label>
+      <div class="toolbar">
+        <button class="btn-sm" onclick="copyHTML()">Copy HTML</button>
+        <button class="btn-sm btn-outline" onclick="downloadMarkdown()">Download MD</button>
+      </div>
+    </div>
+    <div id="previewOutput" class="preview-content"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="/assets/js/markdown-preview.js"></script>

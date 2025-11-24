@@ -1,0 +1,64 @@
+---
+layout: tool
+title: UUID/GUID Generator - Generate Unique IDs Online Free
+description: Generate unique UUIDs (Universally Unique Identifiers) and GUIDs in various formats instantly. Free UUID generator for developers with bulk generation and multiple format support.
+keywords: uuid generator, guid generator, unique id generator, uuid v4, generate uuid, create guid, random uuid, uuid maker
+schema_type: WebApplication
+permalink: /tools/uuid-generator/
+category_name: Generators & Security
+category_url: /text-utilities/
+rating: 4.6
+rating_count: 650
+features:
+  - UUID v4 generation
+  - Bulk UUID generation
+  - Multiple format support
+  - Copy to clipboard
+  - Instant generation
+  - Works offline
+---
+
+<div class="uuid-display">
+  <div class="label-row">
+    <label>Generated UUID:</label>
+    <div class="toolbar">
+      <button class="btn-sm" onclick="copyUUID()">Copy</button>
+      <button class="btn-sm btn-outline" onclick="generateSingleUUID()">Generate New</button>
+    </div>
+  </div>
+  <div class="uuid-output" id="uuidOutput"></div>
+</div>
+
+<div class="uuid-options">
+  <h3>Format Options</h3>
+  <div class="checkbox-group">
+    <label class="checkbox-label">
+      <input type="radio" name="format" value="standard" checked>
+      <span>Standard (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)</span>
+    </label>
+    <label class="checkbox-label">
+      <input type="radio" name="format" value="uppercase">
+      <span>Uppercase (XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX)</span>
+    </label>
+    <label class="checkbox-label">
+      <input type="radio" name="format" value="nohyphens">
+      <span>No Hyphens (xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx)</span>
+    </label>
+    <label class="checkbox-label">
+      <input type="radio" name="format" value="braces">
+      <span>With Braces ({xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx})</span>
+    </label>
+  </div>
+</div>
+
+<div class="bulk-generate">
+  <h3>Generate Multiple UUIDs</h3>
+  <div class="bulk-controls">
+    <input type="number" id="bulkCount" min="1" max="1000" value="10" placeholder="Count">
+    <button class="btn-sm" onclick="generateBulkUUIDs()">Generate Bulk</button>
+    <button class="btn-sm btn-outline" onclick="copyBulk()">Copy All</button>
+  </div>
+  <textarea id="bulkOutput" placeholder="Multiple UUIDs will appear here..." readonly></textarea>
+</div>
+
+<script src="/assets/js/uuid-generator.js"></script>

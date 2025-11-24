@@ -1,0 +1,275 @@
+---
+layout: tool
+title: Password Generator - Create Strong Secure Random Passwords
+description: Generate strong, secure, random passwords with customizable length and character options. Free password generator for maximum security and protection.
+keywords: password generator, strong password, secure password, random password, password creator, password maker
+schema_type: WebApplication
+permalink: /tools/password-generator/
+category_name: Generators & Security
+category_url: /text-utilities/
+rating: 4.9
+rating_count: 1200
+features:
+  - Strong password generation
+  - Customizable length
+  - Character type options
+  - Bulk generation
+  - Password strength meter
+  - 100% private
+---
+
+<section class="password-generator-wrapper" aria-labelledby="password-heading">
+  <h2 id="password-heading" class="sr-only">Password Generator</h2>
+  
+  <!-- Password Display Section -->
+  <div class="password-display-card">
+    <div class="password-header">
+      <label for="passwordOutput">Your Generated Password</label>
+      <div class="password-actions">
+        <button class="btn-icon" id="copyBtn" title="Copy to clipboard" aria-label="Copy password to clipboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+        </button>
+        <button class="btn-icon" id="regenerateBtn" title="Generate new password" aria-label="Generate new password">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <div class="password-output-wrapper">
+      <div 
+        class="password-output" 
+        id="passwordOutput" 
+        role="status" 
+        aria-live="polite"
+        aria-label="Generated password display"></div>
+    </div>
+    
+    <div class="strength-indicator">
+      <div class="strength-label-row">
+        <span class="strength-label">Password Strength:</span>
+        <span class="strength-text" id="strengthText">-</span>
+      </div>
+      <div class="strength-meter">
+        <div class="strength-bar" id="strengthBar"></div>
+      </div>
+      <div class="strength-details" id="strengthDetails"></div>
+    </div>
+  </div>
+
+  <!-- Quick Presets -->
+  <div class="password-presets">
+    <h3>Quick Presets</h3>
+    <div class="preset-buttons">
+      <button class="preset-btn" data-preset="easy">Easy to Remember (12 chars)</button>
+      <button class="preset-btn" data-preset="strong">Strong (16 chars)</button>
+      <button class="preset-btn" data-preset="ultra">Ultra Secure (24 chars)</button>
+      <button class="preset-btn" data-preset="pin">PIN Code (6 digits)</button>
+    </div>
+  </div>
+
+  <!-- Password Options -->
+  <div class="password-options-card">
+    <h3>Customize Your Password</h3>
+    
+    <div class="option-group">
+      <div class="option-header">
+        <label for="lengthSlider">Password Length: <span id="lengthValue">16</span> characters</label>
+        <span class="option-hint">Recommended: 16+ characters</span>
+      </div>
+      <input type="range" id="lengthSlider" min="4" max="128" value="16" class="slider">
+      <div class="length-markers">
+        <span>4</span>
+        <span>16</span>
+        <span>32</span>
+        <span>64</span>
+        <span>128</span>
+      </div>
+    </div>
+    
+    <div class="character-options">
+      <h4>Character Types</h4>
+      <div class="checkbox-grid">
+        <label class="checkbox-card">
+          <input type="checkbox" id="includeUppercase" checked>
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🔤</span>
+            <div class="checkbox-text">
+              <strong>Uppercase</strong>
+              <small>A-Z</small>
+            </div>
+          </div>
+        </label>
+        
+        <label class="checkbox-card">
+          <input type="checkbox" id="includeLowercase" checked>
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🔡</span>
+            <div class="checkbox-text">
+              <strong>Lowercase</strong>
+              <small>a-z</small>
+            </div>
+          </div>
+        </label>
+        
+        <label class="checkbox-card">
+          <input type="checkbox" id="includeNumbers" checked>
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🔢</span>
+            <div class="checkbox-text">
+              <strong>Numbers</strong>
+              <small>0-9</small>
+            </div>
+          </div>
+        </label>
+        
+        <label class="checkbox-card">
+          <input type="checkbox" id="includeSymbols" checked>
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🔣</span>
+            <div class="checkbox-text">
+              <strong>Symbols</strong>
+              <small>!@#$%^&*</small>
+            </div>
+          </div>
+        </label>
+      </div>
+    </div>
+    
+    <div class="advanced-options">
+      <h4>Advanced Options</h4>
+      <label class="checkbox-label">
+        <input type="checkbox" id="excludeAmbiguous">
+        <span>Exclude Ambiguous Characters (0, O, l, I, 1)</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="excludeSimilar">
+        <span>Exclude Similar Characters (i, l, 1, L, o, 0, O)</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="noDuplicates">
+        <span>No Duplicate Characters</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="noSequential">
+        <span>No Sequential Characters (abc, 123)</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Password History -->
+  <div class="password-history-card">
+    <div class="history-header">
+      <h3>Password History</h3>
+      <button class="btn-sm btn-outline" id="clearHistoryBtn">Clear History</button>
+    </div>
+    <div class="history-list" id="historyList">
+      <p class="history-empty">No passwords generated yet</p>
+    </div>
+  </div>
+
+  <!-- Bulk Generation -->
+  <div class="bulk-generate-card">
+    <h3>Generate Multiple Passwords</h3>
+    <p class="section-description">Generate multiple passwords at once for different accounts</p>
+    <div class="bulk-controls">
+      <div class="bulk-input-group">
+        <label for="bulkCount">Number of passwords:</label>
+        <input type="number" id="bulkCount" min="1" max="100" value="10">
+      </div>
+      <button class="btn-primary" id="generateBulkBtn">Generate Bulk Passwords</button>
+    </div>
+    <div class="bulk-output-wrapper">
+      <div class="bulk-toolbar">
+        <span class="bulk-count" id="bulkCountDisplay">0 passwords generated</span>
+        <button class="btn-sm" id="copyBulkBtn">Copy All</button>
+      </div>
+      <textarea id="bulkOutput" placeholder="Multiple passwords will appear here..." readonly></textarea>
+    </div>
+  </div>
+</section>
+
+<section class="tool-content-section">
+  <div class="content-body">
+    <h2>Best Free Password Generator Tool</h2>
+    <p>Create strong, secure, and random passwords instantly with our advanced password generator. Perfect for protecting your online accounts, this tool generates cryptographically secure passwords that are virtually impossible to crack.</p>
+    
+    <h2>Why Use Our Password Generator?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3>Cryptographically Secure</h3>
+        <p>Uses Web Crypto API for true random number generation, ensuring maximum security.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Instant Generation</h3>
+        <p>Generate passwords in milliseconds with real-time strength analysis.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h3>Fully Customizable</h3>
+        <p>Control length, character types, and advanced options to meet any requirement.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🔐</span>
+        <h3>100% Private</h3>
+        <p>All passwords are generated locally in your browser. Nothing is sent to our servers.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3>Strength Meter</h3>
+        <p>Real-time password strength analysis with detailed feedback.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">📋</span>
+        <h3>Password History</h3>
+        <p>Keep track of recently generated passwords for easy access.</p>
+      </div>
+    </div>
+    
+    <h2>How to Create a Strong Password</h2>
+    <ol class="instructions-list">
+      <li><strong>Length Matters:</strong> Use at least 16 characters for maximum security</li>
+      <li><strong>Mix Character Types:</strong> Include uppercase, lowercase, numbers, and symbols</li>
+      <li><strong>Avoid Patterns:</strong> Don't use sequential characters or common words</li>
+      <li><strong>Unique for Each Account:</strong> Never reuse passwords across different sites</li>
+      <li><strong>Use a Password Manager:</strong> Store your passwords securely</li>
+    </ol>
+    
+    <h2>Password Security Tips</h2>
+    <ul>
+      <li><strong>Never Share Passwords:</strong> Keep your passwords confidential</li>
+      <li><strong>Enable 2FA:</strong> Add two-factor authentication for extra security</li>
+      <li><strong>Change Regularly:</strong> Update passwords every 3-6 months</li>
+      <li><strong>Avoid Personal Info:</strong> Don't use birthdays, names, or common words</li>
+      <li><strong>Check for Breaches:</strong> Monitor if your passwords have been compromised</li>
+    </ul>
+    
+    <h2>Quick Preset Options</h2>
+    <p>Choose from our quick presets for common password needs:</p>
+    <ul>
+      <li><strong>Easy to Remember:</strong> 12 characters with letters and numbers</li>
+      <li><strong>Strong:</strong> 16 characters with all character types</li>
+      <li><strong>Ultra Secure:</strong> 24+ characters for maximum protection</li>
+      <li><strong>PIN Code:</strong> 4-8 digit numeric codes</li>
+    </ul>
+    
+    <h2>Related Security Tools</h2>
+    <p>Enhance your online security with these related tools:</p>
+    <ul class="related-tools-list">
+      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate secure hashes</li>
+      <li><a href="{{ site.baseurl }}/tools/uuid-generator/">UUID Generator</a> - Create unique identifiers</li>
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode sensitive data</li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Security Tools</a></li>
+    </ul>
+  </div>
+</section>
+
+<script src="{{ site.baseurl }}/assets/js/password-generator.js"></script>
