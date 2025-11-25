@@ -64,9 +64,6 @@
         
         // Initial update
         updateAllCounts();
-        
-        // Setup dark mode
-        setupDarkMode();
     }
     
     // Setup Event Listeners
@@ -332,48 +329,7 @@ Average Sentence Length: ${calculateAverageSentenceLength(text)} words
         }, 3000);
     }
     
-    // Dark Mode Setup
-    function setupDarkMode() {
-        // Check for saved theme preference or default to system preference
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme) {
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        } else if (systemPrefersDark) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
-        
-        // Create theme toggle button if it doesn't exist
-        if (!document.querySelector('.theme-toggle')) {
-            const themeToggle = document.createElement('button');
-            themeToggle.className = 'theme-toggle';
-            themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-            themeToggle.innerHTML = '🌙';
-            document.body.appendChild(themeToggle);
-            
-            themeToggle.addEventListener('click', toggleTheme);
-        }
-        
-        updateThemeIcon();
-    }
-    
-    function toggleTheme() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon();
-    }
-    
-    function updateThemeIcon() {
-        const themeToggle = document.querySelector('.theme-toggle');
-        if (!themeToggle) return;
-        
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        themeToggle.innerHTML = currentTheme === 'dark' ? '☀️' : '🌙';
-    }
+
     
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {

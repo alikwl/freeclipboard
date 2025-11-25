@@ -4,15 +4,18 @@
       <span class="logo-icon">📋</span>
       <span class="logo-text">FreeClipboard</span>
     </a>
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
     <nav class="site-nav" id="siteNav">
       {% for item in site.data.navigation %}
         <a href="{{ site.baseurl }}{{ item.url }}" class="page-link">{{ item.title }}</a>
       {% endfor %}
     </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <span id="themeIcon">🌙</span>
+    </button>
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </header>

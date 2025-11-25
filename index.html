@@ -24,40 +24,153 @@ schema_type: WebSite
   </div>
 </section>
 
-<!-- SECTION 2: FEATURED TOOLS (Quick Access) -->
+<!-- SECTION 2: FEATURED TOOLS WITH LIVE PREVIEWS -->
 <section id="featured-tools" class="featured-tools-section" aria-labelledby="featured-heading">
   <div class="container">
     <h2 id="featured-heading">Most Popular Tools</h2>
-    <p class="section-subtitle">Quick access to our most-used utilities</p>
+    <p class="section-subtitle">See our tools in action with live interactive previews</p>
     
-    <div class="featured-tools-grid">
-      <a href="{{ site.baseurl }}/tools/free-clipboard/" class="featured-tool-card">
-        <div class="tool-icon-large">📋</div>
-        <h3>Clipboard Manager</h3>
-        <p>Store unlimited clipboard items with smart organization</p>
-        <span class="tool-badge">Most Popular</span>
-      </a>
+    <div class="tools-preview-grid">
+      <!-- Word Counter Preview -->
+      <div class="tool-preview-card" data-tool="word-counter">
+        <div class="preview-header">
+          <div class="preview-icon">📝</div>
+          <div class="preview-title">
+            <h3>Word Counter</h3>
+            <p>Real-time text analysis</p>
+          </div>
+          <span class="preview-badge">Popular</span>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/word-counter/" class="preview-link">Try it now</a>
+        </div>
+      </div>
       
-      <a href="{{ site.baseurl }}/tools/word-counter/" class="featured-tool-card">
-        <div class="tool-icon-large">📝</div>
-        <h3>Word Counter</h3>
-        <p>Count words, characters, and reading time instantly</p>
-        <span class="tool-badge">For Writers</span>
-      </a>
+      <!-- Clipboard Manager Preview -->
+      <div class="tool-preview-card" data-tool="clipboard-manager">
+        <div class="preview-header">
+          <div class="preview-icon">📋</div>
+          <div class="preview-title">
+            <h3>Clipboard Manager</h3>
+            <p>Organize your clipboard</p>
+          </div>
+          <span class="preview-badge">Featured</span>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/free-clipboard/" class="preview-link">Try it now</a>
+        </div>
+      </div>
       
-      <a href="{{ site.baseurl }}/tools/password-generator/" class="featured-tool-card">
-        <div class="tool-icon-large">🔐</div>
-        <h3>Password Generator</h3>
-        <p>Create strong, secure passwords in seconds</p>
-        <span class="tool-badge">Security</span>
-      </a>
+      <!-- Password Generator Preview -->
+      <div class="tool-preview-card" data-tool="password-generator">
+        <div class="preview-header">
+          <div class="preview-icon">🔐</div>
+          <div class="preview-title">
+            <h3>Password Generator</h3>
+            <p>Secure passwords instantly</p>
+          </div>
+          <span class="preview-badge">Security</span>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/password-generator/" class="preview-link">Try it now</a>
+        </div>
+      </div>
       
-      <a href="{{ site.baseurl }}/tools/image-converter/" class="featured-tool-card">
-        <div class="tool-icon-large">🔄</div>
-        <h3>Image Converter</h3>
-        <p>Convert images between PNG, JPG, WebP formats</p>
-        <span class="tool-badge">New</span>
-      </a>
+      <!-- JSON Formatter Preview -->
+      <div class="tool-preview-card" data-tool="json-formatter">
+        <div class="preview-header">
+          <div class="preview-icon">{ }</div>
+          <div class="preview-title">
+            <h3>JSON Formatter</h3>
+            <p>Beautify & validate JSON</p>
+          </div>
+          <span class="preview-badge">Dev Tool</span>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/json-formatter/" class="preview-link">Try it now</a>
+        </div>
+      </div>
+      
+      <!-- Base64 Encoder Preview -->
+      <div class="tool-preview-card" data-tool="base64-encoder">
+        <div class="preview-header">
+          <div class="preview-icon">🔐</div>
+          <div class="preview-title">
+            <h3>Base64 Encoder</h3>
+            <p>Encode & decode Base64</p>
+          </div>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/base64-encoder/" class="preview-link">Try it now</a>
+        </div>
+      </div>
+      
+      <!-- QR Code Generator Preview -->
+      <div class="tool-preview-card" data-tool="qr-code">
+        <div class="preview-header">
+          <div class="preview-icon">📱</div>
+          <div class="preview-title">
+            <h3>QR Code Generator</h3>
+            <p>Create QR codes instantly</p>
+          </div>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="preview-link">Try it now</a>
+        </div>
+      </div>
+      
+      <!-- Color Picker Preview -->
+      <div class="tool-preview-card" data-tool="color-picker">
+        <div class="preview-header">
+          <div class="preview-icon">🎨</div>
+          <div class="preview-title">
+            <h3>Color Picker</h3>
+            <p>Pick & convert colors</p>
+          </div>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/color-picker/" class="preview-link">Try it now</a>
+        </div>
+      </div>
+      
+      <!-- Image Converter Preview -->
+      <div class="tool-preview-card" data-tool="image-converter">
+        <div class="preview-header">
+          <div class="preview-icon">🔄</div>
+          <div class="preview-title">
+            <h3>Image Converter</h3>
+            <p>Convert image formats</p>
+          </div>
+          <span class="preview-badge">New</span>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/image-converter/" class="preview-link">Try it now</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -131,6 +244,10 @@ schema_type: WebSite
         <a href="{{ site.baseurl }}/text-utilities/" class="view-all-link">View All →</a>
       </div>
       <div class="tools-grid-compact">
+        <a href="{{ site.baseurl }}/tools/text-to-handwriting/" class="tool-card-compact">
+          <strong>Text to Handwriting</strong>
+          <span>Convert text to handwriting</span>
+        </a>
         <a href="{{ site.baseurl }}/tools/text-formatter/" class="tool-card-compact">
           <strong>Text Formatter</strong>
           <span>Format & transform text</span>
