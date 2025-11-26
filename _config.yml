@@ -30,6 +30,8 @@ jekyll-minifier:
   compress_css: true
   compress_javascript: true
   compress_html: true
+  uglifier:
+    harmony: true
 
 # Front matter defaults
 defaults:
