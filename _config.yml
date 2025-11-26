@@ -22,17 +22,10 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
-  - jekyll-minifier
   - jekyll-include-cache
   - jekyll-github-metadata
 
 # Plugin configurations
-jekyll-minifier:
-  compress_css: true
-  compress_javascript: true
-  compress_html: true
-  uglifier:
-    harmony: true
 
 # Front matter defaults
 defaults:
