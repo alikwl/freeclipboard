@@ -1,0 +1,30 @@
+---
+layout: default
+title: Generators & Security Tools - Free Online Utilities
+description: Generate strong passwords, UUIDs, and hashes. Secure, fast, and free developer utilities.
+keywords: password generator, uuid generator, hash generator, md5, sha256
+schema_type: WebApplication
+---
+
+<div class="page-header">
+  <h1>🔐 Generators & Security</h1>
+  <p class="lead">Generate passwords, UUIDs, and hashes with privacy-respecting tools</p>
+  <p class="category-description">Secure generation tools for developers and users, including strong passwords, unique identifiers, and cryptographic hashes.</p>
+  <p class="category-count"><strong>
+    {% assign securityTools = site.data.tools-metadata.tools | where: 'category', 'security' %}
+    {{ securityTools | size }} tools
+  </strong></p>
+  </div>
+
+{% include ads.html %}
+
+<div class="tools-category-grid">
+  {% for tool in securityTools %}
+    <a href="{{ tool.url | relative_url }}" class="tool-card">
+      <div class="tool-icon">{{ tool.icon }}</div>
+      <h3>{{ tool.name }}</h3>
+      <p>{{ tool.shortDescription }}</p>
+      <span class="card-link">Use Tool →</span>
+    </a>
+  {% endfor %}
+</div>

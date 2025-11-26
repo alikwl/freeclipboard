@@ -1,46 +1,54 @@
 // FreeClipboard - Main JavaScript
 console.log('FreeClipboard loaded successfully');
 
-// =========================================
-// THEME TOGGLE
-// =========================================
-function initTheme() {
-  // Check for saved theme preference or default to system preference
-  const savedTheme = localStorage.getItem('theme');
-  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  if (savedTheme) {
-    document.documentElement.setAttribute('data-theme', savedTheme);
-  } else if (systemPrefersDark) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+// Theme handling
+(function() {
+  const THEME_KEY = 'theme';
+
+  function getPreferredTheme() {
+    const saved = localStorage.getItem(THEME_KEY);
+    if (saved === 'light' || saved === 'dark') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
-  
-  updateThemeIcon();
-}
 
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  document.documentElement.setAttribute('data-theme', newTheme);
-  localStorage.setItem('theme', newTheme);
-  updateThemeIcon();
-  
-  // Dispatch event for other scripts that might need to know about theme change
-  window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: newTheme } }));
-}
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) {
+      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      toggle.setAttribute('title', theme === 'dark' ? 'Light mode' : 'Dark mode');
+    }
+  }
 
-function updateThemeIcon() {
-  const themeIcon = document.getElementById('themeIcon');
-  if (!themeIcon) return;
-  
-  const currentTheme = document.documentElement.getAttribute('data-theme');
-  themeIcon.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
-}
+  function initTheme() {
+    applyTheme(getPreferredTheme());
 
-// =========================================
-// MOBILE MENU
-// =========================================
+    const toggle = document.getElementById('themeToggle');
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(THEME_KEY, next);
+        applyTheme(next);
+      });
+    }
+
+    // Sync with system preference changes if user hasn't explicitly set theme
+    if (!localStorage.getItem(THEME_KEY) && window.matchMedia) {
+      const media = window.matchMedia('(prefers-color-scheme: dark)');
+      media.addEventListener('change', (e) => applyTheme(e.matches ? 'dark' : 'light'));
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTheme);
+  } else {
+    initTheme();
+  }
+})();
+
+// Mobile Menu Toggle
 function toggleMobileMenu() {
   const nav = document.getElementById('siteNav');
   const toggle = document.getElementById('mobileMenuToggle');
@@ -77,15 +85,6 @@ function closeMobileMenu() {
 // EVENT LISTENERS
 // =========================================
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize theme
-  initTheme();
-  
-  // Theme toggle button
-  const themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', toggleTheme);
-  }
-  
   // Mobile menu toggle
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   if (mobileMenuToggle) {

@@ -14,7 +14,7 @@ schema_type: WebSite
     <p class="hero-description">Professional-grade utilities that run entirely in your browser. 100% free, privacy-focused, and lightning fast.</p>
     <div class="hero-cta">
       <a href="#featured-tools" class="btn-hero-primary">Browse Tools</a>
-      <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn-hero-secondary">Try Clipboard Manager</a>
+      <a href="{{ '/tools/free-clipboard/' | relative_url }}" class="btn-hero-secondary">Try Clipboard Manager</a>
     </div>
     <div class="hero-trust">
       <span class="trust-badge">⭐ Trusted by 100K+ users monthly</span>
@@ -153,7 +153,7 @@ schema_type: WebSite
           <a href="{{ site.baseurl }}/tools/color-picker/" class="preview-link">Try it now</a>
         </div>
       </div>
-      
+
       <!-- Image Converter Preview -->
       <div class="tool-preview-card" data-tool="image-converter">
         <div class="preview-header">
@@ -169,6 +169,24 @@ schema_type: WebSite
         </div>
         <div class="preview-footer">
           <a href="{{ site.baseurl }}/tools/image-converter/" class="preview-link">Try it now</a>
+        </div>
+      </div>
+
+      <!-- Text to Handwriting Preview -->
+      <div class="tool-preview-card" data-tool="text-to-handwriting">
+        <div class="preview-header">
+          <div class="preview-icon">✍️</div>
+          <div class="preview-title">
+            <h3>Text to Handwriting</h3>
+            <p>Realistic handwritten notes</p>
+          </div>
+          <span class="preview-badge">New</span>
+        </div>
+        <div class="preview-content">
+          <!-- Animated preview will be injected here -->
+        </div>
+        <div class="preview-footer">
+          <a href="{{ site.baseurl }}/tools/text-to-handwriting/" class="preview-link">Try it now</a>
         </div>
       </div>
     </div>
@@ -215,110 +233,145 @@ schema_type: WebSite
     <h2 id="directory-heading">Complete Tools Directory</h2>
     <p class="section-subtitle">Browse all 18 free online tools organized by category</p>
     
-    <!-- Clipboard Tools -->
-    <div class="tool-category">
-      <div class="category-header">
-        <h3>📋 Clipboard & Text Tools</h3>
-        <a href="{{ site.baseurl }}/clipboard-tools/" class="view-all-link">View All →</a>
+    <div class="tools-search-sort" aria-label="Directory controls">
+      <div class="tools-search-container" role="search" aria-label="Search tools">
+        <input type="search" id="tools-search" class="tools-search-input" placeholder="Search tools by name or description…" aria-controls="tools-directory" aria-describedby="tools-search-help" />
+        <small id="tools-search-help" class="tools-search-help">Type to filter tools instantly. Matching results update below.</small>
       </div>
-      <div class="tools-grid-compact">
-        <a href="{{ site.baseurl }}/tools/free-clipboard/" class="tool-card-compact">
-          <strong>Clipboard Manager</strong>
-          <span>Store & organize clipboard history</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/word-counter/" class="tool-card-compact">
-          <strong>Word Counter</strong>
-          <span>Count words & characters</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/character-counter/" class="tool-card-compact">
-          <strong>Character Counter</strong>
-          <span>Analyze text characters</span>
-        </a>
+      <div class="tools-sort-container" aria-label="Sort tools">
+        <label for="tools-sort" class="sr-only">Sort tools</label>
+        <select id="tools-sort" class="tools-sort-select">
+          <option value="alpha">Alphabetical (A→Z)</option>
+          <option value="rating">Rating (High→Low)</option>
+          <option value="usage">Popularity (High→Low)</option>
+          <option value="featured">Featured first</option>
+        </select>
       </div>
     </div>
     
-    <!-- Text Utilities -->
-    <div class="tool-category">
-      <div class="category-header">
-        <h3>✍️ Text Utilities</h3>
-        <a href="{{ site.baseurl }}/text-utilities/" class="view-all-link">View All →</a>
+    {% assign categories = site.data.tools-metadata.categories %}
+    {% assign tools = site.data.tools-metadata.tools %}
+
+    {% for category in categories %}
+      {% assign catTools = tools | where: 'category', category.id %}
+      {% assign catTools = catTools | sort: 'name' %}
+      <div class="tool-category">
+        <div class="category-header">
+          <h3>{{ category.icon }} {{ category.name }} <span class="category-count">({{ catTools | size }})</span></h3>
+          {% if category.url and category.url != '/tools/' %}
+            <a href="{{ category.url | relative_url }}" class="view-all-link">View All →</a>
+          {% endif %}
+        </div>
+        {% if category.description %}
+          <p class="category-description">{{ category.description }}</p>
+        {% endif %}
+        <div class="tools-grid-compact">
+          {% for tool in catTools %}
+            <a href="{{ tool.url | relative_url }}" class="tool-card-compact" title="{{ tool.name }} — {{ tool.shortDescription }}" data-tags="{{ tool.keywords | join: '|' }}" data-category="{{ category.id }}" data-name="{{ tool.name | downcase }}" data-rating="{{ tool.rating }}" data-usage="{{ tool.usageCount }}" data-featured="{{ tool.featured }}" data-popular="{{ tool.popular }}">
+              <strong>
+                {{ tool.name }}
+                {% if tool.featured %}<span class="tool-badge badge-featured" aria-label="Featured tool">Featured</span>{% endif %}
+                {% if tool.popular %}<span class="tool-badge badge-popular" aria-label="Popular tool">Popular</span>{% endif %}
+              </strong>
+              <span class="tool-subtext">{{ tool.shortDescription }}</span>
+              {% if tool.keywords %}
+              <span class="tool-tags" aria-label="Tool tags">
+                {% for k in tool.keywords limit:3 %}
+                  <span class="tool-tag">{{ k }}</span>
+                {% endfor %}
+              </span>
+              {% endif %}
+              {% if tool.rating %}<span class="tool-meta" aria-label="Average rating">★ {{ tool.rating }}</span>{% endif %}
+            </a>
+          {% endfor %}
+        </div>
       </div>
-      <div class="tools-grid-compact">
-        <a href="{{ site.baseurl }}/tools/text-to-handwriting/" class="tool-card-compact">
-          <strong>Text to Handwriting</strong>
-          <span>Convert text to handwriting</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/text-formatter/" class="tool-card-compact">
-          <strong>Text Formatter</strong>
-          <span>Format & transform text</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/base64-encoder/" class="tool-card-compact">
-          <strong>Base64 Encoder</strong>
-          <span>Encode/decode Base64</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/url-encoder/" class="tool-card-compact">
-          <strong>URL Encoder</strong>
-          <span>Encode/decode URLs</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/html-encoder/" class="tool-card-compact">
-          <strong>HTML Encoder</strong>
-          <span>Encode HTML entities</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/json-formatter/" class="tool-card-compact">
-          <strong>JSON Formatter</strong>
-          <span>Beautify & validate JSON</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/regex-tester/" class="tool-card-compact">
-          <strong>Regex Tester</strong>
-          <span>Test regular expressions</span>
-        </a>
-      </div>
-    </div>
-    
-    <!-- Image Tools -->
-    <div class="tool-category">
-      <div class="category-header">
-        <h3>🎨 Image & Visual Tools</h3>
-        <a href="{{ site.baseurl }}/image-tools/" class="view-all-link">View All →</a>
-      </div>
-      <div class="tools-grid-compact">
-        <a href="{{ site.baseurl }}/tools/image-converter/" class="tool-card-compact">
-          <strong>Image Converter</strong>
-          <span>Convert image formats</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="tool-card-compact">
-          <strong>QR Code Generator</strong>
-          <span>Create QR codes</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/color-picker/" class="tool-card-compact">
-          <strong>Color Picker</strong>
-          <span>Pick & convert colors</span>
-        </a>
-      </div>
-    </div>
-    
-    <!-- Generators -->
-    <div class="tool-category">
-      <div class="category-header">
-        <h3>🔐 Generators & Security</h3>
-      </div>
-      <div class="tools-grid-compact">
-        <a href="{{ site.baseurl }}/tools/password-generator/" class="tool-card-compact">
-          <strong>Password Generator</strong>
-          <span>Create secure passwords</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/uuid-generator/" class="tool-card-compact">
-          <strong>UUID Generator</strong>
-          <span>Generate unique IDs</span>
-        </a>
-        <a href="{{ site.baseurl }}/tools/hash-generator/" class="tool-card-compact">
-          <strong>Hash Generator</strong>
-          <span>Generate MD5, SHA hashes</span>
-        </a>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </section>
+<script>
+  (function() {
+    var input = document.getElementById('tools-search');
+    var sortSelect = document.getElementById('tools-sort');
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.tools-grid-compact .tool-card-compact'));
+    if (!input || cards.length === 0) return;
+
+    function applyFilter(q) {
+      var query = (q || '').toLowerCase();
+      cards.forEach(function(card) {
+        var text = (card.textContent || '').toLowerCase();
+        var tags = (card.getAttribute('data-tags') || '').toLowerCase();
+        var match = text.indexOf(query) > -1 || tags.indexOf(query) > -1;
+        card.style.display = match ? '' : 'none';
+      });
+    }
+
+    function sortCategoryGrids(mode) {
+      var grids = Array.prototype.slice.call(document.querySelectorAll('.tools-grid-compact'));
+      grids.forEach(function(grid) {
+        var visibleCards = Array.prototype.slice.call(grid.querySelectorAll('.tool-card-compact')).filter(function(c){return c.style.display !== 'none';});
+        var comparator;
+        switch (mode) {
+          case 'rating':
+            comparator = function(a,b){ return (parseFloat(b.dataset.rating||0) - parseFloat(a.dataset.rating||0)); };
+            break;
+          case 'usage':
+            comparator = function(a,b){ return (parseInt(b.dataset.usage||0,10) - parseInt(a.dataset.usage||0,10)); };
+            break;
+          case 'featured':
+            comparator = function(a,b){ return ((b.dataset.featured==='true') - (a.dataset.featured==='true')) || a.dataset.name.localeCompare(b.dataset.name); };
+            break;
+          default:
+            comparator = function(a,b){ return a.dataset.name.localeCompare(b.dataset.name); };
+        }
+        visibleCards.sort(comparator).forEach(function(card){ grid.appendChild(card); });
+      });
+    }
+
+    input.addEventListener('input', function(e) { applyFilter(e.target.value); sortCategoryGrids(sortSelect ? sortSelect.value : 'alpha'); });
+    if (sortSelect) sortSelect.addEventListener('change', function(e){ sortCategoryGrids(e.target.value); });
+
+    // Initialize from URL param ?q= for SEO SearchAction consistency
+    var params = new URLSearchParams(window.location.search);
+    var initialQ = params.get('q');
+    if (initialQ) { input.value = initialQ; }
+    applyFilter(initialQ);
+    sortCategoryGrids(sortSelect ? sortSelect.value : 'alpha');
+  })();
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "FreeClipboard Tools",
+  "url": "{{ site.url | default: '' }}{{ '/' | relative_url }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ site.url | default: '' }}{{ '/' | relative_url }}?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{% assign alltools = site.data.tools-metadata.tools %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    {% for t in alltools %}
+    {
+      "@type": "ListItem",
+      "position": {{ forloop.index }},
+      "item": {
+        "@type": "WebApplication",
+        "name": "{{ t.name | escape }}",
+        "url": "{{ t.url | relative_url }}"
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
 
 <!-- SECTION 5: TRUST & SOCIAL PROOF -->
 <section class="trust-section" aria-labelledby="trust-heading">

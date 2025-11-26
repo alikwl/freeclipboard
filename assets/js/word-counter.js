@@ -329,7 +329,6 @@ Average Sentence Length: ${calculateAverageSentenceLength(text)} words
         }, 3000);
     }
     
-
     
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {

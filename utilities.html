@@ -1,0 +1,30 @@
+---
+layout: default
+title: Utilities - Unit Converter, Code Snippets, Markdown Preview
+description: Handy utilities including unit conversion, code snippet generator, and markdown preview. Fast, free, privacy-first.
+keywords: unit converter, code snippet, markdown preview, developer tools
+schema_type: WebApplication
+---
+
+<div class="page-header">
+  <h1>🔧 Utilities</h1>
+  <p class="lead">Developer-friendly utilities for everyday tasks</p>
+  <p class="category-description">Convert units, generate code snippets, and preview markdown — simple, fast, and secure.</p>
+  <p class="category-count"><strong>
+    {% assign utilTools = site.data.tools-metadata.tools | where: 'category', 'utility' %}
+    {{ utilTools | size }} tools
+  </strong></p>
+</div>
+
+{% include ads.html %}
+
+<div class="tools-category-grid">
+  {% for tool in utilTools %}
+    <a href="{{ tool.url | relative_url }}" class="tool-card">
+      <div class="tool-icon">{{ tool.icon }}</div>
+      <h3>{{ tool.name }}</h3>
+      <p>{{ tool.shortDescription }}</p>
+      <span class="card-link">Use Tool →</span>
+    </a>
+  {% endfor %}
+</div>

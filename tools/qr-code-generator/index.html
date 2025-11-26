@@ -21,11 +21,11 @@ features:
 <section class="qr-input-section" aria-labelledby="qr-generator-heading">
   <h2 id="qr-generator-heading" class="sr-only">QR Code Generator</h2>
   <nav class="qr-type-selector" role="tablist" aria-label="QR code type selection">
-    <button class="type-btn active" onclick="setQRType('text')" role="tab" aria-selected="true" aria-controls="text-panel">Text</button>
-    <button class="type-btn" onclick="setQRType('url')" role="tab" aria-selected="false" aria-controls="url-panel">URL</button>
-    <button class="type-btn" onclick="setQRType('email')" role="tab" aria-selected="false" aria-controls="email-panel">Email</button>
-    <button class="type-btn" onclick="setQRType('phone')" role="tab" aria-selected="false" aria-controls="phone-panel">Phone</button>
-    <button class="type-btn" onclick="setQRType('wifi')" role="tab" aria-selected="false" aria-controls="wifi-panel">WiFi</button>
+    <button id="typeBtnText" class="type-btn active" onclick="setQRType('text')" role="tab" aria-selected="true" aria-controls="text-panel">Text</button>
+    <button id="typeBtnUrl" class="type-btn" onclick="setQRType('url')" role="tab" aria-selected="false" aria-controls="url-panel">URL</button>
+    <button id="typeBtnEmail" class="type-btn" onclick="setQRType('email')" role="tab" aria-selected="false" aria-controls="email-panel">Email</button>
+    <button id="typeBtnPhone" class="type-btn" onclick="setQRType('phone')" role="tab" aria-selected="false" aria-controls="phone-panel">Phone</button>
+    <button id="typeBtnWifi" class="type-btn" onclick="setQRType('wifi')" role="tab" aria-selected="false" aria-controls="wifi-panel">WiFi</button>
   </nav>
   
   <div id="textInput" class="qr-input-form">

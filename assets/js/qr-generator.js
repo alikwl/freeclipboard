@@ -3,9 +3,16 @@ let qrCode = null;
 
 function setQRType(type) {
   currentType = type;
-  
+  const map = {
+    text: 'typeBtnText',
+    url: 'typeBtnUrl',
+    email: 'typeBtnEmail',
+    phone: 'typeBtnPhone',
+    wifi: 'typeBtnWifi'
+  };
   document.querySelectorAll('.type-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  const activeBtn = document.getElementById(map[type]);
+  if (activeBtn) activeBtn.classList.add('active');
   
   document.querySelectorAll('.qr-input-form').forEach(form => form.style.display = 'none');
   document.getElementById(type + 'Input').style.display = 'block';

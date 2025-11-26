@@ -19,8 +19,8 @@ features:
 ---
 
 <div class="mode-toggle">
-  <button class="toggle-btn active" onclick="setMode('encode')">Encode</button>
-  <button class="toggle-btn" onclick="setMode('decode')">Decode</button>
+  <button id="encodeBtn" class="toggle-btn active" onclick="setMode('encode')">Encode</button>
+  <button id="decodeBtn" class="toggle-btn" onclick="setMode('decode')">Decode</button>
 </div>
 
 <div class="input-area">
@@ -37,7 +37,7 @@ features:
 <div class="output-section">
   <div class="label-row">
     <label for="outputBox">Output:</label>
-    <button class="btn-sm" onclick="copyOutput()">Copy</button>
+    <button id="copyOutputBtn" class="btn-sm" onclick="copyOutput()">Copy</button>
   </div>
   <textarea id="outputBox" readonly placeholder="Result will appear here..."></textarea>
 </div>

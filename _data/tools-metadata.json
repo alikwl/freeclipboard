@@ -316,14 +316,14 @@
       "name": "Generators & Security",
       "description": "Generate passwords, UUIDs, and hashes",
       "icon": "🔐",
-      "url": "/tools/"
+      "url": "/generators-security/"
     },
     {
       "id": "utility",
       "name": "Utilities",
       "description": "Unit conversion, code snippets, and more",
       "icon": "🔧",
-      "url": "/tools/"
+      "url": "/utilities/"
     }
   ]
 }

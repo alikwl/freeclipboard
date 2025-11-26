@@ -20,8 +20,8 @@ features:
 
 <div class="input-area">
   <div class="mode-toggle">
-    <button class="toggle-btn active" onclick="switchMode('text')">Text Input</button>
-    <button class="toggle-btn" onclick="switchMode('file')">File Upload</button>
+    <button id="textModeBtn" class="toggle-btn active" onclick="switchMode('text')">Text Input</button>
+    <button id="fileModeBtn" class="toggle-btn" onclick="switchMode('file')">File Upload</button>
   </div>
   
   <div id="textMode">
@@ -45,7 +45,7 @@ features:
   <div class="hash-result">
     <div class="label-row">
       <label>MD5:</label>
-      <button class="btn-sm" onclick="copyHash('md5')">Copy</button>
+      <button id="md5CopyBtn" class="btn-sm" onclick="copyHash('md5')">Copy</button>
     </div>
     <div class="hash-output" id="md5Output">-</div>
   </div>
@@ -53,7 +53,7 @@ features:
   <div class="hash-result">
     <div class="label-row">
       <label>SHA-1:</label>
-      <button class="btn-sm" onclick="copyHash('sha1')">Copy</button>
+      <button id="sha1CopyBtn" class="btn-sm" onclick="copyHash('sha1')">Copy</button>
     </div>
     <div class="hash-output" id="sha1Output">-</div>
   </div>
@@ -61,7 +61,7 @@ features:
   <div class="hash-result">
     <div class="label-row">
       <label>SHA-256:</label>
-      <button class="btn-sm" onclick="copyHash('sha256')">Copy</button>
+      <button id="sha256CopyBtn" class="btn-sm" onclick="copyHash('sha256')">Copy</button>
     </div>
     <div class="hash-output" id="sha256Output">-</div>
   </div>
@@ -69,7 +69,7 @@ features:
   <div class="hash-result">
     <div class="label-row">
       <label>SHA-512:</label>
-      <button class="btn-sm" onclick="copyHash('sha512')">Copy</button>
+      <button id="sha512CopyBtn" class="btn-sm" onclick="copyHash('sha512')">Copy</button>
     </div>
     <div class="hash-output" id="sha512Output">-</div>
   </div>

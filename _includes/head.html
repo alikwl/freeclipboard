@@ -5,39 +5,13 @@
 
   {% include seo.html %}
 
-  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/images/favicon.png">
-  <link rel="apple-touch-icon" href="{{ site.baseurl }}/assets/images/apple-touch-icon.png">
-  
-  <!-- Critical CSS Inline for First Paint -->
-  <style>
-    /* Critical Above-the-Fold Styles */
-    :root{--primary:#3B82F6;--primary-dark:#2563EB;--secondary:#8B5CF6;--dark:#1F2937;--gray:#6B7280;--light-gray:#F3F4F6;--border:#E5E7EB;--white:#FFFFFF;--shadow:0 1px 3px rgba(0,0,0,0.1);--radius:12px;--transition:all 0.3s ease}
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;color:var(--dark);background:var(--light-gray);min-height:100vh;display:flex;flex-direction:column;opacity:0;transition:opacity 0.3s}
-    body.loaded{opacity:1}
-    .site-header{background:var(--white);box-shadow:0 2px 10px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000}
-    .site-header .container{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 20px;max-width:1200px;margin:0 auto}
-    .site-title{font-size:1.5rem;font-weight:800;color:var(--dark);display:flex;align-items:center;gap:10px;text-decoration:none}
-    .hero-main{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:var(--white);padding:3rem 2rem;text-align:center}
-    .hero-main h1{font-size:2.5rem;font-weight:900;margin-bottom:1rem;color:var(--white)}
-    .container{max-width:1200px;margin:0 auto;padding:0 20px}
-    .page-content{flex:1;padding:2rem 0}
-    /* Mobile Sticky CTA */
-    .mobile-sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);box-shadow:0 -4px 20px rgba(0,0,0,0.15);padding:12px 16px;z-index:999;transform:translateY(100%);transition:transform 0.3s ease}
-    .mobile-sticky-cta.visible{transform:translateY(0)}
-    .mobile-sticky-cta .cta-buttons{display:flex;gap:8px}
-    .mobile-sticky-cta .btn{flex:1;padding:14px 20px;border-radius:var(--radius);font-weight:700;text-align:center;text-decoration:none;min-height:48px;display:flex;align-items:center;justify-content:center;font-size:1rem}
-    .mobile-sticky-cta .btn-primary{background:var(--primary);color:var(--white)}
-    @media (max-width:768px){.mobile-sticky-cta{display:block}}
-  </style>
+  <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   
   <!-- Preload Critical Resources -->
-  <link rel="preload" href="{{ site.baseurl }}/assets/css/style.css" as="style">
+  <!-- Preload main JS for faster interaction -->
   <link rel="preload" href="{{ site.baseurl }}/assets/js/main.js" as="script">
-  
-  <!-- Load Full CSS Asynchronously -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css"></noscript>
   
   <!-- Google AdSense - Async -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"

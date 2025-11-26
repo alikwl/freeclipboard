@@ -4,8 +4,12 @@ let currentMode = 'encode';
 
 function setMode(mode) {
   currentMode = mode;
-  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  const encodeBtn = document.getElementById('encodeBtn');
+  const decodeBtn = document.getElementById('decodeBtn');
+  if (encodeBtn && decodeBtn) {
+    encodeBtn.classList.toggle('active', mode === 'encode');
+    decodeBtn.classList.toggle('active', mode === 'decode');
+  }
   processText();
 }
 
@@ -71,10 +75,12 @@ function copyOutput() {
   const text = outputBox.value;
   if (text) {
     navigator.clipboard.writeText(text).then(() => {
-      const btn = event.target;
-      const originalText = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = originalText, 2000);
+      const btn = document.getElementById('copyOutputBtn');
+      if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = originalText, 2000);
+      }
     });
   }
 }

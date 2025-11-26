@@ -3,8 +3,12 @@ let currentMode = 'text';
 
 function switchMode(mode) {
   currentMode = mode;
-  document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
-  event.target.classList.add('active');
+  const textBtn = document.getElementById('textModeBtn');
+  const fileBtn = document.getElementById('fileModeBtn');
+  if (textBtn && fileBtn) {
+    textBtn.classList.toggle('active', mode === 'text');
+    fileBtn.classList.toggle('active', mode === 'file');
+  }
   
   if (mode === 'text') {
     document.getElementById('textMode').style.display = 'block';
@@ -65,10 +69,18 @@ function copyHash(type) {
   const hash = document.getElementById(type + 'Output').textContent;
   if (hash !== '-') {
     navigator.clipboard.writeText(hash).then(() => {
-      const btn = event.target;
-      const originalText = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(() => btn.textContent = originalText, 2000);
+      const btnIdMap = {
+        md5: 'md5CopyBtn',
+        sha1: 'sha1CopyBtn',
+        sha256: 'sha256CopyBtn',
+        sha512: 'sha512CopyBtn'
+      };
+      const btn = document.getElementById(btnIdMap[type]);
+      if (btn) {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = originalText, 2000);
+      }
     });
   }
 }
