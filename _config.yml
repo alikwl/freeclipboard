@@ -24,6 +24,7 @@ plugins:
   - jekyll-feed
   - jekyll-minifier
   - jekyll-include-cache
+  - jekyll-github-metadata
 
 # Plugin configurations
 jekyll-minifier:

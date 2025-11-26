@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
-# We use the github-pages gem to ensure your site looks exactly like it will online
-gem "github-pages", group: :jekyll_plugins
+# Use Jekyll directly for GitHub Actions builds (no Pages service gem pinning)
+gem "jekyll", "~> 4.3"
 
 group :jekyll_plugins do
   gem "jekyll-feed"
@@ -9,6 +9,7 @@ group :jekyll_plugins do
   gem "jekyll-sitemap"
   gem "jekyll-minifier"
   gem "jekyll-include-cache"
+  gem "jekyll-github-metadata"
 end
 
 # Windows specific fixes (Updated for Ruby 3.4+)
