@@ -66,6 +66,6 @@
   url: /tools/image-converter/
   description: Convert images between PNG, JPG, WebP formats with resize and compression options.
 
-- name: Text to Handwriting
+- name: Text to Handwriting Converter
   url: /tools/text-to-handwriting/
   description: Convert typed text to realistic handwriting with customizable fonts, colors, and paper styles.

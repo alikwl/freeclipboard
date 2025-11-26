@@ -193,6 +193,22 @@
       "usageCount": 16000
     },
     {
+      "id": "text-to-handwriting",
+      "name": "Text to Handwriting Converter",
+      "slug": "text-to-handwriting",
+      "description": "Convert typed text into realistic handwriting on ruled or graph paper. Choose fonts, colors, spacing, and export as PNG/JPG.",
+      "shortDescription": "Generate handwritten notes",
+      "category": "text",
+      "keywords": ["text to handwriting", "handwriting converter", "handwritten notes", "handwriting font", "lined paper", "graph paper"],
+      "thumbnail": "/assets/images/tools/text-to-handwriting.png",
+      "icon": "✍️",
+      "featured": false,
+      "popular": true,
+      "url": "/tools/text-to-handwriting/",
+      "rating": 4.9,
+      "usageCount": 26000
+    },
+    {
       "id": "regex-tester",
       "name": "Regex Tester",
       "slug": "regex-tester",

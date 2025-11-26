@@ -308,12 +308,13 @@ img {
   padding: 8px;
   z-index: 1001;
   position: relative;
+  color: var(--dark);
 }
 
 .mobile-menu-toggle span {
   width: 25px;
   height: 3px;
-  background: var(--dark);
+  background: currentColor;
   border-radius: 3px;
   transition: var(--transition);
 }
@@ -328,6 +329,10 @@ img {
 
 .mobile-menu-toggle.active span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
+}
+
+:root[data-theme="dark"] .mobile-menu-toggle {
+  color: var(--white);
 }
 
 /* =========================================
@@ -806,6 +811,176 @@ img {
   box-shadow: var(--shadow);
   margin-bottom: 2rem;
   border: 1px solid var(--border);
+}
+
+.tool-local-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.chip-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--light-gray);
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.chip-link:hover {
+  background: var(--white);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Text to Handwriting – Modern Responsive Layout */
+.tool-interface-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Make preview span full width on desktop for clarity */
+.tool-interface-grid > .preview-area {
+  grid-column: 1 / -1;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-sm {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--white);
+  color: var(--dark);
+}
+
+.btn-sm.btn-outline {
+  background: transparent;
+}
+
+.controls-area {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.control label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.preview-area {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  overflow: auto;
+}
+
+.preview-area canvas {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Dark theme adjustments */
+:root[data-theme="dark"] .controls-area,
+:root[data-theme="dark"] .preview-area {
+  background: #111827;
+  border-color: #1F2937;
+}
+
+:root[data-theme="dark"] .btn-sm {
+  background: #111827;
+  color: var(--white);
+  border-color: #1F2937;
+}
+
+/* Responsive breakpoints for the handwriting tool */
+@media (max-width: 992px) {
+  .tool-interface-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .controls-grid {
+    grid-template-columns: 1fr;
+  }
+  .action-row {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .label-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .toolbar {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .btn-sm {
+    padding: 8px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tool-interface {
+    padding: 1rem;
+  }
+  .tool-interface-grid {
+    gap: 0.75rem;
+  }
+  #tthInput {
+    min-height: 180px;
+  }
+  .controls-area {
+    padding: 0.75rem;
+  }
+  .controls-grid {
+    gap: 0.75rem;
+  }
 }
 
 /* Tool Wrapper - Main Container */
@@ -1345,6 +1520,7 @@ button:disabled,
   .site-header .container {
     flex-wrap: wrap;
     position: relative;
+    padding: 0.9rem 16px;
   }
   
   .mobile-menu-toggle {
@@ -1404,6 +1580,15 @@ button:disabled,
   .site-nav .page-link::after {
     display: none;
   }
+
+  /* Homepage grids & cards: reduce size on mobile */
+  .tools-category-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .tool-card { padding: 1rem; }
+  .tool-card h3 { font-size: 1.25rem; }
+  .tool-card p { margin-bottom: 1rem; }
+  .tool-icon { font-size: 2.25rem; }
+  .category-description { padding: 1.5rem; margin: 1.5rem 0; }
+  .page-header .lead { font-size: 1.05rem; }
   
   /* Featured Banner */
   .featured-content {
@@ -1527,6 +1712,12 @@ button:disabled,
   .toolbar button {
     width: 100%;
   }
+
+  /* Compact listing: single column and tighter spacing */
+  .tools-grid-compact { grid-template-columns: 1fr; gap: 0.75rem; }
+  .tool-card-compact { padding: 1rem 1rem; gap: 0.4rem; }
+  .tool-card-compact strong { font-size: 1rem; }
+  .tool-card-compact span { font-size: 0.85rem; }
 }
 
 /* Print Styles */
