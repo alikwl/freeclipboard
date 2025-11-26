@@ -1,0 +1,162 @@
+---
+layout: tool
+title: Meta Tag Generator for SEO — Open Graph, Twitter Cards, Favicon
+description: Free SEO Meta Tag Generator. Fill a simple form to generate valid <meta> tags for Open Graph, Twitter Cards, canonical URL, favicon, and more.
+keywords: meta tag generator, open graph, twitter cards, seo, favicon, canonical
+permalink: /tools/meta-tag-generator/
+schema_type: WebApplication
+---
+
+<section class="tool-section" aria-labelledby="metaTitle">
+  <div class="tool-header">
+    <h1 id="metaTitle">🏷️ Meta Tag Generator</h1>
+    <p class="lead">Beginners‑friendly visual form. Generate clean <code>&lt;meta&gt;</code> tags for SEO, social sharing, and favicons.</p>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-main">
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="siteTitle">Site Title</label>
+          <input id="siteTitle" type="text" placeholder="Your Website Title" />
+        </div>
+        <div class="control-group">
+          <label for="siteDescription">Description</label>
+          <input id="siteDescription" type="text" placeholder="Short description (150–160 chars)" />
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="siteUrl">Website URL</label>
+          <input id="siteUrl" type="url" placeholder="https://example.com" />
+        </div>
+        <div class="control-group">
+          <label for="canonicalUrl">Canonical URL</label>
+          <input id="canonicalUrl" type="url" placeholder="https://example.com/page" />
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="ogImage">Open Graph Image URL</label>
+          <input id="ogImage" type="url" placeholder="https://example.com/og-image.jpg" />
+          <div class="control-hint">Recommended 1200×630, JPEG/PNG.</div>
+        </div>
+        <div class="control-group">
+          <label for="twitterHandle">Twitter Handle</label>
+          <input id="twitterHandle" type="text" placeholder="@yourhandle" />
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="faviconIco">Favicon .ico URL</label>
+          <input id="faviconIco" type="url" placeholder="https://example.com/favicon.ico" />
+        </div>
+        <div class="control-group">
+          <label for="themeColor">Theme Color</label>
+          <input id="themeColor" type="color" value="#0ea5e9" />
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="authorName">Author</label>
+          <input id="authorName" type="text" placeholder="Your Name or Brand" />
+        </div>
+        <div class="control-group">
+          <label for="robots">Robots</label>
+          <select id="robots">
+            <option value="index,follow" selected>index,follow</option>
+            <option value="index,nofollow">index,nofollow</option>
+            <option value="noindex,follow">noindex,follow</option>
+            <option value="noindex,nofollow">noindex,nofollow</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="Meta tag actions">
+        <button id="generateMetaBtn" class="btn-primary">Generate Meta Tags</button>
+        <button id="copyMetaBtn" class="btn-outline">Copy</button>
+        <button id="downloadMetaBtn" class="btn-outline">Download HTML</button>
+        <button id="clearMetaBtn" class="btn-outline">Clear</button>
+      </div>
+
+      <div class="preview-area">
+        <label for="metaOutput">HTML Output</label>
+        <textarea id="metaOutput" rows="14" readonly aria-label="Meta output preview"></textarea>
+        <p id="metaStatus" class="status-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <aside class="tool-aside">
+      <div class="tips">
+        <h3>Quick Tips</h3>
+        <ul>
+          <li>Keep descriptions concise (≤ 160 chars).</li>
+          <li>Use absolute URLs for images and canonical links.</li>
+          <li>Match Twitter and Open Graph titles and descriptions.</li>
+          <li>Pick a contrasting <code>theme-color</code> for mobile browsers.</li>
+        </ul>
+      </div>
+
+      <div class="benefits">
+        <h3>Benefits</h3>
+        <ul>
+          <li>One form for SEO + social cards.</li>
+          <li>Valid HTML with required attributes.</li>
+          <li>Copy/paste into your <code>&lt;head&gt;</code> instantly.</li>
+          <li>Free and fast generator with clean output.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Meta Tag Generator for SEO",
+  "url": "{{ page.url | absolute_url }}",
+  "description": "Generate valid meta tags for SEO, Open Graph, Twitter Cards, canonical, and favicon.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<section class="tool-instructions">
+  <div class="content-body">
+    <h2>FAQ</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>Where do I paste these tags?</h3>
+        <p>Paste into your page <code>&lt;head&gt;</code> section. Most frameworks expose a way to set head metadata.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Do I need both Open Graph and Twitter?</h3>
+        <p>Yes, for consistent previews across platforms. They can share the same values.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What size should the OG image be?</h3>
+        <p>Use 1200×630 (landscape) for best quality.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "Where do I paste these tags?","acceptedAnswer": {"@type": "Answer","text": "Paste into the page head section. Frameworks provide head metadata APIs."}},
+    {"@type": "Question","name": "Do I need both Open Graph and Twitter?","acceptedAnswer": {"@type": "Answer","text": "Yes. Include both for consistent previews; values may be shared."}},
+    {"@type": "Question","name": "What size should the OG image be?","acceptedAnswer": {"@type": "Answer","text": "Use 1200×630 for best quality and compatibility."}}
+  ]
+}
+</script>
+
+<script src="{{ site.baseurl }}/assets/js/meta-tag-generator.js"></script>

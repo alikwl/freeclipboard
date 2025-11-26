@@ -45,6 +45,10 @@
             from: 'PNG',
             to: 'JPG',
             size: '1920x1080'
+        },
+        'glitch-text': {
+            text: 'Join the chaos',
+            levels: [2, 5, 8]
         }
     };
     
@@ -94,6 +98,9 @@
                 break;
             case 'image-converter':
                 animateImageConverter(previewContent, preview);
+                break;
+            case 'glitch-text':
+                animateGlitchText(previewContent, preview);
                 break;
         }
     }
@@ -229,6 +236,47 @@
                 <div class="image-format">${data.to}</div>
             </div>
         `;
+    }
+
+    // Glitch Text Animation
+    function animateGlitchText(container, data) {
+        container.innerHTML = `
+            <div class="preview-glitch">
+                <div class="glitch-before">${escapeHtml(data.text)}</div>
+                <div class="glitch-arrow">→</div>
+                <div class="glitch-after"></div>
+            </div>
+        `;
+
+        const after = container.querySelector('.glitch-after');
+        const levels = data.levels || [2,5,8];
+        let idx = 0;
+
+        function zalgo(text, level) {
+            const UP = ['\u0300','\u0301','\u0302','\u0303','\u0304','\u0305','\u0306','\u0307','\u0308','\u0309','\u030A','\u030B','\u030C'];
+            const MID = ['\u0334','\u0335','\u0336','\u0337'];
+            const DOWN = ['\u0323','\u0324','\u0325','\u0326','\u0327','\u0328','\u0329'];
+            function r(arr){return arr[Math.floor(Math.random()*arr.length)];}
+            let out = '';
+            for (const ch of text) {
+                let c = ch;
+                const count = level;
+                for (let i=0;i<count;i++) c += r(UP);
+                for (let i=0;i<Math.floor(count/2);i++) c += r(MID);
+                for (let i=0;i<Math.ceil(count/2);i++) c += r(DOWN);
+                out += c;
+            }
+            return out;
+        }
+
+        function cycle() {
+            const level = levels[idx % levels.length];
+            after.textContent = zalgo(data.text, level);
+            idx++;
+        }
+
+        cycle();
+        setInterval(cycle, 2000);
     }
     
     // Utility function

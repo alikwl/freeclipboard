@@ -1,0 +1,96 @@
+---
+layout: tool
+title: Invisible Character for Instagram – Copy Blank Space (Zero‑Width)
+description: Copy an invisible character for Instagram bios and captions to create blank lines and fix line breaks. Includes zero‑width space, invisible separator, hangul filler, and braille blank. Works on mobile.
+keywords: invisible character, instagram blank space, zero width space, invisible separator, hangul filler, braille blank, blank line instagram, fix line breaks instagram, invisible text
+schema_type: WebApplication
+permalink: /tools/invisible-character/
+category_name: Clipboard & Text Tools
+category_url: /clipboard-tools/
+rating: 4.9
+rating_count: 1670
+features:
+  - Copy zero‑width invisible characters
+  - Multiple variants for reliability
+  - Quick copy and multi‑copy options
+  - Mobile‑friendly
+  - 100% private (client‑side)
+---
+
+<section class="tool-wrapper" aria-labelledby="invisible-character-heading">
+  <h2 id="invisible-character-heading" class="sr-only">Invisible Character Tool</h2>
+
+  <div class="input-area" role="region" aria-label="Invisible character copy controls">
+    <div class="input-group">
+      <label for="charVariant">Choose character variant:</label>
+      <select id="charVariant" aria-label="Invisible character variant">
+        <option value="zwsp" selected>Zero Width Space (U+200B) – general use</option>
+        <option value="invisSep">Invisible Separator (U+2063) – reliable for captions</option>
+        <option value="hangulFiller">Hangul Filler (U+3164) – often used in bios</option>
+        <option value="brailleBlank">Braille Blank (U+2800) – wide blank</option>
+        <option value="zwnj">Zero Width Non‑Joiner (U+200C)</option>
+      </select>
+    </div>
+
+    <div class="toolbar" role="toolbar" aria-label="Copy actions">
+      <button id="copyCharBtn" class="btn-primary" aria-label="Copy invisible character">Copy Invisible Character</button>
+      <button id="copyMultiBtn" class="btn-outline" aria-label="Copy multiple invisible characters">Copy ×5 (strong blank)</button>
+    </div>
+
+    <p class="control-hint" id="copyStatus" aria-live="polite"></p>
+  </div>
+
+  <div class="preview-area">
+    <label for="sampleArea">Try it here (paste into Instagram):</label>
+    <textarea id="sampleArea" rows="4" placeholder="Type text, then use Insert to add a blank line…" aria-label="Sample area for testing invisible character"></textarea>
+    <div class="toolbar" role="toolbar" aria-label="Insert actions">
+      <button id="insertOnceBtn" class="btn-sm" aria-label="Insert invisible character">Insert</button>
+      <button id="insertLineBreakBtn" class="btn-sm btn-outline" aria-label="Insert double blank for line break">Insert blank line</button>
+      <button id="clearSampleBtn" class="btn-sm btn-outline" aria-label="Clear sample text">Clear</button>
+    </div>
+  </div>
+
+  <div class="quick-presets" role="region" aria-label="Quick copy presets">
+    <h3>Quick Presets</h3>
+    <p class="control-hint">Fast actions commonly needed on Instagram:</p>
+    <div class="toolbar" role="toolbar">
+      <button id="copyBlankLineBtn" class="btn-outline" aria-label="Copy one blank line">Copy Blank Line</button>
+      <button id="copyCaptionBtn" class="btn-outline" aria-label="Copy sample caption with blank line">Copy Sample Caption</button>
+    </div>
+  </div>
+</section>
+
+<section class="tool-content-section">
+  <div class="content-body">
+    <h2>What Is the Invisible Character?</h2>
+    <p>An invisible character is a Unicode character that renders as “blank”. It’s useful for Instagram bios and captions where normal spaces or line breaks get collapsed. If one variant doesn’t work in your case, try another from the dropdown.</p>
+
+    <h2>Recommended Variants</h2>
+    <ul>
+      <li><strong>Zero Width Space (U+200B):</strong> Common and lightweight. Good first choice.</li>
+      <li><strong>Invisible Separator (U+2063):</strong> Often more reliable for captions.</li>
+      <li><strong>Hangul Filler (U+3164):</strong> Popular for bios; behaves like a visible blank.</li>
+      <li><strong>Braille Blank (U+2800):</strong> Looks like a wider space; great for clear separation.</li>
+    </ul>
+
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li>Select a variant above</li>
+      <li>Click <strong>Copy Invisible Character</strong> (or Copy ×5)</li>
+      <li>Paste into your Instagram bio or caption where you want a blank line</li>
+      <li>If Instagram collapses it, try a different variant or use the ×5 option</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <h3>Why does Instagram remove my line breaks?</h3>
+    <p>Instagram often collapses spaces/newlines in bios and captions, especially after saving. Invisible characters force a non-breaking blank so the layout persists.</p>
+    <h3>Which variant should I try first?</h3>
+    <p>Start with <strong>Zero Width Space (U+200B)</strong>. If it gets collapsed, try <strong>Invisible Separator (U+2063)</strong> or the <strong>Hangul Filler (U+3164)</strong>.</p>
+    <h3>Is this safe?</h3>
+    <p>Yes. These are standard Unicode characters; all actions happen locally in your browser.</p>
+    <h3>Mobile tips</h3>
+    <p>On iOS/Android, use the <strong>Copy ×5</strong> option or <strong>Copy Blank Line</strong> preset for more reliable spacing.</p>
+  </div>
+</section>
+
+<script src="{{ site.baseurl }}/assets/js/invisible-character.js"></script>

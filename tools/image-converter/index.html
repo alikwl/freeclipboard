@@ -1,8 +1,8 @@
 ---
 layout: tool
-title: Image Converter - Convert PNG, JPG, WebP, SVG Online Free
-description: Convert images between PNG, JPG, WebP, SVG formats quickly and easily online. Free image converter with resize, compression, and quality control.
-keywords: image converter, convert png to jpg, convert jpg to png, webp converter, image format converter, resize image, compress image
+title: Image Converter - Convert PNG, JPG, WebP, AVIF Online Free
+description: Free online image converter with AVIF, WebP, PNG, JPG support. Batch convert multiple images, auto-orient using EXIF, flatten transparency with background color, apply filters (grayscale, brightness, contrast), resize, and control quality — all privately in your browser.
+keywords: image converter, convert png to jpg, convert jpg to png, webp converter, avif converter, batch image converter, resize image, compress image, grayscale filter, brightness contrast, auto orient exif, flatten transparency, transparent to jpg
 schema_type: WebApplication
 permalink: /tools/image-converter/
 category_name: Image & Visual Tools
@@ -10,12 +10,14 @@ category_url: /image-tools/
 rating: 4.8
 rating_count: 1100
 features:
-  - Convert image formats
+  - Convert image formats (PNG, JPG, WebP, AVIF)
   - Resize images
-  - Compress images
-  - Quality control
+  - Compress images (quality control)
   - Batch conversion
-  - 100% private
+  - Flatten transparency to background
+  - Auto-orient via EXIF
+  - Image filters (grayscale, brightness, contrast)
+  - 100% private (client-side)
 ---
 
 <div class="tool-instructions">
@@ -35,9 +37,9 @@ features:
   <div class="upload-section">
     <div class="upload-area" id="uploadArea">
       <div class="upload-icon">📁</div>
-      <h3>Drop image here or click to upload</h3>
-      <p>Supports: PNG, JPG, JPEG, WebP, SVG (Max 10MB)</p>
-      <input type="file" id="imageInput" accept="image/*" style="display: none;">
+      <h3>Drop images here or click to upload</h3>
+      <p>Supports: PNG, JPG, JPEG, WebP, SVG (Max 10MB each, multiple files)</p>
+      <input type="file" id="imageInput" accept="image/*" multiple style="display: none;" aria-label="Upload one or more image files">
     </div>
     <div id="uploadedFileName" class="uploaded-file-name"></div>
   </div>
@@ -53,13 +55,44 @@ features:
           <option value="image/png">PNG</option>
           <option value="image/jpeg">JPG</option>
           <option value="image/webp">WebP</option>
+          <option value="image/avif">AVIF</option>
         </select>
+        <small id="formatSupportNote" class="control-hint" aria-live="polite"></small>
       </div>
 
       <div class="control-group" id="qualityControl">
         <label for="quality">Quality: <span id="qualityValue">0.9</span></label>
         <input type="range" id="quality" min="0.1" max="1.0" step="0.1" value="0.9">
         <p class="control-hint">Higher quality = larger file size</p>
+      </div>
+
+      <div class="control-group" id="qualityPresetGroup">
+        <label for="qualityPreset">Quality Preset:</label>
+        <select id="qualityPreset" aria-label="Select quality preset">
+          <option value="">Custom</option>
+          <option value="0.95">High quality</option>
+          <option value="0.85" selected>Balanced</option>
+          <option value="0.70">Small file</option>
+        </select>
+        <small class="control-hint">Presets adjust the quality slider automatically.</small>
+      </div>
+
+      <div class="control-group" id="backgroundControl">
+        <label>
+          <input type="checkbox" id="flattenTransparency">
+          Flatten transparency to background color (for formats without alpha)
+        </label>
+        <div class="input-group" id="backgroundColorGroup" style="display:none;">
+          <label for="backgroundColor">Background color:</label>
+          <input type="color" id="backgroundColor" value="#ffffff" aria-label="Background color for flattening transparency">
+        </div>
+      </div>
+
+      <div class="control-group" id="orientControl">
+        <label>
+          <input type="checkbox" id="autoOrient" checked>
+          Auto-orient based on EXIF (if present)
+        </label>
       </div>
 
       <div class="control-group">
@@ -70,6 +103,13 @@ features:
       </div>
 
       <div class="resize-controls" id="resizeControls" style="display: none;">
+        <div class="input-group">
+          <label for="resizeMode">Resize mode:</label>
+          <select id="resizeMode" aria-label="Resize mode">
+            <option value="contain" selected>Contain (keep aspect, letterbox)</option>
+            <option value="stretch">Exact (stretch to dimensions)</option>
+          </select>
+        </div>
         <div class="resize-inputs">
           <div class="input-group">
             <label for="width">Width (px):</label>
@@ -87,8 +127,53 @@ features:
         <p class="control-hint">Original: <span id="originalDimensions"></span></p>
       </div>
 
-      <button id="convertBtn" class="btn-primary">Convert Image</button>
-      <button id="resetBtn" class="btn-outline">Reset</button>
+      <!-- SVG-specific controls -->
+      <div class="control-group" id="svgControls" style="display:none;">
+        <h3>SVG Rendering</h3>
+        <div class="input-group">
+          <label for="svgRenderScale">Render scale:</label>
+          <input type="range" id="svgRenderScale" min="0.5" max="4" step="0.1" value="1" aria-label="SVG render scale">
+          <small class="control-hint">Higher scale increases raster detail. Current: <span id="svgRenderScaleValue">1.0×</span></small>
+        </div>
+      </div>
+
+      <!-- Background removal (basic) -->
+      <div class="control-group" id="removeBgControl">
+        <h3>Background Removal (Beta)</h3>
+        <label class="inline">
+          <input type="checkbox" id="removeBackground"> Remove solid background
+        </label>
+        <div class="input-group">
+          <label for="removeBgThreshold">Strength:</label>
+          <input type="range" id="removeBgThreshold" min="5" max="80" step="1" value="22">
+          <small class="control-hint">Higher strength removes more near-background colors. Works best on plain backgrounds.</small>
+        </div>
+      </div>
+
+      <div class="control-group" id="filtersControl">
+        <h3>Image Filters</h3>
+        <label class="inline">
+          <input type="checkbox" id="filterGrayscale"> Grayscale
+        </label>
+        <div class="input-group">
+          <label for="filterBrightness">Brightness:</label>
+          <input type="range" id="filterBrightness" min="0.5" max="1.5" step="0.05" value="1">
+        </div>
+        <div class="input-group">
+          <label for="filterContrast">Contrast:</label>
+          <input type="range" id="filterContrast" min="0.5" max="1.5" step="0.05" value="1">
+        </div>
+      </div>
+
+      <button id="convertBtn" class="btn-primary" aria-label="Convert current image">Convert Image</button>
+      <button id="resetBtn" class="btn-outline" aria-label="Reset converter">Reset</button>
+      <button id="convertAllBtn" class="btn-secondary" style="display:none;" aria-label="Convert all queued images">Convert All</button>
+      <div id="batchProgress" class="batch-progress" style="display:none;" aria-live="polite" role="status">
+        <div class="batch-progress-bar" style="height:8px;background:#eee;border-radius:6px;overflow:hidden;">
+          <div id="batchProgressFill" style="width:0%;height:100%;background:#4caf50;"></div>
+        </div>
+        <small id="batchProgressText" class="control-hint">Converted 0/0</small>
+      </div>
     </div>
   </div>
 
@@ -108,14 +193,21 @@ features:
         <p class="image-info" id="convertedInfo"></p>
       </div>
     </div>
-    <button id="downloadBtn" class="btn-primary" style="display: none;">
+    <button id="downloadBtn" class="btn-primary" style="display: none;" aria-label="Download converted image">
       Download Converted Image
     </button>
+    <button id="downloadAllBtn" class="btn-outline" style="display:none;" aria-label="Download all converted images">Download All</button>
   </div>
 
   <!-- Error Message -->
-  <div id="errorMessage" class="error-message" style="display: none;"></div>
+  <div id="errorMessage" class="error-message" style="display: none;" role="alert" aria-live="polite"></div>
 </div>
+
+<!-- Converted Gallery -->
+<section id="convertedGallery" class="converted-gallery" style="display:none;" aria-labelledby="convertedGalleryHeading">
+  <h3 id="convertedGalleryHeading">Converted Images</h3>
+  <div class="gallery-grid" id="galleryGrid" role="list"></div>
+</section>
 
 <div class="tool-features">
   <h2>Features</h2>
@@ -153,5 +245,56 @@ features:
     <a href="{{ site.baseurl }}/tools/color-picker/" class="btn-outline">Color Picker</a>
   </div>
 </div>
+
+<!-- FAQ Section -->
+<section class="tool-faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading">Image Converter FAQ</h2>
+  <div class="faq-item">
+    <h3>Does this tool upload my images?</h3>
+    <p>No. All conversions happen in your browser. Your images never leave your device.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Which formats are supported?</h3>
+    <p>PNG, JPG, WebP, and AVIF (if supported by your browser). SVG input is supported and can be converted to raster formats.</p>
+  </div>
+  <div class="faq-item">
+    <h3>How do I keep transparency?</h3>
+    <p>Use PNG or WebP. For JPG, enable "Flatten transparency" and choose a background color.</p>
+  </div>
+  <div class="faq-item">
+    <h3>Can I convert multiple images?</h3>
+    <p>Yes. Upload multiple files, use Convert All, and download each or all at once.</p>
+  </div>
+</section>
+
+<!-- FAQPage Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this tool upload my images?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. All conversions happen in your browser. Your images never leave your device." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which formats are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG, WebP, and AVIF (if supported by your browser). SVG input is supported and can be converted to raster formats." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I keep transparency?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Use PNG or WebP. For JPG, enable 'Flatten transparency' and choose a background color." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert multiple images?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Upload multiple files, use Convert All, and download each or all at once." }
+    }
+  ]
+}
+</script>
 
 <script src="{{ '/assets/js/image-converter.js' | relative_url }}"></script>

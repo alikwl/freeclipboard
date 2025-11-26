@@ -7,6 +7,9 @@ baseurl: ""
 author: "FreeClipboard Team"
 keywords: "free online tools, clipboard manager, text tools, developer tools, online utilities"
 
+# Analytics
+gtag_id: "G-JHGQJK8CCH"
+
 # Social
 twitter_username: freeclipboard
 github_username: freeclipboard

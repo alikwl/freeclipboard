@@ -1,0 +1,129 @@
+---
+layout: tool
+title: JSON to CSV Converter — Fast, Clean Output
+description: Free JSON to CSV Converter. Convert arrays or NDJSON to clean CSV with delimiter, headers, and flatten options. Copy or download instantly.
+keywords: json to csv, ndjson, csv converter, data conversion, export csv
+permalink: /tools/json-to-csv-converter/
+schema_type: WebApplication
+---
+
+<section class="tool-section" aria-labelledby="jsonCsvTitle">
+  <div class="tool-header">
+    <h1 id="jsonCsvTitle">📊 JSON to CSV Converter</h1>
+    <p class="lead">Convert JSON arrays or NDJSON into clean, well‑escaped CSV. Choose delimiter, headers, flatten nested objects, and download instantly.</p>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-main">
+      <label for="jsonInput">Your JSON</label>
+      <textarea id="jsonInput" rows="8" placeholder='Paste JSON array (e.g., [{"a":1},{"a":2}]) or NDJSON (one JSON per line)' aria-label="Input JSON"></textarea>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label>Delimiter</label>
+          <select id="csvDelimiter" aria-label="CSV delimiter">
+            <option value=",">Comma (,)</option>
+            <option value=";">Semicolon (;)</option>
+            <option value="\t">Tab (\t)</option>
+          </select>
+          <div class="control-hint">Choose the CSV separator for your target tool.</div>
+        </div>
+        <div class="control-group">
+          <label><input type="checkbox" id="includeHeader" checked /> Include header row</label>
+          <label><input type="checkbox" id="flattenObjects" checked /> Flatten nested objects (dot notation)</label>
+          <label><input type="checkbox" id="quoteAll" /> Quote all fields</label>
+          <label><input type="checkbox" id="addBom" /> Add BOM (Excel)</label>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="JSON to CSV actions">
+        <button id="convertJsonBtn" class="btn-primary">Convert to CSV</button>
+        <button id="copyCsvBtn" class="btn-outline">Copy CSV</button>
+        <button id="downloadCsvBtn" class="btn-outline">Download CSV</button>
+        <button id="clearJsonBtn" class="btn-outline">Clear</button>
+      </div>
+
+      <div class="preview-area">
+        <label for="csvOutput">CSV Output</label>
+        <textarea id="csvOutput" rows="8" readonly aria-label="CSV output preview"></textarea>
+        <p id="jsonCsvStatus" class="status-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <aside class="tool-aside">
+      <div class="tips">
+        <h3>Quick Examples</h3>
+        <div class="example-row">
+          <button class="example-btn" data-text='[{"name":"Alice","age":30},{"name":"Bob","age":25}]'>Array of objects</button>
+          <button class="example-btn" data-text='{"name":"Alice","age":30}\n{"name":"Bob","age":25}'>NDJSON (one per line)</button>
+          <button class="example-btn" data-text='[{"user":{"id":1,"name":"Alice"},"score":9.5},{"user":{"id":2,"name":"Bob"},"score":8.7}]'>Nested objects</button>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <h3>Benefits</h3>
+        <ul>
+          <li>Handles arrays and NDJSON input.</li>
+          <li>Flatten nested objects to dot‑notation keys.</li>
+          <li>Clean escaping for quotes, newlines, and delimiters.</li>
+          <li>Copy or download instantly; privacy‑friendly and fast.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JSON to CSV Converter",
+  "url": "{{ page.url | absolute_url }}",
+  "description": "Free JSON to CSV Converter. Convert arrays or NDJSON to clean CSV with delimiter, headers, flatten options. Copy or download instantly.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<section class="tool-instructions">
+  <div class="content-body">
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li>Paste <strong>JSON array</strong> or <strong>NDJSON</strong> in the input.</li>
+      <li>Select <strong>Delimiter</strong> and options like <strong>Include header</strong> and <strong>Flatten objects</strong>.</li>
+      <li>Click <strong>Convert to CSV</strong> or use <strong>Copy/Download</strong>.</li>
+      <li>Open the CSV in Excel, Google Sheets, or code editors.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>Does this support NDJSON?</h3>
+        <p>Yes. Paste one JSON object per line and it will be parsed into rows.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How are nested objects handled?</h3>
+        <p>Enable <strong>Flatten nested objects</strong> to create dot‑notation keys like <code>user.name</code> and <code>user.id</code>.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I open the CSV in Excel?</h3>
+        <p>Yes. Use comma or semicolon delimiter and optionally add the <strong>BOM</strong> for better compatibility.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "Does this support NDJSON?","acceptedAnswer": {"@type": "Answer","text": "Yes. Paste one JSON object per line and it will be parsed into rows."}},
+    {"@type": "Question","name": "How are nested objects handled?","acceptedAnswer": {"@type": "Answer","text": "Enable Flatten nested objects to create dot-notation keys like user.name and user.id."}},
+    {"@type": "Question","name": "Can I open the CSV in Excel?","acceptedAnswer": {"@type": "Answer","text": "Yes. Use comma or semicolon delimiter and optionally add the BOM for better compatibility."}}
+  ]
+}
+</script>
+
+<script src="{{ site.baseurl }}/assets/js/json-to-csv-converter.js"></script>

@@ -69,3 +69,31 @@
 - name: Text to Handwriting Converter
   url: /tools/text-to-handwriting/
   description: Convert typed text to realistic handwriting with customizable fonts, colors, and paper styles.
+
+- name: Invisible Character for Instagram
+  url: /tools/invisible-character/
+  description: Copy zero‑width invisible characters to create blank lines in bios and captions.
+
+- name: Glitch Text Generator (Zalgo)
+  url: /tools/glitch-text-generator/
+  description: Create chaotic Zalgo glitch text with adjustable intensity and directions for edgy comments.
+
+- name: Small Caps Generator
+  url: /tools/small-caps-generator/
+  description: Convert text to Unicode small capital letters for stylish tweets, bios, and headings.
+
+- name: Discord Spoiler Text Generator
+  url: /tools/discord-spoiler-text-generator/
+  description: Hide text in Discord messages with ||spoilers|| — entire message or smart wrapping for mentions, URLs, and numbers.
+
+- name: JSON to CSV Converter
+  url: /tools/json-to-csv-converter/
+  description: Convert JSON or NDJSON to clean CSV with flattening, custom delimiter, and headers.
+
+- name: Robots.txt Generator
+  url: /tools/robots-txt-generator/
+  description: Visual builder for robots.txt — set user-agent, allow/disallow, crawl-delay, and sitemap URL.
+
+- name: Meta Tag Generator for SEO
+  url: /tools/meta-tag-generator/
+  description: Generate valid meta tags for SEO, Open Graph, Twitter Cards, canonical, favicon, and theme color.

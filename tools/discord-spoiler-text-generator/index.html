@@ -1,0 +1,174 @@
+---
+layout: tool
+title: Discord Spoiler Text Generator – Hide Text with ||spoilers||
+description: Free Discord Spoiler Text Generator. Hide text in messages using ||spoilers|| — wrap entire messages, mentions, URLs, or numbers. Copy in one click.
+keywords: Discord spoiler text, hide text, discord formatting, markdown, wrap spoiler, discord tips
+permalink: /tools/discord-spoiler-text-generator/
+schema_type: WebApplication
+---
+
+<section class="tool-section" aria-labelledby="discordSpoilerTitle">
+  <div class="tool-header">
+    <h1 id="discordSpoilerTitle">🙈 Discord Spoiler Text Generator</h1>
+    <p class="lead">Hide your message content with Discord’s <code>||spoiler||</code> syntax — wrap entire messages or only specific parts like mentions and links.</p>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-main">
+      <label for="discordInput">Your text</label>
+      <textarea id="discordInput" rows="4" placeholder="Type your Discord message…" aria-label="Input text for Discord spoiler"></textarea>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label><input type="checkbox" id="autoUpdate" checked /> Convert as you type</label>
+          <div class="control-hint">Automatically updates the preview when you type or paste.</div>
+        </div>
+        <div class="control-group">
+          <label>Spoiler mode</label>
+          <div class="inline-switches" role="group" aria-label="Spoiler mode">
+            <label><input type="radio" name="spoilerMode" value="entire" checked /> Entire message</label>
+            <label><input type="radio" name="spoilerMode" value="per_word" /> Each word</label>
+            <label><input type="radio" name="spoilerMode" value="smart" /> Smart (mentions/URLs)</label>
+          </div>
+          <div class="inline-switches" role="group" aria-label="Smart mode options">
+            <label><input type="checkbox" id="spoilNumbers" /> Spoil numbers in Smart mode</label>
+          </div>
+          <div class="control-hint">Smart mode wraps @mentions and URLs. Enable the toggle to also spoil numbers.</div>
+        </div>
+        <div class="control-group">
+          <label>Formatting</label>
+          <div class="inline-switches" role="group" aria-label="Formatting options">
+            <label><input type="checkbox" id="fmtBold" /> Bold</label>
+            <label><input type="checkbox" id="fmtItalic" /> Italic</label>
+            <label><input type="checkbox" id="fmtUnderline" /> Underline</label>
+            <label><input type="checkbox" id="fmtStrike" /> Strike</label>
+            <label><input type="checkbox" id="fmtCode" /> Inline code</label>
+          </div>
+          <div class="control-hint">Applies formatting to the final output.</div>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="Discord Spoiler actions">
+        <button id="convertBtn" class="btn-primary">Apply Spoilers</button>
+        <button id="unspoilerBtn" class="btn-outline">Remove Spoilers</button>
+        <button id="copyOutputBtn" class="btn-outline">Copy Output</button>
+        <button id="clearBtn" class="btn-outline">Clear</button>
+      </div>
+
+      <div class="preview-area">
+        <label for="discordOutput">Preview / Output</label>
+        <textarea id="discordOutput" rows="4" readonly aria-label="Discord spoiler output preview"></textarea>
+        <p id="discordStatus" class="status-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <aside class="tool-aside">
+      <div class="tips">
+        <h3>Quick Examples</h3>
+        <div class="example-row">
+          <button class="example-btn" data-text="Spoiler alert: plot twist ahead">Spoiler alert: plot twist ahead</button>
+          <button class="example-btn" data-text="DM me for details @username">DM me for details @username</button>
+          <button class="example-btn" data-text="Link: https://example.com — hide it">Link: https://example.com — hide it</button>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <h3>Benefits</h3>
+        <ul>
+          <li>Protect surprises in chats with one-click <code>||spoilers||</code>.</li>
+          <li>Smart mode hides mentions and URLs; optionally numbers.</li>
+          <li>Copy in one click; fully client-side and private.</li>
+          <li>Mobile-friendly and fast — no sign-up required.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Discord Spoiler Text Generator",
+  "url": "{{ page.url | absolute_url }}",
+  "description": "Free Discord Spoiler Text Generator. Hide text in messages using ||spoilers|| — wrap entire messages, mentions, URLs, or numbers. Copy in one click.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<section class="tool-instructions">
+  <div class="content-body">
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li>Type or paste your message in the input area.</li>
+      <li>Choose <strong>Entire message</strong>, <strong>Each word</strong>, or <strong>Smart</strong> mode.</li>
+      <li>Click <strong>Apply Spoilers</strong> or enable <strong>Convert as you type</strong>.</li>
+      <li>Use <strong>Copy Output</strong> to copy the spoiler-wrapped text into Discord.</li>
+      <li>Optionally add <strong>Bold/Italic/Underline/Strike/Inline code</strong> formatting.</li>
+    </ol>
+
+    <h2>Notes</h2>
+    <ul>
+      <li>Discord spoilers use <code>||</code> on both sides of the text: <code>||hidden||</code>.</li>
+      <li>Smart mode wraps <code>@mentions</code> and <code>URLs</code>; optionally <code>numbers</code> if you enable the toggle.</li>
+      <li>Preview in Discord to ensure formatting renders as expected.</li>
+    </ul>
+
+    <h2>FAQ</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>Can I spoil numbers?</h3>
+        <p>Yes. Turn on <strong>Spoil numbers in Smart mode</strong> to hide digits like <code>123</code> or <code>3.14</code> with spoilers.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does formatting work inside spoilers?</h3>
+        <p>It does. Discord renders markdown inside spoilers, e.g., <code>||**bold**||</code> or <code>||__underline__||</code>.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I spoil only part of a message?</h3>
+        <p>Use <strong>Each word</strong> to wrap every word, or <strong>Smart</strong> to wrap mentions and links while leaving other text visible.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I spoil numbers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enable the 'Spoil numbers in Smart mode' toggle to hide digits like 123 or 3.14 using Discord's ||spoiler|| syntax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does formatting work inside spoilers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Discord renders markdown inside spoilers, so constructs like ||**bold**|| and ||__underline__|| display correctly once revealed."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I spoil only part of a message?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use 'Each word' mode to wrap every word, or 'Smart' mode to selectively wrap mentions and links while leaving other text visible."
+      }
+    }
+  ]
+}
+</script>
+
+<script src="{{ site.baseurl }}/assets/js/discord-spoiler-text-generator.js"></script>

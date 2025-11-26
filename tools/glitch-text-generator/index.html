@@ -1,0 +1,111 @@
+---
+layout: tool
+title: Glitch Text Generator (Zalgo) – Create Chaotic Text Effects
+description: Generate Zalgo “glitch” text with adjustable intensity and direction (up/middle/down). Perfect for edgy comments and visual flair.
+keywords: zalgo text, glitch text generator, cursed text, combining diacritics, unicode glitch
+permalink: /tools/glitch-text-generator/
+---
+
+<section class="tool-section" aria-labelledby="glitchTextTitle">
+  <div class="tool-header">
+    <h1 id="glitchTextTitle">🫠 Glitch Text Generator (Zalgo)</h1>
+    <p class="lead">Make chaotic, “cursed” Zalgo text for attention-grabbing comments and headings.</p>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-main">
+      <label for="glitchInput">Your text</label>
+      <textarea id="glitchInput" rows="4" placeholder="Type something to glitch…" aria-label="Input text to glitch"></textarea>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="glitchIntensity">Intensity</label>
+          <input type="range" id="glitchIntensity" min="0" max="10" value="4" />
+          <div class="control-hint">Light ← Intensity → Extreme</div>
+        </div>
+        <div class="control-group">
+          <label>Directions</label>
+          <div class="inline-switches">
+            <label><input type="checkbox" id="dirUp" checked /> Up</label>
+            <label><input type="checkbox" id="dirMid" checked /> Middle</label>
+            <label><input type="checkbox" id="dirDown" checked /> Down</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="glitchAggression">Aggression</label>
+          <select id="glitchAggression">
+            <option value="balanced" selected>Balanced</option>
+            <option value="wild">Wild</option>
+            <option value="minimal">Minimal</option>
+          </select>
+          <div class="control-hint">Controls how many marks are added per character.</div>
+        </div>
+        <div class="control-group">
+          <label><input type="checkbox" id="preserveSpaces" checked /> Preserve spaces and newlines</label>
+          <div class="control-hint">Keeps layout readable while still chaotic.</div>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="Glitch actions">
+        <button id="glitchNowBtn" class="btn-primary">Glitch It</button>
+        <button id="copyGlitchBtn" class="btn-outline">Copy Glitched Text</button>
+        <button id="clearGlitchBtn" class="btn-outline">Clear</button>
+      </div>
+
+      <div class="controls-row" aria-label="Animation controls">
+        <div class="control-group">
+          <label class="inline">
+            <input type="checkbox" id="randomizeToggle" /> Randomize preview (animated)
+          </label>
+          <div class="control-hint">Cycles intensity and directions every 1.5 seconds.</div>
+        </div>
+      </div>
+
+      <div class="preview-area">
+        <label for="glitchOutput">Live Preview</label>
+        <textarea id="glitchOutput" rows="4" readonly aria-label="Glitched output preview"></textarea>
+        <p id="glitchStatus" class="status-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <aside class="tool-aside">
+      <div class="tips">
+        <h3>Quick Tips</h3>
+        <ul>
+          <li>Use <strong>Wild</strong> with high intensity for maximum chaos.</li>
+          <li>Toggle <strong>Up/Middle/Down</strong> to shape the glitch style.</li>
+          <li>Great for edgy comments, attention-grabbing headings, and memes.</li>
+        </ul>
+      </div>
+
+      <div class="examples">
+        <h3>Examples</h3>
+        <div class="example-row">
+          <button class="example-btn" data-text="Stay weird">Stay weird</button>
+          <button class="example-btn" data-text="Join the chaos">Join the chaos</button>
+          <button class="example-btn" data-text="Summon Z̴̤̈́a̶̤̓l̸̪͊g̷͍̐o̶̠̍">Summon Zalgo</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="tool-instructions">
+  <div class="content-body">
+    <h2>What is Zalgo (Glitch) Text?</h2>
+    <p>Zalgo text is created by stacking <em>Unicode combining marks</em> above, through, and below characters, producing a chaotic, corrupted look. It’s perfect for striking visual impact in short text.</p>
+
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li>Type your text in the input area.</li>
+      <li>Adjust <strong>Intensity</strong>, <strong>Directions</strong>, and <strong>Aggression</strong>.</li>
+      <li>Click <strong>Glitch It</strong> or type to see live preview.</li>
+      <li>Copy and paste anywhere for an instant “edgy” vibe.</li>
+    </ol>
+  </div>
+</section>
+
+<script src="{{ site.baseurl }}/assets/js/glitch-text-generator.js"></script>

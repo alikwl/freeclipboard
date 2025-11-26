@@ -1,0 +1,170 @@
+---
+layout: tool
+title: Robots.txt Generator — Visual Builder for Crawling Rules
+description: Free Robots.txt Generator. Create allow/disallow rules, set user-agent, crawl-delay, and sitemap. Copy or download instantly.
+keywords: robots.txt generator, sitemap, crawl-delay, disallow, allow, seo tool
+permalink: /tools/robots-txt-generator/
+schema_type: WebApplication
+---
+
+<section class="tool-section" aria-labelledby="robotsTitle">
+  <div class="tool-header">
+    <h1 id="robotsTitle">🤖 Robots.txt Generator</h1>
+    <p class="lead">Build a valid <code>robots.txt</code> file with visual controls. Choose user‑agents, allow/disallow paths, crawl‑delay, and sitemap URL.</p>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-main">
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="userAgent">User‑agent</label>
+          <input id="userAgent" type="text" value="*" aria-label="User-agent" />
+          <div class="control-hint">Use <code>*</code> for all crawlers or specify e.g. <code>Googlebot</code>.</div>
+        </div>
+        <div class="control-group">
+          <label for="sitemapUrl">Sitemap URL</label>
+          <input id="sitemapUrl" type="url" placeholder="https://example.com/sitemap.xml" aria-label="Sitemap URL" />
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label>Common Disallow</label>
+          <div class="inline-switches" role="group" aria-label="Disallow paths">
+            <label><input type="checkbox" class="disallow" value="/admin/" /> /admin/</label>
+            <label><input type="checkbox" class="disallow" value="/login/" /> /login/</label>
+            <label><input type="checkbox" class="disallow" value="/cart/" /> /cart/</label>
+            <label><input type="checkbox" class="disallow" value="/search" /> /search</label>
+            <label><input type="checkbox" class="disallow" value="/?*" /> Query pages</label>
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Common Allow</label>
+          <div class="inline-switches" role="group" aria-label="Allow paths">
+            <label><input type="checkbox" class="allow" value="/assets/" /> /assets/</label>
+            <label><input type="checkbox" class="allow" value="/images/" /> /images/</label>
+            <label><input type="checkbox" class="allow" value="/css/" /> /css/</label>
+            <label><input type="checkbox" class="allow" value="/js/" /> /js/</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="crawlDelay">Crawl‑delay (seconds)</label>
+          <input id="crawlDelay" type="number" min="0" step="1" placeholder="0" aria-label="Crawl delay" />
+        </div>
+        <div class="control-group">
+          <label>Presets</label>
+          <div class="inline-switches" role="group" aria-label="Presets">
+            <button id="presetAllowAll" class="btn-outline">Allow All</button>
+            <button id="presetDisallowAll" class="btn-outline">Disallow All</button>
+            <button id="presetBlockDirs" class="btn-outline">Block Common Dirs</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label for="customDisallow">Custom Disallow</label>
+          <input id="customDisallow" type="text" placeholder="/private/ or /temp/" />
+          <button id="addDisallow" class="btn-outline">Add</button>
+        </div>
+        <div class="control-group">
+          <label for="customAllow">Custom Allow</label>
+          <input id="customAllow" type="text" placeholder="/public/images/" />
+          <button id="addAllow" class="btn-outline">Add</button>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="Robots.txt actions">
+        <button id="generateRobotsBtn" class="btn-primary">Generate robots.txt</button>
+        <button id="copyRobotsBtn" class="btn-outline">Copy</button>
+        <button id="downloadRobotsBtn" class="btn-outline">Download robots.txt</button>
+        <button id="clearRobotsBtn" class="btn-outline">Clear</button>
+      </div>
+
+      <div class="preview-area">
+        <label for="robotsOutput">robots.txt Output</label>
+        <textarea id="robotsOutput" rows="10" readonly aria-label="Robots output preview"></textarea>
+        <p id="robotsStatus" class="status-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <aside class="tool-aside">
+      <div class="tips">
+        <h3>Quick Examples</h3>
+        <div class="example-row">
+          <button class="example-btn" data-preset="allow">Allow all</button>
+          <button class="example-btn" data-preset="disallow">Disallow all</button>
+          <button class="example-btn" data-preset="blockdirs">Block common directories</button>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <h3>Benefits</h3>
+        <ul>
+          <li>Visual builder for common allow/disallow rules.</li>
+          <li>Supports sitemap URL and crawl‑delay.</li>
+          <li>One‑click copy and download.</li>
+          <li>Standards‑compliant output for web crawlers.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Robots.txt Generator",
+  "url": "{{ page.url | absolute_url }}",
+  "description": "Free Robots.txt Generator. Create allow/disallow rules, set user-agent, crawl-delay, and sitemap. Copy or download instantly.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+
+<section class="tool-instructions">
+  <div class="content-body">
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li>Set <strong>User‑agent</strong> and <strong>Sitemap</strong> URL if available.</li>
+      <li>Select <strong>Allow/Disallow</strong> paths or add custom entries.</li>
+      <li>Optionally set <strong>Crawl‑delay</strong> to control bot pacing.</li>
+      <li>Click <strong>Generate</strong>, then <strong>Copy</strong> or <strong>Download</strong>.</li>
+    </ol>
+
+    <h2>FAQ</h2>
+    <div class="faq">
+      <div class="faq-item">
+        <h3>What should my User‑agent be?</h3>
+        <p>Use <code>*</code> for all bots. To target a specific crawler, set a name like <code>Googlebot</code>.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is Sitemap required?</h3>
+        <p>Not required, but recommended. Add a full URL to help crawlers discover pages.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does Crawl‑delay work for all bots?</h3>
+        <p>Not all bots honor it, but many do. Use it to reduce server load.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question","name": "What should my User‑agent be?","acceptedAnswer": {"@type": "Answer","text": "Use * for all bots, or target a specific crawler like Googlebot."}},
+    {"@type": "Question","name": "Is Sitemap required?","acceptedAnswer": {"@type": "Answer","text": "Not required, but recommended. Add a full URL to help crawlers discover pages."}},
+    {"@type": "Question","name": "Does Crawl‑delay work for all bots?","acceptedAnswer": {"@type": "Answer","text": "Not all bots honor it, but many do. Use it to reduce server load."}}
+  ]
+}
+</script>
+
+<script src="{{ site.baseurl }}/assets/js/robots-txt-generator.js"></script>

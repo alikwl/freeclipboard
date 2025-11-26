@@ -304,6 +304,55 @@
       "rating": 4.7,
       "usageCount": 10000
     }
+    ,
+    {
+      "id": "json-to-csv-converter",
+      "name": "JSON to CSV Converter",
+      "slug": "json-to-csv-converter",
+      "description": "Convert JSON and NDJSON to CSV with optional flattening, custom delimiter, headers, quoting, and BOM.",
+      "shortDescription": "Convert JSON/NDJSON to CSV",
+      "category": "utility",
+      "keywords": ["json to csv", "ndjson", "csv converter", "flatten json", "delimiter"],
+      "thumbnail": "/assets/images/tools/json-to-csv-converter.png",
+      "icon": "📊",
+      "featured": true,
+      "popular": true,
+      "url": "/tools/json-to-csv-converter/",
+      "rating": 4.9,
+      "usageCount": 5000
+    },
+    {
+      "id": "robots-txt-generator",
+      "name": "Robots.txt Generator",
+      "slug": "robots-txt-generator",
+      "description": "Create a standards-compliant robots.txt with visual allow/disallow rules, user-agent selection, crawl-delay, and sitemap URL.",
+      "shortDescription": "Build robots.txt visually",
+      "category": "utility",
+      "keywords": ["robots.txt", "seo", "crawl-delay", "sitemap", "disallow", "allow"],
+      "thumbnail": "/assets/images/tools/robots-txt-generator.png",
+      "icon": "🤖",
+      "featured": true,
+      "popular": true,
+      "url": "/tools/robots-txt-generator/",
+      "rating": 4.8,
+      "usageCount": 4500
+    },
+    {
+      "id": "meta-tag-generator",
+      "name": "Meta Tag Generator for SEO",
+      "slug": "meta-tag-generator",
+      "description": "Generate valid meta tags: description, robots, canonical, Open Graph, Twitter Cards, favicon, and theme color.",
+      "shortDescription": "Generate SEO meta tags",
+      "category": "utility",
+      "keywords": ["meta tags", "open graph", "twitter cards", "canonical", "favicon", "seo"],
+      "thumbnail": "/assets/images/tools/meta-tag-generator.png",
+      "icon": "🏷️",
+      "featured": true,
+      "popular": true,
+      "url": "/tools/meta-tag-generator/",
+      "rating": 4.8,
+      "usageCount": 4800
+    }
   ],
   "categories": [
     {

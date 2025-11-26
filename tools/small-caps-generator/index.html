@@ -1,0 +1,129 @@
+---
+layout: tool
+title: Small Caps Generator – Convert Text to Unicode Small Capitals
+description: Free Small Caps Generator. Convert text to Unicode small capital letters to make tweets, bios, and usernames look like Tʜɪs. Copy in one click.
+keywords: Small Caps Generator, small capital letters, unicode small caps, social media text, bio styling, tweet styling
+permalink: /tools/small-caps-generator/
+schema_type: WebApplication
+---
+
+<section class="tool-section" aria-labelledby="smallCapsTitle">
+  <div class="tool-header">
+    <h1 id="smallCapsTitle">ᴀʙᴄ Small Caps Generator</h1>
+    <p class="lead">Convert normal text into Unicode small capital letters — perfect for tweets, bios, and headings.</p>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-main">
+      <label for="smallCapsInput">Your text</label>
+      <textarea id="smallCapsInput" rows="4" placeholder="Type something to convert…" aria-label="Input text to convert to small caps"></textarea>
+
+      <div class="controls-row">
+        <div class="control-group">
+          <label><input type="checkbox" id="autoUpdate" checked /> Convert as you type</label>
+          <div class="control-hint">Automatically updates the preview when you type or paste.</div>
+        </div>
+        <div class="control-group">
+          <label><input type="checkbox" id="preserveUnsupported" checked /> Preserve unsupported characters</label>
+          <div class="control-hint">If a small-cap variant doesn’t exist (e.g., “s”, “x”), keep the original character.</div>
+        </div>
+        <div class="control-group">
+          <label><input type="checkbox" id="titleCaseBefore" /> Title Case before conversion</label>
+          <div class="control-hint">Polish your text (e.g., tweet/bio headings) before converting to small caps.</div>
+        </div>
+        <div class="control-group">
+          <label><input type="checkbox" id="lowerCaseBefore" /> Lowercase before conversion</label>
+          <div class="control-hint">Great for ALL-CAPS inputs. Ensures consistent small-cap look.</div>
+        </div>
+      </div>
+
+      <div class="toolbar" role="toolbar" aria-label="Small Caps actions">
+        <button id="convertBtn" class="btn-primary">Convert</button>
+        <button id="copyOutputBtn" class="btn-outline">Copy Output</button>
+        <button id="clearBtn" class="btn-outline">Clear</button>
+      </div>
+
+      <div class="preview-area">
+        <label for="smallCapsOutput">Preview / Output</label>
+        <textarea id="smallCapsOutput" rows="4" readonly aria-label="Small caps output preview"></textarea>
+        <p id="smallCapsStatus" class="status-text" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <aside class="tool-aside">
+      <div class="tips">
+        <h3>Quick Examples</h3>
+        <div class="example-row">
+          <button class="example-btn" data-text="Make me small">Make me small</button>
+          <button class="example-btn" data-text="Follow for tips">Follow for tips</button>
+          <button class="example-btn" data-text="New drop is live!">New drop is live!</button>
+        </div>
+      </div>
+
+      <div class="tips">
+        <h3>Sample Bios & Tweets</h3>
+        <div class="example-row">
+          <button class="example-btn" data-text="Tech tips daily — follow for more">Tech tips daily — follow for more</button>
+          <button class="example-btn" data-text="Coffee lover • building apps • DM open">Coffee lover • building apps • DM open</button>
+          <button class="example-btn" data-text="New launch today! Grab it ⏰">New launch today! Grab it ⏰</button>
+        </div>
+        <div class="example-row">
+          <button class="example-btn" data-text="Creator • sharing tutorials every week">Creator • sharing tutorials every week</button>
+          <button class="example-btn" data-text="Brand updates • exclusive previews • join now">Brand updates • exclusive previews • join now</button>
+          <button class="example-btn" data-text="Product launch — limited time early access">Product launch — limited time early access</button>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <h3>Benefits</h3>
+        <ul>
+          <li>Stand out on social media with eye-catching small caps.</li>
+          <li>Works anywhere that supports Unicode text.</li>
+          <li>Copy in one click; fully client-side and private.</li>
+          <li>Mobile-friendly and fast — no sign-up required.</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Small Caps Generator",
+  "url": "{{ page.url | absolute_url }}",
+  "description": "Free Small Caps Generator. Convert text to Unicode small capital letters to make tweets, bios, and usernames look like Tʜɪs. Copy in one click.",
+  "applicationCategory": "Utility",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+
+<section class="tool-instructions">
+  <div class="content-body">
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li>Type or paste your text in the input area.</li>
+      <li>Enable <strong>Convert as you type</strong> for instant updates, or click <strong>Convert</strong>.</li>
+      <li>Click <strong>Copy Output</strong> to copy the small caps text.</li>
+      <li>Paste into tweets, bios, usernames, or anywhere Unicode is supported.</li>
+    </ol>
+
+    <h2>Notes</h2>
+    <p>Not all letters have official “small capital” Unicode versions. Characters like <strong>s</strong> and <strong>x</strong> may remain unchanged depending on your settings. We preserve unsupported characters by default to keep your text readable and safe.</p>
+    <h3>Best Practices for Bios & Tweets</h3>
+    <ul>
+      <li>Keep it short and readable; use small caps for emphasis, not every word.</li>
+      <li>Combine with emojis sparingly to avoid visual clutter.</li>
+      <li>Use Title Case before conversion for cleaner headings; use Lowercase for ALL-CAPS inputs.</li>
+      <li>Preview on your platform to ensure Unicode renders correctly.</li>
+    </ul>
+  </div>
+</section>
+
+<script src="{{ site.baseurl }}/assets/js/small-caps-generator.js"></script>
