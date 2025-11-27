@@ -1,0 +1,365 @@
+---
+layout: tool
+title: Create Glassmorphism Effects - Free CSS Generator Tool
+description: Generate stunning glassmorphism CSS effects instantly with our free tool. Adjust blur, transparency, colors, and borders with real-time preview. Copy ready-to-use CSS code.
+keywords: glassmorphism generator, glass morphism css, frosted glass effect, glassmorphism design, css glass effect, backdrop filter, modern ui design
+schema_type: WebApplication
+permalink: /tools/glassmorphism-generator/
+category_name: Design & CSS Tools
+category_url: /utilities/
+rating: 4.9
+rating_count: 850
+features:
+  - Real-time preview
+  - Adjustable blur and transparency
+  - Custom colors and borders
+  - Dark/Light mode toggle
+  - Copy CSS instantly
+  - Responsive design
+  - 100% free
+---
+
+<section class="glassmorphism-tool">
+  <div class="tool-header-section">
+    <h2>✨ Glassmorphism CSS Generator</h2>
+    <p class="tool-subtitle">Create stunning frosted glass effects for modern UI designs</p>
+  </div>
+
+  <div class="tool-layout">
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+      <h3>🎨 Customize Your Glass Effect</h3>
+      
+      <!-- Background Mode Toggle -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Background Mode</span>
+          <button onclick="toggleBackgroundMode()" class="mode-toggle-btn" id="modeToggle">
+            🌙 Dark Mode
+          </button>
+        </label>
+      </div>
+
+      <!-- Blur -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Blur Amount</span>
+          <span class="control-value" id="blurValue">10px</span>
+        </label>
+        <input type="range" id="blurSlider" min="0" max="40" value="10" step="1" 
+               oninput="updateGlass()" class="slider">
+        <div class="slider-labels">
+          <span>0px</span>
+          <span>40px</span>
+        </div>
+      </div>
+
+      <!-- Transparency -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Transparency</span>
+          <span class="control-value" id="transparencyValue">25%</span>
+        </label>
+        <input type="range" id="transparencySlider" min="0" max="100" value="25" step="1" 
+               oninput="updateGlass()" class="slider">
+        <div class="slider-labels">
+          <span>0%</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <!-- Saturation -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Saturation</span>
+          <span class="control-value" id="saturationValue">180%</span>
+        </label>
+        <input type="range" id="saturationSlider" min="100" max="300" value="180" step="10" 
+               oninput="updateGlass()" class="slider">
+        <div class="slider-labels">
+          <span>100%</span>
+          <span>300%</span>
+        </div>
+      </div>
+
+      <!-- Glass Color -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Glass Tint Color</span>
+          <input type="color" id="glassColor" value="#ffffff" 
+                 oninput="updateGlass()" class="color-input">
+        </label>
+      </div>
+
+      <!-- Border -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Border Width</span>
+          <span class="control-value" id="borderValue">1px</span>
+        </label>
+        <input type="range" id="borderSlider" min="0" max="5" value="1" step="0.5" 
+               oninput="updateGlass()" class="slider">
+        <div class="slider-labels">
+          <span>0px</span>
+          <span>5px</span>
+        </div>
+      </div>
+
+      <!-- Border Color -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Border Color</span>
+          <input type="color" id="borderColor" value="#ffffff" 
+                 oninput="updateGlass()" class="color-input">
+        </label>
+      </div>
+
+      <!-- Border Opacity -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Border Opacity</span>
+          <span class="control-value" id="borderOpacityValue">18%</span>
+        </label>
+        <input type="range" id="borderOpacitySlider" min="0" max="100" value="18" step="1" 
+               oninput="updateGlass()" class="slider">
+        <div class="slider-labels">
+          <span>0%</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <!-- Border Radius -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Border Radius</span>
+          <span class="control-value" id="radiusValue">16px</span>
+        </label>
+        <input type="range" id="radiusSlider" min="0" max="50" value="16" step="1" 
+               oninput="updateGlass()" class="slider">
+        <div class="slider-labels">
+          <span>0px</span>
+          <span>50px</span>
+        </div>
+      </div>
+
+      <!-- Shadow -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Shadow Intensity</span>
+          <span class="control-value" id="shadowValue">Medium</span>
+        </label>
+        <select id="shadowSelect" onchange="updateGlass()" class="select-input">
+          <option value="none">None</option>
+          <option value="light">Light</option>
+          <option value="medium" selected>Medium</option>
+          <option value="heavy">Heavy</option>
+        </select>
+      </div>
+
+      <!-- Preset Buttons -->
+      <div class="preset-buttons">
+        <h4>Quick Presets</h4>
+        <button onclick="applyPreset('default')" class="preset-btn">Default Glass</button>
+        <button onclick="applyPreset('frosted')" class="preset-btn">Frosted</button>
+        <button onclick="applyPreset('subtle')" class="preset-btn">Subtle</button>
+        <button onclick="applyPreset('vibrant')" class="preset-btn">Vibrant</button>
+      </div>
+
+      <!-- Reset Button -->
+      <button onclick="resetToDefault()" class="btn-outline btn-block">
+        🔄 Reset to Default
+      </button>
+    </div>
+
+    <!-- Preview Panel -->
+    <div class="preview-panel">
+      <h3>👁️ Live Preview</h3>
+      
+      <div class="preview-container" id="previewContainer">
+        <div class="glass-card" id="glassCard">
+          <h3>Glassmorphism Effect</h3>
+          <p>This is how your glass effect looks!</p>
+          <p>Adjust the controls to customize the appearance.</p>
+        </div>
+      </div>
+
+      <!-- CSS Code Output -->
+      <div class="code-output">
+        <div class="code-header">
+          <h4>📋 Generated CSS Code</h4>
+          <button onclick="copyCSSCode()" class="btn-sm btn-primary" id="copyBtn">
+            Copy CSS
+          </button>
+        </div>
+        <pre id="cssCode" class="code-block"><code>.glass-effect {
+  /* CSS will appear here */
+}</code></pre>
+      </div>
+
+      <!-- HTML Code Output -->
+      <div class="code-output">
+        <div class="code-header">
+          <h4>📄 HTML Example</h4>
+          <button onclick="copyHTMLCode()" class="btn-sm btn-outline" id="copyHTMLBtn">
+            Copy HTML
+          </button>
+        </div>
+        <pre id="htmlCode" class="code-block"><code>&lt;div class="glass-effect"&gt;
+  &lt;h3&gt;Your Content&lt;/h3&gt;
+  &lt;p&gt;Add your content here&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/glassmorphism-generator.js' | relative_url }}"></script>
+
+<!-- How to Use Section -->
+<section class="how-to-use-section">
+  <div class="container">
+    <h2>📖 How to Use the Glassmorphism CSS Generator</h2>
+    
+    <div class="how-to-content">
+      <p>Creating stunning glassmorphism effects for your website has never been easier. Our free generator provides real-time visual feedback as you customize every aspect of the frosted glass effect. Here's your complete guide to mastering this tool:</p>
+      
+      <h3>Getting Started</h3>
+      <ol>
+        <li><strong>Choose Your Background:</strong> Toggle between Dark and Light mode using the background mode button. This helps you see how your glass effect looks on different backgrounds, ensuring it works perfectly in your design.</li>
+        <li><strong>Adjust the Blur:</strong> Use the blur slider to control the frosted glass effect intensity. Higher values create a more pronounced blur, while lower values give a subtle, refined look. The sweet spot is usually between 8-15px.</li>
+        <li><strong>Set Transparency:</strong> Control how see-through your glass element is. Lower transparency (10-30%) creates a more opaque, solid look, while higher transparency (40-70%) gives an airy, lightweight feel.</li>
+        <li><strong>Fine-tune Colors:</strong> Select your glass tint color and border color using the color pickers. White or light colors work best for light backgrounds, while darker tints suit dark themes.</li>
+      </ol>
+      
+      <h3>Advanced Customization</h3>
+      <p><strong>Saturation Control:</strong> Adjust the saturation to make colors behind the glass more or less vibrant. Higher saturation (200-300%) creates a more colorful, eye-catching effect, perfect for creative designs.</p>
+      
+      <p><strong>Border Styling:</strong> Customize the border width, color, and opacity to create the perfect frame for your glass element. A subtle white border with 15-20% opacity is the classic glassmorphism look.</p>
+      
+      <p><strong>Border Radius:</strong> Round the corners of your glass element. Higher values (20-30px) create softer, more modern shapes, while lower values give a sharper, more geometric appearance.</p>
+      
+      <p><strong>Shadow Effects:</strong> Choose from None, Light, Medium, or Heavy shadow presets. Shadows add depth and make your glass element float above the background.</p>
+      
+      <h3>Using Quick Presets</h3>
+      <p>Not sure where to start? Try our quick presets: <strong>Default Glass</strong> for a balanced look, <strong>Frosted</strong> for maximum blur, <strong>Subtle</strong> for minimal effects, or <strong>Vibrant</strong> for bold, colorful designs. You can always customize any preset to match your needs.</p>
+      
+      <h3>Copying and Implementing</h3>
+      <p>Once you're happy with your design, click "Copy CSS" to copy the generated code to your clipboard. The code includes all necessary properties including the backdrop-filter for the glass effect. Paste it into your stylesheet and apply the class to any HTML element. The tool also provides an HTML example to help you get started quickly.</p>
+      
+      <h3>Best Practices</h3>
+      <p>For the best glassmorphism effect, use it on elements that overlay colorful or textured backgrounds. The effect works by blurring what's behind it, so plain solid backgrounds won't showcase the full beauty of the design. Combine with subtle animations and hover effects for an even more engaging user experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <h2>❓ Frequently Asked Questions</h2>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>What is glassmorphism?</h3>
+        <p>Glassmorphism is a modern UI design trend that creates a frosted glass effect using CSS backdrop-filter. It features transparency, blur, and subtle borders to create depth and visual hierarchy in interfaces.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Which browsers support glassmorphism?</h3>
+        <p>Glassmorphism (backdrop-filter) is supported in Chrome, Edge, Safari, and Opera. Firefox supports it with a flag enabled. For unsupported browsers, the element will display with the background color but without the blur effect.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is this tool completely free?</h3>
+        <p>Yes! The Glassmorphism CSS Generator is 100% free with no limitations. Generate unlimited effects, copy the code, and use it in any project—personal or commercial.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do I need to credit this tool?</h3>
+        <p>No credit required! The generated CSS code is yours to use freely in any project. We appreciate mentions but they're not necessary.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use this for commercial projects?</h3>
+        <p>Absolutely! Use the generated CSS in any project—personal websites, client work, commercial applications, or products. There are no restrictions.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Why doesn't the effect show on solid backgrounds?</h3>
+        <p>Glassmorphism works by blurring what's behind the element. On solid color backgrounds, there's nothing to blur, so the effect is minimal. Use it over images, gradients, or textured backgrounds for the best results.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the best blur amount to use?</h3>
+        <p>For most designs, 8-15px blur works well. Lower values (4-8px) create subtle effects, while higher values (15-30px) create dramatic frosted glass. Experiment to find what works for your design.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How do I make the effect more visible?</h3>
+        <p>Increase the blur amount, adjust the transparency to around 20-40%, and ensure you're using it over a colorful or textured background. Adding a subtle border also helps define the glass element.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I animate glassmorphism effects?</h3>
+        <p>Yes! You can animate properties like blur, transparency, and border using CSS transitions or animations. Try animating on hover for interactive effects.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the difference between transparency and opacity?</h3>
+        <p>In this tool, transparency controls the background-color alpha value, making the element itself more see-through. This works together with the blur to create the glass effect.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Does glassmorphism affect performance?</h3>
+        <p>Backdrop-filter can be GPU-intensive, especially with high blur values or many glass elements. Use it sparingly for best performance, and test on lower-end devices.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I save my custom presets?</h3>
+        <p>Currently, the tool doesn't save presets, but you can copy the CSS code and save it in your own stylesheet or code snippets library for future use.</p>
+      </div>
+    </div>
+    
+    <div class="faq-cta">
+      <p>Have more questions?</p>
+      <a href="{{ site.baseurl }}/contact/" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Related Tools Section -->
+<section class="related-tools-section">
+  <div class="container">
+    <h2>🔧 Related Design Tools</h2>
+    <p class="section-subtitle">Explore more tools to enhance your designs</p>
+    
+    <div class="related-tools-grid">
+      <a href="{{ site.baseurl }}/tools/neumorphism-generator/" class="related-tool-card">
+        <div class="tool-icon">🎨</div>
+        <h3>Neumorphism Generator</h3>
+        <p>Create soft UI shadows and neumorphic effects</p>
+      </a>
+      
+      <a href="{{ site.baseurl }}/tools/svg-blob-generator/" class="related-tool-card">
+        <div class="tool-icon">🔮</div>
+        <h3>SVG Blob Generator</h3>
+        <p>Generate organic blob shapes for backgrounds</p>
+      </a>
+      
+      <a href="{{ site.baseurl }}/tools/color-picker/" class="related-tool-card">
+        <div class="tool-icon">🎨</div>
+        <h3>Color Picker</h3>
+        <p>Pick and convert colors between formats</p>
+      </a>
+      
+      <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="related-tool-card">
+        <div class="tool-icon">📱</div>
+        <h3>QR Code Generator</h3>
+        <p>Create custom QR codes instantly</p>
+      </a>
+    </div>
+    
+    <div class="view-all-tools">
+      <a href="{{ site.baseurl }}/utilities/" class="btn-primary">View All Design Tools →</a>
+    </div>
+  </div>
+</section>

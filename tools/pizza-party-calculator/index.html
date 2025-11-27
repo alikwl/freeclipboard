@@ -1,0 +1,290 @@
+---
+layout: tool
+title: Pizza Party Calculator - How Many Pizzas Do I Need for My Party?
+description: Planning a party? Calculate exactly how many pizzas you need based on guests, appetite, and pizza size. Never order too much or too little pizza again!
+keywords: pizza party calculator, how many pizzas, pizza calculator, party planning, order pizza, pizzas for party, pizza party planning
+schema_type: WebApplication
+permalink: /tools/pizza-party-calculator/
+category_name: Utilities
+category_url: /utilities/
+rating: 4.9
+rating_count: 3200
+features:
+  - Instant pizza calculation
+  - Multiple appetite levels
+  - All pizza sizes
+  - Cost estimator
+  - Share your result
+  - Party planning tips
+---
+
+<section class="calculator-wrapper" aria-labelledby="pizza-calc-heading">
+  <h2 id="pizza-calc-heading" class="sr-only">Pizza Party Calculator</h2>
+  
+  <div class="calculator-card">
+    <div class="calculator-header">
+      <div class="pizza-icon-display">🍕</div>
+      <h3>Pizza Party Calculator</h3>
+      <p>Never run out of pizza again!</p>
+    </div>
+    
+    <div class="input-section">
+      <div class="input-group">
+        <label for="numGuests">Number of Guests</label>
+        <input type="number" id="numGuests" min="1" max="500" value="10" class="number-input">
+      </div>
+      
+      <div class="input-group">
+        <label for="appetiteLevel">Appetite Level</label>
+        <select id="appetiteLevel" class="select-input">
+          <option value="2">Light Eaters (2 slices/person)</option>
+          <option value="3" selected>Normal Appetite (3 slices/person)</option>
+          <option value="4">Hungry Crowd (4 slices/person)</option>
+          <option value="5">Very Hungry (5 slices/person)</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="pizzaSize">Pizza Size</label>
+        <select id="pizzaSize" class="select-input">
+          <option value="6">Small 10" (6 slices)</option>
+          <option value="8" selected>Medium 12" (8 slices)</option>
+          <option value="10">Large 14" (10 slices)</option>
+          <option value="12">Extra Large 16" (12 slices)</option>
+        </select>
+      </div>
+    </div>
+    
+    <!-- Result Display -->
+    <div class="result-display" id="resultDisplay">
+      <div class="result-number" id="pizzaCount">4</div>
+      <div class="result-label">Pizzas Needed</div>
+      <div class="pizza-visual" id="pizzaVisual">🍕🍕🍕🍕</div>
+    </div>
+    
+    <!-- Additional Info -->
+    <div class="additional-info">
+      <p><strong>Total Slices:</strong> <span id="totalSlices">32</span></p>
+      <p><strong>Slices Per Person:</strong> <span id="slicesPerPerson">3</span></p>
+      <p><strong>Estimated Cost:</strong> $<span id="estimatedCost">60</span> (at $15/pizza)</p>
+    </div>
+    
+    <!-- Share Button -->
+    <button class="btn-share" id="shareBtn">
+      📤 Share Result
+    </button>
+  </div>
+
+</section>
+
+<section class="tool-content-section">
+  <div class="content-body">
+    
+    <h2>Pizza Party Calculator - Order the Perfect Amount</h2>
+    <p>Planning a party and wondering "how many pizzas do I need?" You're not alone! This is one of the most common party planning dilemmas. Order too few and your guests go hungry. Order too many and you're eating leftover pizza for a week (though that's not always a bad thing!). Our Pizza Party Calculator takes the guesswork out of pizza ordering by calculating exactly how many pizzas you need based on your guest count, their appetite level, and your chosen pizza size.</p>
+    
+    <h2>How to Use the Pizza Party Calculator</h2>
+    <p>Getting the perfect pizza count for your party is super easy:</p>
+    
+    <div class="how-to-steps">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Enter Number of Guests</h3>
+          <p>Start by entering how many people will be at your party. Include everyone who'll be eating—adults, teens, and kids. The calculator works for any size gathering, from intimate dinners to large parties.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Select Appetite Level</h3>
+          <p>Choose how hungry your crowd will be. Light eaters (like at a cocktail party with other food) need 2 slices. Normal appetite is 3 slices. Hungry crowds (teenagers, sports fans) need 4 slices. Very hungry (pizza is the only food) means 5 slices per person.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Choose Pizza Size</h3>
+          <p>Select the pizza size you're ordering. Small (10") has 6 slices, Medium (12") has 8 slices, Large (14") has 10 slices, and Extra Large (16") has 12 slices. Larger pizzas are usually more cost-effective!</p>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Pizza Serving Guidelines</h2>
+    <p>Here's what you need to know about pizza portions:</p>
+    
+    <div class="info-cards">
+      <div class="info-card">
+        <h3>👶 Kids (Ages 3-11)</h3>
+        <p>Kids typically eat 2-3 slices. Younger children (3-7) usually eat 1-2 slices, while older kids (8-11) can eat 2-3 slices. Consider ordering kid-friendly toppings!</p>
+      </div>
+      
+      <div class="info-card">
+        <h3>👦 Teens (Ages 12-17)</h3>
+        <p>Teenagers are hungry! Plan for 4-5 slices per teen, especially teenage boys. They can easily eat half a large pizza themselves. Don't underestimate teen appetite!</p>
+      </div>
+      
+      <div class="info-card">
+        <h3>👨 Adults</h3>
+        <p>Most adults eat 3-4 slices. Women typically eat 2-3 slices, while men usually eat 3-4 slices. Adjust based on whether pizza is the main meal or just part of the spread.</p>
+      </div>
+    </div>
+    
+    <h2>Pizza Size Comparison</h2>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Diameter</th>
+          <th>Slices</th>
+          <th>Serves</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Small</td>
+          <td>10"</td>
+          <td>6</td>
+          <td>2-3 people</td>
+          <td>Kids, light snack</td>
+        </tr>
+        <tr>
+          <td>Medium</td>
+          <td>12"</td>
+          <td>8</td>
+          <td>3-4 people</td>
+          <td>Small families</td>
+        </tr>
+        <tr>
+          <td>Large</td>
+          <td>14"</td>
+          <td>10</td>
+          <td>4-5 people</td>
+          <td>Most parties</td>
+        </tr>
+        <tr>
+          <td>Extra Large</td>
+          <td>16"</td>
+          <td>12</td>
+          <td>5-6 people</td>
+          <td>Big groups, best value</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2>Pro Tips for Pizza Parties</h2>
+    <ul>
+      <li><strong>Order Variety:</strong> Get different toppings! A good mix is 50% cheese/pepperoni, 25% veggie, 25% specialty. This ensures everyone finds something they like.</li>
+      
+      <li><strong>Consider Dietary Restrictions:</strong> Ask about allergies and preferences beforehand. Have at least one vegetarian option and consider gluten-free if needed.</li>
+      
+      <li><strong>Timing Matters:</strong> If pizza is the main meal (dinner time), order more. If it's a snack or there's other food, order less.</li>
+      
+      <li><strong>Round Up:</strong> Always round up to the nearest whole pizza. It's better to have leftovers than hungry guests!</li>
+      
+      <li><strong>Larger is Cheaper:</strong> Two large pizzas usually cost less than three mediums and provide more food. Do the math!</li>
+      
+      <li><strong>Order Early:</strong> Call ahead, especially on weekends and game days. Popular times can have 1-2 hour wait times.</li>
+      
+      <li><strong>Keep it Warm:</strong> If pizzas arrive early, keep them in a warm oven (170°F) until serving time.</li>
+      
+      <li><strong>Have Extras:</strong> Stock up on plates, napkins, and drinks. You'll need more than you think!</li>
+    </ul>
+    
+    <h2>Special Situations</h2>
+    
+    <h3>🎮 Game Day / Sports Viewing</h3>
+    <p>People eat more during games! Add 1 extra slice per person to your calculation. The excitement and long duration mean more eating.</p>
+    
+    <h3>🎂 Kids' Birthday Parties</h3>
+    <p>Plan for 2 slices per child plus 3 slices per adult. Kids eat less but parents will be hungry! Also, cake reduces pizza consumption.</p>
+    
+    <h3>🏢 Office Lunch</h3>
+    <p>For working lunches, plan for 2-3 slices per person. People eat less at work events. Order variety since you may not know everyone's preferences.</p>
+    
+    <h3>🎉 Late Night Party</h3>
+    <p>Late night = hungry people! Add an extra pizza or two. Pizza is the perfect late-night food and people will keep eating.</p>
+    
+    <h2>Cost Saving Tips</h2>
+    <ul>
+      <li><strong>Deals and Coupons:</strong> Check for online deals, coupon codes, and app-exclusive offers before ordering.</li>
+      <li><strong>Bulk Discounts:</strong> Many pizzerias offer discounts when you order 5+ pizzas. Ask about party packages!</li>
+      <li><strong>Pickup vs Delivery:</strong> Picking up yourself often saves $5-10 in delivery fees and tips.</li>
+      <li><strong>Plain is Cheaper:</strong> Cheese and pepperoni pizzas cost less than specialty pizzas. Mix in some basics to save money.</li>
+      <li><strong>Weekday Specials:</strong> If your party is flexible, weekday deals can save 30-50% compared to weekend prices.</li>
+    </ul>
+    
+    <h2>Frequently Asked Questions</h2>
+    
+    <div class="faq-section">
+      <div class="faq-item">
+        <h3>How many slices of pizza does the average person eat?</h3>
+        <p>The average adult eats 3-4 slices of pizza. However, this varies based on age, gender, appetite, and whether pizza is the only food available. Men typically eat 3-4 slices, women 2-3 slices, teens 4-5 slices, and kids 2-3 slices.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Should I order more pizza than the calculator suggests?</h3>
+        <p>It's always smart to round up! The calculator gives you the minimum needed. If you want to ensure leftovers or have a particularly hungry crowd, add 1-2 extra pizzas. Leftover pizza is never a problem!</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What if I have both kids and adults?</h3>
+        <p>Use the "Normal Appetite" setting as a middle ground, or calculate separately: count kids as needing 2 slices and adults as needing 3-4 slices, then add them together to get your total slice count.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is it cheaper to order large pizzas or multiple mediums?</h3>
+        <p>Large pizzas are almost always more cost-effective! Two large pizzas typically cost less than three mediums while providing more total food. Always compare the price per slice when deciding.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How do I account for other food at the party?</h3>
+        <p>If you're serving appetizers, salad, or other main dishes, select "Light Eaters" or reduce the number of guests by 20-30%. If pizza is the ONLY food, use "Hungry Crowd" or "Very Hungry" settings.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What toppings should I order?</h3>
+        <p>A safe bet is: 50% cheese or pepperoni (crowd pleasers), 25% vegetarian (peppers, mushrooms, olives), and 25% specialty (whatever your crowd likes). This ensures variety without waste.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How far in advance should I order?</h3>
+        <p>For large orders (5+ pizzas), call at least 2-3 hours ahead, or even the day before for very large parties. Friday and Saturday nights are busiest—order early or expect delays!</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I order half and half pizzas?</h3>
+        <p>Yes! Most pizzerias offer half-and-half toppings. This is great for accommodating different preferences without ordering extra pizzas. However, it may cost slightly more.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What about dietary restrictions?</h3>
+        <p>Always ask guests about allergies and dietary needs beforehand. Order at least one vegetarian pizza, and consider gluten-free or vegan options if needed. Most pizzerias now offer these alternatives.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How long does pizza stay fresh?</h3>
+        <p>Pizza is best eaten fresh but stays good for 2-3 hours at room temperature. If your party is longer, keep pizzas in a warm oven (170°F). Refrigerate leftovers within 2 hours and eat within 3-4 days.</p>
+      </div>
+    </div>
+    
+    <div class="cta-box">
+      <h3>Ready to Order Pizza?</h3>
+      <p>Use our calculator to find out exactly how many pizzas you need. No more guessing, no more waste!</p>
+      <a href="#numGuests" class="btn-primary">Calculate Now</a>
+    </div>
+    
+    <h2>Related Calculators</h2>
+    <ul class="related-tools-list">
+      <li><a href="{{ site.baseurl }}/tools/cat-age-calculator/">Cat Age Calculator</a> - Convert cat years to human years</li>
+      <li><a href="{{ site.baseurl }}/tools/water-intake-calculator/">Water Intake Calculator</a> - Daily hydration needs</li>
+      <li><a href="{{ site.baseurl }}/tools/holiday-countdown/">Holiday Countdown</a> - Days until holidays</li>
+      <li><a href="{{ site.baseurl }}/utilities/">View All Calculators</a></li>
+    </ul>
+  </div>
+</section>
+
+<script src="{{ site.baseurl }}/assets/js/pizza-party-calculator.js"></script>

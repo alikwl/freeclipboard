@@ -1,0 +1,403 @@
+---
+layout: tool
+title: Generate Neumorphism Shadows - Free Soft UI CSS Generator
+description: Create stunning neumorphic (soft UI) shadow effects instantly with our free generator. Adjust depth, blur, light angle, and colors with real-time preview. Copy ready-to-use CSS code.
+keywords: neumorphism generator, soft ui, neumorphic design, soft shadows, css shadow generator, neomorphism, modern ui design, tactile design
+schema_type: WebApplication
+permalink: /tools/neumorphism-generator/
+category_name: Design & CSS Tools
+category_url: /utilities/
+rating: 4.9
+rating_count: 720
+features:
+  - Real-time preview
+  - Adjustable shadow depth
+  - Light source control
+  - Dark/Light mode toggle
+  - Copy CSS instantly
+  - Multiple presets
+  - Responsive design
+  - 100% free
+---
+
+<section class="neumorphism-tool">
+  <div class="tool-header-section">
+    <h2>🎨 Neumorphism Shadow Generator</h2>
+    <p class="tool-subtitle">Create soft UI effects with realistic depth and tactile shadows</p>
+  </div>
+
+  <div class="tool-layout">
+    <!-- Controls Panel -->
+    <div class="controls-panel">
+      <h3>⚙️ Customize Your Soft UI Effect</h3>
+      
+      <!-- Background Mode Toggle -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Background Mode</span>
+          <button onclick="toggleBackgroundMode()" class="mode-toggle-btn" id="modeToggle">
+            🌙 Dark Mode
+          </button>
+        </label>
+      </div>
+
+      <!-- Shape Type -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Shape Type</span>
+        </label>
+        <select id="shapeType" onchange="updateNeumorphism()" class="select-input">
+          <option value="flat">Flat (Default)</option>
+          <option value="concave">Concave (Pressed)</option>
+          <option value="convex">Convex (Raised)</option>
+        </select>
+      </div>
+
+      <!-- Background Color -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Background Color</span>
+          <input type="color" id="bgColor" value="#e0e5ec" 
+                 oninput="updateNeumorphism()" class="color-input">
+        </label>
+        <div class="color-presets">
+          <button onclick="setColor('#e0e5ec')" class="color-preset" style="background: #e0e5ec" title="Light Gray"></button>
+          <button onclick="setColor('#d1d9e6')" class="color-preset" style="background: #d1d9e6" title="Blue Gray"></button>
+          <button onclick="setColor('#f0f0f3')" class="color-preset" style="background: #f0f0f3" title="Off White"></button>
+          <button onclick="setColor('#2d3748')" class="color-preset" style="background: #2d3748" title="Dark"></button>
+        </div>
+      </div>
+
+      <!-- Shadow Distance -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Shadow Distance</span>
+          <span class="control-value" id="distanceValue">15px</span>
+        </label>
+        <input type="range" id="distanceSlider" min="5" max="50" value="15" step="1" 
+               oninput="updateNeumorphism()" class="slider">
+        <div class="slider-labels">
+          <span>5px</span>
+          <span>50px</span>
+        </div>
+      </div>
+
+      <!-- Shadow Blur -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Shadow Blur</span>
+          <span class="control-value" id="blurValue">30px</span>
+        </label>
+        <input type="range" id="blurSlider" min="10" max="100" value="30" step="1" 
+               oninput="updateNeumorphism()" class="slider">
+        <div class="slider-labels">
+          <span>10px</span>
+          <span>100px</span>
+        </div>
+      </div>
+
+      <!-- Light Angle -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Light Source Angle</span>
+          <span class="control-value" id="angleValue">145°</span>
+        </label>
+        <input type="range" id="angleSlider" min="0" max="360" value="145" step="1" 
+               oninput="updateNeumorphism()" class="slider">
+        <div class="slider-labels">
+          <span>0°</span>
+          <span>360°</span>
+        </div>
+        <div class="angle-visual" id="angleVisual">
+          <div class="angle-indicator"></div>
+        </div>
+      </div>
+
+      <!-- Shadow Intensity -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Shadow Intensity</span>
+          <span class="control-value" id="intensityValue">15%</span>
+        </label>
+        <input type="range" id="intensitySlider" min="5" max="30" value="15" step="1" 
+               oninput="updateNeumorphism()" class="slider">
+        <div class="slider-labels">
+          <span>5%</span>
+          <span>30%</span>
+        </div>
+      </div>
+
+      <!-- Border Radius -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Border Radius</span>
+          <span class="control-value" id="radiusValue">50px</span>
+        </label>
+        <input type="range" id="radiusSlider" min="0" max="100" value="50" step="1" 
+               oninput="updateNeumorphism()" class="slider">
+        <div class="slider-labels">
+          <span>0px</span>
+          <span>100px</span>
+        </div>
+      </div>
+
+      <!-- Element Size -->
+      <div class="control-group">
+        <label class="control-label">
+          <span>Element Size</span>
+          <span class="control-value" id="sizeValue">200px</span>
+        </label>
+        <input type="range" id="sizeSlider" min="100" max="400" value="200" step="10" 
+               oninput="updateNeumorphism()" class="slider">
+        <div class="slider-labels">
+          <span>100px</span>
+          <span>400px</span>
+        </div>
+      </div>
+
+      <!-- Preset Buttons -->
+      <div class="preset-buttons">
+        <h4>Quick Presets</h4>
+        <button onclick="applyPreset('soft')" class="preset-btn">Soft</button>
+        <button onclick="applyPreset('medium')" class="preset-btn">Medium</button>
+        <button onclick="applyPreset('deep')" class="preset-btn">Deep</button>
+        <button onclick="applyPreset('flat')" class="preset-btn">Flat</button>
+      </div>
+
+      <!-- Reset Button -->
+      <button onclick="resetToDefault()" class="btn-outline btn-block">
+        🔄 Reset to Default
+      </button>
+    </div>
+
+    <!-- Preview Panel -->
+    <div class="preview-panel">
+      <h3>👁️ Live Preview</h3>
+      
+      <div class="preview-container" id="previewContainer">
+        <div class="neumorphic-element" id="neumorphicElement">
+          <div class="element-content">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor" opacity="0.3">
+              <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- CSS Code Output -->
+      <div class="code-output">
+        <div class="code-header">
+          <h4>📋 Generated CSS Code</h4>
+          <button onclick="copyCSSCode()" class="btn-sm btn-primary" id="copyBtn">
+            Copy CSS
+          </button>
+        </div>
+        <pre id="cssCode" class="code-block"><code>.neumorphic {
+  /* CSS will appear here */
+}</code></pre>
+      </div>
+
+      <!-- HTML Code Output -->
+      <div class="code-output">
+        <div class="code-header">
+          <h4>📄 HTML Example</h4>
+          <button onclick="copyHTMLCode()" class="btn-sm btn-outline" id="copyHTMLBtn">
+            Copy HTML
+          </button>
+        </div>
+        <pre id="htmlCode" class="code-block"><code>&lt;div class="neumorphic"&gt;
+  &lt;!-- Your content --&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+
+      <!-- Tips Box -->
+      <div class="tips-box">
+        <h4>💡 Pro Tips</h4>
+        <ul>
+          <li>Use light backgrounds (#e0e5ec to #f0f0f3) for best results</li>
+          <li>Keep shadow distance and blur proportional</li>
+          <li>Light angle at 145° creates natural top-left lighting</li>
+          <li>Combine with subtle hover effects for interactivity</li>
+          <li>Use sparingly - too much neumorphism can overwhelm</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ '/assets/js/neumorphism-generator.js' | relative_url }}"></script>
+
+<!-- How to Use Section -->
+<section class="how-to-use-section">
+  <div class="container">
+    <h2>📖 How to Use the Neumorphism Shadow Generator</h2>
+    
+    <div class="how-to-content">
+      <p>Neumorphism (also called Soft UI) is a design trend that creates soft, extruded shapes that appear to emerge from the background. Our generator makes it easy to create these tactile, realistic effects with perfect shadows. Here's everything you need to know:</p>
+      
+      <h3>Understanding Neumorphism</h3>
+      <p>Neumorphism works by using two shadows - one light and one dark - positioned opposite to each other to create the illusion of depth. The effect works best on backgrounds that match or are very close to the element's color, creating a subtle, embossed appearance.</p>
+      
+      <h3>Getting Started</h3>
+      <ol>
+        <li><strong>Choose Your Background:</strong> Start by selecting a background color. Light grays (#e0e5ec, #d1d9e6, #f0f0f3) work best for neumorphism. You can also toggle between light and dark modes to see how your effect looks in different contexts.</li>
+        <li><strong>Select Shape Type:</strong> Choose between Flat (default raised look), Concave (pressed in), or Convex (raised out). Each creates a different depth perception.</li>
+        <li><strong>Adjust Shadow Distance:</strong> Control how far the shadows extend from the element. Smaller values (5-15px) create subtle effects, while larger values (20-50px) create dramatic depth.</li>
+        <li><strong>Set Shadow Blur:</strong> Determine how soft the shadows are. More blur (40-80px) creates softer, more diffused shadows, while less blur (10-30px) creates sharper, more defined edges.</li>
+      </ol>
+      
+      <h3>Advanced Customization</h3>
+      <p><strong>Light Source Angle:</strong> This is crucial for realistic neumorphism. The angle determines where the light appears to come from. The default 145° creates natural top-left lighting. Experiment with different angles to see how the shadows shift - 45° for top-right, 225° for bottom-left, etc.</p>
+      
+      <p><strong>Shadow Intensity:</strong> Control how dark the shadows appear. Lower intensity (5-10%) creates very subtle effects perfect for minimal designs, while higher intensity (20-30%) creates more pronounced, dramatic shadows.</p>
+      
+      <p><strong>Border Radius:</strong> Neumorphism looks best with rounded corners. Adjust from sharp rectangles (0px) to perfect circles (100px). Most designs use 20-50px for a balanced, modern look.</p>
+      
+      <p><strong>Element Size:</strong> Preview your effect at different sizes to ensure it scales well. Larger elements (300-400px) show the effect more dramatically, while smaller elements (100-150px) require more subtle shadows.</p>
+      
+      <h3>Using Quick Presets</h3>
+      <p>Not sure where to start? Try our presets: <strong>Soft</strong> for minimal, elegant effects; <strong>Medium</strong> for balanced, versatile designs; <strong>Deep</strong> for dramatic, pronounced depth; or <strong>Flat</strong> for subtle, barely-there shadows. Each preset is optimized for different use cases.</p>
+      
+      <h3>Implementing the Code</h3>
+      <p>Once satisfied with your design, click "Copy CSS" to copy the generated code. The CSS includes both light and dark shadows positioned to create the neumorphic effect. Apply the class to any HTML element. For best results, ensure the element's background color matches or is very close to the page background.</p>
+      
+      <h3>Best Practices</h3>
+      <p>Neumorphism works best when used sparingly. Apply it to buttons, cards, or input fields - not entire pages. Use it on light backgrounds for maximum effect. Combine with subtle hover states (slightly adjusting shadow distance) for interactive elements. Ensure sufficient contrast for accessibility - add subtle borders or icons to help elements stand out. Test on different screen sizes and devices to ensure the effect translates well.</p>
+      
+      <h3>Common Use Cases</h3>
+      <p>Neumorphism is perfect for: modern dashboard interfaces, music player controls, calculator apps, smart home interfaces, settings panels, and any UI where you want a soft, tactile feel. It's especially popular in mobile app designs and minimalist web interfaces.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <h2>❓ Frequently Asked Questions</h2>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>What is neumorphism?</h3>
+        <p>Neumorphism (or Soft UI) is a design trend that creates soft, extruded shapes using dual shadows (light and dark) to simulate depth. Elements appear to emerge from or sink into the background, creating a tactile, realistic appearance.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the difference between neumorphism and skeuomorphism?</h3>
+        <p>Skeuomorphism mimics real-world objects with textures and details. Neumorphism is more minimal, using only shadows and subtle colors to create depth. Neumorphism is cleaner and more modern.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Which browsers support neumorphism?</h3>
+        <p>Neumorphism uses standard CSS box-shadow, which is supported in all modern browsers including Chrome, Firefox, Safari, Edge, and Opera. It works on mobile browsers too.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is this tool completely free?</h3>
+        <p>Yes! The Neumorphism Shadow Generator is 100% free with no limitations. Generate unlimited effects, copy the code, and use it in any project without restrictions.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use this for commercial projects?</h3>
+        <p>Absolutely! Use the generated CSS in any project - personal websites, client work, commercial applications, or products. No attribution required, though always appreciated.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Why doesn't neumorphism work on dark backgrounds?</h3>
+        <p>Neumorphism relies on light/dark shadow contrast. On very dark backgrounds, the effect is less visible. For dark themes, use lighter element colors or adjust to "dark neumorphism" with inverted shadow colors.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the best background color for neumorphism?</h3>
+        <p>Light grays work best: #e0e5ec (most popular), #d1d9e6 (blue-gray), or #f0f0f3 (off-white). These colors provide enough contrast for shadows while maintaining the soft aesthetic.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How do I create pressed/concave effects?</h3>
+        <p>Select "Concave (Pressed)" from the Shape Type dropdown. This inverts the shadow positions to make elements appear pressed into the background, perfect for active states or input fields.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the ideal shadow distance and blur?</h3>
+        <p>For most designs, use 10-20px distance with 20-40px blur. This creates a balanced, realistic effect. Larger elements can handle bigger shadows, while smaller elements need subtler shadows.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I animate neumorphic effects?</h3>
+        <p>Yes! Animate the box-shadow property on hover or click. Try reducing shadow distance slightly on hover to create a "pressing" effect, or increase it for a "lifting" effect.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is neumorphism accessible?</h3>
+        <p>Neumorphism can have accessibility issues due to low contrast. Always ensure sufficient contrast between elements, add visible borders or icons, and test with screen readers. Don't rely solely on shadows for important UI elements.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Does neumorphism affect performance?</h3>
+        <p>Box-shadows are GPU-accelerated in modern browsers, so performance impact is minimal. However, using many neumorphic elements on one page can affect performance on lower-end devices. Use sparingly.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the light source angle?</h3>
+        <p>The angle determines where light appears to come from, affecting shadow positions. 145° (default) creates top-left lighting. 45° is top-right, 225° is bottom-left, 315° is bottom-right.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use neumorphism with other design styles?</h3>
+        <p>Yes! Neumorphism works well with minimalism, flat design, and modern UI. Avoid mixing with heavy skeuomorphism or overly decorative styles. Keep the overall design clean and simple.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How do I make neumorphism more visible?</h3>
+        <p>Increase shadow distance and intensity, ensure your background color is in the light gray range (#e0e5ec), use adequate border radius (20-50px), and make sure element and background colors are similar but not identical.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I save my custom settings?</h3>
+        <p>Currently, the tool doesn't save settings, but you can copy the CSS code and save it in your stylesheet or code snippets library. Bookmark your favorite combinations for quick reference.</p>
+      </div>
+    </div>
+    
+    <div class="faq-cta">
+      <p>Have more questions?</p>
+      <a href="{{ site.baseurl }}/contact/" class="btn-outline">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Related Tools Section -->
+<section class="related-tools-section">
+  <div class="container">
+    <h2>🔧 Related Design Tools</h2>
+    <p class="section-subtitle">Explore more tools to enhance your designs</p>
+    
+    <div class="related-tools-grid">
+      <a href="{{ site.baseurl }}/tools/glassmorphism-generator/" class="related-tool-card">
+        <div class="tool-icon">✨</div>
+        <h3>Glassmorphism Generator</h3>
+        <p>Create frosted glass effects with backdrop blur</p>
+      </a>
+      
+      <a href="{{ site.baseurl }}/tools/svg-blob-generator/" class="related-tool-card">
+        <div class="tool-icon">🔮</div>
+        <h3>SVG Blob Generator</h3>
+        <p>Generate organic blob shapes for backgrounds</p>
+      </a>
+      
+      <a href="{{ site.baseurl }}/tools/color-picker/" class="related-tool-card">
+        <div class="tool-icon">🎨</div>
+        <h3>Color Picker</h3>
+        <p>Pick and convert colors between formats</p>
+      </a>
+      
+      <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="related-tool-card">
+        <div class="tool-icon">📱</div>
+        <h3>QR Code Generator</h3>
+        <p>Create custom QR codes instantly</p>
+      </a>
+    </div>
+    
+    <div class="view-all-tools">
+      <a href="{{ site.baseurl }}/utilities/" class="btn-primary">View All Design Tools →</a>
+    </div>
+  </div>
+</section>

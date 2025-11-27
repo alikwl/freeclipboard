@@ -1,0 +1,122 @@
+---
+layout: tool
+title: Holiday Countdown - Days Until Christmas, Halloween & More
+description: Live countdown to Christmas, Halloween, New Year, and all major holidays. Real-time timer with days, hours, minutes, and seconds remaining.
+keywords: holiday countdown, christmas countdown, days until christmas, halloween countdown, holiday timer, countdown timer, days until
+schema_type: WebApplication
+permalink: /tools/holiday-countdown/
+category_name: Utilities
+category_url: /utilities/
+rating: 4.8
+rating_count: 2800
+---
+
+<section class="calculator-wrapper">
+  <div class="calculator-card">
+    <div class="calculator-header">
+      <div class="holiday-icon-display" id="holidayIcon">🎄</div>
+      <h3>Holiday Countdown Timer</h3>
+    </div>
+    
+    <div class="input-section">
+      <div class="input-group">
+        <label for="holidaySelect">Select Holiday</label>
+        <select id="holidaySelect" class="select-input">
+          <option value="christmas">Christmas</option>
+          <option value="newyear">New Year's Day</option>
+          <option value="halloween">Halloween</option>
+          <option value="thanksgiving">Thanksgiving</option>
+          <option value="easter">Easter</option>
+          <option value="valentines">Valentine's Day</option>
+          <option value="july4">Independence Day</option>
+          <option value="memorial">Memorial Day</option>
+          <option value="labor">Labor Day</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="countdown-display">
+      <div class="countdown-item">
+        <div class="countdown-number" id="days">0</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="hours">0</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="minutes">0</div>
+        <div class="countdown-label">Minutes</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-number" id="seconds">0</div>
+        <div class="countdown-label">Seconds</div>
+      </div>
+    </div>
+    
+    <div class="holiday-date" id="holidayDate">December 25, 2025</div>
+    
+    <button class="btn-share" id="shareBtn">📤 Share Countdown</button>
+  </div>
+</section>
+
+<section class="tool-content-section">
+  <div class="content-body">
+    <h2>Holiday Countdown Timer</h2>
+    <p>Count down to your favorite holidays with our real-time countdown timer! Watch the days, hours, minutes, and seconds tick away until Christmas, Halloween, New Year's, and more. Perfect for building excitement and planning ahead!</p>
+    
+    <h2>How to Use</h2>
+    <ol>
+      <li>Select your holiday from the dropdown menu</li>
+      <li>Watch the live countdown update every second</li>
+      <li>Share the countdown with friends and family</li>
+    </ol>
+    
+    <h2>Upcoming Holidays 2025</h2>
+    <ul>
+      <li><strong>New Year's Day:</strong> January 1, 2025</li>
+      <li><strong>Valentine's Day:</strong> February 14, 2025</li>
+      <li><strong>Easter:</strong> April 20, 2025</li>
+      <li><strong>Memorial Day:</strong> May 26, 2025</li>
+      <li><strong>Independence Day:</strong> July 4, 2025</li>
+      <li><strong>Labor Day:</strong> September 1, 2025</li>
+      <li><strong>Halloween:</strong> October 31, 2025</li>
+      <li><strong>Thanksgiving:</strong> November 27, 2025</li>
+      <li><strong>Christmas:</strong> December 25, 2025</li>
+    </ul>
+    
+    <h2>Holiday Planning Tips</h2>
+    <ul>
+      <li>Start shopping early to avoid last-minute stress</li>
+      <li>Book travel 2-3 months in advance for best prices</li>
+      <li>Send holiday cards 2-3 weeks before the holiday</li>
+      <li>Plan menus and make shopping lists ahead of time</li>
+      <li>Decorate 2-4 weeks before major holidays</li>
+    </ul>
+    
+    <h2>FAQ</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <h3>Does the countdown update in real-time?</h3>
+        <p>Yes! The countdown updates every second, showing you exactly how much time remains until your selected holiday.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I add custom dates?</h3>
+        <p>Currently, we feature major holidays. For custom countdowns, you can use our general countdown timer tool (coming soon!).</p>
+      </div>
+      <div class="faq-item">
+        <h3>What timezone is used?</h3>
+        <p>The countdown uses your local timezone automatically, so you'll see the exact time remaining in your location.</p>
+      </div>
+    </div>
+    
+    <h2>Related Tools</h2>
+    <ul class="related-tools-list">
+      <li><a href="{{ site.baseurl }}/tools/cat-age-calculator/">Cat Age Calculator</a></li>
+      <li><a href="{{ site.baseurl }}/tools/pizza-party-calculator/">Pizza Party Calculator</a></li>
+      <li><a href="{{ site.baseurl }}/utilities/">View All Calculators</a></li>
+    </ul>
+  </div>
+</section>
+
+<script src="{{ site.baseurl }}/assets/js/holiday-countdown.js"></script>

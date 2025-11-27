@@ -1,0 +1,450 @@
+---
+layout: default
+title: Design & CSS Tools - Free Glassmorphism, Neumorphism & SVG Generators
+description: Professional design tools for creating glassmorphism effects, neumorphic shadows, and organic SVG blob shapes. Generate CSS code instantly with real-time preview.
+keywords: design tools, glassmorphism generator, neumorphism generator, svg blob generator, css tools, ui design tools
+schema_type: CollectionPage
+---
+
+<section class="category-hero design-hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-icon">🎨</span>
+        <span class="badge-text">Design & CSS Tools</span>
+      </div>
+      <h1>Professional Design Generators</h1>
+      <p class="hero-subtitle">Create stunning modern UI effects with real-time preview and production-ready CSS code. Perfect for designers and developers building beautiful interfaces.</p>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>3</strong>
+          <span>Design Tools</span>
+        </div>
+        <div class="stat-item">
+          <strong>50K+</strong>
+          <span>Monthly Users</span>
+        </div>
+        <div class="stat-item">
+          <strong>100%</strong>
+          <span>Free Forever</span>
+        </div>
+      </div>
+      
+      <div class="hero-cta">
+        <a href="#tools" class="btn btn-primary btn-lg">Explore Tools</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tools-category-section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <h2>🎨 Design Tools Collection</h2>
+      <p>Professional generators for modern UI effects and design elements</p>
+    </div>
+    
+    {% assign designTools = site.data.tools-metadata.tools | where: 'category', 'design' | sort: 'name' %}
+    
+    <div class="tools-grid enhanced-grid">
+      {% for tool in designTools %}
+        <article class="tool-card enhanced-card">
+          <div class="tool-card-visual">
+            <div class="tool-icon-large">{{ tool.icon }}</div>
+            {% if tool.featured %}
+              <span class="tool-badge badge-featured">⭐ Featured</span>
+            {% elsif tool.popular %}
+              <span class="tool-badge badge-popular">🔥 Popular</span>
+            {% elsif tool.new %}
+              <span class="tool-badge badge-new">✨ New</span>
+            {% endif %}
+          </div>
+          
+          <div class="tool-card-content">
+            <h3 class="tool-title">{{ tool.name }}</h3>
+            <p class="tool-description">{{ tool.description }}</p>
+            
+            <div class="tool-features">
+              <span class="feature-tag">✓ Real-time Preview</span>
+              <span class="feature-tag">✓ Copy CSS Code</span>
+              <span class="feature-tag">✓ Customizable</span>
+            </div>
+            
+            <div class="tool-meta">
+              {% if tool.rating %}
+                <span class="tool-rating">
+                  <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-value">{{ tool.rating }}</span>
+                </span>
+              {% endif %}
+              {% if tool.usageCount %}
+                <span class="tool-usage">
+                  <span class="usage-icon">👥</span>
+                  {{ tool.usageCount | divided_by: 1000 }}K+ uses
+                </span>
+              {% endif %}
+            </div>
+            
+            <div class="tool-keywords">
+              {% for keyword in tool.keywords limit:4 %}
+                <span class="keyword-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="tool-card-footer">
+            <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block">
+              Try {{ tool.name }} →
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Design Showcase Section -->
+<section class="design-showcase">
+  <div class="container">
+    <div class="section-header">
+      <h2>✨ What You Can Create</h2>
+      <p>Examples of stunning effects you can generate with our tools</p>
+    </div>
+    
+    <div class="showcase-grid">
+      <div class="showcase-item">
+        <div class="showcase-preview glassmorphism-demo">
+          <div class="demo-content">
+            <h4>Glassmorphism</h4>
+            <p>Frosted glass effect</p>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Glassmorphism Effects</h3>
+          <p>Create modern frosted glass UI elements with backdrop blur, transparency, and subtle borders.</p>
+          <a href="{{ site.baseurl }}/tools/glassmorphism-generator/" class="showcase-link">Try Generator →</a>
+        </div>
+      </div>
+      
+      <div class="showcase-item">
+        <div class="showcase-preview neumorphism-demo">
+          <div class="demo-content">
+            <h4>Neumorphism</h4>
+            <p>Soft UI shadows</p>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Neumorphic Shadows</h3>
+          <p>Generate soft, tactile UI elements with realistic depth and lighting effects.</p>
+          <a href="{{ site.baseurl }}/tools/neumorphism-generator/" class="showcase-link">Try Generator →</a>
+        </div>
+      </div>
+      
+      <div class="showcase-item">
+        <div class="showcase-preview blob-demo">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#667eea" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.2,73.1,42.8C64.8,56.4,53.8,69,40.1,76.8C26.4,84.6,10,87.6,-5.8,87.1C-21.6,86.6,-36.8,82.6,-49.9,74.4C-63,66.2,-74,53.8,-80.8,39.4C-87.6,25,-90.2,8.6,-88.7,-7.2C-87.2,-23,-81.6,-38.2,-72.8,-51.4C-64,-64.6,-52,-75.8,-38.4,-83.4C-24.8,-91,-12.4,-95,0.8,-96.4C14,-97.8,28,-96.6,44.7,-76.4Z" transform="translate(100 100)" />
+          </svg>
+        </div>
+        <div class="showcase-info">
+          <h3>Organic Blob Shapes</h3>
+          <p>Create unique, organic SVG shapes perfect for backgrounds and decorative elements.</p>
+          <a href="{{ site.baseurl }}/tools/svg-blob-generator/" class="showcase-link">Try Generator →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="category-benefits" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>💎 Why Choose Our Design Tools?</h2>
+      <p>Everything you need to create professional UI effects</p>
+    </div>
+    
+    <div class="benefits-grid enhanced-benefits">
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <h3>Real-Time Preview</h3>
+        <p>See your designs come to life instantly with live preview as you adjust settings. No waiting, no guessing.</p>
+        <ul class="benefit-features">
+          <li>Instant visual feedback</li>
+          <li>Interactive controls</li>
+          <li>Multiple preview modes</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📋</div>
+        <h3>Copy-Ready Code</h3>
+        <p>Get production-ready CSS code that you can copy and paste directly into your projects.</p>
+        <ul class="benefit-features">
+          <li>Clean, optimized CSS</li>
+          <li>One-click copy</li>
+          <li>Cross-browser compatible</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🎨</div>
+        <h3>Professional Results</h3>
+        <p>Create modern UI effects that match current design trends and best practices.</p>
+        <ul class="benefit-features">
+          <li>Industry-standard effects</li>
+          <li>Customizable parameters</li>
+          <li>Design system ready</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🆓</div>
+        <h3>100% Free Forever</h3>
+        <p>All tools are completely free with no limitations. Use in any project, personal or commercial.</p>
+        <ul class="benefit-features">
+          <li>No registration required</li>
+          <li>Unlimited usage</li>
+          <li>Commercial license</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>All processing happens in your browser. Your designs never leave your device.</p>
+        <ul class="benefit-features">
+          <li>No data collection</li>
+          <li>Works offline</li>
+          <li>100% secure</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Use our tools on any device - desktop, tablet, or mobile. Fully responsive design.</p>
+        <ul class="benefit-features">
+          <li>Touch optimized</li>
+          <li>Responsive layout</li>
+          <li>Works everywhere</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🚀 How It Works</h2>
+      <p>Create stunning designs in three simple steps</p>
+    </div>
+    
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Choose Your Tool</h3>
+          <p>Select from glassmorphism, neumorphism, or SVG blob generator based on your design needs.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Customize Settings</h3>
+          <p>Adjust colors, sizes, blur, shadows, and other parameters with intuitive controls and real-time preview.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Copy & Use</h3>
+          <p>Copy the generated CSS or SVG code with one click and paste it directly into your project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Use Cases Section -->
+<section class="use-cases-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>💼 Perfect For</h2>
+      <p>Who benefits from our design tools?</p>
+    </div>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">👨‍💻</div>
+        <h3>Web Developers</h3>
+        <p>Quickly generate modern CSS effects without writing complex code from scratch.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">🎨</div>
+        <h3>UI/UX Designers</h3>
+        <p>Prototype and experiment with different design styles before implementing in design tools.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">🚀</div>
+        <h3>Startups</h3>
+        <p>Create professional-looking interfaces quickly without hiring a design team.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">📚</div>
+        <h3>Students</h3>
+        <p>Learn modern CSS techniques and design principles through hands-on experimentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>❓ Frequently Asked Questions</h2>
+      <p>Everything you need to know about our design tools</p>
+    </div>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Are these tools really free?</h3>
+        <p>Yes! All our design tools are 100% free with no hidden costs, registration requirements, or usage limits. Use them for personal or commercial projects.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do I need to install anything?</h3>
+        <p>No installation needed. All tools run directly in your web browser. Just visit the page and start creating.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use the generated code commercially?</h3>
+        <p>Absolutely! The CSS and SVG code generated by our tools is yours to use in any project, including commercial applications.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Are the effects cross-browser compatible?</h3>
+        <p>Yes, we generate standard CSS that works across all modern browsers including Chrome, Firefox, Safari, and Edge.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do you store my designs?</h3>
+        <p>No. All processing happens locally in your browser. We don't collect, store, or transmit any of your design data.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I save my designs?</h3>
+        <p>You can copy the generated code and save it in your own files. Some tools also support exporting as files.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the difference between glassmorphism and neumorphism?</h3>
+        <p>Glassmorphism creates frosted glass effects with transparency and blur, while neumorphism creates soft, tactile shadows for a 3D embossed look.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I request new features?</h3>
+        <p>Yes! We're always improving our tools. Contact us with your suggestions and we'll consider them for future updates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section design-cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Create Stunning Designs?</h2>
+      <p>Start using our professional design tools now - no signup required!</p>
+      <div class="cta-buttons">
+        <a href="{{ site.baseurl }}/tools/glassmorphism-generator/" class="btn btn-primary btn-lg">Try Glassmorphism</a>
+        <a href="{{ site.baseurl }}/tools/neumorphism-generator/" class="btn btn-outline btn-lg">Try Neumorphism</a>
+        <a href="{{ site.baseurl }}/tools/svg-blob-generator/" class="btn btn-outline btn-lg">Try Blob Generator</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="related-categories">
+  <div class="container">
+    <div class="section-header">
+      <h2>🔍 Explore More Tools</h2>
+      <p>Discover other categories of professional tools</p>
+    </div>
+    
+    <div class="category-links enhanced-category-links">
+      <a href="{{ site.baseurl }}/image-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🖼️</span>
+          <span class="category-badge">6 Tools</span>
+        </div>
+        <h3>Image & Visual Tools</h3>
+        <p>Convert images, generate QR codes, resize for social media, and pick colors</p>
+        <div class="category-tools-list">
+          <span>Image Converter</span>
+          <span>QR Generator</span>
+          <span>Color Picker</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/text-utilities/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">✍️</span>
+          <span class="category-badge">8 Tools</span>
+        </div>
+        <h3>Text Utilities</h3>
+        <p>Format, encode, decode, count, and process text with powerful utilities</p>
+        <div class="category-tools-list">
+          <span>Text Formatter</span>
+          <span>Word Counter</span>
+          <span>JSON Formatter</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/clipboard-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">📋</span>
+          <span class="category-badge">5 Tools</span>
+        </div>
+        <h3>Clipboard & Text Tools</h3>
+        <p>Manage clipboard, count characters, format text, and more</p>
+        <div class="category-tools-list">
+          <span>Clipboard Manager</span>
+          <span>Character Counter</span>
+          <span>Case Converter</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/generators-security/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🔐</span>
+          <span class="category-badge">7 Tools</span>
+        </div>
+        <h3>Generators & Security</h3>
+        <p>Generate passwords, hashes, UUIDs, and secure random data</p>
+        <div class="category-tools-list">
+          <span>Password Generator</span>
+          <span>Hash Generator</span>
+          <span>UUID Generator</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+    </div>
+    
+    <div class="view-all-categories">
+      <a href="{{ site.baseurl }}/#directory-heading" class="btn btn-secondary btn-lg">View All 34 Tools →</a>
+    </div>
+  </div>
+</section>
