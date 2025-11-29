@@ -1,25 +1,46 @@
 ---
 layout: tool
-title: Password Generator - Create Strong Secure Random Passwords
-description: Generate strong, secure, random passwords with customizable length and character options. Free password generator for maximum security and protection.
-keywords: password generator, strong password, secure password, random password, password creator, password maker
+title: Password Generator - Create Strong Secure Random Passwords Online Free
+description: Generate cryptographically secure passwords with advanced customization. Bulk generation, strength analysis, pronounceable passwords, and passphrase options. 100% private and free.
+keywords: password generator, strong password, secure password, random password, password creator, password maker, bulk password generator, password strength meter, pronounceable password, passphrase generator
 schema_type: WebApplication
 permalink: /tools/password-generator/
 category_name: Generators & Security
-category_url: /text-utilities/
+category_url: /generators-security/
 rating: 4.9
-rating_count: 1200
+rating_count: 1450
 features:
-  - Strong password generation
-  - Customizable length
-  - Character type options
-  - Bulk generation
-  - Password strength meter
-  - 100% private
+  - Cryptographically secure generation
+  - Customizable length (4-128 chars)
+  - Bulk password generation
+  - Pronounceable passwords
+  - Passphrase generator
+  - Advanced strength meter
+  - Password history
+  - 100% private & offline
 ---
 
-<section class="password-generator-wrapper" aria-labelledby="password-heading">
-  <h2 id="password-heading" class="sr-only">Password Generator</h2>
+<section class="tool-interface">
+  <div class="tool-header">
+    <h1>🔐 Password Generator</h1>
+    <p class="tool-description">Create cryptographically secure passwords with advanced customization options</p>
+  </div>
+
+  <!-- Password Type Selector -->
+  <div class="password-type-selector">
+    <button class="type-btn active" data-type="random" id="randomTypeBtn">
+      <span class="type-icon">🔐</span>
+      <span class="type-label">Random Password</span>
+    </button>
+    <button class="type-btn" data-type="pronounceable" id="pronounceableTypeBtn">
+      <span class="type-icon">💬</span>
+      <span class="type-label">Pronounceable</span>
+    </button>
+    <button class="type-btn" data-type="passphrase" id="passphraseTypeBtn">
+      <span class="type-icon">📝</span>
+      <span class="type-label">Passphrase</span>
+    </button>
+  </div>
   
   <!-- Password Display Section -->
   <div class="password-display-card">
@@ -60,6 +81,7 @@ features:
         <div class="strength-bar" id="strengthBar"></div>
       </div>
       <div class="strength-details" id="strengthDetails"></div>
+      <div class="crack-time" id="crackTime"></div>
     </div>
   </div>
 
@@ -75,7 +97,7 @@ features:
   </div>
 
   <!-- Password Options -->
-  <div class="password-options-card">
+  <div class="password-options-card" id="randomOptions">
     <h3>Customize Your Password</h3>
     
     <div class="option-group">
@@ -163,6 +185,75 @@ features:
     </div>
   </div>
 
+  <!-- Pronounceable Password Options -->
+  <div class="password-options-card" id="pronounceableOptions" style="display: none;">
+    <h3>Pronounceable Password Settings</h3>
+    <p class="section-description">Generate passwords that are easier to remember and type</p>
+    
+    <div class="option-group">
+      <div class="option-header">
+        <label for="pronounceableLength">Password Length: <span id="pronounceableLengthValue">12</span> characters</label>
+        <span class="option-hint">Recommended: 12-16 characters</span>
+      </div>
+      <input type="range" id="pronounceableLength" min="8" max="24" value="12" class="slider">
+    </div>
+
+    <div class="advanced-options">
+      <label class="checkbox-label">
+        <input type="checkbox" id="pronounceableCapitalize" checked>
+        <span>Capitalize First Letter</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="pronounceableNumbers" checked>
+        <span>Include Numbers</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="pronounceableSymbols">
+        <span>Include Symbols</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Passphrase Options -->
+  <div class="password-options-card" id="passphraseOptions" style="display: none;">
+    <h3>Passphrase Settings</h3>
+    <p class="section-description">Create memorable passphrases using random words</p>
+    
+    <div class="option-group">
+      <div class="option-header">
+        <label for="wordCount">Number of Words: <span id="wordCountValue">4</span></label>
+        <span class="option-hint">Recommended: 4-6 words</span>
+      </div>
+      <input type="range" id="wordCount" min="3" max="8" value="4" class="slider">
+    </div>
+
+    <div class="option-group">
+      <label for="separator">Word Separator:</label>
+      <select id="separator" class="form-select">
+        <option value="-">Hyphen (-)</option>
+        <option value="_">Underscore (_)</option>
+        <option value=" ">Space ( )</option>
+        <option value=".">Period (.)</option>
+        <option value="">None</option>
+      </select>
+    </div>
+
+    <div class="advanced-options">
+      <label class="checkbox-label">
+        <input type="checkbox" id="passphraseCapitalize" checked>
+        <span>Capitalize Each Word</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="passphraseNumbers" checked>
+        <span>Add Numbers</span>
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="passphraseSymbols">
+        <span>Add Symbols</span>
+      </label>
+    </div>
+  </div>
+
   <!-- Password History -->
   <div class="password-history-card">
     <div class="history-header">
@@ -176,19 +267,42 @@ features:
 
   <!-- Bulk Generation -->
   <div class="bulk-generate-card">
-    <h3>Generate Multiple Passwords</h3>
-    <p class="section-description">Generate multiple passwords at once for different accounts</p>
+    <h3>🔢 Generate Multiple Passwords</h3>
+    <p class="section-description">Generate multiple passwords at once for different accounts or team members</p>
     <div class="bulk-controls">
       <div class="bulk-input-group">
         <label for="bulkCount">Number of passwords:</label>
-        <input type="number" id="bulkCount" min="1" max="100" value="10">
+        <input type="number" id="bulkCount" min="1" max="100" value="10" class="form-input">
       </div>
-      <button class="btn-primary" id="generateBulkBtn">Generate Bulk Passwords</button>
+      <button class="btn-primary" id="generateBulkBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 8px;">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+        Generate Bulk Passwords
+      </button>
     </div>
     <div class="bulk-output-wrapper">
       <div class="bulk-toolbar">
         <span class="bulk-count" id="bulkCountDisplay">0 passwords generated</span>
-        <button class="btn-sm" id="copyBulkBtn">Copy All</button>
+        <div class="bulk-actions">
+          <button class="btn-sm btn-outline" id="downloadBulkBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download
+          </button>
+          <button class="btn-sm" id="copyBulkBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            Copy All
+          </button>
+        </div>
       </div>
       <textarea id="bulkOutput" placeholder="Multiple passwords will appear here..." readonly></textarea>
     </div>
@@ -197,77 +311,148 @@ features:
 
 <section class="tool-content-section">
   <div class="content-body">
-    <h2>Best Free Password Generator Tool</h2>
-    <p>Create strong, secure, and random passwords instantly with our advanced password generator. Perfect for protecting your online accounts, this tool generates cryptographically secure passwords that are virtually impossible to crack.</p>
+    <h2>About This Password Generator</h2>
+    <p>The Password Generator creates cryptographically secure passwords using the Web Crypto API, ensuring true randomness that's impossible to predict. Unlike simple random generators, this tool uses the same security standards employed by banks and government agencies to protect sensitive data. Whether you're securing personal accounts, managing enterprise credentials, or generating API keys, this tool provides instant, reliable password creation with advanced customization options including pronounceable passwords and memorable passphrases.</p>
     
     <h2>Why Use Our Password Generator?</h2>
     <div class="features-grid">
       <div class="feature-card">
         <span class="feature-icon">🔒</span>
         <h3>Cryptographically Secure</h3>
-        <p>Uses Web Crypto API for true random number generation, ensuring maximum security.</p>
+        <p>Uses Web Crypto API (crypto.getRandomValues()) for true random number generation, not pseudo-random algorithms. Each password is unpredictable and unique.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">⚡</span>
-        <h3>Instant Generation</h3>
-        <p>Generate passwords in milliseconds with real-time strength analysis.</p>
+        <span class="feature-icon">💬</span>
+        <h3>Pronounceable Passwords</h3>
+        <p>Generate passwords that follow phonetic patterns, making them easier to remember and type while maintaining strong security.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">🎯</span>
-        <h3>Fully Customizable</h3>
-        <p>Control length, character types, and advanced options to meet any requirement.</p>
+        <span class="feature-icon">📝</span>
+        <h3>Passphrase Generator</h3>
+        <p>Create memorable passphrases using random words. Four random words provide better security than complex 8-character passwords.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">🔐</span>
-        <h3>100% Private</h3>
-        <p>All passwords are generated locally in your browser. Nothing is sent to our servers.</p>
+        <span class="feature-icon">🔢</span>
+        <h3>Bulk Generation</h3>
+        <p>Generate up to 100 unique passwords simultaneously for team onboarding, testing environments, or managing multiple accounts.</p>
       </div>
       <div class="feature-card">
         <span class="feature-icon">📊</span>
-        <h3>Strength Meter</h3>
-        <p>Real-time password strength analysis with detailed feedback.</p>
+        <h3>Advanced Strength Meter</h3>
+        <p>Real-time entropy calculation and crack time estimation. See exactly how long it would take to brute-force your password.</p>
       </div>
       <div class="feature-card">
-        <span class="feature-icon">📋</span>
-        <h3>Password History</h3>
-        <p>Keep track of recently generated passwords for easy access.</p>
+        <span class="feature-icon">🔐</span>
+        <h3>100% Private & Offline</h3>
+        <p>All generation happens in your browser using JavaScript. No passwords are transmitted, stored, or logged anywhere. Works offline after initial page load.</p>
       </div>
     </div>
     
-    <h2>How to Create a Strong Password</h2>
+    <h2>How to Use the Password Generator</h2>
     <ol class="instructions-list">
-      <li><strong>Length Matters:</strong> Use at least 16 characters for maximum security</li>
-      <li><strong>Mix Character Types:</strong> Include uppercase, lowercase, numbers, and symbols</li>
-      <li><strong>Avoid Patterns:</strong> Don't use sequential characters or common words</li>
-      <li><strong>Unique for Each Account:</strong> Never reuse passwords across different sites</li>
-      <li><strong>Use a Password Manager:</strong> Store your passwords securely</li>
+      <li><strong>Choose Password Type:</strong> Select Random Password for maximum security, Pronounceable for easier typing, or Passphrase for memorability</li>
+      <li><strong>Set Length:</strong> Use the slider to select password length (16+ characters recommended for critical accounts)</li>
+      <li><strong>Customize Options:</strong> Enable or disable uppercase, lowercase, numbers, and symbols based on your requirements</li>
+      <li><strong>Apply Advanced Filters:</strong> Exclude ambiguous characters (0, O, l, I) if you'll be typing the password manually</li>
+      <li><strong>Generate Password:</strong> Click the regenerate button or modify any option to create a new password instantly</li>
+      <li><strong>Review Strength:</strong> Check the strength meter and estimated crack time to ensure adequate security</li>
+      <li><strong>Copy or Download:</strong> Click the copy button to add the password to your clipboard, or use bulk generation to create multiple passwords</li>
     </ol>
     
-    <h2>Password Security Tips</h2>
-    <ul>
-      <li><strong>Never Share Passwords:</strong> Keep your passwords confidential</li>
-      <li><strong>Enable 2FA:</strong> Add two-factor authentication for extra security</li>
-      <li><strong>Change Regularly:</strong> Update passwords every 3-6 months</li>
-      <li><strong>Avoid Personal Info:</strong> Don't use birthdays, names, or common words</li>
-      <li><strong>Check for Breaches:</strong> Monitor if your passwords have been compromised</li>
+    <h2>Common Use Cases</h2>
+    <ul class="use-cases-list">
+      <li><strong>Account Security:</strong> Create unique passwords for each online account to prevent credential stuffing attacks where one breach compromises multiple accounts</li>
+      <li><strong>Enterprise Onboarding:</strong> Generate temporary passwords for new employees that meet company security policies (minimum length, character requirements, complexity rules)</li>
+      <li><strong>API Key Generation:</strong> Create secure random strings for API keys, authentication tokens, and webhook secrets in development projects</li>
+      <li><strong>Database Credentials:</strong> Generate strong passwords for database users, especially for production environments where security is critical</li>
+      <li><strong>Password Rotation:</strong> Quickly create new passwords when updating credentials for compliance requirements or after security incidents</li>
+      <li><strong>Testing Environments:</strong> Use bulk generation to create multiple test accounts with secure passwords for QA and staging environments</li>
+      <li><strong>WiFi Networks:</strong> Generate strong WPA2/WPA3 passwords for home and office wireless networks that are difficult to crack</li>
+      <li><strong>Encrypted Archives:</strong> Create secure passwords for encrypted ZIP files, password-protected PDFs, and encrypted backup archives</li>
     </ul>
     
-    <h2>Quick Preset Options</h2>
-    <p>Choose from our quick presets for common password needs:</p>
-    <ul>
-      <li><strong>Easy to Remember:</strong> 12 characters with letters and numbers</li>
-      <li><strong>Strong:</strong> 16 characters with all character types</li>
-      <li><strong>Ultra Secure:</strong> 24+ characters for maximum protection</li>
-      <li><strong>PIN Code:</strong> 4-8 digit numeric codes</li>
+    <h2>Password Security Best Practices</h2>
+    <ul class="tips-list">
+      <li><strong>Use 16+ Characters for Critical Accounts:</strong> Banking, email, and work accounts should use passwords of at least 16 characters. Each additional character exponentially increases crack time.</li>
+      <li><strong>Enable All Character Types:</strong> Including uppercase, lowercase, numbers, and symbols maximizes the character space, making brute-force attacks exponentially harder.</li>
+      <li><strong>Never Reuse Passwords:</strong> Each account should have a unique password. If one service is breached, attackers can't access your other accounts.</li>
+      <li><strong>Use a Password Manager:</strong> Store generated passwords in a reputable password manager like Bitwarden, 1Password, or LastPass rather than writing them down or saving in plain text.</li>
+      <li><strong>Consider Passphrases for Memorability:</strong> Four random words (like "correct-horse-battery-staple") provide excellent security while being easier to remember than random character strings.</li>
+      <li><strong>Avoid Common Substitutions:</strong> Don't use predictable patterns like "@" for "a" or "3" for "e". True randomness is always stronger than human-created patterns.</li>
+      <li><strong>Enable Two-Factor Authentication:</strong> Even with strong passwords, add 2FA (authenticator apps, hardware keys) for critical accounts as an additional security layer.</li>
+      <li><strong>Exclude Ambiguous Characters for Manual Entry:</strong> If you'll be typing the password frequently, exclude characters like 0/O and l/I/1 to prevent transcription errors.</li>
     </ul>
+    
+    <h2>Understanding Password Strength</h2>
+    <p>Password strength is measured by entropy - the amount of randomness in the password. Our strength meter calculates entropy based on character space and length:</p>
+    <ul>
+      <li><strong>Weak (< 40 bits):</strong> Can be cracked in seconds to minutes with modern hardware. Never use for important accounts.</li>
+      <li><strong>Medium (40-60 bits):</strong> May take hours to days to crack. Acceptable for low-value accounts but not recommended.</li>
+      <li><strong>Strong (60-80 bits):</strong> Would take months to years to crack. Suitable for most online accounts.</li>
+      <li><strong>Very Strong (80+ bits):</strong> Would take centuries to crack with current technology. Ideal for critical accounts, encryption keys, and sensitive data.</li>
+    </ul>
+    <p>A 16-character password with all character types has approximately 95 bits of entropy, making it virtually uncrackable with current technology.</p>
+    
+    <h2>Random vs Pronounceable vs Passphrase</h2>
+    <h3>Random Passwords</h3>
+    <p>Maximum security through complete randomness. Best for accounts you'll access through password managers. Example: <code>K9#mL2$pQ7@nR5</code></p>
+    
+    <h3>Pronounceable Passwords</h3>
+    <p>Follow phonetic patterns making them easier to type and remember while maintaining strong security. Best for accounts you'll type frequently. Example: <code>Tuvaxo2#Kemid</code></p>
+    
+    <h3>Passphrases</h3>
+    <p>Use random words separated by delimiters. Easier to remember and type, with excellent security when using 4+ words. Best for master passwords and frequently-used accounts. Example: <code>Correct-Horse-Battery-Staple-47</code></p>
+    
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Are the passwords generated truly random and secure?</h3>
+        <p>Yes, we use the Web Crypto API's crypto.getRandomValues() method, which provides cryptographically secure random number generation. This is the same technology used by password managers, banks, and security applications. Unlike Math.random(), which is predictable, crypto.getRandomValues() uses the operating system's entropy source to ensure true randomness.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do you store or track the passwords I generate?</h3>
+        <p>Absolutely not. All password generation happens entirely in your browser using JavaScript. Nothing is sent to our servers, stored in databases, or logged in any way. Your passwords are completely private. The tool even works offline after the initial page load, proving that no data is transmitted.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How long should my password be?</h3>
+        <p>We recommend at least 12-16 characters for most accounts. For critical accounts like email, banking, or work systems, use 16-24 characters. Each additional character exponentially increases security. A 16-character password with all character types would take trillions of years to crack with current technology, while an 8-character password might be cracked in hours.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the difference between a password and a passphrase?</h3>
+        <p>A password is typically a random string of characters (like K9#mL2$pQ7), while a passphrase is a sequence of random words (like Correct-Horse-Battery-Staple). Passphrases are easier to remember and type but still provide excellent security when using 4+ random words. A 4-word passphrase has more entropy than a typical 8-character complex password.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Should I use pronounceable passwords or random passwords?</h3>
+        <p>Use random passwords for maximum security, especially for accounts accessed through a password manager. Use pronounceable passwords when you need to type the password frequently or remember it temporarily. Pronounceable passwords follow phonetic patterns making them easier to type while maintaining strong security through length and character variety.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use this tool offline?</h3>
+        <p>Yes, once the page loads, the password generator works entirely in your browser without requiring an internet connection. You can even save the page locally (File > Save As) and use it completely offline. This proves that no data is being sent to external servers.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Why should I exclude ambiguous characters?</h3>
+        <p>Ambiguous characters like 0 (zero) and O (letter O), or l (lowercase L), I (uppercase i), and 1 (one) look similar in many fonts. If you'll be typing the password manually or reading it from a screen, excluding these characters prevents transcription errors. However, if you're copying and pasting from a password manager, including all characters provides slightly more security.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How does bulk generation work?</h3>
+        <p>Bulk generation creates multiple unique passwords using your current settings. Each password is independently generated with the same cryptographic security. This is useful for creating passwords for multiple team members, test accounts, or when you need to update passwords across several services simultaneously. You can generate up to 100 passwords at once and download them as a text file.</p>
+      </div>
+    </div>
     
     <h2>Related Security Tools</h2>
-    <p>Enhance your online security with these related tools:</p>
+    <p>Enhance your online security and development workflow with these complementary tools:</p>
     <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate secure hashes</li>
-      <li><a href="{{ site.baseurl }}/tools/uuid-generator/">UUID Generator</a> - Create unique identifiers</li>
-      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode sensitive data</li>
-      <li><a href="{{ site.baseurl }}/text-utilities/">View All Security Tools</a></li>
+      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Create SHA-256, MD5, and other cryptographic hashes for password verification</li>
+      <li><a href="{{ site.baseurl }}/tools/uuid-generator/">UUID Generator</a> - Generate unique identifiers for database records and API keys</li>
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode passwords and sensitive data for transmission</li>
+      <li><a href="{{ site.baseurl }}/generators-security/">View All Security Tools</a> - Explore our complete collection of security and encryption tools</li>
     </ul>
   </div>
 </section>

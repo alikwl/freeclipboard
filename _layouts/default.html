@@ -12,13 +12,15 @@
 
     {% include footer.html %}
     
-    <!-- Mobile Sticky CTA Bar -->
+    <!-- Mobile Sticky CTA Bar - Only show on homepage and category pages -->
+    {% unless page.layout == 'tool' or page.layout == 'post' or page.url contains '/tools/' or page.url contains '/about' or page.url contains '/contact' or page.url contains '/privacy' or page.url contains '/terms' %}
     <div class="mobile-sticky-cta" id="mobileCTA" aria-label="Quick actions">
       <div class="cta-buttons">
         <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn btn-primary">Try Clipboard</a>
         <a href="{{ site.baseurl }}/clipboard-tools/" class="btn btn-secondary">Browse Tools</a>
       </div>
     </div>
+    {% endunless %}
     
     <!-- Defer Non-Critical JavaScript -->
     <script defer src="{{ '/assets/js/navigation.js' | relative_url }}"></script>

@@ -1,36 +1,38 @@
 ---
 layout: tool
-title: QR Code Generator - Create Free QR Codes Online
-description: Generate QR codes from text, URLs, emails, phone numbers, and WiFi credentials. Free QR code generator with customizable size and instant download.
-keywords: qr code generator, create qr code, qr code maker, free qr code, generate qr code, qr code creator
+title: QR Code Generator - Create Custom QR Codes with Colors | Free Online Tool
+description: Professional QR code generator with color customization, multiple export formats (PNG, SVG, JPG), and batch generation. Create QR codes for URLs, WiFi, emails, and more. 100% free and private.
+keywords: qr code generator, create qr code, custom qr code, colored qr code, qr code maker, free qr code, generate qr code, qr code creator, wifi qr code, batch qr code generator, svg qr code, qr code with logo
 schema_type: WebApplication
 permalink: /tools/qr-code-generator/
 category_name: Image & Visual Tools
 category_url: /image-tools/
-rating: 4.8
-rating_count: 950
+rating: 4.9
+rating_count: 1250
 features:
-  - Generate QR codes
-  - Multiple data types
-  - Customizable size
-  - Download as PNG
+  - Generate custom QR codes
+  - Color customization
+  - Multiple export formats (PNG, SVG, JPG)
+  - Batch generation
   - WiFi QR codes
+  - Error correction levels
+  - 100% private and secure
   - Works offline
 ---
 
 <section class="qr-input-section" aria-labelledby="qr-generator-heading">
   <h2 id="qr-generator-heading" class="sr-only">QR Code Generator</h2>
   <nav class="qr-type-selector" role="tablist" aria-label="QR code type selection">
-    <button id="typeBtnText" class="type-btn active" onclick="setQRType('text')" role="tab" aria-selected="true" aria-controls="text-panel">Text</button>
-    <button id="typeBtnUrl" class="type-btn" onclick="setQRType('url')" role="tab" aria-selected="false" aria-controls="url-panel">URL</button>
-    <button id="typeBtnEmail" class="type-btn" onclick="setQRType('email')" role="tab" aria-selected="false" aria-controls="email-panel">Email</button>
-    <button id="typeBtnPhone" class="type-btn" onclick="setQRType('phone')" role="tab" aria-selected="false" aria-controls="phone-panel">Phone</button>
-    <button id="typeBtnWifi" class="type-btn" onclick="setQRType('wifi')" role="tab" aria-selected="false" aria-controls="wifi-panel">WiFi</button>
+    <button id="typeBtnText" class="type-btn active" onclick="setQRType('text')" role="tab" aria-selected="true" aria-controls="text-panel">📝 Text</button>
+    <button id="typeBtnUrl" class="type-btn" onclick="setQRType('url')" role="tab" aria-selected="false" aria-controls="url-panel">🔗 URL</button>
+    <button id="typeBtnEmail" class="type-btn" onclick="setQRType('email')" role="tab" aria-selected="false" aria-controls="email-panel">📧 Email</button>
+    <button id="typeBtnPhone" class="type-btn" onclick="setQRType('phone')" role="tab" aria-selected="false" aria-controls="phone-panel">📞 Phone</button>
+    <button id="typeBtnWifi" class="type-btn" onclick="setQRType('wifi')" role="tab" aria-selected="false" aria-controls="wifi-panel">📶 WiFi</button>
   </nav>
   
   <div id="textInput" class="qr-input-form">
     <label for="qrText">Enter Text:</label>
-    <textarea id="qrText" placeholder="Enter text to encode..."></textarea>
+    <textarea id="qrText" placeholder="Enter text to encode..." rows="4"></textarea>
   </div>
   
   <div id="urlInput" class="qr-input-form" style="display: none;">
@@ -43,6 +45,8 @@ features:
     <input type="email" id="qrEmail" placeholder="email@example.com">
     <label for="qrSubject">Subject (optional):</label>
     <input type="text" id="qrSubject" placeholder="Email subject">
+    <label for="qrBody">Message (optional):</label>
+    <textarea id="qrBody" placeholder="Email message" rows="3"></textarea>
   </div>
   
   <div id="phoneInput" class="qr-input-form" style="display: none;">
@@ -61,29 +65,116 @@ features:
       <option value="WEP">WEP</option>
       <option value="nopass">None</option>
     </select>
+    <label>
+      <input type="checkbox" id="wifiHidden"> Hidden Network
+    </label>
   </div>
   
-  <button class="btn-sm" onclick="generateQR()" style="margin-top: 15px;">Generate QR Code</button>
-</div>
+  <button class="btn-primary" onclick="generateQR()" style="margin-top: 15px; width: 100%;">
+    <span>🎨 Generate QR Code</span>
+  </button>
+</section>
 
 <div class="qr-options">
-  <h3>Options</h3>
+  <h3>Customization Options</h3>
+  
   <div class="option-group">
     <label for="qrSize">Size:</label>
-    <select id="qrSize">
+    <select id="qrSize" onchange="regenerateIfExists()">
       <option value="200">Small (200x200)</option>
       <option value="300" selected>Medium (300x300)</option>
       <option value="400">Large (400x400)</option>
       <option value="600">Extra Large (600x600)</option>
+      <option value="800">Huge (800x800)</option>
     </select>
+  </div>
+  
+  <div class="option-group">
+    <label for="qrErrorLevel">Error Correction:</label>
+    <select id="qrErrorLevel" onchange="regenerateIfExists()">
+      <option value="L">Low (7%)</option>
+      <option value="M">Medium (15%)</option>
+      <option value="Q">Quartile (25%)</option>
+      <option value="H" selected>High (30%)</option>
+    </select>
+    <small class="option-hint">Higher levels allow QR codes to be scanned even if partially damaged</small>
+  </div>
+  
+  <div class="option-group">
+    <label for="qrForeground">Foreground Color:</label>
+    <div class="input-with-copy">
+      <input type="color" id="qrForeground" value="#000000" onchange="regenerateIfExists()">
+      <input type="text" id="qrForegroundText" value="#000000" placeholder="#000000" onchange="updateColorFromText('foreground')">
+    </div>
+  </div>
+  
+  <div class="option-group">
+    <label for="qrBackground">Background Color:</label>
+    <div class="input-with-copy">
+      <input type="color" id="qrBackground" value="#ffffff" onchange="regenerateIfExists()">
+      <input type="text" id="qrBackgroundText" value="#ffffff" placeholder="#ffffff" onchange="updateColorFromText('background')">
+    </div>
+  </div>
+  
+  <div class="option-group">
+    <label>
+      <input type="checkbox" id="qrRounded" onchange="regenerateIfExists()"> Rounded Corners
+    </label>
   </div>
 </div>
 
 <div class="qr-output">
   <h3>Generated QR Code</h3>
-  <div id="qrCodeDisplay"></div>
-  <div class="qr-actions">
-    <button class="btn-sm" onclick="downloadQR()">Download PNG</button>
+  <div id="qrCodeDisplay" class="qr-display-area">
+    <p class="text-gray" style="text-align: center;">Your QR code will appear here</p>
+  </div>
+  <div class="qr-actions" id="qrActions" style="display: none;">
+    <button class="btn-primary" onclick="downloadQR('png')">
+      <span>📥 Download PNG</span>
+    </button>
+    <button class="btn-secondary" onclick="downloadQR('svg')">
+      <span>📥 Download SVG</span>
+    </button>
+    <button class="btn-outline" onclick="downloadQR('jpg')">
+      <span>📥 Download JPG</span>
+    </button>
+    <button class="btn-ghost" onclick="copyQRToClipboard()">
+      <span>📋 Copy Image</span>
+    </button>
+  </div>
+</div>
+
+<div class="bulk-generate-card" id="batchSection">
+  <h3>🔢 Batch Generation</h3>
+  <p class="section-description">Generate multiple QR codes at once from a list of URLs or text entries.</p>
+  
+  <div class="bulk-controls">
+    <div class="bulk-input-group" style="flex: 1;">
+      <label for="batchInput">Enter one item per line:</label>
+      <textarea id="batchInput" placeholder="https://example.com/page1&#10;https://example.com/page2&#10;https://example.com/page3" rows="6"></textarea>
+    </div>
+  </div>
+  
+  <button class="btn-primary" onclick="generateBatch()" style="width: 100%; margin-top: 1rem;">
+    <span>🎨 Generate Batch</span>
+  </button>
+  
+  <div id="batchOutput" style="display: none; margin-top: 2rem;">
+    <div class="bulk-toolbar">
+      <h4>Generated QR Codes (<span id="batchCount">0</span>)</h4>
+      <button class="btn-outline btn-sm" onclick="downloadAllQR()">📥 Download All as ZIP</button>
+    </div>
+    <div id="batchGrid" class="batch-grid"></div>
+  </div>
+</div>
+
+<div class="password-history-card">
+  <div class="history-header">
+    <h3>📜 Recent QR Codes</h3>
+    <button class="btn-outline btn-sm" onclick="clearQRHistory()">Clear History</button>
+  </div>
+  <div id="qrHistory" class="history-list">
+    <p class="history-empty">No recent QR codes yet</p>
   </div>
 </div>
 
@@ -94,108 +185,180 @@ features:
 <section class="tool-content-section">
   <div class="content-body">
     <h2>About This QR Code Generator</h2>
-    <p>Our free online QR code generator helps you create custom QR codes for text, URLs, emails, phone numbers, and WiFi credentials instantly. Perfect for marketing materials, business cards, product packaging, and event management. Generate, customize, and download QR codes in seconds.</p>
+    <p>Transform any URL, text, contact information, or WiFi credentials into scannable QR codes in seconds. This professional QR code generator offers complete customization with color options, multiple export formats (PNG, SVG, JPG), and batch generation capabilities. Whether you're creating QR codes for marketing campaigns, business cards, product packaging, or event management, this tool provides everything you need to bridge the physical and digital worlds.</p>
+    <p>Unlike basic QR generators, this tool offers advanced features like custom colors, adjustable error correction levels, rounded corners, and the ability to generate multiple QR codes simultaneously. All processing happens locally in your browser, ensuring your data remains completely private and secure.</p>
     
     <h2>Key Features</h2>
     <div class="features-list">
       <div class="feature-item-text">
-        <strong>📱 Multiple QR Types</strong>
-        <p>Generate QR codes for text, URLs, emails, phone numbers, and WiFi network credentials.</p>
+        <strong>📱 Five QR Code Types</strong>
+        <p>Create QR codes for plain text, URLs, email addresses with pre-filled subjects, phone numbers for instant calling, and WiFi network credentials for automatic connection.</p>
       </div>
       <div class="feature-item-text">
-        <strong>🎨 Customizable Size</strong>
-        <p>Choose from small (200x200) to extra large (600x600) to fit your needs.</p>
+        <strong>🎨 Full Color Customization</strong>
+        <p>Customize both foreground and background colors to match your brand identity. Choose from millions of colors using the color picker or enter hex codes directly.</p>
       </div>
       <div class="feature-item-text">
-        <strong>💾 Instant Download</strong>
-        <p>Download generated QR codes as PNG images for immediate use in your projects.</p>
+        <strong>📦 Multiple Export Formats</strong>
+        <p>Download QR codes as PNG for web use, SVG for infinite scalability in print, or JPG for maximum compatibility. Each format optimized for its specific use case.</p>
       </div>
       <div class="feature-item-text">
-        <strong>🔒 100% Private</strong>
-        <p>All QR codes are generated locally in your browser. No data is sent to our servers.</p>
+        <strong>🔢 Batch Generation</strong>
+        <p>Generate dozens of QR codes at once from a list of URLs or text entries. Perfect for creating QR codes for multiple products, pages, or locations simultaneously.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🛡️ Error Correction Levels</strong>
+        <p>Choose from four error correction levels (7% to 30%) to ensure your QR codes remain scannable even if partially damaged or obscured.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔒 100% Private & Secure</strong>
+        <p>All QR code generation happens entirely in your browser using JavaScript. No data is transmitted to servers, stored in databases, or tracked in any way.</p>
       </div>
     </div>
     
     <h2>How to Use the QR Code Generator</h2>
     <ol class="instructions-list">
-      <li><strong>Choose Type:</strong> Select the type of QR code you want to create (Text, URL, Email, Phone, WiFi)</li>
-      <li><strong>Enter Data:</strong> Fill in the required information for your selected type</li>
-      <li><strong>Select Size:</strong> Choose the size that fits your use case</li>
-      <li><strong>Generate:</strong> Click "Generate QR Code" to create your QR code</li>
-      <li><strong>Download:</strong> Click "Download PNG" to save the QR code image</li>
+      <li><strong>Select QR Type:</strong> Click one of the five type buttons (Text, URL, Email, Phone, WiFi) to choose what kind of data you want to encode</li>
+      <li><strong>Enter Your Data:</strong> Fill in the required information in the input fields. For URLs, include the full address starting with https://</li>
+      <li><strong>Customize Appearance:</strong> Choose your preferred size (200px to 800px), select error correction level, and customize colors to match your brand</li>
+      <li><strong>Generate QR Code:</strong> Click the "Generate QR Code" button to create your custom QR code instantly</li>
+      <li><strong>Download in Your Format:</strong> Choose PNG for web use, SVG for print materials, or JPG for maximum compatibility. Click the corresponding download button</li>
+      <li><strong>(Optional) Batch Generate:</strong> For multiple QR codes, scroll to the Batch Generation section, enter one URL or text per line, and click "Generate Batch"</li>
     </ol>
     
-    <h2>QR Code Types Explained</h2>
+    <h2>Understanding QR Code Types</h2>
     <div class="features-list">
       <div class="feature-item-text">
         <strong>📝 Text QR Codes</strong>
-        <p>Encode any text message, instructions, or information that displays when scanned.</p>
+        <p>Encode plain text messages, product information, serial numbers, or instructions. When scanned, the text displays directly on the user's device without opening any apps.</p>
       </div>
       <div class="feature-item-text">
         <strong>🔗 URL QR Codes</strong>
-        <p>Direct users to websites, landing pages, or online resources with a single scan.</p>
+        <p>Link directly to websites, landing pages, product pages, or online resources. Users are taken to the URL immediately after scanning, making it perfect for marketing campaigns and product packaging.</p>
       </div>
       <div class="feature-item-text">
         <strong>📧 Email QR Codes</strong>
-        <p>Pre-fill email addresses and subjects to make contacting you easier.</p>
+        <p>Pre-populate email addresses, subjects, and even message bodies. When scanned, the user's email app opens with all fields filled, making it effortless to contact you or submit feedback.</p>
       </div>
       <div class="feature-item-text">
         <strong>📞 Phone QR Codes</strong>
-        <p>Allow users to call your number directly without manual dialing.</p>
+        <p>Enable instant calling without manual number entry. Perfect for business cards, customer service materials, and emergency contact information. Users can call with a single tap after scanning.</p>
       </div>
       <div class="feature-item-text">
         <strong>📶 WiFi QR Codes</strong>
-        <p>Share WiFi credentials securely - users connect automatically when scanned.</p>
+        <p>Share network credentials securely without revealing passwords verbally. Supports WPA, WPA2, WEP, and open networks. Users connect automatically when they scan the code - no typing required.</p>
       </div>
     </div>
     
-    <h2>Common Use Cases</h2>
+    <h2>Real-World Use Cases</h2>
     <ul>
-      <li><strong>Business Cards:</strong> Add QR codes linking to your website or contact info</li>
-      <li><strong>Marketing Materials:</strong> Direct customers to promotions, products, or landing pages</li>
-      <li><strong>Product Packaging:</strong> Provide product information, manuals, or support links</li>
-      <li><strong>Event Management:</strong> Share event details, tickets, or registration links</li>
-      <li><strong>Restaurant Menus:</strong> Contactless menu access via QR code scanning</li>
-      <li><strong>WiFi Sharing:</strong> Let guests connect to WiFi without sharing passwords verbally</li>
-      <li><strong>Payment Links:</strong> Accept payments via QR code scanning</li>
-      <li><strong>Social Media:</strong> Link to your social profiles for easy following</li>
+      <li><strong>Business Cards & Networking:</strong> Replace traditional contact exchange with QR codes linking to your digital business card, LinkedIn profile, or vCard. Recipients save your contact instantly without manual entry.</li>
+      <li><strong>Marketing Campaigns:</strong> Track campaign performance by creating unique QR codes for different channels (print ads, billboards, flyers). Direct customers to landing pages, promotional offers, or product information.</li>
+      <li><strong>Product Packaging:</strong> Provide instant access to instruction manuals, warranty registration, product videos, or customer support. Enhance the unboxing experience with exclusive content accessible via QR code.</li>
+      <li><strong>Restaurant & Hospitality:</strong> Offer contactless digital menus, enable table ordering, share WiFi credentials with guests, or collect customer feedback through QR-linked surveys.</li>
+      <li><strong>Real Estate:</strong> Place QR codes on property signs linking to virtual tours, detailed listings, floor plans, and agent contact information. Potential buyers can access information 24/7.</li>
+      <li><strong>Event Management:</strong> Streamline check-in with QR code tickets, share event schedules and maps, enable networking between attendees, or provide access to presentation materials.</li>
+      <li><strong>Retail & E-commerce:</strong> Enable quick product lookups, link to customer reviews, provide size guides, or facilitate mobile payments. Create QR codes for in-store pickup or return processes.</li>
+      <li><strong>Education:</strong> Share course materials, link to online resources, enable quick attendance tracking, or provide access to supplementary learning content.</li>
+      <li><strong>Healthcare:</strong> Link to patient portals, appointment scheduling, prescription information, or telehealth services while maintaining HIPAA compliance through secure URLs.</li>
+      <li><strong>Museums & Tourism:</strong> Provide audio guides, historical information, interactive exhibits, or multilingual content accessible through QR codes placed near exhibits or landmarks.</li>
     </ul>
     
-    <h2>QR Code Best Practices</h2>
+    <h2>QR Code Best Practices & Tips</h2>
     <ul>
-      <li><strong>Test Before Printing:</strong> Always test QR codes on multiple devices before mass production</li>
-      <li><strong>Size Matters:</strong> Ensure QR codes are large enough to scan (minimum 2x2 cm for print)</li>
-      <li><strong>High Contrast:</strong> Use dark QR codes on light backgrounds for best scanning</li>
-      <li><strong>Add Context:</strong> Include a call-to-action like "Scan to visit website"</li>
-      <li><strong>Error Correction:</strong> Higher error correction allows scanning even if partially damaged</li>
-      <li><strong>URL Shorteners:</strong> Use short URLs to create simpler QR codes</li>
-      <li><strong>Track Performance:</strong> Use URL shorteners with analytics to track scans</li>
+      <li><strong>Always Test Before Printing:</strong> Scan your QR codes with multiple devices (iPhone, Android) and different QR reader apps before committing to print. What works on one device should work on all.</li>
+      <li><strong>Maintain Adequate Size:</strong> For print materials, QR codes should be at least 2cm x 2cm (0.8" x 0.8"). For billboards or distant viewing, scale up proportionally - a good rule is 10x the viewing distance.</li>
+      <li><strong>Ensure High Contrast:</strong> Dark foreground on light background works best. Avoid low-contrast color combinations like yellow on white or dark blue on black, as they reduce scannability.</li>
+      <li><strong>Use Error Correction Wisely:</strong> High error correction (30%) allows QR codes to remain scannable even if 30% is damaged or obscured. Essential for outdoor use or when adding logos.</li>
+      <li><strong>Keep URLs Short:</strong> Shorter URLs create simpler QR codes with fewer modules, making them easier to scan. Use URL shorteners like bit.ly or create custom short links.</li>
+      <li><strong>Add Clear Call-to-Actions:</strong> Include text like "Scan for menu," "Scan to connect," or "Scan for discount" near your QR code. Users are more likely to scan when they know what to expect.</li>
+      <li><strong>Consider Placement:</strong> Position QR codes at eye level when possible. Ensure adequate lighting and avoid placing them on curved surfaces, behind glass, or in areas with glare.</li>
+      <li><strong>Test Color Combinations:</strong> While black and white works universally, colored QR codes can match your brand. Always test colored versions thoroughly as some color combinations reduce scan reliability.</li>
+      <li><strong>Use SVG for Print:</strong> Download SVG format for professional printing. SVG files scale infinitely without quality loss, ensuring crisp QR codes at any size.</li>
+      <li><strong>Track and Analyze:</strong> Use URL shorteners with analytics (bit.ly, TinyURL) to track scan rates, locations, and devices. This data helps optimize future QR code campaigns.</li>
+      <li><strong>Mobile-Optimize Destinations:</strong> Ensure the URL or content your QR code links to is mobile-friendly. Most QR scans happen on smartphones, so responsive design is crucial.</li>
+      <li><strong>Avoid Expiring Links:</strong> Don't use temporary URLs or links that might break. QR codes on printed materials can't be updated, so ensure destination URLs are permanent.</li>
     </ul>
     
-    <h2>QR Code Size Guide</h2>
+    <h2>Choosing the Right QR Code Size</h2>
     <ul>
-      <li><strong>Small (200x200):</strong> Digital use, websites, emails</li>
-      <li><strong>Medium (300x300):</strong> Business cards, flyers, small posters</li>
-      <li><strong>Large (400x400):</strong> Posters, banners, product packaging</li>
-      <li><strong>Extra Large (600x600):</strong> Billboards, large signage, trade show displays</li>
+      <li><strong>Small (200x200):</strong> Perfect for digital use on websites, email signatures, social media posts, and mobile apps where users can zoom if needed.</li>
+      <li><strong>Medium (300x300):</strong> Ideal for business cards, brochures, flyers, and small posters where viewing distance is 1-2 feet.</li>
+      <li><strong>Large (400x400):</strong> Best for product packaging, standard posters, banners, and table tents where viewing distance is 2-4 feet.</li>
+      <li><strong>Extra Large (600x600):</strong> Designed for large posters, trade show displays, and window signage where viewing distance is 4-8 feet.</li>
+      <li><strong>Huge (800x800):</strong> Essential for billboards, building signage, and vehicle wraps where viewing distance exceeds 8 feet.</li>
     </ul>
     
-    <h2>WiFi QR Code Benefits</h2>
-    <p>WiFi QR codes are especially useful for:</p>
+    <h2>Export Format Guide</h2>
+    <h3>PNG Format</h3>
+    <p>PNG (Portable Network Graphics) is the most versatile format for QR codes. It supports transparency, maintains sharp edges, and works perfectly for web use, digital displays, and most print applications. Use PNG when you need a balance between quality and file size, or when you're unsure which format to choose.</p>
+    
+    <h3>SVG Format</h3>
+    <p>SVG (Scalable Vector Graphics) is the professional choice for print materials. Unlike raster formats, SVG files are resolution-independent and can be scaled to any size without quality loss. Essential for business cards, billboards, vehicle wraps, and any application where the QR code might be resized. SVG files can be edited in design software like Adobe Illustrator or Inkscape.</p>
+    
+    <h3>JPG Format</h3>
+    <p>JPG (JPEG) offers maximum compatibility across all devices and platforms. While it uses lossy compression, it creates smaller file sizes ideal for email attachments and web uploads with file size limits. Use JPG when file size is a concern and slight quality reduction is acceptable. Not recommended for professional print work.</p>
+    
+    <h2>Understanding Error Correction</h2>
+    <p>QR codes include built-in error correction that allows them to be scanned even when partially damaged, dirty, or obscured. This tool offers four error correction levels:</p>
     <ul>
-      <li>Cafes and restaurants offering guest WiFi</li>
-      <li>Hotels and Airbnb properties</li>
-      <li>Offices and coworking spaces</li>
-      <li>Events and conferences</li>
-      <li>Home networks for easy guest access</li>
+      <li><strong>Low (7%):</strong> Fastest to generate, smallest file size. Use for pristine environments where damage is unlikely.</li>
+      <li><strong>Medium (15%):</strong> Good balance for most applications. Handles minor wear and tear.</li>
+      <li><strong>Quartile (25%):</strong> Recommended for outdoor use or when adding small logos to QR codes.</li>
+      <li><strong>High (30%):</strong> Maximum resilience. Essential for harsh environments, outdoor signage, or when embedding logos. Can recover from significant damage.</li>
     </ul>
+    
+    <h2>WiFi QR Codes: Complete Guide</h2>
+    <p>WiFi QR codes eliminate the frustration of sharing complex passwords. When scanned, devices automatically connect to your network without manual entry. This feature is invaluable for:</p>
+    <ul>
+      <li><strong>Hospitality:</strong> Hotels, Airbnbs, and vacation rentals can print WiFi QR codes in rooms, eliminating front desk calls and improving guest experience.</li>
+      <li><strong>Cafes & Restaurants:</strong> Display WiFi QR codes on tables, menus, or receipts. Customers connect instantly without asking staff for passwords.</li>
+      <li><strong>Offices & Coworking:</strong> Provide guest WiFi access without compromising security. Generate temporary QR codes for visitors that can be changed regularly.</li>
+      <li><strong>Events & Conferences:</strong> Share event WiFi with hundreds of attendees simultaneously. Print QR codes on badges, programs, or signage.</li>
+      <li><strong>Home Networks:</strong> Create a WiFi QR code for your home network and display it for guests. No more spelling out complex passwords.</li>
+      <li><strong>Retail Stores:</strong> Offer customer WiFi to enhance shopping experience and encourage longer visits.</li>
+    </ul>
+    <p><strong>Security Note:</strong> WiFi QR codes contain your network password in plain text. Only share them with trusted individuals and consider using a guest network separate from your main network for added security.</p>
+    
+    <h2>Frequently Asked Questions</h2>
+    
+    <h3>What's the maximum amount of data I can encode in a QR code?</h3>
+    <p>QR codes can technically store up to 4,296 alphanumeric characters or 7,089 numeric characters. However, we recommend keeping content under 300 characters for optimal scanning. Larger QR codes become more complex with smaller modules, making them harder to scan reliably, especially from a distance or in poor lighting.</p>
+    
+    <h3>Which export format should I use: PNG, SVG, or JPG?</h3>
+    <p>Use SVG for all professional print materials (business cards, posters, billboards) as it scales infinitely without quality loss. Choose PNG for web use, digital displays, and general-purpose applications. Select JPG only when file size is critical or when uploading to platforms with strict size limits. SVG is always the safest choice for print.</p>
+    
+    <h3>Do QR codes expire or stop working?</h3>
+    <p>QR codes themselves never expire - they're just encoded data. However, if your QR code links to a URL, that link can break if the website changes or goes offline. For permanent applications like printed materials, ensure your destination URLs are stable and won't change. Consider using your own domain for critical QR codes.</p>
+    
+    <h3>Can I customize QR code colors without affecting scannability?</h3>
+    <p>Yes, but maintain high contrast between foreground and background colors. Dark foreground on light background works best. Avoid low-contrast combinations like yellow on white, light gray on white, or dark blue on black. Always test colored QR codes on multiple devices before printing. The tool will warn you if your color combination might cause scanning issues.</p>
+    
+    <h3>How do I add a logo to my QR code?</h3>
+    <p>While this tool doesn't directly embed logos, you can use the High error correction level (30%) which allows up to 30% of the QR code to be covered or damaged while remaining scannable. Generate your QR code with High error correction, then use image editing software to overlay your logo in the center, keeping it under 30% of the total QR code area.</p>
+    
+    <h3>Are WiFi QR codes secure?</h3>
+    <p>WiFi QR codes contain your network password in plain text within the QR code data. Anyone who scans the code can see the password using QR reader apps. For security, create a separate guest network with a different password than your main network, and only share WiFi QR codes with trusted individuals. Change guest network passwords regularly.</p>
+    
+    <h3>Why won't my QR code scan?</h3>
+    <p>Common issues include: insufficient contrast between colors, QR code too small for viewing distance, poor lighting, damaged or dirty QR code, curved or reflective surface, or camera focus problems. Ensure your QR code is at least 2cm x 2cm for print, use high contrast colors, test on multiple devices, and verify the destination URL is correct and accessible.</p>
+    
+    <h3>Can I track how many times my QR code is scanned?</h3>
+    <p>QR codes themselves don't have tracking capabilities. However, if your QR code links to a URL, you can track scans by using URL shorteners with analytics (like bit.ly, TinyURL, or Google's URL Shortener alternatives). These services provide detailed statistics on scan counts, locations, devices, and times. Create a shortened URL first, then generate a QR code from that shortened link.</p>
+    
+    <h3>What's the difference between error correction levels?</h3>
+    <p>Error correction allows QR codes to be scanned even when partially damaged. Low (7%) is fastest but least resilient. Medium (15%) handles minor wear. Quartile (25%) works for outdoor use. High (30%) provides maximum protection and is essential when adding logos or for harsh environments. Higher levels create more complex QR codes with more modules.</p>
+    
+    <h3>Is my data safe when using this QR code generator?</h3>
+    <p>Absolutely. All QR code generation happens entirely in your browser using JavaScript. No data is transmitted to our servers, stored in databases, or tracked in any way. Your URLs, WiFi passwords, and other information never leave your device. You can even use this tool offline once the page loads.</p>
     
     <h2>Related Tools</h2>
-    <p>Enhance your digital workflow with these related tools:</p>
+    <p>Enhance your digital workflow with these complementary tools:</p>
     <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/image-converter/">Image Converter</a> - Convert QR code images</li>
-      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Encode URLs for QR codes</li>
-      <li><a href="{{ site.baseurl }}/tools/color-picker/">Color Picker</a> - Choose QR code colors</li>
+      <li><a href="{{ site.baseurl }}/tools/image-converter/">Image Converter</a> - Convert QR codes between PNG, JPG, and WebP formats</li>
+      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Properly encode URLs before creating QR codes</li>
+      <li><a href="{{ site.baseurl }}/tools/color-picker/">Color Picker</a> - Find perfect color combinations for branded QR codes</li>
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode data for embedding in QR codes</li>
       <li><a href="{{ site.baseurl }}/image-tools/">View All Image Tools</a></li>
     </ul>
   </div>

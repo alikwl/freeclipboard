@@ -20,19 +20,309 @@ features:
   - 100% private (client-side)
 ---
 
-<div class="tool-instructions">
-  <h2>How to Use the Image Converter</h2>
-  <ol>
-    <li><strong>Upload Image:</strong> Click the upload area or drag and drop your image file (PNG, JPG, WebP, SVG)</li>
-    <li><strong>Select Format:</strong> Choose your desired output format from the dropdown</li>
-    <li><strong>Adjust Settings:</strong> Optionally resize the image or adjust quality/compression</li>
-    <li><strong>Convert:</strong> Click "Convert Image" to process your file</li>
-    <li><strong>Download:</strong> Save the converted image to your device</li>
-  </ol>
-  <p><strong>Note:</strong> All conversions happen in your browser. Your images are never uploaded to our servers.</p>
+<style>
+/* Image Converter Specific Styles */
+.upload-section {
+  margin-bottom: 2rem;
+}
+
+.upload-area {
+  border: 3px dashed var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(139, 92, 246, 0.03) 100%);
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  transform: translateY(-2px);
+}
+
+.upload-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.upload-area h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.5rem;
+}
+
+.upload-area p {
+  color: var(--gray);
+  font-size: 1rem;
+}
+
+.uploaded-file-name {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+}
+
+.conversion-controls,
+.preview-section {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+.control-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+.control-group {
+  margin-bottom: 1.5rem;
+}
+
+.control-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.control-group select,
+.control-group input[type="range"],
+.control-group input[type="number"],
+.control-group input[type="color"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.control-group select:focus,
+.control-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.control-hint {
+  display: block;
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-top: 0.25rem;
+}
+
+.resize-controls,
+.input-group {
+  margin-top: 1rem;
+}
+
+.resize-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.aspect-ratio-lock {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.aspect-ratio-lock input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+.preview-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+.preview-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.preview-box {
+  text-align: center;
+}
+
+.preview-box h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.preview-box img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.preview-arrow {
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.image-info {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+.error-message {
+  padding: 1rem 1.5rem;
+  background: var(--error-light);
+  border-left: 4px solid var(--error);
+  border-radius: var(--radius-sm);
+  color: var(--error);
+  font-weight: 500;
+  margin: 1rem 0;
+}
+
+.converted-gallery {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: var(--light-gray);
+  border-radius: var(--radius-lg);
+}
+
+.converted-gallery h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: all var(--transition-speed) ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.75rem;
+}
+
+.gallery-meta {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.batch-progress {
+  margin-top: 1rem;
+}
+
+.batch-progress-bar {
+  height: 8px;
+  background: var(--light-gray);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  background: var(--white);
+  border: 2px solid var(--border);
+  border-left: 4px solid var(--success);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all var(--transition-speed) ease;
+}
+
+.notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .preview-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .preview-arrow {
+    transform: rotate(90deg);
+  }
+  
+  .resize-inputs {
+    grid-template-columns: 1fr;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .upload-area {
+    padding: 2rem 1rem;
+  }
+  
+  .upload-icon {
+    font-size: 3rem;
+  }
+}
+</style>
+
+<!-- Tool Header -->
+<div class="tool-header">
+  <h1>🖼️ Image Converter</h1>
+  <p class="lead">Convert images between formats, resize, compress, and optimize — all in your browser with complete privacy</p>
 </div>
 
-<div class="image-converter-container">
+<!-- Tool Interface -->
+<div class="tool-interface">
   <!-- Upload Area -->
   <div class="upload-section">
     <div class="upload-area" id="uploadArea">
@@ -202,6 +492,7 @@ features:
   <!-- Error Message -->
   <div id="errorMessage" class="error-message" style="display: none;" role="alert" aria-live="polite"></div>
 </div>
+<!-- End Tool Interface -->
 
 <!-- Converted Gallery -->
 <section id="convertedGallery" class="converted-gallery" style="display:none;" aria-labelledby="convertedGalleryHeading">
@@ -209,63 +500,166 @@ features:
   <div class="gallery-grid" id="galleryGrid" role="list"></div>
 </section>
 
-<div class="tool-features">
-  <h2>Features</h2>
-  <div class="features-grid">
-    <div class="feature-item">
-      <div class="feature-icon">🔄</div>
-      <h4>Multiple Formats</h4>
-      <p>Convert between PNG, JPG, WebP formats</p>
+<!-- Tool Content Section -->
+<div class="tool-content-section">
+  <div class="content-body">
+    
+    <!-- About This Tool -->
+    <h2>About the Image Converter</h2>
+    <p>The Image Converter transforms images between popular formats including PNG, JPG, WebP, AVIF, and SVG with professional-grade quality control. Whether you need to optimize images for web performance, convert formats for compatibility, or batch process multiple files, this tool handles it all without uploading your images to any server.</p>
+    <p>Perfect for web developers optimizing site speed, designers preparing assets for different platforms, photographers managing image libraries, and anyone who needs quick, reliable image format conversion with complete privacy.</p>
+    
+    <!-- Key Features -->
+    <h2>Key Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3 class="feature-title">Multiple Format Support</h3>
+        <p class="feature-description">Convert between PNG, JPG, WebP, AVIF, and SVG with full transparency and quality preservation.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📦</div>
+        <h3 class="feature-title">Batch Processing</h3>
+        <p class="feature-description">Upload and convert multiple images simultaneously to save time on large projects.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3 class="feature-title">Quality Control</h3>
+        <p class="feature-description">Adjust compression levels with presets or custom settings to balance file size and visual quality.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📏</div>
+        <h3 class="feature-title">Smart Resizing</h3>
+        <p class="feature-description">Resize images with aspect ratio locking and multiple scaling modes for perfect dimensions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👁️</div>
+        <h3 class="feature-title">Before/After Preview</h3>
+        <p class="feature-description">Compare original and converted images side-by-side to ensure quality meets your needs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎭</div>
+        <h3 class="feature-title">Image Filters</h3>
+        <p class="feature-description">Apply grayscale, brightness, and contrast adjustments during conversion.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">100% Private</h3>
+        <p class="feature-description">All processing happens locally in your browser - your images never leave your device.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Drag & Drop</h3>
+        <p class="feature-description">Simply drag images onto the page for instant upload and conversion.</p>
+      </div>
     </div>
-    <div class="feature-item">
-      <div class="feature-icon">📏</div>
-      <h4>Resize Images</h4>
-      <p>Adjust dimensions while maintaining aspect ratio</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">⚙️</div>
-      <h4>Quality Control</h4>
-      <p>Adjust compression for optimal file size</p>
-    </div>
-    <div class="feature-item">
-      <div class="feature-icon">🔒</div>
-      <h4>100% Private</h4>
-      <p>All processing happens in your browser</p>
-    </div>
-  </div>
-</div>
-
-<div class="related-links">
-  <h3>Related Tools</h3>
-  <p>Check out our other image and utility tools:</p>
-  <div class="link-buttons">
-    <a href="{{ site.baseurl }}/" class="btn-outline">← Back to Home</a>
-    <a href="{{ site.baseurl }}/image-tools/" class="btn-outline">All Image Tools</a>
-    <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="btn-outline">QR Code Generator</a>
-    <a href="{{ site.baseurl }}/tools/color-picker/" class="btn-outline">Color Picker</a>
+    
+    <!-- How to Use -->
+    <h2>How to Use the Image Converter</h2>
+    <ol class="instructions-list">
+      <li><strong>Upload Images:</strong> Click the upload area or drag and drop your image files (PNG, JPG, WebP, SVG, AVIF)</li>
+      <li><strong>Select Output Format:</strong> Choose your desired format from the dropdown menu (PNG, JPG, WebP, or AVIF)</li>
+      <li><strong>Adjust Quality:</strong> Use the quality slider or select a preset (High, Balanced, or Small File) for lossy formats</li>
+      <li><strong>Configure Options:</strong> Optionally enable resizing, apply filters, or adjust transparency settings</li>
+      <li><strong>Preview Results:</strong> Review the before and after comparison to ensure the output meets your requirements</li>
+      <li><strong>Convert & Download:</strong> Click "Convert Image" to process, then download your converted file</li>
+      <li><strong>Batch Convert:</strong> For multiple images, use "Convert All" to process them simultaneously</li>
+    </ol>
+    
+    <!-- Use Cases -->
+    <h2>Common Use Cases</h2>
+    <ul class="use-cases-list">
+      <li><strong>Web Optimization:</strong> Convert images to WebP or AVIF format to reduce page load times by 30-50% while maintaining visual quality</li>
+      <li><strong>Social Media:</strong> Resize and convert images to meet platform-specific requirements for Instagram, Facebook, Twitter, and LinkedIn</li>
+      <li><strong>Email Attachments:</strong> Compress large images to JPG format with reduced quality to stay under email size limits</li>
+      <li><strong>Print Preparation:</strong> Convert web images to high-quality PNG format for professional printing and design work</li>
+      <li><strong>Transparency Management:</strong> Convert PNG images with transparency to JPG with custom background colors for compatibility</li>
+      <li><strong>Batch Processing:</strong> Convert entire photo albums or product catalogs from one format to another in a single operation</li>
+      <li><strong>SVG Rasterization:</strong> Convert vector SVG graphics to raster formats (PNG, JPG) at custom resolutions for various uses</li>
+    </ul>
+    
+    <!-- Tips & Best Practices -->
+    <h2>Tips & Best Practices</h2>
+    <ul class="tips-list">
+      <li>Use WebP format for web images - it offers 25-35% better compression than PNG or JPG with similar quality</li>
+      <li>Keep quality at 85-90% for JPG exports to achieve the best balance between file size and visual quality</li>
+      <li>Convert to PNG when you need transparency or lossless compression for graphics, logos, and screenshots</li>
+      <li>Enable "Auto-orient based on EXIF" to automatically rotate photos taken on mobile devices</li>
+      <li>Use the "Contain" resize mode to maintain aspect ratio and avoid distortion when changing dimensions</li>
+      <li>For images with transparency, flatten to a white or colored background before converting to JPG format</li>
+      <li>Process images in batches to save time when converting multiple files with the same settings</li>
+      <li>Preview converted images before downloading to verify quality, especially when using high compression</li>
+      <li>For print materials, keep images in high-quality formats like PNG or use JPG quality above 95%</li>
+      <li>AVIF offers the best compression but may not be supported by older browsers - use WebP as a fallback</li>
+    </ul>
+    
+    <!-- Related Tools -->
+    <h2>Related Tools</h2>
+    <ul class="related-tools-list">
+      <li><a href="{{ site.baseurl }}/tools/social-media-image-resizer/">Social Media Image Resizer</a> - Resize images for specific social platforms</li>
+      <li><a href="{{ site.baseurl }}/tools/color-picker/">Color Picker</a> - Extract and work with colors from images</li>
+      <li><a href="{{ site.baseurl }}/tools/qr-code-generator/">QR Code Generator</a> - Create QR codes and export as images</li>
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Convert images to Base64 for embedding</li>
+      <li><a href="{{ site.baseurl }}/image-tools/">All Image Tools</a> - Browse our complete collection of image utilities</li>
+    </ul>
+    
   </div>
 </div>
 
 <!-- FAQ Section -->
-<section class="tool-faq" aria-labelledby="faq-heading">
-  <h2 id="faq-heading">Image Converter FAQ</h2>
-  <div class="faq-item">
-    <h3>Does this tool upload my images?</h3>
-    <p>No. All conversions happen in your browser. Your images never leave your device.</p>
+<div class="tool-content-section">
+  <div class="content-body">
+    <h2 id="faq-heading">Frequently Asked Questions</h2>
+    
+    <div class="faq-item">
+      <h3>Does this tool upload my images to a server?</h3>
+      <p>No, absolutely not. All image conversion and processing happens entirely in your browser using JavaScript. Your images never leave your device, are not uploaded to any server, and are not stored or tracked in any way. This ensures complete privacy and security for your images.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Which image formats are supported?</h3>
+      <p>The converter supports PNG, JPG/JPEG, WebP, AVIF (if your browser supports it), and SVG as input formats. You can convert to PNG, JPG, WebP, or AVIF as output formats. SVG files can be converted to any raster format at your desired resolution.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>How do I preserve transparency when converting images?</h3>
+      <p>To keep transparency, convert to PNG or WebP format as these support alpha channels. JPG does not support transparency, so if you convert to JPG, enable the "Flatten transparency" option and choose a background color to replace transparent areas.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>What's the difference between PNG, JPG, and WebP?</h3>
+      <p>PNG is lossless and supports transparency, making it ideal for graphics and logos but resulting in larger files. JPG uses lossy compression for smaller files but doesn't support transparency, perfect for photos. WebP offers better compression than both with optional transparency support, ideal for web use.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Can I convert multiple images at once?</h3>
+      <p>Yes! Upload multiple files by selecting them together or dragging them onto the upload area. Use the "Convert All" button to process all images with the same settings, then download them individually or all at once using "Download All".</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>What quality setting should I use for JPG and WebP?</h3>
+      <p>For most web images, use 85-90% quality for the best balance between file size and visual quality. Use 95%+ for print or when quality is critical. For small file sizes (like email attachments), 70-80% is usually acceptable. Always preview before downloading to ensure quality meets your needs.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Why should I use WebP or AVIF instead of PNG or JPG?</h3>
+      <p>WebP and AVIF are modern formats that offer significantly better compression than PNG or JPG while maintaining similar or better quality. WebP can reduce file sizes by 25-35% compared to JPG and PNG, while AVIF offers even better compression. This means faster page loads and reduced bandwidth usage.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Can I use this tool offline?</h3>
+      <p>Yes, once the page loads, the image converter works entirely in your browser without requiring an internet connection. You can even save the page locally for completely offline use.</p>
+    </div>
+    
   </div>
-  <div class="faq-item">
-    <h3>Which formats are supported?</h3>
-    <p>PNG, JPG, WebP, and AVIF (if supported by your browser). SVG input is supported and can be converted to raster formats.</p>
-  </div>
-  <div class="faq-item">
-    <h3>How do I keep transparency?</h3>
-    <p>Use PNG or WebP. For JPG, enable "Flatten transparency" and choose a background color.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Can I convert multiple images?</h3>
-    <p>Yes. Upload multiple files, use Convert All, and download each or all at once.</p>
-  </div>
-</section>
+</div>
+
+<!-- Tool Footer Navigation -->
+<div class="tool-footer-nav">
+  <a href="{{ site.baseurl }}/" class="btn-outline">← Back to Home</a>
+  <a href="{{ site.baseurl }}/image-tools/" class="btn-outline">All Image Tools</a>
+  <a href="{{ site.baseurl }}/tools/social-media-image-resizer/" class="btn-outline">Image Resizer →</a>
+</div>
 
 <!-- FAQPage Structured Data -->
 <script type="application/ld+json">
