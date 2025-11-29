@@ -3,63 +3,456 @@ layout: default
 title: Image Tools - Free Online Image Utilities & Generators
 description: Free image tools including QR code generator, color picker, and image utilities. Create and manipulate images instantly in your browser.
 keywords: image tools, qr code generator, color picker, image utilities, online image tools
-schema_type: WebApplication
+schema_type: CollectionPage
 ---
 
-<div class="page-header">
-  <h1>🎨 Image Tools</h1>
-  <p class="lead">Create and manipulate images with our free online tools</p>
-</div>
+<section class="category-hero image-tools-hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-icon">🖼️</span>
+        <span class="badge-text">Image & Visual Tools</span>
+      </div>
+      <h1>Professional Image & Visual Tools</h1>
+      <p class="hero-subtitle">Convert images, generate QR codes, pick colors, and create visual content with powerful tools. Perfect for designers, marketers, and developers.</p>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>5</strong>
+          <span>Image Tools</span>
+        </div>
+        <div class="stat-item">
+          <strong>85K+</strong>
+          <span>Monthly Users</span>
+        </div>
+        <div class="stat-item">
+          <strong>100%</strong>
+          <span>Free Forever</span>
+        </div>
+      </div>
+      
+      <div class="hero-cta">
+        <a href="#tools" class="btn btn-primary btn-lg">Explore Tools</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% include ads.html %}
+<section class="tools-category-section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <h2>🖼️ Image Tools Collection</h2>
+      <p>Professional tools for image conversion, QR codes, and visual content</p>
+    </div>
+    
+    {% assign imageTools = site.data.tools-metadata.tools | where: 'category', 'image' | sort: 'name' %}
+    
+    <div class="tools-grid enhanced-grid">
+      {% for tool in imageTools %}
+        <article class="tool-card enhanced-card">
+          <div class="tool-card-visual">
+            <div class="tool-icon-large">{{ tool.icon }}</div>
+            {% if tool.featured %}
+              <span class="tool-badge badge-featured">⭐ Featured</span>
+            {% elsif tool.popular %}
+              <span class="tool-badge badge-popular">🔥 Popular</span>
+            {% elsif tool.new %}
+              <span class="tool-badge badge-new">✨ New</span>
+            {% endif %}
+          </div>
+          
+          <div class="tool-card-content">
+            <h3 class="tool-title">{{ tool.name }}</h3>
+            <p class="tool-description">{{ tool.description }}</p>
+            
+            <div class="tool-features">
+              <span class="feature-tag">✓ High Quality</span>
+              <span class="feature-tag">✓ Privacy First</span>
+              <span class="feature-tag">✓ Easy to Use</span>
+            </div>
+            
+            <div class="tool-meta">
+              {% if tool.rating %}
+                <span class="tool-rating">
+                  <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-value">{{ tool.rating }}</span>
+                </span>
+              {% endif %}
+              {% if tool.usageCount %}
+                <span class="tool-usage">
+                  <span class="usage-icon">👥</span>
+                  {{ tool.usageCount | divided_by: 1000 }}K+ uses
+                </span>
+              {% endif %}
+            </div>
+            
+            <div class="tool-keywords">
+              {% for keyword in tool.keywords limit:4 %}
+                <span class="keyword-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="tool-card-footer">
+            <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block">
+              Try {{ tool.name }} →
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-<div class="tools-category-grid">
-  <a href="{{ site.baseurl }}/tools/image-converter/" class="tool-card featured">
-    <div class="tool-icon">🔄</div>
-    <h3>Image Converter</h3>
-    <p>Convert images between PNG, JPG, WebP formats with resize and compression options. Fast and easy to use.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- Image Showcase Section -->
+<section class="design-showcase">
+  <div class="container">
+    <div class="section-header">
+      <h2>✨ What You Can Create</h2>
+      <p>Powerful features for all your image and visual needs</p>
+    </div>
+    
+    <div class="showcase-grid">
+      <div class="showcase-item">
+        <div class="showcase-preview" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center;">
+          <div style="background: white; padding: 1.5rem; border-radius: 8px;">
+            <div style="width: 120px; height: 120px; background: #000; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: repeat(5, 1fr); gap: 2px;">
+              <div style="background: white;"></div>
+              <div style="background: white;"></div>
+              <div style="background: white;"></div>
+              <div style="background: white;"></div>
+              <div style="background: white;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Generate QR Codes</h3>
+          <p>Create custom QR codes for URLs, text, contact info, and more. Download as PNG or SVG.</p>
+          <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="showcase-link">Try QR Generator →</a>
+        </div>
+      </div>
+      
+      <div class="showcase-item">
+        <div class="showcase-preview" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center;">
+          <div style="display: flex; gap: 1rem;">
+            <div style="width: 60px; height: 60px; background: #FF6B6B; border-radius: 50%;"></div>
+            <div style="width: 60px; height: 60px; background: #4ECDC4; border-radius: 50%;"></div>
+            <div style="width: 60px; height: 60px; background: #FFD93D; border-radius: 50%;"></div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Pick Perfect Colors</h3>
+          <p>Select colors and convert between HEX, RGB, and HSL formats instantly.</p>
+          <a href="{{ site.baseurl }}/tools/color-picker/" class="showcase-link">Try Color Picker →</a>
+        </div>
+      </div>
+      
+      <div class="showcase-item">
+        <div class="showcase-preview" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); display: flex; align-items: center; justify-content: center; padding: 2rem;">
+          <div style="text-align: center; color: #333;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🖼️</div>
+            <div style="font-weight: bold;">PNG → WebP</div>
+            <div style="font-size: 0.9rem; margin-top: 0.5rem;">Fast & Easy</div>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Convert Image Formats</h3>
+          <p>Convert between PNG, JPG, and WebP formats with resize and compression options.</p>
+          <a href="{{ site.baseurl }}/tools/image-converter/" class="showcase-link">Try Image Converter →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="tool-card">
-    <div class="tool-icon">📱</div>
-    <h3>QR Code Generator</h3>
-    <p>Create QR codes from text, URLs, or any data instantly. Download as PNG or SVG. Perfect for marketing and sharing.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<section class="category-benefits" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>💎 Why Choose Our Image Tools?</h2>
+      <p>Everything you need to create and manipulate images</p>
+    </div>
+    
+    <div class="benefits-grid enhanced-benefits">
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <h3>Instant Processing</h3>
+        <p>All image processing happens instantly in your browser. No uploads, no waiting, just immediate results.</p>
+        <ul class="benefit-features">
+          <li>Real-time conversion</li>
+          <li>No upload delays</li>
+          <li>Instant preview</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🎨</div>
+        <h3>High Quality Output</h3>
+        <p>Generate professional-quality images, QR codes, and visual content with customizable settings.</p>
+        <ul class="benefit-features">
+          <li>High resolution</li>
+          <li>Multiple formats</li>
+          <li>Customizable options</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📱</div>
+        <h3>QR Code Generation</h3>
+        <p>Create custom QR codes for any purpose - URLs, text, contact info, WiFi, and more.</p>
+        <ul class="benefit-features">
+          <li>Multiple data types</li>
+          <li>PNG & SVG export</li>
+          <li>Customizable size</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🆓</div>
+        <h3>100% Free Forever</h3>
+        <p>All tools are completely free with no limitations. Use in any project, personal or commercial.</p>
+        <ul class="benefit-features">
+          <li>No registration required</li>
+          <li>Unlimited usage</li>
+          <li>No hidden costs</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>All processing happens in your browser. Your images never leave your device.</p>
+        <ul class="benefit-features">
+          <li>No data collection</li>
+          <li>Works offline</li>
+          <li>100% secure</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🎯</div>
+        <h3>Easy to Use</h3>
+        <p>Simple, intuitive interfaces that anyone can use. No technical knowledge required.</p>
+        <ul class="benefit-features">
+          <li>User-friendly</li>
+          <li>Clear instructions</li>
+          <li>Quick results</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/color-picker/" class="tool-card">
-    <div class="tool-icon">🎨</div>
-    <h3>Color Picker</h3>
-    <p>Pick colors and convert between HEX, RGB, and HSL formats. Perfect for designers and developers.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🚀 How It Works</h2>
+      <p>Create and manipulate images in three simple steps</p>
+    </div>
+    
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Choose Your Tool</h3>
+          <p>Select from image converter, QR code generator, color picker, or other visual tools.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Upload or Input</h3>
+          <p>Upload your image, enter text for QR codes, or select colors. All processing is instant.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Download & Use</h3>
+          <p>Download your processed image, QR code, or visual content and use it anywhere.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/code-snippet-generator/" class="tool-card">
-    <div class="tool-icon">💻</div>
-    <h3>Code Snippet Generator</h3>
-    <p>Generate formatted code snippets in multiple programming languages with syntax highlighting.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-</div>
+<!-- Use Cases Section -->
+<section class="use-cases-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>💼 Perfect For</h2>
+      <p>Who benefits from our image tools?</p>
+    </div>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">📱</div>
+        <h3>Marketers</h3>
+        <p>Create QR codes for campaigns, convert images for web, and generate visual content.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">🎨</div>
+        <h3>Designers</h3>
+        <p>Pick colors, convert image formats, and create visual elements for projects.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">👨‍💻</div>
+        <h3>Developers</h3>
+        <p>Generate QR codes, optimize images, and extract color values for development.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">🏢</div>
+        <h3>Business Owners</h3>
+        <p>Create QR codes for menus, websites, contact info, and marketing materials.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="category-description">
-  <h2>About Image Tools</h2>
-  <p>Our image tools help you create, edit, and manipulate images directly in your browser. No software installation required - everything runs client-side for maximum privacy and speed.</p>
-  
-  <h3>Key Features</h3>
-  <ul>
-    <li><strong>QR Code Generation:</strong> Create custom QR codes for URLs, text, contact info, and more</li>
-    <li><strong>Color Tools:</strong> Pick colors, convert formats, and create color palettes</li>
-    <li><strong>Instant Processing:</strong> All tools work instantly in your browser</li>
-    <li><strong>High Quality:</strong> Generate professional-quality images and graphics</li>
-  </ul>
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>❓ Frequently Asked Questions</h2>
+      <p>Everything you need to know about our image tools</p>
+    </div>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Are these tools really free?</h3>
+        <p>Yes! All our image tools are 100% free with no hidden costs, registration requirements, or usage limits.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Are my images stored on your servers?</h3>
+        <p>No. All processing happens locally in your browser. We never collect, store, or transmit your images.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What image formats do you support?</h3>
+        <p>Our image converter supports PNG, JPG, and WebP formats with options for resizing and compression.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I customize QR codes?</h3>
+        <p>Yes! You can customize QR code size, error correction level, and download as PNG or SVG format.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do QR codes expire?</h3>
+        <p>No. QR codes generated by our tool never expire and will work forever.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What color formats does the color picker support?</h3>
+        <p>Our color picker supports HEX, RGB, and HSL formats with instant conversion between them.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use these tools on mobile?</h3>
+        <p>Absolutely! All tools are fully responsive and work perfectly on smartphones and tablets.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is there a file size limit for image conversion?</h3>
+        <p>Processing happens in your browser, so limits depend on your device. Most images up to 10MB work well.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <h3>Perfect For</h3>
-  <ul>
-    <li><strong>Marketers:</strong> Create QR codes for campaigns and promotions</li>
-    <li><strong>Designers:</strong> Pick colors and create palettes</li>
-    <li><strong>Developers:</strong> Generate code snippets and color values</li>
-    <li><strong>Business Owners:</strong> Create QR codes for menus, websites, and contact info</li>
-  </ul>
-</div>
+<!-- CTA Section -->
+<section class="cta-section image-tools-cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Create Amazing Visuals?</h2>
+      <p>Start using our professional image tools now - no signup required!</p>
+      <div class="cta-buttons">
+        <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="btn btn-primary btn-lg">Try QR Generator</a>
+        <a href="{{ site.baseurl }}/tools/image-converter/" class="btn btn-outline btn-lg">Try Image Converter</a>
+        <a href="{{ site.baseurl }}/tools/color-picker/" class="btn btn-outline btn-lg">Try Color Picker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="related-categories">
+  <div class="container">
+    <div class="section-header">
+      <h2>🔍 Explore More Tools</h2>
+      <p>Discover other categories of professional tools</p>
+    </div>
+    
+    <div class="category-links enhanced-category-links">
+      <a href="{{ site.baseurl }}/design-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🎨</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Design & CSS Tools</h3>
+        <p>Create glassmorphism, neumorphism, and organic SVG blob shapes</p>
+        <div class="category-tools-list">
+          <span>Glassmorphism</span>
+          <span>Neumorphism</span>
+          <span>SVG Blobs</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/text-utilities/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">✍️</span>
+          <span class="category-badge">12 Tools</span>
+        </div>
+        <h3>Text Utilities</h3>
+        <p>Format, encode, decode, count, and process text with powerful utilities</p>
+        <div class="category-tools-list">
+          <span>Text Formatter</span>
+          <span>JSON Formatter</span>
+          <span>Base64 Encoder</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/clipboard-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">📋</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Clipboard & Text Tools</h3>
+        <p>Manage clipboard, count words and characters, analyze text efficiently</p>
+        <div class="category-tools-list">
+          <span>Clipboard Manager</span>
+          <span>Word Counter</span>
+          <span>Character Counter</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/generators-security/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🔐</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Generators & Security</h3>
+        <p>Generate passwords, hashes, UUIDs, and secure random data</p>
+        <div class="category-tools-list">
+          <span>Password Generator</span>
+          <span>Hash Generator</span>
+          <span>UUID Generator</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+    </div>
+    
+    <div class="view-all-categories">
+      <a href="{{ site.baseurl }}/all-tools/" class="btn btn-secondary btn-lg">View All 35+ Tools →</a>
+    </div>
+  </div>
+</section>

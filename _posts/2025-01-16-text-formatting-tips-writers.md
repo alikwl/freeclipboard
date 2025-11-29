@@ -10,7 +10,7 @@ keywords: text formatting, writing tips, content creation, text tools, writing p
 image: /assets/images/blog/text-formatting-tips.webp
 featured: false
 readTime: 9
-relatedTools: ["/tools/word-counter/", "/tools/character-counter/", "/tools/free-clipboard/"]
+related_tools: [word-counter, character-counter, free-clipboard]
 schema_type: Article
 ---
 

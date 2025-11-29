@@ -10,7 +10,7 @@ keywords: password security, strong passwords, password best practices, secure p
 image: /assets/images/blog/password-security-guide.webp
 featured: true
 readTime: 8
-relatedTools: ["/tools/password-generator/"]
+related_tools: [password-generator, hash-generator, uuid-generator]
 schema_type: Article
 ---
 

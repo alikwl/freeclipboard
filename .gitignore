@@ -5,3 +5,31 @@ Gemfile.lock
 node_modules
 .DS_Store
 vendor
+
+# Kiro specs and documentation
+.kiro/
+
+# Documentation files (not needed on live site)
+*_COMPLETE.md
+*_GUIDE.md
+*_SUMMARY.md
+*_CHECKLIST.md
+*_IMPLEMENTATION*.md
+*_FIXED.md
+*_STATUS.md
+*_DOCS.md
+*_REFERENCE.md
+*_AUDIT*.md
+CLEANUP_*.md
+DEPLOYMENT_*.md
+GIT_*.md
+PROJECT_*.md
+QUICK_*.md
+SEO_*.md
+SITE_*.md
+TOOLS_*.md
+VERIFICATION_*.md
+VISUAL_*.md
+
+# Test files
+test-*.html

@@ -15,7 +15,8 @@
   const body = document.body;
 
   if (mobileMenuToggle && mobileMenu) {
-    mobileMenuToggle.addEventListener('click', function() {
+    mobileMenuToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
       const isExpanded = this.getAttribute('aria-expanded') === 'true';
       
       // Toggle states
@@ -31,13 +32,21 @@
       }
     });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+    // Close mobile menu when clicking on the overlay
+    mobileMenu.addEventListener('click', function(e) {
+      if (e.target === mobileMenu) {
+        mobileMenuToggle.click();
+      }
+    });
+
+    // Close mobile menu when clicking a link
+    const mobileMenuLinks = mobileMenu.querySelectorAll('.mobile-menu-item');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', function() {
         if (mobileMenuToggle.getAttribute('aria-expanded') === 'true') {
           mobileMenuToggle.click();
         }
-      }
+      });
     });
 
     // Close mobile menu on window resize to desktop

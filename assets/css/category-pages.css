@@ -1,0 +1,1967 @@
+/* =========================================
+   CATEGORY PAGES GLOBAL STYLING
+   Consistent, professional styling for all tool category pages
+   ========================================= */
+
+/* Category Hero Section */
+.category-hero {
+  background: var(--gradient-hero);
+  color: var(--white);
+  padding: 4rem 2rem;
+  margin-bottom: 3rem;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 0;
+}
+
+.category-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.05)"/></svg>');
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1.5rem;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.badge-icon {
+  font-size: 1.5rem;
+}
+
+.badge-text {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.category-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #FFFFFF;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3), 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: #FFFFFF;
+  margin-bottom: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.25);
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin: 2.5rem 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item strong {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+  color: #FFFFFF;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.stat-item span {
+  font-size: 0.95rem;
+  color: #FFFFFF;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn-lg {
+  padding: 16px 40px;
+  font-size: 1.1rem;
+}
+
+/* Tools Category Section */
+.tools-category-section {
+  padding: 3rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.section-header p {
+  font-size: 1.2rem;
+  color: var(--gray);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Enhanced Tools Grid */
+.enhanced-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.enhanced-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.enhanced-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  border-color: var(--primary);
+}
+
+.tool-card-visual {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
+  border-bottom: 2px solid var(--border);
+}
+
+.tool-icon-large {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+}
+
+.tool-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+}
+
+.badge-featured {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+  color: #000;
+}
+
+.badge-popular {
+  background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);
+  color: var(--white);
+}
+
+.badge-new {
+  background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+  color: var(--white);
+}
+
+.tool-card-content {
+  padding: 2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tool-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.tool-description {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.tool-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.feature-tag {
+  background: var(--light-gray);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.tool-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.tool-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rating-stars {
+  color: #FFD700;
+  font-size: 0.85rem;
+}
+
+.rating-value {
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.tool-usage {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--gray);
+}
+
+.tool-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.keyword-tag {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--primary);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .keyword-tag {
+  background: rgba(96, 165, 250, 0.15);
+}
+
+.tool-card-footer {
+  padding: 1.5rem 2rem;
+  background: var(--light-gray);
+  border-top: 2px solid var(--border);
+}
+
+.btn-block {
+  width: 100%;
+  text-align: center;
+  display: block;
+}
+
+/* Design Showcase Section */
+.design-showcase {
+  padding: 4rem 0;
+  background: var(--light-gray);
+  margin: 4rem 0;
+  border-radius: 16px;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin: 2rem 0;
+}
+
+.showcase-item {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.showcase-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.showcase-preview {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glassmorphism-demo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.glassmorphism-demo .demo-content {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.neumorphism-demo {
+  background: #e0e5ec;
+}
+
+.neumorphism-demo .demo-content {
+  background: #e0e5ec;
+  box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  color: #333;
+}
+
+.blob-demo {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.blob-demo svg {
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+}
+
+.showcase-info {
+  padding: 2rem;
+}
+
+.showcase-info h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+.showcase-info p {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.showcase-link {
+  color: var(--primary);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.showcase-link:hover {
+  gap: 1rem;
+}
+
+/* Benefits Section */
+.category-benefits {
+  padding: 4rem 0;
+}
+
+.enhanced-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.benefit-item {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.benefit-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--primary);
+}
+
+.benefit-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.benefit-item h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.benefit-item p {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.benefit-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefit-features li {
+  padding: 0.5rem 0;
+  color: var(--gray);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefit-features li::before {
+  content: '✓';
+  color: var(--success);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* How It Works Section */
+.how-it-works-section {
+  padding: 4rem 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  border-radius: 16px;
+  margin: 4rem 0;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.step-item {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  position: relative;
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.step-item:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+}
+
+.step-number {
+  position: absolute;
+  top: -1.5rem;
+  left: 2rem;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.step-content {
+  margin-top: 1rem;
+}
+
+.step-content h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+.step-content p {
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* Use Cases Section */
+.use-cases-section {
+  padding: 4rem 0;
+}
+
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.use-case-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.use-case-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--primary);
+}
+
+.use-case-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.use-case-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+.use-case-card p {
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 4rem 0;
+  background: var(--light-gray);
+  border-radius: 16px;
+  margin: 4rem 0;
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.faq-item {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.faq-item h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+.faq-item p {
+  color: var(--gray);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* CTA Section */
+.cta-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--gradient-badge);
+  border-radius: 16px;
+  margin: 4rem 0;
+  color: var(--white);
+}
+
+.cta-content h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: #FFFFFF;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+}
+
+.cta-content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #FFFFFF;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.2);
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn {
+  min-width: 200px;
+}
+
+.cta-buttons .btn-outline {
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: #FFFFFF;
+  backdrop-filter: blur(10px);
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.cta-buttons .btn-outline:hover {
+  background: #FFFFFF;
+  color: var(--primary);
+  border-color: #FFFFFF;
+  text-shadow: none;
+}
+
+/* Related Categories Section */
+.related-categories {
+  padding: 4rem 0;
+}
+
+.enhanced-category-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.category-link-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.category-link-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  border-color: var(--primary);
+}
+
+.category-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.category-icon {
+  font-size: 2.5rem;
+}
+
+.category-badge {
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.category-link-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+}
+
+.category-link-card p {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.category-tools-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.category-tools-list span {
+  background: var(--light-gray);
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+.category-link-arrow {
+  color: var(--primary);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.category-link-card:hover .category-link-arrow {
+  gap: 1rem;
+}
+
+.view-all-categories {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* Simple Category Page Styles (for pages without full hero) */
+.page-header {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  border: 2px solid var(--border);
+  position: relative;
+}
+
+.page-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.page-header h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.page-header .lead {
+  font-size: 1.25rem;
+  color: var(--gray);
+  margin-bottom: 1rem;
+}
+
+.category-description {
+  font-size: 1.05rem;
+  color: var(--gray);
+  max-width: 800px;
+  margin: 0 auto 0.5rem;
+  line-height: 1.6;
+}
+
+.category-count {
+  font-size: 1.1rem;
+  color: var(--primary);
+  margin-top: 0.5rem;
+}
+
+/* Standard Tools Grid (for simpler pages) */
+.tools-category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.tools-category-grid .tool-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+
+.tools-category-grid .tool-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  border-color: var(--primary);
+}
+
+.tools-category-grid .tool-card.featured {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+}
+
+.tools-category-grid .tool-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.tools-category-grid .tool-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.tools-category-grid .tool-card p {
+  color: var(--gray);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.tools-category-grid .card-link {
+  color: var(--primary);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.tools-category-grid .tool-card:hover .card-link {
+  gap: 1rem;
+}
+
+/* Category Description Section */
+.category-description {
+  background: var(--white);
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin: 3rem 0;
+  border: 1px solid var(--border);
+}
+
+.category-description h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+.category-description h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: var(--dark);
+}
+
+.category-description p {
+  color: var(--gray);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+}
+
+.category-description ul {
+  margin: 1.5rem 0 2rem 2rem;
+  color: var(--gray);
+  line-height: 1.8;
+}
+
+.category-description li {
+  margin-bottom: 0.75rem;
+}
+
+.category-description strong {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN FOR CATEGORY PAGES
+   ========================================= */
+
+/* Tablet Breakpoint (max-width: 992px) */
+@media (max-width: 992px) {
+  .category-hero h1 {
+    font-size: 2.75rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+  
+  .hero-stats {
+    gap: 2rem;
+  }
+  
+  .stat-item strong {
+    font-size: 2rem;
+  }
+  
+  /* Tool grids: 2 column layout */
+  .enhanced-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .tools-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Section grids: 2 column layout where appropriate */
+  .enhanced-benefits,
+  .showcase-grid,
+  .steps-grid,
+  .use-cases-grid,
+  .faq-grid,
+  .enhanced-category-links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Adjusted font sizes */
+  .section-header h2 {
+    font-size: 2.25rem;
+  }
+  
+  .benefit-item h3,
+  .use-case-card h3,
+  .showcase-info h3 {
+    font-size: 1.3rem;
+  }
+  
+  /* Adjusted spacing */
+  .benefit-item,
+  .use-case-card,
+  .step-item,
+  .faq-item {
+    padding: 1.75rem;
+  }
+}
+
+/* Mobile Breakpoint (max-width: 768px) */
+@media (max-width: 768px) {
+  /* Hero sections: single column, stacked stats, full-width buttons */
+  .category-hero {
+    padding: 3rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .category-hero h1 {
+    font-size: 2.25rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+  
+  .hero-stats {
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  .stat-item strong {
+    font-size: 2.25rem;
+  }
+  
+  .hero-cta {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .btn-lg {
+    width: 100%;
+    padding: 14px 32px;
+  }
+  
+  /* Page header adjustments */
+  .page-header {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2.25rem;
+  }
+  
+  .page-header .lead {
+    font-size: 1.1rem;
+  }
+  
+  /* Typography: reduced font sizes */
+  .section-header h2 {
+    font-size: 2rem;
+  }
+  
+  .section-header p {
+    font-size: 1.05rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+  
+  .cta-content p {
+    font-size: 1.05rem;
+  }
+  
+  /* Tool grids: single column layout */
+  .enhanced-grid,
+  .tools-category-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* All section grids: single column layout */
+  .enhanced-benefits,
+  .showcase-grid,
+  .steps-grid,
+  .use-cases-grid,
+  .faq-grid,
+  .enhanced-category-links {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Padding: reduced spacing */
+  .design-showcase,
+  .how-it-works-section,
+  .faq-section {
+    padding: 3rem 0;
+    margin: 3rem 0;
+  }
+  
+  .category-benefits,
+  .use-cases-section,
+  .related-categories {
+    padding: 3rem 0;
+  }
+  
+  .cta-section {
+    padding: 3rem 1.5rem;
+    margin: 3rem 0;
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .cta-buttons .btn {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .category-description {
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+  }
+  
+  /* Tool card adjustments */
+  .tool-card-content {
+    padding: 1.75rem;
+  }
+  
+  .tool-card-footer {
+    padding: 1.25rem 1.75rem;
+  }
+  
+  /* Benefit and feature cards */
+  .benefit-item,
+  .use-case-card,
+  .step-item,
+  .faq-item,
+  .category-link-card {
+    padding: 1.75rem;
+  }
+  
+  .showcase-item {
+    margin-bottom: 0;
+  }
+}
+
+/* Small Mobile Breakpoint (max-width: 480px) */
+@media (max-width: 480px) {
+  /* Hero sections: further reduced */
+  .category-hero {
+    padding: 2rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .category-hero h1 {
+    font-size: 1.875rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .hero-badge {
+    padding: 0.4rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .badge-icon {
+    font-size: 1.25rem;
+  }
+  
+  .badge-text {
+    font-size: 0.85rem;
+  }
+  
+  .hero-stats {
+    gap: 1.25rem;
+    margin: 1.5rem 0;
+  }
+  
+  .stat-item strong {
+    font-size: 2rem;
+  }
+  
+  .stat-item span {
+    font-size: 0.875rem;
+  }
+  
+  .hero-cta {
+    gap: 0.625rem;
+  }
+  
+  .btn-lg {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+  
+  /* Page header */
+  .page-header {
+    padding: 2rem 1rem;
+  }
+  
+  .page-header h1 {
+    font-size: 1.875rem;
+  }
+  
+  .page-header .lead {
+    font-size: 1rem;
+  }
+  
+  /* Further reduced font sizes */
+  .section-header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .section-header p {
+    font-size: 1rem;
+  }
+  
+  .cta-content h2 {
+    font-size: 1.75rem;
+  }
+  
+  .cta-content p {
+    font-size: 1rem;
+  }
+  
+  /* Minimum padding */
+  .design-showcase,
+  .how-it-works-section,
+  .faq-section {
+    padding: 2.5rem 0;
+    margin: 2.5rem 0;
+  }
+  
+  .category-benefits,
+  .use-cases-section,
+  .related-categories {
+    padding: 2.5rem 0;
+  }
+  
+  .cta-section {
+    padding: 2.5rem 1rem;
+    margin: 2.5rem 0;
+  }
+  
+  .category-description {
+    padding: 1.5rem 1rem;
+    margin: 1.5rem 0;
+  }
+  
+  /* Tool cards: optimized touch targets (44x44px minimum) */
+  .tool-card-visual {
+    padding: 2rem 1.5rem;
+  }
+  
+  .tool-icon-large {
+    font-size: 3rem;
+  }
+  
+  .tool-badge {
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.4rem 0.875rem;
+    font-size: 0.8rem;
+  }
+  
+  .tool-card-content {
+    padding: 1.5rem;
+  }
+  
+  .tool-title {
+    font-size: 1.375rem;
+  }
+  
+  .tool-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .tool-features {
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+  
+  .feature-tag {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .tool-meta {
+    gap: 1.25rem;
+    font-size: 0.85rem;
+  }
+  
+  .tool-keywords {
+    gap: 0.4rem;
+  }
+  
+  .keyword-tag {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+  }
+  
+  .tool-card-footer {
+    padding: 1.25rem 1.5rem;
+  }
+  
+  .tool-card-footer .btn {
+    padding: 12px 20px;
+    font-size: 0.95rem;
+    min-height: 44px;
+  }
+  
+  /* Simplified layouts for benefit and feature cards */
+  .benefit-item,
+  .use-case-card,
+  .step-item,
+  .faq-item,
+  .category-link-card {
+    padding: 1.5rem;
+  }
+  
+  .benefit-icon,
+  .use-case-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.875rem;
+  }
+  
+  .benefit-item h3,
+  .use-case-card h3,
+  .step-content h3,
+  .faq-item h3,
+  .category-link-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.625rem;
+  }
+  
+  .benefit-item p,
+  .use-case-card p,
+  .step-content p,
+  .faq-item p,
+  .category-link-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .benefit-features li {
+    font-size: 0.9rem;
+    padding: 0.4rem 0;
+  }
+  
+  /* Step numbers */
+  .step-number {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.25rem;
+    top: -1.25rem;
+    left: 1.5rem;
+  }
+  
+  .step-content {
+    margin-top: 0.75rem;
+  }
+  
+  /* Showcase adjustments */
+  .showcase-preview {
+    height: 180px;
+    padding: 1.5rem;
+  }
+  
+  .showcase-info {
+    padding: 1.5rem;
+  }
+  
+  .showcase-info h3 {
+    font-size: 1.25rem;
+  }
+  
+  .showcase-info p {
+    font-size: 0.95rem;
+  }
+  
+  /* Category link cards */
+  .category-icon {
+    font-size: 2.25rem;
+  }
+  
+  .category-badge {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+  }
+  
+  .category-tools-list {
+    gap: 0.4rem;
+  }
+  
+  .category-tools-list span {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  /* Ensure all interactive elements meet 44x44px minimum */
+  .btn,
+  button,
+  a.btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 20px;
+  }
+  
+  .icon-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+  }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .category-hero {
+  background: var(--gradient-hero);
+}
+
+[data-theme="dark"] .page-header {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border-color: #374151;
+}
+
+[data-theme="dark"] .enhanced-card,
+[data-theme="dark"] .tools-category-grid .tool-card,
+[data-theme="dark"] .benefit-item,
+[data-theme="dark"] .showcase-item,
+[data-theme="dark"] .step-item,
+[data-theme="dark"] .use-case-card,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .category-link-card,
+[data-theme="dark"] .category-description {
+  background: #1E293B;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .tool-card-visual {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border-color: #374151;
+}
+
+[data-theme="dark"] .tool-card-footer {
+  background: #0F172A;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .design-showcase,
+[data-theme="dark"] .how-it-works-section,
+[data-theme="dark"] .faq-section {
+  background: #0F172A;
+}
+
+[data-theme="dark"] .feature-tag,
+[data-theme="dark"] .category-tools-list span {
+  background: #0F172A;
+}
+
+[data-theme="dark"] .cta-section {
+  background: var(--gradient-badge);
+}
+
+/* Print Styles */
+@media print {
+  .category-hero,
+  .cta-section,
+  .related-categories {
+    display: none;
+  }
+  
+  .tools-category-grid,
+  .enhanced-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================
+   TOOLS DIRECTORY PAGE SPECIFIC STYLES
+   ========================================= */
+
+/* Tools Directory Hero */
+.tools-directory-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Quick Navigation Section */
+.quick-nav-section {
+  padding: 3rem 0;
+  background: var(--light-gray);
+  border-radius: 16px;
+  margin: 3rem 0;
+}
+
+.quick-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.quick-nav-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  border: 2px solid var(--border);
+  text-align: center;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.quick-nav-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  border-color: var(--primary);
+}
+
+.quick-nav-icon {
+  font-size: 3rem;
+}
+
+.quick-nav-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--dark);
+}
+
+.quick-nav-count {
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-weight: 600;
+}
+
+/* All Tools Section */
+.all-tools-section {
+  padding: 2rem 0;
+}
+
+.tool-category-section {
+  margin-bottom: 5rem;
+  scroll-margin-top: 100px; /* For smooth scroll with fixed header */
+}
+
+.category-section-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid var(--border);
+}
+
+.category-title-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-title-group h2 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--dark);
+}
+
+.category-count-badge {
+  background: var(--primary);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.category-section-header .category-description {
+  font-size: 1.1rem;
+  color: var(--gray);
+  margin: 0.5rem 0 1rem;
+  line-height: 1.6;
+}
+
+.category-page-link {
+  color: var(--primary);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.category-page-link:hover {
+  gap: 1rem;
+  text-decoration: underline;
+}
+
+.back-to-top {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border);
+}
+
+/* Tools Directory CTA */
+.tools-directory-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Responsive Design for Tools Directory */
+@media (max-width: 992px) {
+  /* Quick nav: 2 column layout */
+  .quick-nav-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  
+  .quick-nav-card {
+    padding: 1.75rem 1.5rem;
+  }
+  
+  .quick-nav-icon {
+    font-size: 2.75rem;
+  }
+  
+  .quick-nav-card h3 {
+    font-size: 1rem;
+  }
+  
+  .category-title-group h2 {
+    font-size: 2rem;
+  }
+  
+  .category-section-header .category-description {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Quick nav: 2 column layout on mobile */
+  .quick-nav-section {
+    padding: 2.5rem 0;
+    margin: 2.5rem 0;
+  }
+  
+  .quick-nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .quick-nav-card {
+    padding: 1.5rem;
+  }
+  
+  .quick-nav-icon {
+    font-size: 2.5rem;
+  }
+  
+  .quick-nav-card h3 {
+    font-size: 0.95rem;
+  }
+  
+  .quick-nav-count {
+    font-size: 0.85rem;
+  }
+  
+  /* Category sections */
+  .tool-category-section {
+    margin-bottom: 4rem;
+  }
+  
+  .category-section-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.25rem;
+  }
+  
+  .category-title-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  
+  .category-title-group h2 {
+    font-size: 1.75rem;
+  }
+  
+  .category-count-badge {
+    padding: 0.4rem 0.875rem;
+    font-size: 0.85rem;
+  }
+  
+  .category-section-header .category-description {
+    font-size: 1rem;
+  }
+  
+  .category-page-link {
+    font-size: 0.95rem;
+  }
+  
+  .back-to-top {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Quick nav: single column on small mobile */
+  .quick-nav-section {
+    padding: 2rem 0;
+    margin: 2rem 0;
+  }
+  
+  .quick-nav-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+  
+  .quick-nav-card {
+    padding: 1.25rem;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 1rem;
+  }
+  
+  .quick-nav-icon {
+    font-size: 2.25rem;
+  }
+  
+  .quick-nav-card h3 {
+    font-size: 0.95rem;
+    text-align: left;
+  }
+  
+  .quick-nav-count {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+  
+  /* Category sections */
+  .tool-category-section {
+    margin-bottom: 3.5rem;
+  }
+  
+  .category-section-header {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+  }
+  
+  .category-title-group h2 {
+    font-size: 1.5rem;
+  }
+  
+  .category-count-badge {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .category-section-header .category-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .category-page-link {
+    font-size: 0.9rem;
+  }
+  
+  .back-to-top {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+  
+  .back-to-top .btn {
+    width: 100%;
+    min-height: 44px;
+  }
+}
+
+/* Dark Theme Support for Tools Directory */
+[data-theme="dark"] .quick-nav-section {
+  background: #0F172A;
+}
+
+[data-theme="dark"] .quick-nav-card {
+  background: #1E293B;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .category-section-header {
+  border-color: #374151;
+}
+
+[data-theme="dark"] .back-to-top {
+  border-color: #374151;
+}
+
+[data-theme="dark"] .tools-directory-cta {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* =========================================
+   CATEGORY PAGES - ANIMATION ENHANCEMENTS
+   Task 7.1 & 7.2 - Ensuring consistency
+   ========================================= */
+
+/* Ensure all category page elements have consistent transitions */
+.category-hero,
+.page-header,
+.tool-card-visual,
+.tool-card-footer,
+.design-showcase,
+.how-it-works-section,
+.faq-section,
+.cta-section {
+  transition: all var(--transition-speed, 0.3s) ease;
+}
+
+/* Tool badge animations */
+.tool-badge {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.enhanced-card:hover .tool-badge {
+  transform: scale(1.05);
+}
+
+/* Category badge animations */
+.category-badge,
+.category-count-badge,
+.post-category-badge,
+.blog-category {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.category-badge:hover,
+.category-count-badge:hover {
+  transform: scale(1.05);
+}
+
+/* Hero CTA button animations */
+.hero-cta .btn {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease,
+              background var(--transition-speed, 0.3s) ease;
+}
+
+/* Step number animations */
+.step-number {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.step-item:hover .step-number {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+/* Category tools list animations */
+.category-tools-list span {
+  transition: background var(--transition-speed, 0.3s) ease,
+              transform var(--transition-speed, 0.3s) ease;
+}
+
+.category-tools-list span:hover {
+  transform: translateY(-2px);
+  background: rgba(59, 130, 246, 0.15);
+}
+
+/* Showcase demo content animations */
+.demo-content {
+  transition: transform var(--transition-speed, 0.3s) ease;
+}
+
+.showcase-item:hover .demo-content {
+  transform: scale(1.02);
+}
+
+/* Benefit features list animations */
+.benefit-features li {
+  transition: padding-left var(--transition-speed, 0.3s) ease,
+              color var(--transition-speed, 0.3s) ease;
+}
+
+.benefit-item:hover .benefit-features li {
+  padding-left: 0.5rem;
+}
+
+/* Hero stats animations */
+.hero-stats .stat-item {
+  transition: transform var(--transition-speed, 0.3s) ease;
+}
+
+.hero-stats .stat-item:hover {
+  transform: scale(1.05);
+}
+
+/* Quick nav animations for tools directory */
+.quick-nav-card {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease;
+}
+
+.quick-nav-icon {
+  transition: transform var(--transition-speed, 0.3s) ease;
+}
+
+.quick-nav-card:hover .quick-nav-icon {
+  transform: scale(1.1);
+}
+
+/* =========================================
+   PREFERS-REDUCED-MOTION FOR CATEGORY PAGES
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all category page animations */
+  .category-hero,
+  .page-header,
+  .tool-card-visual,
+  .tool-card-footer,
+  .design-showcase,
+  .how-it-works-section,
+  .faq-section,
+  .cta-section,
+  .tool-badge,
+  .category-badge,
+  .category-count-badge,
+  .step-number,
+  .demo-content,
+  .quick-nav-icon {
+    transition: none !important;
+  }
+  
+  /* Remove transform effects */
+  .enhanced-card:hover .tool-badge,
+  .step-item:hover .step-number,
+  .showcase-item:hover .demo-content,
+  .hero-stats .stat-item:hover,
+  .quick-nav-card:hover .quick-nav-icon,
+  .category-tools-list span:hover {
+    transform: none !important;
+  }
+  
+  /* Use opacity for hover feedback instead */
+  .enhanced-card:hover .tool-badge,
+  .step-item:hover .step-number,
+  .category-badge:hover,
+  .category-count-badge:hover {
+    opacity: 0.85;
+  }
+}

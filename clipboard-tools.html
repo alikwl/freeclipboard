@@ -1,57 +1,451 @@
 ---
 layout: default
-title: Clipboard Tools - Free Online Clipboard Manager & Text Tools
-description: Free clipboard management tools including clipboard manager, text storage, and copy-paste utilities. Store unlimited clipboard items with smart organization.
-keywords: clipboard manager, clipboard tools, text storage, copy paste tools, clipboard history
-schema_type: WebApplication
+title: Clipboard & Text Tools - Free Clipboard Manager, Word Counter & Character Counter
+description: Professional clipboard and text analysis tools including clipboard manager, word counter, and character counter. Manage text efficiently with real-time analysis.
+keywords: clipboard tools, clipboard manager, word counter, character counter, text analysis tools, copy paste manager
+schema_type: CollectionPage
 ---
 
-<div class="page-header">
-  <h1>📋 Clipboard Tools</h1>
-  <p class="lead">Manage your clipboard efficiently with our free online tools</p>
-</div>
+<section class="category-hero clipboard-hero" aria-labelledby="hero-title">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge" role="img" aria-label="Clipboard and Text Tools Category">
+        <span class="badge-icon" aria-hidden="true">📋</span>
+        <span class="badge-text">Clipboard & Text Tools</span>
+      </div>
+      <h1 id="hero-title">Professional Clipboard & Text Analysis</h1>
+      <p class="hero-subtitle">Manage your clipboard history, count words and characters, and analyze text with powerful tools. Perfect for writers, developers, and content creators.</p>
+      
+      <div class="hero-stats" role="list" aria-label="Category statistics">
+        <div class="stat-item" role="listitem">
+          <strong>3</strong>
+          <span>Clipboard Tools</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <strong>98K+</strong>
+          <span>Monthly Users</span>
+        </div>
+        <div class="stat-item" role="listitem">
+          <strong>100%</strong>
+          <span>Free Forever</span>
+        </div>
+      </div>
+      
+      <nav class="hero-cta" aria-label="Hero navigation">
+        <a href="#tools" class="btn btn-primary btn-lg" aria-label="Jump to tools section">Explore Tools</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg" aria-label="Learn how clipboard tools work">Learn More</a>
+      </nav>
+    </div>
+  </div>
+</section>
 
-{% include ads.html %}
+<section class="tools-category-section" id="tools" aria-labelledby="tools-heading">
+  <div class="container">
+    <header class="section-header">
+      <h2 id="tools-heading"><span aria-hidden="true">📋</span> Clipboard Tools Collection</h2>
+      <p>Professional tools for managing clipboard and analyzing text</p>
+    </header>
+    
+    {% assign clipboardTools = site.data.tools-metadata.tools | where: 'category', 'clipboard' | sort: 'name' %}
+    
+    <div class="tools-grid enhanced-grid">
+      {% for tool in clipboardTools %}
+        <article class="tool-card enhanced-card">
+          <div class="tool-card-visual">
+            <div class="tool-icon-large">{{ tool.icon }}</div>
+            {% if tool.featured %}
+              <span class="tool-badge badge-featured">⭐ Featured</span>
+            {% elsif tool.popular %}
+              <span class="tool-badge badge-popular">🔥 Popular</span>
+            {% elsif tool.new %}
+              <span class="tool-badge badge-new">✨ New</span>
+            {% endif %}
+          </div>
+          
+          <div class="tool-card-content">
+            <h3 class="tool-title">{{ tool.name }}</h3>
+            <p class="tool-description">{{ tool.description }}</p>
+            
+            <div class="tool-features">
+              <span class="feature-tag">✓ Real-time Analysis</span>
+              <span class="feature-tag">✓ Privacy First</span>
+              <span class="feature-tag">✓ Easy to Use</span>
+            </div>
+            
+            <div class="tool-meta">
+              {% if tool.rating %}
+                <span class="tool-rating">
+                  <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-value">{{ tool.rating }}</span>
+                </span>
+              {% endif %}
+              {% if tool.usageCount %}
+                <span class="tool-usage">
+                  <span class="usage-icon">👥</span>
+                  {{ tool.usageCount | divided_by: 1000 }}K+ uses
+                </span>
+              {% endif %}
+            </div>
+            
+            <div class="tool-keywords">
+              {% for keyword in tool.keywords limit:4 %}
+                <span class="keyword-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="tool-card-footer">
+            <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block" aria-label="Try {{ tool.name }} tool">
+              Try {{ tool.name }} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-<div class="tools-category-grid">
-  <a href="{{ site.baseurl }}/tools/free-clipboard/" class="tool-card featured">
-    <div class="tool-icon">📋</div>
-    <h3>Free Clipboard Manager</h3>
-    <p>Store unlimited clipboard items with smart organization, search, categories, and favorites. Never lose your copied text again.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- Clipboard Showcase Section -->
+<section class="design-showcase">
+  <div class="container">
+    <div class="section-header">
+      <h2>✨ What You Can Do</h2>
+      <p>Powerful features to boost your productivity</p>
+    </div>
+    
+    <div class="showcase-grid">
+      <div class="showcase-item">
+        <div class="showcase-preview glassmorphism-demo">
+          <div class="demo-content">
+            <h4>📋 Clipboard Manager</h4>
+            <p>Store unlimited items</p>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Manage Clipboard History</h3>
+          <p>Store, organize, and search through unlimited clipboard items with smart categorization, favorites, and export capabilities.</p>
+          <a href="{{ site.baseurl }}/tools/free-clipboard/" class="showcase-link">Try Clipboard Manager →</a>
+        </div>
+      </div>
+      
+      <div class="showcase-item">
+        <div class="showcase-preview neumorphism-demo">
+          <div class="demo-content">
+            <h4>📝 Word Counter</h4>
+            <p>Real-time analysis</p>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Count Words & Characters</h3>
+          <p>Get instant word count, character count, sentence count, paragraph count, and reading time estimates.</p>
+          <a href="{{ site.baseurl }}/tools/word-counter/" class="showcase-link">Try Word Counter →</a>
+        </div>
+      </div>
+      
+      <div class="showcase-item">
+        <div class="showcase-preview blob-demo">
+          <div class="demo-content" style="padding: 2rem; text-align: center;">
+            <div style="font-size: 3rem; font-weight: bold; color: #667eea;">1,234</div>
+            <p style="margin: 0; color: #666;">Characters</p>
+          </div>
+        </div>
+        <div class="showcase-info">
+          <h3>Detailed Character Analysis</h3>
+          <p>Analyze text with detailed character statistics including letters, numbers, special characters, and more.</p>
+          <a href="{{ site.baseurl }}/tools/character-counter/" class="showcase-link">Try Character Counter →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/invisible-character/" class="tool-card">
-    <div class="tool-icon">🫥</div>
-    <h3>Invisible Character for Instagram</h3>
-    <p>Copy zero‑width invisible characters to create blank lines in bios and captions. Multiple variants for reliability.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<section class="category-benefits" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>💎 Why Choose Our Clipboard Tools?</h2>
+      <p>Everything you need to manage text efficiently</p>
+    </div>
+    
+    <div class="benefits-grid enhanced-benefits">
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <h3>Real-Time Analysis</h3>
+        <p>Get instant feedback as you type with live word count, character count, and text statistics. No delays, no waiting.</p>
+        <ul class="benefit-features">
+          <li>Instant updates</li>
+          <li>Live statistics</li>
+          <li>Real-time preview</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📋</div>
+        <h3>Unlimited Storage</h3>
+        <p>Store unlimited clipboard items with smart organization, search, and categorization features.</p>
+        <ul class="benefit-features">
+          <li>No storage limits</li>
+          <li>Smart search</li>
+          <li>Easy organization</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🎯</div>
+        <h3>Professional Features</h3>
+        <p>Advanced features like favorites, export/import, reading time estimates, and detailed text analysis.</p>
+        <ul class="benefit-features">
+          <li>Favorite items</li>
+          <li>Export/Import data</li>
+          <li>Reading time</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🆓</div>
+        <h3>100% Free Forever</h3>
+        <p>All tools are completely free with no limitations. Use in any project, personal or commercial.</p>
+        <ul class="benefit-features">
+          <li>No registration required</li>
+          <li>Unlimited usage</li>
+          <li>No hidden costs</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>All processing happens in your browser. Your text and clipboard data never leave your device.</p>
+        <ul class="benefit-features">
+          <li>No data collection</li>
+          <li>Works offline</li>
+          <li>100% secure</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Use our tools on any device - desktop, tablet, or mobile. Fully responsive design.</p>
+        <ul class="benefit-features">
+          <li>Touch optimized</li>
+          <li>Responsive layout</li>
+          <li>Works everywhere</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/word-counter/" class="tool-card">
-    <div class="tool-icon">📝</div>
-    <h3>Word Counter</h3>
-    <p>Count words, characters, sentences, and reading time in real-time. Perfect for writers and content creators.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🚀 How It Works</h2>
+      <p>Manage your clipboard and analyze text in three simple steps</p>
+    </div>
+    
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Choose Your Tool</h3>
+          <p>Select from clipboard manager, word counter, or character counter based on your needs.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Add or Paste Text</h3>
+          <p>Copy items to clipboard manager or paste text into counters for instant analysis with real-time updates.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Manage & Analyze</h3>
+          <p>Organize clipboard items, view detailed statistics, and export data as needed for your workflow.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/character-counter/" class="tool-card">
-    <div class="tool-icon">🔢</div>
-    <h3>Character Counter</h3>
-    <p>Count characters, letters, numbers, and special characters in your text with detailed statistics.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-</div>
+<!-- Use Cases Section -->
+<section class="use-cases-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>💼 Perfect For</h2>
+      <p>Who benefits from our clipboard tools?</p>
+    </div>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">✍️</div>
+        <h3>Writers & Authors</h3>
+        <p>Track word count, meet writing goals, and manage multiple text snippets efficiently.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">👨‍💻</div>
+        <h3>Developers</h3>
+        <p>Store code snippets, manage clipboard history, and quickly access frequently used text.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">📝</div>
+        <h3>Content Creators</h3>
+        <p>Optimize content length, track character limits for social media, and manage drafts.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">📚</div>
+        <h3>Students</h3>
+        <p>Meet essay requirements, track assignment length, and organize research notes.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="category-description">
-  <h2>About Clipboard Tools</h2>
-  <p>Our clipboard tools help you manage and organize your copied text efficiently. Whether you need to store multiple clipboard items, count words, or analyze text, we have the perfect tool for you.</p>
-  
-  <h3>Why Use Our Clipboard Tools?</h3>
-  <ul>
-    <li><strong>100% Free:</strong> All tools are completely free with no hidden costs</li>
-    <li><strong>Privacy First:</strong> All processing happens in your browser</li>
-    <li><strong>No Signup:</strong> Start using tools immediately</li>
-    <li><strong>Unlimited Usage:</strong> No limits on how much you can use our tools</li>
-  </ul>
-</div>
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>❓ Frequently Asked Questions</h2>
+      <p>Everything you need to know about our clipboard tools</p>
+    </div>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Are these tools really free?</h3>
+        <p>Yes! All our clipboard and text tools are 100% free with no hidden costs, registration requirements, or usage limits.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is my clipboard data stored on your servers?</h3>
+        <p>No. All data is stored locally in your browser. We never collect, store, or transmit your clipboard items or text.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I export my clipboard history?</h3>
+        <p>Yes! The clipboard manager includes export functionality to save your items as JSON or text files.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How accurate is the word counter?</h3>
+        <p>Very accurate. Our word counter uses industry-standard algorithms to count words, characters, sentences, and paragraphs.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Does the clipboard manager work offline?</h3>
+        <p>Yes! Once loaded, all tools work completely offline. Your data is stored locally in your browser.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the difference between word counter and character counter?</h3>
+        <p>Word counter focuses on words, sentences, and reading time. Character counter provides detailed character-level analysis including letters, numbers, and special characters.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use these tools on mobile?</h3>
+        <p>Absolutely! All tools are fully responsive and work perfectly on smartphones and tablets.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How many items can I store in clipboard manager?</h3>
+        <p>There's no hard limit. Storage depends on your browser's local storage capacity, which is typically several megabytes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section clipboard-cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Boost Your Productivity?</h2>
+      <p>Start using our professional clipboard and text tools now - no signup required!</p>
+      <div class="cta-buttons">
+        <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn btn-primary btn-lg">Try Clipboard Manager</a>
+        <a href="{{ site.baseurl }}/tools/word-counter/" class="btn btn-outline btn-lg">Try Word Counter</a>
+        <a href="{{ site.baseurl }}/tools/character-counter/" class="btn btn-outline btn-lg">Try Character Counter</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="related-categories">
+  <div class="container">
+    <div class="section-header">
+      <h2>🔍 Explore More Tools</h2>
+      <p>Discover other categories of professional tools</p>
+    </div>
+    
+    <div class="category-links enhanced-category-links">
+      <a href="{{ site.baseurl }}/text-utilities/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">✍️</span>
+          <span class="category-badge">8 Tools</span>
+        </div>
+        <h3>Text Utilities</h3>
+        <p>Format, encode, decode, count, and process text with powerful utilities</p>
+        <div class="category-tools-list">
+          <span>Text Formatter</span>
+          <span>JSON Formatter</span>
+          <span>Base64 Encoder</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/design-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🎨</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Design & CSS Tools</h3>
+        <p>Create glassmorphism, neumorphism, and organic SVG blob shapes</p>
+        <div class="category-tools-list">
+          <span>Glassmorphism</span>
+          <span>Neumorphism</span>
+          <span>SVG Blobs</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/image-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🖼️</span>
+          <span class="category-badge">5 Tools</span>
+        </div>
+        <h3>Image & Visual Tools</h3>
+        <p>Convert images, generate QR codes, resize for social media, and pick colors</p>
+        <div class="category-tools-list">
+          <span>Image Converter</span>
+          <span>QR Generator</span>
+          <span>Color Picker</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/generators-security/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🔐</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Generators & Security</h3>
+        <p>Generate passwords, hashes, UUIDs, and secure random data</p>
+        <div class="category-tools-list">
+          <span>Password Generator</span>
+          <span>Hash Generator</span>
+          <span>UUID Generator</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+    </div>
+    
+    <div class="view-all-categories">
+      <a href="{{ site.baseurl }}/all-tools/" class="btn btn-secondary btn-lg">View All 35+ Tools →</a>
+    </div>
+  </div>
+</section>

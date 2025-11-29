@@ -1,128 +1,283 @@
 ---
 layout: default
 ---
-<article class="blog-post">
-  <div class="post-breadcrumb">
-    <a href="{{ site.baseurl }}/">Home</a>
-    <span>/</span>
-    <a href="{{ site.baseurl }}/blog/">Blog</a>
-    <span>/</span>
-    <span>{{ page.title }}</span>
-  </div>
 
-  <header class="post-header">
-    {% if page.image %}
-    <div class="post-featured-image">
-      <img src="{{ page.image }}" alt="{{ page.title }}">
-    </div>
-    {% endif %}
+<!-- Breadcrumb Navigation -->
+<nav class="post-breadcrumb" aria-label="Breadcrumb">
+  <ol style="list-style: none; padding: 0; margin: 0; display: flex; gap: 0.5rem;">
+    <li><a href="{{ site.baseurl }}/">Home</a></li>
+    <li aria-hidden="true">/</li>
+    <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
+    <li aria-hidden="true">/</li>
+    <li aria-current="page">{{ page.title }}</li>
+  </ol>
+</nav>
+
+<!-- Blog Post Container with Sidebar Layout -->
+<div class="blog-post-container">
+  
+  <!-- Main Content Area -->
+  <article class="blog-post-main" aria-labelledby="post-title">
     
-    <h1>{{ page.title }}</h1>
-    
-    <div class="post-meta">
-      <span class="post-date">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm1 12H7V7h2v5zm0-6H7V4h2v2z"/>
-        </svg>
-        {{ page.date | date: "%B %d, %Y" }}
-      </span>
-      {% if page.author %}
-      <span class="post-author">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-        </svg>
-        {{ page.author }}
-      </span>
+    <!-- Post Header -->
+    <header class="post-header">
+      {% if page.image %}
+      <div class="post-featured-image">
+        <img src="{{ page.image }}" alt="{{ page.title }}" loading="lazy">
+      </div>
       {% endif %}
-      {% if page.category %}
-      <span class="post-category-badge">{{ page.category }}</span>
+      
+      <h1 id="post-title">{{ page.title }}</h1>
+      
+      <div class="post-meta">
+        <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %d, %Y" }}</time>
+        {% if page.author %}
+        <span class="post-author">By {{ page.author }}</span>
+        {% endif %}
+        {% if page.category %}
+        <span class="post-category-badge">{{ page.category }}</span>
+        {% endif %}
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <div class="post-content">
+      {{ content }}
+    </div>
+
+    <!-- Post Footer -->
+    <footer class="post-footer">
+      {% if page.tags %}
+      <div class="post-tags">
+        <strong>Tags:</strong>
+        {% for tag in page.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
       {% endif %}
-    </div>
-  </header>
+      
+      <div class="post-share">
+        <h3>Share this article</h3>
+        <nav class="share-buttons" aria-label="Social media sharing">
+          <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" class="share-btn twitter" aria-label="Share on Twitter">
+            <span aria-hidden="true">🐦</span> Twitter
+          </a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" rel="noopener" class="share-btn facebook" aria-label="Share on Facebook">
+            <span aria-hidden="true">📘</span> Facebook
+          </a>
+          <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}" target="_blank" rel="noopener" class="share-btn linkedin" aria-label="Share on LinkedIn">
+            <span aria-hidden="true">💼</span> LinkedIn
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </article>
 
-  <div class="post-content">
-    {{ content }}
-  </div>
-
-  <footer class="post-footer">
-    {% if page.tags %}
-    <div class="post-tags">
-      <strong>Tags:</strong>
-      {% for tag in page.tags %}
-      <span class="tag">{{ tag }}</span>
-      {% endfor %}
-    </div>
-    {% endif %}
+  <!-- Sidebar -->
+  <aside class="blog-post-sidebar" aria-label="Blog sidebar">
     
-    <div class="post-share">
-      <h3>Share this article</h3>
-      <div class="share-buttons">
-        <a href="https://twitter.com/intent/tweet?text={{ page.title | url_encode }}&url={{ site.url }}{{ page.url }}" target="_blank" class="share-btn twitter">Twitter</a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}" target="_blank" class="share-btn facebook">Facebook</a>
-        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ site.url }}{{ page.url }}&title={{ page.title | url_encode }}" target="_blank" class="share-btn linkedin">LinkedIn</a>
+    <!-- Table of Contents - Sticky -->
+    <div class="sidebar-widget toc-widget sidebar-sticky">
+      <h3><span aria-hidden="true">📑</span> Table of Contents</h3>
+      <nav class="table-of-contents" id="toc" aria-label="Table of contents">
+        <!-- Generated by JavaScript -->
+      </nav>
+    </div>
+
+    <!-- Related Tools CTA - Scrolls Normally -->
+    {% if page.related_tools %}
+    <div class="sidebar-widget tools-cta-widget">
+      <h3>🛠️ Try These Tools</h3>
+      <div class="tools-cta-list">
+        {% for tool_slug in page.related_tools %}
+          {% for tool in site.data.tools-metadata.tools %}
+            {% if tool.slug == tool_slug %}
+            <a href="{{ site.baseurl }}{{ tool.url }}" class="tool-cta-card">
+              <span class="tool-icon">{{ tool.icon }}</span>
+              <div class="tool-info">
+                <strong>{{ tool.name }}</strong>
+                <span>{{ tool.shortDescription }}</span>
+              </div>
+            </a>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
-  </footer>
-</article>
+    {% endif %}
 
-<aside class="post-sidebar">
-  <div class="sidebar-widget">
-    <h3>Related Tools</h3>
-    <ul class="related-tools-list">
-      {% for tool in site.data.tools limit:5 %}
-      <li><a href="{{ site.baseurl }}{{ tool.url }}">{{ tool.name }}</a></li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div class="sidebar-widget">
-    <h3>Categories</h3>
-    <ul class="category-list">
-      <li><a href="{{ site.baseurl }}/blog/">All Posts</a></li>
-      <li><a href="#">Tutorials</a></li>
-      <li><a href="#">Tips & Tricks</a></li>
-      <li><a href="#">Guides</a></li>
-    </ul>
-  </div>
-</aside>
-
-<div class="related-posts">
-  <h2>You May Also Like</h2>
-  <div class="blog-grid">
-    {% for post in site.posts limit:3 %}
-      {% if post.url != page.url %}
-      <article class="blog-card">
-        {% if post.image %}
-        <div class="blog-image">
-          <img src="{{ post.image }}" alt="{{ post.title }}">
-        </div>
-        {% endif %}
-        <div class="blog-content">
-          <div class="blog-meta">
-            <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
+    <!-- Recent Posts - Scrolls Normally -->
+    <div class="sidebar-widget recent-posts-widget">
+      <h3>📰 Recent Posts</h3>
+      <div class="recent-posts-list">
+        {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | limit: 5 %}
+        {% for post in recent_posts %}
+        <a href="{{ post.url | relative_url }}" class="recent-post-item">
+          {% if post.image %}
+          <div class="recent-post-thumb">
+            <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
           </div>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
-          <a href="{{ post.url | relative_url }}" class="read-more">Read More →</a>
-        </div>
-      </article>
-      {% endif %}
-    {% endfor %}
-  </div>
+          {% endif %}
+          <div class="recent-post-info">
+            <h4>{{ post.title }}</h4>
+            <span class="recent-post-date">{{ post.date | date: "%b %d, %Y" }}</span>
+          </div>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Categories - Scrolls Normally -->
+    <div class="sidebar-widget categories-widget">
+      <h3>📂 Categories</h3>
+      <ul class="category-list">
+        <li><a href="{{ site.baseurl }}/blog/">All Posts</a></li>
+        <li><a href="#">Tutorials</a></li>
+        <li><a href="#">Tips & Tricks</a></li>
+        <li><a href="#">Guides</a></li>
+        <li><a href="#">Productivity</a></li>
+        <li><a href="#">Security</a></li>
+      </ul>
+    </div>
+
+    <!-- Newsletter CTA - Scrolls Normally -->
+    <div class="sidebar-widget newsletter-widget">
+      <h3>📬 Stay Updated</h3>
+      <p>Get the latest tips and tutorials delivered to your inbox.</p>
+      <a href="{{ site.baseurl }}/contact/" class="btn btn-primary btn-block">Subscribe</a>
+    </div>
+
+  </aside>
 </div>
 
-<div class="post-navigation">
+<!-- Related Posts Section -->
+<section class="related-posts" aria-labelledby="related-posts-heading">
+  <div class="container">
+    <h2 id="related-posts-heading"><span aria-hidden="true">📚</span> You May Also Like</h2>
+    <div class="related-posts-grid">
+      {% assign related_count = 0 %}
+      {% for post in site.posts %}
+        {% if post.url != page.url and related_count < 3 %}
+        <article class="blog-card">
+          {% if post.image %}
+          <div class="blog-image">
+            <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy">
+          </div>
+          {% else %}
+          <div class="blog-image">
+            <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+              📝
+            </div>
+          </div>
+          {% endif %}
+          <div class="blog-content">
+            <div class="blog-meta">
+              <span class="blog-date">{{ post.date | date: "%B %d, %Y" }}</span>
+              {% if post.category %}
+              <span class="blog-category">{{ post.category }}</span>
+              {% endif %}
+            </div>
+            <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+            <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <a href="{{ post.url | relative_url }}" class="read-more">Read More</a>
+          </div>
+        </article>
+        {% assign related_count = related_count | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Post Navigation -->
+<nav class="post-navigation" aria-label="Post navigation">
   {% if page.previous.url %}
-  <a href="{{ page.previous.url }}" class="nav-previous">
-    <span class="nav-label">← Previous</span>
+  <a href="{{ page.previous.url }}" class="nav-previous" aria-label="Previous post: {{ page.previous.title }}">
+    <span class="nav-label" aria-hidden="true">← Previous</span>
     <span class="nav-title">{{ page.previous.title }}</span>
   </a>
   {% endif %}
   
   {% if page.next.url %}
-  <a href="{{ page.next.url }}" class="nav-next">
-    <span class="nav-label">Next →</span>
+  <a href="{{ page.next.url }}" class="nav-next" aria-label="Next post: {{ page.next.title }}">
+    <span class="nav-label" aria-hidden="true">Next →</span>
     <span class="nav-title">{{ page.next.title }}</span>
   </a>
   {% endif %}
-</div>
+</nav>
+
+<!-- Table of Contents Generator Script -->
+<script>
+(function() {
+  const content = document.querySelector('.post-content');
+  const toc = document.getElementById('toc');
+  
+  if (!content || !toc) return;
+  
+  const headings = content.querySelectorAll('h2, h3');
+  
+  if (headings.length === 0) {
+    toc.parentElement.style.display = 'none';
+    return;
+  }
+  
+  const tocList = document.createElement('ul');
+  tocList.className = 'toc-list';
+  
+  headings.forEach((heading, index) => {
+    // Add ID to heading if it doesn't have one
+    if (!heading.id) {
+      heading.id = 'heading-' + index;
+    }
+    
+    const li = document.createElement('li');
+    li.className = heading.tagName.toLowerCase() === 'h3' ? 'toc-item toc-sub-item' : 'toc-item';
+    
+    const link = document.createElement('a');
+    link.href = '#' + heading.id;
+    link.textContent = heading.textContent;
+    link.className = 'toc-link';
+    
+    // Smooth scroll
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Update active state
+      document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+    });
+    
+    li.appendChild(link);
+    tocList.appendChild(li);
+  });
+  
+  toc.appendChild(tocList);
+  
+  // Highlight active section on scroll
+  let ticking = false;
+  window.addEventListener('scroll', function() {
+    if (!ticking) {
+      window.requestAnimationFrame(function() {
+        updateActiveSection();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+  
+  function updateActiveSection() {
+    const scrollPos = window.scrollY + 100;
+    
+    headings.forEach((heading) => {
+      const link = toc.querySelector('a[href="#' + heading.id + '"]');
+      if (!link) return;
+      
+      if (heading.offsetTop <= scrollPos && heading.offsetTop + heading.offsetHeight > scrollPos) {
+        document.querySelectorAll('.toc-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  }
+})();
+</script>

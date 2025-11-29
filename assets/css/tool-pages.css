@@ -1,0 +1,1438 @@
+/* =========================================
+   GLOBAL TOOL PAGES STYLING
+   Enhanced, consistent styling for all tool pages
+   ========================================= */
+
+/* Tool Page Container */
+.tool-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Enhanced Tool Header */
+.tool-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 3rem 2rem;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  border-radius: 16px;
+  border: 2px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.tool-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.tool-header h1 {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.tool-header .lead {
+  font-size: 1.25rem;
+  color: var(--gray);
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Tool Interface - Main Working Area */
+.tool-interface {
+  background: var(--white);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;
+  border: 1px solid var(--border);
+}
+
+/* Tool Wrapper for Internal Sections */
+.tool-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Mode Toggle / Tab Switcher */
+.mode-toggle,
+.qr-type-selector {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--light-gray);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.toggle-btn,
+.type-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--gray);
+}
+
+.toggle-btn.active,
+.type-btn.active {
+  background: var(--white);
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.15);
+}
+
+.toggle-btn:hover:not(.active),
+.type-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.5);
+  color: var(--dark);
+}
+
+/* Input Areas */
+.input-area {
+  margin-bottom: 2rem;
+}
+
+.input-area label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--dark);
+  font-size: 1.05rem;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* Enhanced Textarea & Inputs */
+.input-area textarea,
+.input-area input[type="text"],
+.input-area input[type="url"],
+.input-area input[type="email"],
+.input-area input[type="tel"],
+.input-area input[type="number"] {
+  width: 100%;
+  padding: 16px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  transition: all 0.3s ease;
+  background: var(--white);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.input-area textarea {
+  min-height: 200px;
+  resize: vertical;
+  background: linear-gradient(to bottom, var(--white) 0%, #FAFBFC 100%);
+}
+
+.input-area textarea:focus,
+.input-area input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.input-area textarea:hover:not(:focus),
+.input-area input:hover:not(:focus) {
+  border-color: #93C5FD;
+}
+
+/* Output Section */
+.output-section textarea {
+  background: var(--light-gray);
+  cursor: default;
+}
+
+/* Card-Based Sections */
+.password-display-card,
+.password-options-card,
+.password-history-card,
+.bulk-generate-card,
+.qr-input-section,
+.qr-options,
+.qr-output,
+.conversion-controls,
+.preview-section {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border: 1px solid var(--border);
+  margin-bottom: 2rem;
+}
+
+/* Section Headers within Cards */
+.password-display-card h3,
+.password-options-card h3,
+.password-history-card h3,
+.bulk-generate-card h3,
+.qr-options h3,
+.qr-output h3,
+.conversion-controls h3,
+.preview-section h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+/* Password Generator Specific */
+.password-output-wrapper {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.password-output {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1.5rem;
+  background: var(--light-gray);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  word-break: break-all;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+}
+
+.password-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.password-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-icon {
+  background: var(--light-gray);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-icon:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-icon svg {
+  display: block;
+}
+
+/* Strength Indicator */
+.strength-indicator {
+  margin-top: 1.5rem;
+}
+
+.strength-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.strength-label {
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.strength-text {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.strength-meter {
+  height: 8px;
+  background: var(--light-gray);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.strength-bar {
+  height: 100%;
+  width: 0%;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.strength-details {
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+}
+
+/* Presets */
+.password-presets {
+  margin-bottom: 2rem;
+}
+
+.password-presets h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.preset-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.preset-btn {
+  padding: 12px 20px;
+  background: var(--light-gray);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--dark);
+}
+
+.preset-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+/* Option Groups */
+.option-group {
+  margin-bottom: 2rem;
+}
+
+.option-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.option-hint {
+  font-size: 0.85rem;
+  color: var(--gray);
+  font-style: italic;
+}
+
+/* Slider */
+.slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: var(--border);
+  outline: none;
+  -webkit-appearance: none;
+  margin: 1rem 0;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.length-markers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--gray);
+  margin-top: 0.5rem;
+}
+
+/* Character Options */
+.character-options {
+  margin: 2rem 0;
+}
+
+.character-options h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.checkbox-card {
+  display: block;
+  cursor: pointer;
+}
+
+.checkbox-card input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--light-gray);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.checkbox-card input[type="checkbox"]:checked + .checkbox-content {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--primary);
+}
+
+.checkbox-content:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.checkbox-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.checkbox-text strong {
+  display: block;
+  font-size: 1rem;
+  color: var(--dark);
+  margin-bottom: 0.25rem;
+}
+
+.checkbox-text small {
+  font-size: 0.85rem;
+  color: var(--gray);
+}
+
+/* Advanced Options */
+.advanced-options {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid var(--border);
+}
+
+.advanced-options h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--dark);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--primary);
+}
+
+/* History Section */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.history-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.history-empty {
+  text-align: center;
+  color: var(--gray);
+  padding: 2rem;
+  font-style: italic;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: var(--light-gray);
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+}
+
+.history-item:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* Bulk Generation */
+.section-description {
+  color: var(--gray);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.bulk-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.bulk-input-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+.bulk-input-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.bulk-input-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.bulk-output-wrapper {
+  margin-top: 1.5rem;
+}
+
+.bulk-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.bulk-count {
+  font-weight: 600;
+  color: var(--gray);
+}
+
+#bulkOutput {
+  width: 100%;
+  min-height: 200px;
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  background: var(--light-gray);
+  resize: vertical;
+}
+
+/* QR Code Generator Specific */
+.qr-input-form {
+  margin-bottom: 1.5rem;
+}
+
+.qr-input-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.qr-input-form input,
+.qr-input-form textarea,
+.qr-input-form select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.qr-input-form input:focus,
+.qr-input-form textarea:focus,
+.qr-input-form select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+#qrCodeDisplay {
+  text-align: center;
+  padding: 2rem;
+  background: var(--light-gray);
+  border-radius: 8px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.qr-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Color Picker Specific */
+.color-picker-main {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: start;
+}
+
+.color-display {
+  position: relative;
+}
+
+.color-preview {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 12px;
+  border: 3px solid var(--border);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+#colorInput {
+  width: 100%;
+  height: 60px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.color-formats {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.format-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.format-group label {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.9rem;
+}
+
+.input-with-copy {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.input-with-copy input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.95rem;
+}
+
+.color-shades,
+.color-harmonies {
+  margin: 2rem 0;
+}
+
+.color-shades h3,
+.color-harmonies h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
+}
+
+.shades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 1rem;
+}
+
+.shade-box {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.shade-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.harmony-section {
+  margin-bottom: 2rem;
+}
+
+.harmony-section h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--dark);
+}
+
+.harmony-colors {
+  display: flex;
+  gap: 1rem;
+}
+
+.harmony-color {
+  flex: 1;
+  height: 80px;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.harmony-color:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Tool Content Section */
+.tool-content-section {
+  background: var(--white);
+  padding: 3rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  margin: 3rem 0;
+  border: 1px solid var(--border);
+}
+
+.content-body h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 2.5rem 0 1.25rem;
+  color: var(--dark);
+  padding-top: 1rem;
+}
+
+.content-body h2:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.content-body h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+  color: var(--dark);
+}
+
+.content-body p {
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+  color: #4B5563;
+  font-size: 1.05rem;
+}
+
+.content-body ul,
+.content-body ol {
+  margin: 1.5rem 0 2rem 2rem;
+  color: #4B5563;
+  line-height: 1.8;
+}
+
+.content-body li {
+  margin-bottom: 0.75rem;
+}
+
+.content-body strong {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+/* Features Grid in Content */
+.features-list,
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.feature-item-text {
+  padding: 1.5rem;
+  background: var(--light-gray);
+  border-radius: 12px;
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.feature-item-text:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.feature-item-text strong {
+  display: block;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark);
+}
+
+.feature-item-text p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* Instructions List */
+.instructions-list {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 4px solid var(--primary);
+  margin: 2rem 0;
+}
+
+.instructions-list li {
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.instructions-list li strong {
+  color: var(--primary);
+}
+
+/* Related Tools List */
+.related-tools-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.related-tools-list li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.related-tools-list li:last-child {
+  border-bottom: none;
+}
+
+.related-tools-list a {
+  color: var(--primary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.related-tools-list a:hover {
+  color: var(--primary-dark);
+  padding-left: 8px;
+}
+
+/* Tool Footer Navigation */
+.tool-footer-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 3rem 0;
+  flex-wrap: wrap;
+}
+
+.tool-footer-nav .btn-outline {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  padding: 14px 24px;
+  font-weight: 600;
+}
+
+/* Responsive Design for Tool Pages */
+@media (max-width: 992px) {
+  .tool-header h1 {
+    font-size: 2.25rem;
+  }
+  
+  .tool-interface {
+    padding: 2rem;
+  }
+  
+  .color-picker-main {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .tool-header {
+    padding: 2rem 1.5rem;
+  }
+  
+  .tool-header h1 {
+    font-size: 1.875rem;
+  }
+  
+  .tool-header .lead {
+    font-size: 1.1rem;
+  }
+  
+  .tool-interface {
+    padding: 1.5rem;
+  }
+  
+  .tool-content-section {
+    padding: 2rem 1.5rem;
+  }
+  
+  .label-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .toolbar {
+    width: 100%;
+  }
+  
+  .mode-toggle,
+  .qr-type-selector {
+    flex-direction: column;
+  }
+  
+  .toggle-btn,
+  .type-btn {
+    width: 100%;
+  }
+  
+  .preset-buttons {
+    grid-template-columns: 1fr;
+  }
+  
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .bulk-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .bulk-input-group {
+    width: 100%;
+  }
+  
+  .tool-footer-nav {
+    flex-direction: column;
+  }
+  
+  .tool-footer-nav .btn-outline {
+    width: 100%;
+  }
+  
+  .features-list,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-body h2 {
+    font-size: 1.6rem;
+  }
+  
+  .harmony-colors {
+    flex-wrap: wrap;
+  }
+  
+  .harmony-color {
+    min-width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tool-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .tool-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .tool-interface {
+    padding: 1rem;
+  }
+  
+  .tool-content-section {
+    padding: 1.5rem 1rem;
+  }
+  
+  .password-output {
+    font-size: 1.2rem;
+    padding: 1rem;
+  }
+  
+  .input-area textarea {
+    min-height: 150px;
+  }
+  
+  .shades-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .tool-header {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border-color: #374151;
+}
+
+[data-theme="dark"] .tool-interface,
+[data-theme="dark"] .tool-content-section,
+[data-theme="dark"] .password-display-card,
+[data-theme="dark"] .password-options-card,
+[data-theme="dark"] .password-history-card,
+[data-theme="dark"] .bulk-generate-card {
+  background: #1E293B;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .mode-toggle,
+[data-theme="dark"] .qr-type-selector {
+  background: #0F172A;
+}
+
+[data-theme="dark"] .toggle-btn.active,
+[data-theme="dark"] .type-btn.active {
+  background: #1E293B;
+}
+
+[data-theme="dark"] .input-area textarea,
+[data-theme="dark"] .input-area input {
+  background: #0F172A;
+  border-color: #374151;
+  color: #F9FAFB;
+}
+
+[data-theme="dark"] .password-output,
+[data-theme="dark"] #qrCodeDisplay,
+[data-theme="dark"] #bulkOutput {
+  background: #0F172A;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .checkbox-content,
+[data-theme="dark"] .preset-btn,
+[data-theme="dark"] .btn-icon {
+  background: #0F172A;
+  border-color: #374151;
+}
+
+[data-theme="dark"] .feature-item-text {
+  background: #0F172A;
+}
+
+[data-theme="dark"] .instructions-list {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+/* =========================================
+   TOOL PAGES - ANIMATION ENHANCEMENTS
+   Task 7.1 & 7.2 - Ensuring consistency
+   ========================================= */
+
+/* Ensure all tool page elements have consistent transitions */
+/* Note: Base transitions are already defined in main styles for these elements */
+
+/* Password output animations */
+.password-output {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease,
+              transform var(--transition-speed, 0.3s) ease;
+}
+
+.password-output:hover {
+  transform: scale(1.01);
+  border-color: var(--primary);
+}
+
+/* Strength indicator animations */
+.strength-bar {
+  transition: width 0.5s ease,
+              background var(--transition-speed, 0.3s) ease;
+}
+
+.strength-text {
+  transition: color var(--transition-speed, 0.3s) ease;
+}
+
+/* History item animations */
+.history-item {
+  transition: background var(--transition-speed, 0.3s) ease,
+              transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.history-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Preset button animations */
+.preset-btn {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease,
+              color var(--transition-speed, 0.3s) ease,
+              transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+/* Checkbox card animations */
+.checkbox-card {
+  transition: transform var(--transition-speed, 0.3s) ease;
+}
+
+.checkbox-content {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease,
+              transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.checkbox-icon {
+  transition: transform var(--transition-speed, 0.3s) ease;
+}
+
+.checkbox-content:hover .checkbox-icon {
+  transform: scale(1.1);
+}
+
+/* Toggle button animations */
+.toggle-btn,
+.type-btn {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease,
+              color var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.toggle-btn.active,
+.type-btn.active {
+  transition: all var(--transition-speed, 0.3s) ease;
+}
+
+/* QR code display animations */
+#qrCodeDisplay {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease;
+}
+
+#qrCodeDisplay canvas,
+#qrCodeDisplay img {
+  transition: transform var(--transition-speed, 0.3s) ease;
+}
+
+#qrCodeDisplay:hover canvas,
+#qrCodeDisplay:hover img {
+  transform: scale(1.02);
+}
+
+/* Color picker animations */
+.color-preview {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.color-preview:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+}
+
+.shade-box {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease;
+}
+
+.harmony-color {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease;
+}
+
+/* Input with copy button animations */
+.input-with-copy input {
+  transition: border-color var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.input-with-copy input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Feature item animations */
+.feature-item-text {
+  transition: transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease;
+}
+
+/* Instructions list animations */
+.instructions-list {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease;
+}
+
+/* Related tools list animations */
+.related-tools-list a {
+  transition: color var(--transition-speed, 0.3s) ease,
+              padding-left var(--transition-speed, 0.3s) ease;
+}
+
+/* Tool footer nav animations */
+.tool-footer-nav .btn-outline {
+  transition: background var(--transition-speed, 0.3s) ease,
+              border-color var(--transition-speed, 0.3s) ease,
+              color var(--transition-speed, 0.3s) ease,
+              transform var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.tool-footer-nav .btn-outline:hover {
+  transform: translateY(-2px);
+}
+
+/* Bulk output animations */
+#bulkOutput {
+  transition: border-color var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+#bulkOutput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* Mode toggle hover effects */
+.mode-toggle,
+.qr-type-selector {
+  transition: background var(--transition-speed, 0.3s) ease;
+}
+
+/* Slider animations */
+.slider {
+  transition: background var(--transition-speed, 0.3s) ease;
+}
+
+/* Length markers animations */
+.length-markers {
+  transition: color var(--transition-speed, 0.3s) ease;
+}
+
+/* Advanced options animations */
+.advanced-options {
+  transition: border-color var(--transition-speed, 0.3s) ease;
+}
+
+/* Checkbox label animations */
+.checkbox-label {
+  transition: color var(--transition-speed, 0.3s) ease,
+              background var(--transition-speed, 0.3s) ease;
+}
+
+.checkbox-label:hover {
+  background: rgba(59, 130, 246, 0.05);
+}
+
+/* Bulk controls animations */
+.bulk-input-group input {
+  transition: border-color var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+.bulk-input-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+/* QR input form animations */
+.qr-input-form input,
+.qr-input-form textarea,
+.qr-input-form select {
+  transition: border-color var(--transition-speed, 0.3s) ease,
+              box-shadow var(--transition-speed, 0.3s) ease;
+}
+
+/* =========================================
+   PREFERS-REDUCED-MOTION FOR TOOL PAGES
+   ========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all tool page animations */
+  .tool-header,
+  .tool-interface,
+  .tool-content-section,
+  .password-output,
+  .strength-bar,
+  .strength-text,
+  .history-item,
+  .preset-btn,
+  .checkbox-card,
+  .checkbox-content,
+  .checkbox-icon,
+  .toggle-btn,
+  .type-btn,
+  #qrCodeDisplay,
+  #qrCodeDisplay canvas,
+  #qrCodeDisplay img,
+  .color-preview,
+  .shade-box,
+  .harmony-color,
+  .input-with-copy input,
+  .feature-item-text,
+  .instructions-list,
+  .related-tools-list a,
+  .tool-footer-nav .btn-outline,
+  #bulkOutput,
+  .mode-toggle,
+  .qr-type-selector,
+  .slider,
+  .length-markers,
+  .advanced-options,
+  .checkbox-label,
+  .bulk-input-group input,
+  .qr-input-form input,
+  .qr-input-form textarea,
+  .qr-input-form select {
+    transition: none !important;
+  }
+  
+  /* Remove all transform effects */
+  .password-output:hover,
+  .history-item:hover,
+  .checkbox-content:hover,
+  .checkbox-content:hover .checkbox-icon,
+  #qrCodeDisplay:hover canvas,
+  #qrCodeDisplay:hover img,
+  .color-preview:hover,
+  .shade-box:hover,
+  .harmony-color:hover,
+  .tool-footer-nav .btn-outline:hover {
+    transform: none !important;
+  }
+  
+  /* Use opacity for hover feedback instead */
+  .password-output:hover,
+  .history-item:hover,
+  .preset-btn:hover,
+  .checkbox-content:hover,
+  .toggle-btn:hover:not(.active),
+  .type-btn:hover:not(.active),
+  .color-preview:hover,
+  .shade-box:hover,
+  .harmony-color:hover,
+  .tool-footer-nav .btn-outline:hover {
+    opacity: 0.9;
+  }
+  
+  /* Keep border color changes for accessibility */
+  .password-output:hover,
+  .history-item:hover,
+  .preset-btn:hover,
+  .checkbox-content:hover,
+  .input-with-copy input:focus,
+  .bulk-input-group input:focus,
+  .qr-input-form input:focus,
+  .qr-input-form textarea:focus,
+  .qr-input-form select:focus {
+    border-color: var(--primary);
+  }
+  
+  /* Disable strength bar animation */
+  .strength-bar {
+    transition: background var(--transition-speed, 0.3s) ease !important;
+  }
+}

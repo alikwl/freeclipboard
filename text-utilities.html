@@ -3,111 +3,395 @@ layout: default
 title: Text Utilities - Free Online Text Tools & Converters
 description: Free text utility tools including text formatter, case converter, encoders, decoders, and text manipulation tools. Process text instantly in your browser.
 keywords: text tools, text formatter, case converter, text encoder, text decoder, text utilities
-schema_type: WebApplication
+schema_type: CollectionPage
 ---
 
-<div class="page-header">
-  <h1>✍️ Text Utilities</h1>
-  <p class="lead">Powerful text processing and conversion tools</p>
-</div>
+<section class="category-hero text-utilities-hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-icon">✍️</span>
+        <span class="badge-text">Text Utilities</span>
+      </div>
+      <h1>Professional Text Processing Tools</h1>
+      <p class="hero-subtitle">Format, encode, decode, and manipulate text with powerful utilities. Perfect for developers, writers, and anyone working with text data.</p>
+      
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>12</strong>
+          <span>Text Tools</span>
+        </div>
+        <div class="stat-item">
+          <strong>120K+</strong>
+          <span>Monthly Users</span>
+        </div>
+        <div class="stat-item">
+          <strong>100%</strong>
+          <span>Free Forever</span>
+        </div>
+      </div>
+      
+      <div class="hero-cta">
+        <a href="#tools" class="btn btn-primary btn-lg">Explore Tools</a>
+        <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-{% include ads.html %}
+<section class="tools-category-section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <h2>✍️ Text Utilities Collection</h2>
+      <p>Professional tools for text processing, encoding, and formatting</p>
+    </div>
+    
+    {% assign textTools = site.data.tools-metadata.tools | where: 'category', 'text' | sort: 'name' %}
+    
+    <div class="tools-grid enhanced-grid">
+      {% for tool in textTools %}
+        <article class="tool-card enhanced-card">
+          <div class="tool-card-visual">
+            <div class="tool-icon-large">{{ tool.icon }}</div>
+            {% if tool.featured %}
+              <span class="tool-badge badge-featured">⭐ Featured</span>
+            {% elsif tool.popular %}
+              <span class="tool-badge badge-popular">🔥 Popular</span>
+            {% elsif tool.new %}
+              <span class="tool-badge badge-new">✨ New</span>
+            {% endif %}
+          </div>
+          
+          <div class="tool-card-content">
+            <h3 class="tool-title">{{ tool.name }}</h3>
+            <p class="tool-description">{{ tool.description }}</p>
+            
+            <div class="tool-features">
+              <span class="feature-tag">✓ Instant Processing</span>
+              <span class="feature-tag">✓ Privacy First</span>
+              <span class="feature-tag">✓ Easy to Use</span>
+            </div>
+            
+            <div class="tool-meta">
+              {% if tool.rating %}
+                <span class="tool-rating">
+                  <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                  <span class="rating-value">{{ tool.rating }}</span>
+                </span>
+              {% endif %}
+              {% if tool.usageCount %}
+                <span class="tool-usage">
+                  <span class="usage-icon">👥</span>
+                  {{ tool.usageCount | divided_by: 1000 }}K+ uses
+                </span>
+              {% endif %}
+            </div>
+            
+            <div class="tool-keywords">
+              {% for keyword in tool.keywords limit:4 %}
+                <span class="keyword-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          </div>
+          
+          <div class="tool-card-footer">
+            <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block">
+              Try {{ tool.name }} →
+            </a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
-<div class="tools-category-grid">
-  <a href="{{ site.baseurl }}/tools/text-formatter/" class="tool-card">
-    <div class="tool-icon">📄</div>
-    <h3>Text Formatter</h3>
-    <p>Transform text case, remove spaces, and format text in various ways. Uppercase, lowercase, title case, and more.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<section class="category-benefits" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>💎 Why Choose Our Text Utilities?</h2>
+      <p>Everything you need to process and manipulate text efficiently</p>
+    </div>
+    
+    <div class="benefits-grid enhanced-benefits">
+      <div class="benefit-item">
+        <div class="benefit-icon">⚡</div>
+        <h3>Instant Processing</h3>
+        <p>All text processing happens instantly in your browser. No waiting, no server delays, just immediate results.</p>
+        <ul class="benefit-features">
+          <li>Real-time conversion</li>
+          <li>No upload delays</li>
+          <li>Instant feedback</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🔐</div>
+        <h3>Multiple Encodings</h3>
+        <p>Support for Base64, URL, HTML, and more. Convert between formats with ease and accuracy.</p>
+        <ul class="benefit-features">
+          <li>Base64 encoding</li>
+          <li>URL encoding</li>
+          <li>HTML entities</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📝</div>
+        <h3>Text Formatting</h3>
+        <p>Transform text case, format JSON, preview markdown, and more with professional-grade tools.</p>
+        <ul class="benefit-features">
+          <li>Case conversion</li>
+          <li>JSON beautify</li>
+          <li>Markdown preview</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🆓</div>
+        <h3>100% Free Forever</h3>
+        <p>All tools are completely free with no limitations. Use in any project, personal or commercial.</p>
+        <ul class="benefit-features">
+          <li>No registration required</li>
+          <li>Unlimited usage</li>
+          <li>No hidden costs</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">🔒</div>
+        <h3>Privacy First</h3>
+        <p>All processing happens in your browser. Your text data never leaves your device.</p>
+        <ul class="benefit-features">
+          <li>No data collection</li>
+          <li>Works offline</li>
+          <li>100% secure</li>
+        </ul>
+      </div>
+      
+      <div class="benefit-item">
+        <div class="benefit-icon">📱</div>
+        <h3>Mobile Friendly</h3>
+        <p>Use our tools on any device - desktop, tablet, or mobile. Fully responsive design.</p>
+        <ul class="benefit-features">
+          <li>Touch optimized</li>
+          <li>Responsive layout</li>
+          <li>Works everywhere</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/base64-encoder/" class="tool-card">
-    <div class="tool-icon">🔐</div>
-    <h3>Base64 Encoder/Decoder</h3>
-    <p>Encode text to Base64 or decode Base64 strings back to text. Perfect for data encoding.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- How It Works Section -->
+<section class="how-it-works-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>🚀 How It Works</h2>
+      <p>Process and convert text in three simple steps</p>
+    </div>
+    
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Choose Your Tool</h3>
+          <p>Select from encoders, formatters, or converters based on your text processing needs.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Input Your Text</h3>
+          <p>Paste or type your text into the tool. Processing happens instantly as you type.</p>
+        </div>
+      </div>
+      
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Copy & Use</h3>
+          <p>Copy the processed text with one click and use it in your projects or applications.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/url-encoder/" class="tool-card">
-    <div class="tool-icon">🔗</div>
-    <h3>URL Encoder/Decoder</h3>
-    <p>Encode text to URL-safe strings or decode URLs. Essential for web development.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- Use Cases Section -->
+<section class="use-cases-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>💼 Perfect For</h2>
+      <p>Who benefits from our text utilities?</p>
+    </div>
+    
+    <div class="use-cases-grid">
+      <div class="use-case-card">
+        <div class="use-case-icon">👨‍💻</div>
+        <h3>Web Developers</h3>
+        <p>Encode URLs, format JSON, test regex patterns, and handle HTML entities for web development.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">✍️</div>
+        <h3>Content Writers</h3>
+        <p>Format text, preview markdown, convert case, and create styled text for various platforms.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">🔐</div>
+        <h3>Security Professionals</h3>
+        <p>Generate hashes, encode sensitive data, and validate text formats securely.</p>
+      </div>
+      
+      <div class="use-case-card">
+        <div class="use-case-icon">📊</div>
+        <h3>Data Analysts</h3>
+        <p>Format JSON data, convert between formats, and process text data efficiently.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/html-encoder/" class="tool-card">
-    <div class="tool-icon">🌐</div>
-    <h3>HTML Encoder/Decoder</h3>
-    <p>Encode HTML entities or decode HTML strings safely. Prevent XSS attacks.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>❓ Frequently Asked Questions</h2>
+      <p>Everything you need to know about our text utilities</p>
+    </div>
+    
+    <div class="faq-grid">
+      <div class="faq-item">
+        <h3>Are these tools really free?</h3>
+        <p>Yes! All our text utilities are 100% free with no hidden costs, registration requirements, or usage limits.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Is my text data stored on your servers?</h3>
+        <p>No. All processing happens locally in your browser. We never collect, store, or transmit your text data.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use these tools offline?</h3>
+        <p>Yes! Once loaded, most tools work completely offline. Your data is processed locally in your browser.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What encoding formats do you support?</h3>
+        <p>We support Base64, URL encoding, HTML entities, and various hash algorithms including MD5, SHA-1, and SHA-256.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use these tools for commercial projects?</h3>
+        <p>Absolutely! All tools are free to use for both personal and commercial projects without any restrictions.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Do you support Unicode characters?</h3>
+        <p>Yes, all our tools fully support Unicode characters including emojis and special characters.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How accurate is the regex tester?</h3>
+        <p>Our regex tester uses JavaScript's native regex engine, providing accurate pattern matching and testing.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I request new text tools?</h3>
+        <p>Yes! We're always improving our collection. Contact us with your suggestions for new text utilities.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/json-formatter/" class="tool-card">
-    <div class="tool-icon">{ }</div>
-    <h3>JSON Formatter</h3>
-    <p>Beautify and validate JSON data with syntax highlighting. Format JSON instantly.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
+<!-- CTA Section -->
+<section class="cta-section text-utilities-cta">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Process Text Like a Pro?</h2>
+      <p>Start using our professional text utilities now - no signup required!</p>
+      <div class="cta-buttons">
+        <a href="{{ site.baseurl }}/tools/text-formatter/" class="btn btn-primary btn-lg">Try Text Formatter</a>
+        <a href="{{ site.baseurl }}/tools/base64-encoder/" class="btn btn-outline btn-lg">Try Base64 Encoder</a>
+        <a href="{{ site.baseurl }}/tools/json-formatter/" class="btn btn-outline btn-lg">Try JSON Formatter</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <a href="{{ site.baseurl }}/tools/regex-tester/" class="tool-card">
-    <div class="tool-icon">🔍</div>
-    <h3>Regex Tester</h3>
-    <p>Test and debug regular expressions with live pattern matching and explanations.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-
-  <a href="{{ site.baseurl }}/tools/hash-generator/" class="tool-card">
-    <div class="tool-icon">🔒</div>
-    <h3>Hash Generator</h3>
-    <p>Generate MD5, SHA-1, SHA-256, and other hash values from text. Secure hashing.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-
-  <a href="{{ site.baseurl }}/tools/markdown-preview/" class="tool-card">
-    <div class="tool-icon">📝</div>
-    <h3>Markdown Preview</h3>
-    <p>Preview markdown in real-time with live rendering. Perfect for documentation.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-
-  <a href="{{ site.baseurl }}/tools/text-to-handwriting/" class="tool-card featured">
-    <div class="tool-icon">✍️</div>
-    <h3>Text to Handwriting</h3>
-    <p>Convert typed text to realistic handwriting with customizable fonts, colors, and paper styles. Download as PNG or PDF.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-
-  <a href="{{ site.baseurl }}/tools/glitch-text-generator/" class="tool-card">
-    <div class="tool-icon">🫠</div>
-    <h3>Glitch Text Generator (Zalgo)</h3>
-    <p>Create chaotic “cursed” text using Unicode combining marks. Tune intensity and directions (up/middle/down) for maximum visual impact.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-
-  <a href="{{ site.baseurl }}/tools/small-caps-generator/" class="tool-card">
-    <div class="tool-icon">🔠</div>
-    <h3>Small Caps Generator</h3>
-    <p>Convert text to Unicode small capital letters — perfect for tweets and bios.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-
-  <a href="{{ site.baseurl }}/tools/discord-spoiler-text-generator/" class="tool-card">
-    <div class="tool-icon">🙈</div>
-    <h3>Discord Spoiler Text Generator</h3>
-    <p>Hide text with <code>||spoilers||</code>. Wrap entire messages or only mentions, URLs, and numbers.</p>
-    <span class="card-link">Use Tool →</span>
-  </a>
-</div>
-
-<div class="category-description">
-  <h2>About Text Utilities</h2>
-  <p>Our text utility tools help you process, convert, and manipulate text efficiently. From encoding and decoding to formatting and validation, we provide professional-grade tools for all your text processing needs.</p>
-  
-  <h3>Popular Use Cases</h3>
-  <ul>
-    <li><strong>Developers:</strong> Encode/decode data, format JSON, test regex patterns</li>
-    <li><strong>Writers:</strong> Format text, preview markdown, count words</li>
-    <li><strong>Security:</strong> Generate hashes, encode HTML entities</li>
-    <li><strong>Web Development:</strong> URL encoding, HTML encoding, JSON formatting</li>
-  </ul>
-</div>
+<section class="related-categories">
+  <div class="container">
+    <div class="section-header">
+      <h2>🔍 Explore More Tools</h2>
+      <p>Discover other categories of professional tools</p>
+    </div>
+    
+    <div class="category-links enhanced-category-links">
+      <a href="{{ site.baseurl }}/clipboard-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">📋</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Clipboard & Text Tools</h3>
+        <p>Manage clipboard, count words and characters, analyze text efficiently</p>
+        <div class="category-tools-list">
+          <span>Clipboard Manager</span>
+          <span>Word Counter</span>
+          <span>Character Counter</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/design-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🎨</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Design & CSS Tools</h3>
+        <p>Create glassmorphism, neumorphism, and organic SVG blob shapes</p>
+        <div class="category-tools-list">
+          <span>Glassmorphism</span>
+          <span>Neumorphism</span>
+          <span>SVG Blobs</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/generators-security/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🔐</span>
+          <span class="category-badge">3 Tools</span>
+        </div>
+        <h3>Generators & Security</h3>
+        <p>Generate passwords, hashes, UUIDs, and secure random data</p>
+        <div class="category-tools-list">
+          <span>Password Generator</span>
+          <span>Hash Generator</span>
+          <span>UUID Generator</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+      
+      <a href="{{ site.baseurl }}/image-tools/" class="category-link-card">
+        <div class="category-card-header">
+          <span class="category-icon">🖼️</span>
+          <span class="category-badge">5 Tools</span>
+        </div>
+        <h3>Image & Visual Tools</h3>
+        <p>Convert images, generate QR codes, resize for social media, and pick colors</p>
+        <div class="category-tools-list">
+          <span>Image Converter</span>
+          <span>QR Generator</span>
+          <span>Color Picker</span>
+        </div>
+        <span class="category-link-arrow">Explore →</span>
+      </a>
+    </div>
+    
+    <div class="view-all-categories">
+      <a href="{{ site.baseurl }}/all-tools/" class="btn btn-secondary btn-lg">View All 35+ Tools →</a>
+    </div>
+  </div>
+</section>

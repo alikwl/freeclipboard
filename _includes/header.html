@@ -1,21 +1,124 @@
+<!-- Skip to main content link for keyboard navigation -->
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
 <header class="site-header">
-  <div class="container">
-    <a class="site-title" href="{{ site.baseurl }}/">
-      <span class="logo-icon">📋</span>
+  <div class="container header-container">
+    <a class="site-title" href="{{ site.baseurl }}/" aria-label="FreeClipboard home">
+      <span class="logo-icon" aria-hidden="true">📋</span>
       <span class="logo-text">FreeClipboard</span>
     </a>
-    <nav class="site-nav" id="siteNav">
-      {% for item in site.data.navigation %}
-        <a href="{{ site.baseurl }}{{ item.url }}" class="page-link">{{ item.title }}</a>
-      {% endfor %}
+    
+    <nav class="desktop-nav" id="desktopNav">
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+          Tools <span class="dropdown-arrow">▼</span>
+        </a>
+        <div class="dropdown-menu" aria-label="Tools submenu">
+          <div class="dropdown-section">
+            <h4>By Category</h4>
+            <a href="{{ site.baseurl }}/clipboard-tools/" class="dropdown-item">
+              <span class="item-icon">📋</span>
+              <span class="item-text">Clipboard Tools</span>
+            </a>
+            <a href="{{ site.baseurl }}/text-utilities/" class="dropdown-item">
+              <span class="item-icon">✍️</span>
+              <span class="item-text">Text Utilities</span>
+            </a>
+            <a href="{{ site.baseurl }}/image-tools/" class="dropdown-item">
+              <span class="item-icon">🖼️</span>
+              <span class="item-text">Image Tools</span>
+            </a>
+            <a href="{{ site.baseurl }}/design-tools/" class="dropdown-item">
+              <span class="item-icon">🎨</span>
+              <span class="item-text">Design Tools</span>
+            </a>
+            <a href="{{ site.baseurl }}/generators-security/" class="dropdown-item">
+              <span class="item-icon">🔐</span>
+              <span class="item-text">Generators & Security</span>
+            </a>
+            <a href="{{ site.baseurl }}/utilities/" class="dropdown-item">
+              <span class="item-icon">🔧</span>
+              <span class="item-text">Utilities</span>
+            </a>
+          </div>
+          <div class="dropdown-section">
+            <h4>Popular Tools</h4>
+            <a href="{{ site.baseurl }}/tools/free-clipboard/" class="dropdown-item">Clipboard Manager</a>
+            <a href="{{ site.baseurl }}/tools/password-generator/" class="dropdown-item">Password Generator</a>
+            <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="dropdown-item">QR Code Generator</a>
+            <a href="{{ site.baseurl }}/tools/image-converter/" class="dropdown-item">Image Converter</a>
+          </div>
+          <div class="dropdown-footer">
+            <a href="{{ site.baseurl }}/all-tools/" class="btn-dropdown-cta">View All 35+ Tools →</a>
+          </div>
+        </div>
+      </div>
+      
+      <a href="{{ site.baseurl }}/blog/" class="nav-link">Blog</a>
+      <a href="{{ site.baseurl }}/about/" class="nav-link">About</a>
+      <a href="{{ site.baseurl }}/contact/" class="nav-link">Contact</a>
     </nav>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-      <span id="themeIcon">🌙</span>
-    </button>
-    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span id="themeIcon">🌙</span>
+      </button>
+      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <div class="mobile-menu-content">
+      <div class="mobile-menu-section">
+        <h3 class="mobile-menu-title">Tools by Category</h3>
+        <a href="{{ site.baseurl }}/clipboard-tools/" class="mobile-menu-item">
+          <span class="item-icon">📋</span>
+          <span class="item-text">Clipboard Tools</span>
+        </a>
+        <a href="{{ site.baseurl }}/text-utilities/" class="mobile-menu-item">
+          <span class="item-icon">✍️</span>
+          <span class="item-text">Text Utilities</span>
+        </a>
+        <a href="{{ site.baseurl }}/image-tools/" class="mobile-menu-item">
+          <span class="item-icon">🖼️</span>
+          <span class="item-text">Image Tools</span>
+        </a>
+        <a href="{{ site.baseurl }}/design-tools/" class="mobile-menu-item">
+          <span class="item-icon">🎨</span>
+          <span class="item-text">Design Tools</span>
+        </a>
+        <a href="{{ site.baseurl }}/generators-security/" class="mobile-menu-item">
+          <span class="item-icon">🔐</span>
+          <span class="item-text">Generators & Security</span>
+        </a>
+        <a href="{{ site.baseurl }}/utilities/" class="mobile-menu-item">
+          <span class="item-icon">🔧</span>
+          <span class="item-text">Utilities</span>
+        </a>
+      </div>
+      
+      <div class="mobile-menu-section">
+        <h3 class="mobile-menu-title">Popular Tools</h3>
+        <a href="{{ site.baseurl }}/tools/free-clipboard/" class="mobile-menu-item">Clipboard Manager</a>
+        <a href="{{ site.baseurl }}/tools/password-generator/" class="mobile-menu-item">Password Generator</a>
+        <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="mobile-menu-item">QR Code Generator</a>
+        <a href="{{ site.baseurl }}/tools/image-converter/" class="mobile-menu-item">Image Converter</a>
+      </div>
+      
+      <div class="mobile-menu-section">
+        <a href="{{ site.baseurl }}/blog/" class="mobile-menu-item">📝 Blog</a>
+        <a href="{{ site.baseurl }}/about/" class="mobile-menu-item">ℹ️ About</a>
+        <a href="{{ site.baseurl }}/contact/" class="mobile-menu-item">✉️ Contact</a>
+      </div>
+      
+      <div class="mobile-menu-footer">
+        <a href="{{ site.baseurl }}/all-tools/" class="btn btn-primary btn-block">View All Tools</a>
+      </div>
+    </div>
   </div>
 </header>
