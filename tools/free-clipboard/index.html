@@ -1,8 +1,8 @@
 ---
 layout: tool
 title: Free Clipboard Manager - Store & Organize Clipboard History
-description: Store, manage, and organize unlimited clipboard items with smart categorization, search, favorites, and export/import. Never lose your copied text again.
-keywords: clipboard manager, clipboard history, clipboard organizer, copy paste manager, text storage, clipboard tool
+description: Store, manage, and organize unlimited clipboard items with smart categorization, advanced search, tagging system, and export/import. Never lose your copied text again with this powerful clipboard history tool.
+keywords: clipboard manager, clipboard history, clipboard organizer, copy paste manager, text storage, clipboard tool, clipboard saver, clipboard memory, clipboard tags
 schema_type: WebApplication
 permalink: /tools/free-clipboard/
 category_name: Clipboard & Text Tools
@@ -11,30 +11,101 @@ rating: 4.9
 rating_count: 1350
 features:
   - Unlimited clipboard storage
-  - Smart categorization
-  - Search and filter
-  - Favorites and tags
-  - Export/import data
-  - 100% private
+  - Smart auto-categorization
+  - Advanced search & filter
+  - Tagging system
+  - Favorites management
+  - Export/import data (JSON)
+  - 100% private & secure
+  - Works offline
 ---
 
-<section class="clipboard-container" aria-labelledby="clipboard-heading">
+<section class="tool-interface" aria-labelledby="clipboard-heading">
   <h2 id="clipboard-heading" class="sr-only">Clipboard Manager Interface</h2>
 
-<div class="clipboard-container">
+<div class="clipboard-wrapper">
   <!-- Quick Actions Bar -->
   <div class="quick-actions" role="toolbar" aria-label="Clipboard actions">
-    <label for="searchInput" class="sr-only">Search clipboard history</label>
-    <input 
-      type="search" 
-      id="searchInput" 
-      placeholder="🔍 Search clipboard history..." 
-      class="search-input"
-      aria-label="Search clipboard items">
+    <div class="search-wrapper">
+      <label for="searchInput" class="sr-only">Search clipboard history</label>
+      <input 
+        type="search" 
+        id="searchInput" 
+        placeholder="🔍 Search clipboard history (title, content, tags)..." 
+        class="search-input"
+        aria-label="Search clipboard items">
+      <button onclick="toggleAdvancedSearch()" class="btn-icon" title="Advanced Search" aria-label="Toggle advanced search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+          <path d="M11 8v6"></path>
+          <path d="M8 11h6"></path>
+        </svg>
+      </button>
+    </div>
     <div class="action-buttons">
-      <button onclick="clearAllClipboard()" class="btn-sm btn-outline" aria-label="Clear all clipboard items">Clear All</button>
-      <button onclick="exportClipboard()" class="btn-sm" aria-label="Export clipboard data">Export</button>
-      <button onclick="importClipboard()" class="btn-sm" aria-label="Import clipboard data">Import</button>
+      <button onclick="clearAllClipboard()" class="btn-sm btn-outline" aria-label="Clear all clipboard items">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18"></path>
+          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+        </svg>
+        Clear All
+      </button>
+      <button onclick="exportClipboard()" class="btn-sm btn-primary" aria-label="Export clipboard data">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Export
+      </button>
+      <button onclick="importClipboard()" class="btn-sm btn-secondary" aria-label="Import clipboard data">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="17 8 12 3 7 8"></polyline>
+          <line x1="12" y1="3" x2="12" y2="15"></line>
+        </svg>
+        Import
+      </button>
+    </div>
+  </div>
+
+  <!-- Advanced Search Panel (Hidden by default) -->
+  <div id="advancedSearchPanel" class="advanced-search-panel" style="display: none;">
+    <div class="search-filters">
+      <div class="filter-group">
+        <label for="searchCategory">Category:</label>
+        <select id="searchCategory" class="filter-select">
+          <option value="">All Categories</option>
+          <option value="text">Text</option>
+          <option value="code">Code</option>
+          <option value="url">URL</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="searchTag">Tag:</label>
+        <select id="searchTag" class="filter-select">
+          <option value="">All Tags</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="searchDateFrom">From Date:</label>
+        <input type="date" id="searchDateFrom" class="filter-input">
+      </div>
+      <div class="filter-group">
+        <label for="searchDateTo">To Date:</label>
+        <input type="date" id="searchDateTo" class="filter-input">
+      </div>
+      <div class="filter-group">
+        <label>
+          <input type="checkbox" id="searchFavoritesOnly">
+          Favorites Only
+        </label>
+      </div>
+      <button onclick="applyAdvancedSearch()" class="btn-sm btn-primary">Apply Filters</button>
+      <button onclick="clearAdvancedSearch()" class="btn-sm btn-outline">Clear</button>
     </div>
   </div>
 
@@ -49,8 +120,8 @@ features:
   </nav>
 
   <!-- New Clipboard Entry -->
-  <form class="new-entry-section" onsubmit="event.preventDefault(); addClipboardItem();" aria-labelledby="new-entry-heading">
-    <h3 id="new-entry-heading" class="sr-only">Add New Clipboard Item</h3>
+  <form class="new-entry-section card" onsubmit="event.preventDefault(); addClipboardItem();" aria-labelledby="new-entry-heading">
+    <h3 id="new-entry-heading">Add New Clipboard Item</h3>
     <label for="newClipboardText" class="sr-only">Enter text to add to clipboard</label>
     <textarea 
       id="newClipboardText" 
@@ -58,21 +129,44 @@ features:
       rows="4"
       aria-label="Text content for new clipboard item"></textarea>
     <div class="entry-options">
-      <label for="entryCategory" class="sr-only">Select category</label>
-      <select id="entryCategory" class="category-select" aria-label="Category for clipboard item">
-        <option value="text">Text</option>
-        <option value="code">Code</option>
-        <option value="url">URL</option>
-        <option value="email">Email</option>
-      </select>
-      <label for="entryTitle" class="sr-only">Optional title</label>
-      <input 
-        type="text" 
-        id="entryTitle" 
-        placeholder="Add a title (optional)" 
-        class="title-input"
-        aria-label="Optional title for clipboard item">
-      <button type="submit" class="btn-primary" aria-label="Add item to clipboard">Add to Clipboard</button>
+      <div class="entry-row">
+        <div class="input-group">
+          <label for="entryCategory">Category:</label>
+          <select id="entryCategory" class="category-select" aria-label="Category for clipboard item">
+            <option value="text">📝 Text</option>
+            <option value="code">💻 Code</option>
+            <option value="url">🔗 URL</option>
+            <option value="email">📧 Email</option>
+          </select>
+        </div>
+        <div class="input-group flex-grow">
+          <label for="entryTitle">Title (optional):</label>
+          <input 
+            type="text" 
+            id="entryTitle" 
+            placeholder="Add a descriptive title" 
+            class="title-input"
+            aria-label="Optional title for clipboard item">
+        </div>
+      </div>
+      <div class="entry-row">
+        <div class="input-group flex-grow">
+          <label for="entryTags">Tags (comma-separated):</label>
+          <input 
+            type="text" 
+            id="entryTags" 
+            placeholder="e.g., work, important, project-x" 
+            class="tags-input"
+            aria-label="Tags for clipboard item">
+        </div>
+        <button type="submit" class="btn-primary" aria-label="Add item to clipboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Add to Clipboard
+        </button>
+      </div>
     </div>
   </form>
 
@@ -108,5 +202,149 @@ features:
 <!-- Hidden file input for import -->
 <label for="importFile" class="sr-only">Import clipboard data file</label>
 <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)" aria-label="Import clipboard JSON file">
+
+</section>
+
+<!-- Content Sections -->
+<section class="tool-content-section">
+  <div class="content-body">
+    
+    <h2>About This Tool</h2>
+    <p>The Free Clipboard Manager is a powerful browser-based tool that stores and organizes unlimited clipboard items with smart categorization, advanced search, and tagging capabilities. Unlike your system clipboard that only remembers one item at a time, this manager maintains a complete history of everything you copy, making it easy to retrieve text, code snippets, URLs, and emails whenever you need them.</p>
+    <p>Perfect for developers managing code snippets, writers organizing research quotes, content creators juggling multiple social media posts, and anyone who frequently copies and pastes information. The intelligent auto-categorization system automatically detects whether your content is plain text, code, a URL, or an email address, while the tagging system lets you create custom organizational structures that match your workflow.</p>
+    <p>Everything runs locally in your browser with zero server uploads, ensuring complete privacy. Your clipboard history is stored securely on your device and can be exported or imported as JSON files for backup or transfer between computers.</p>
+
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>Unlimited Storage</h3>
+        <p>Store thousands of clipboard items without limits. Your complete clipboard history is always accessible and searchable.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>Smart Auto-Categorization</h3>
+        <p>Automatically detects and categorizes content as Text, Code, URL, or Email using intelligent pattern recognition.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Advanced Search</h3>
+        <p>Search by content, title, tags, category, date range, or favorites. Find any clipboard item instantly with powerful filters.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏷️</div>
+        <h3>Tagging System</h3>
+        <p>Organize items with custom tags like "work", "personal", or "project-x". Filter and manage items by tags for better organization.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <h3>Favorites Management</h3>
+        <p>Mark frequently used items as favorites for quick access. Perfect for templates, common responses, and important snippets.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Usage Statistics</h3>
+        <p>Track how many times you've copied each item, total storage used, and favorite counts to understand your clipboard patterns.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Export & Import</h3>
+        <p>Export your entire clipboard history as JSON for backup or transfer. Import previously saved clipboards to restore your data.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>100% Private</h3>
+        <p>All data stays in your browser's local storage. Nothing is uploaded to servers or tracked. Your clipboard history is completely private.</p>
+      </div>
+    </div>
+
+    <h2>How to Use the Clipboard Manager</h2>
+    <ol class="instructions-list">
+      <li>Paste or type text into the input area at the top of the page</li>
+      <li>The category will be automatically detected, or you can manually select Text, Code, URL, or Email</li>
+      <li>Add an optional title to make the item easier to find later</li>
+      <li>Add tags (comma-separated) to organize items by project, topic, or any custom category</li>
+      <li>Click "Add to Clipboard" to save the item to your history</li>
+      <li>Use the search bar to find items by content, title, or tags</li>
+      <li>Click the category buttons to filter items by type (Text, Code, URLs, Emails, or Favorites)</li>
+      <li>Click the star icon on any item to mark it as a favorite for quick access</li>
+      <li>Click the copy icon to copy an item back to your system clipboard</li>
+      <li>Use "Export" to download your clipboard history as a JSON file for backup</li>
+      <li>Use "Import" to restore a previously exported clipboard file</li>
+    </ol>
+
+    <h2>Common Use Cases</h2>
+    <ul class="use-cases-list">
+      <li><strong>Developer Code Snippets:</strong> Store frequently used code blocks, regex patterns, SQL queries, and configuration snippets for quick access during development</li>
+      <li><strong>Content Writing:</strong> Save research quotes, statistics, source URLs, and draft paragraphs while writing articles or blog posts</li>
+      <li><strong>Customer Support:</strong> Maintain a library of common responses, troubleshooting steps, and help documentation links for faster customer service</li>
+      <li><strong>Social Media Management:</strong> Organize post templates, hashtag sets, bio variations, and promotional copy for different platforms</li>
+      <li><strong>Email Templates:</strong> Store email signatures, common responses, meeting invites, and follow-up templates tagged by purpose</li>
+      <li><strong>Research & Study:</strong> Collect quotes, definitions, formulas, and reference URLs organized by subject or project</li>
+      <li><strong>Project Management:</strong> Keep project descriptions, status updates, meeting notes, and stakeholder communications organized by project tags</li>
+      <li><strong>Design & Creative Work:</strong> Store color codes, font names, design specifications, and client feedback organized by project</li>
+    </ul>
+
+    <h2>Tips & Best Practices</h2>
+    <ul class="tips-list">
+      <li>Use descriptive titles for items you'll need to find later - "Login API endpoint" is better than "code snippet"</li>
+      <li>Create a consistent tagging system (e.g., project names, content types, priority levels) to make filtering more effective</li>
+      <li>Mark your most frequently used items as favorites to access them quickly without searching</li>
+      <li>Export your clipboard history monthly as a backup in case you clear browser data or switch devices</li>
+      <li>Use the advanced search filters to find items by date range when you remember approximately when you saved something</li>
+      <li>The copy count statistic helps identify your most-used snippets - consider creating keyboard shortcuts for these in your workflow</li>
+      <li>For code snippets, include the programming language in the title or tags for easier filtering</li>
+      <li>Regularly review and delete outdated items to keep your clipboard history relevant and manageable</li>
+      <li>When importing a clipboard file, it merges with your existing items rather than replacing them, so you can combine multiple backups</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Is my clipboard data stored on your servers?</h3>
+        <p>No, absolutely not. All clipboard items are stored exclusively in your browser's local storage on your device. Nothing is uploaded to our servers, transmitted over the internet, or accessible to anyone but you. This ensures complete privacy and works offline.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How many items can I store in my clipboard history?</h3>
+        <p>There's no hard limit set by the tool itself. The practical limit depends on your browser's local storage capacity (typically 5-10MB). Most users can store thousands of text items before reaching this limit. The statistics panel shows your current storage usage.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What happens if I clear my browser data?</h3>
+        <p>Clearing your browser's local storage will delete your clipboard history. We strongly recommend exporting your clipboard regularly as a backup. The export creates a JSON file you can save to your computer and re-import later to restore your data.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I use this clipboard manager across multiple devices?</h3>
+        <p>Since data is stored locally in each browser, it doesn't automatically sync between devices. However, you can export your clipboard from one device and import it on another to transfer your history. This is useful for moving between work and home computers.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>How does the auto-categorization work?</h3>
+        <p>The tool uses pattern matching to detect content types. URLs are identified by http/https prefixes, emails by the @ symbol and domain structure, and code by common programming keywords and syntax. You can always manually change the category if the auto-detection is incorrect.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>Can I edit items after adding them to my clipboard?</h3>
+        <p>Yes! Click the edit icon (pencil) on any clipboard item to modify its text content, title, category, or tags. This is useful for updating templates or correcting information without having to delete and re-add items.</p>
+      </div>
+      
+      <div class="faq-item">
+        <h3>What's the difference between categories and tags?</h3>
+        <p>Categories (Text, Code, URL, Email) are predefined types that help organize items by content format. Tags are custom labels you create to organize items by project, topic, priority, or any system that works for you. An item has one category but can have multiple tags.</p>
+      </div>
+    </div>
+
+    <h2>Related Tools</h2>
+    <ul class="related-tools-list">
+      <li><a href="/tools/text-formatter/">Text Formatter</a> - Format and transform text with case conversion and cleanup</li>
+      <li><a href="/tools/word-counter/">Word Counter</a> - Count words, characters, and analyze text statistics</li>
+      <li><a href="/tools/character-counter/">Character Counter</a> - Detailed character analysis and counting</li>
+      <li><a href="/tools/text-to-handwriting/">Text to Handwriting</a> - Convert text to handwritten style</li>
+    </ul>
+
+  </div>
+</section>
 
 <script src="{{ '/assets/js/free-clipboard.js' | relative_url }}"></script>

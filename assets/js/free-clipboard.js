@@ -1,12 +1,21 @@
 // Free Clipboard Manager
 let clipboardItems = [];
 let currentFilter = 'all';
+let advancedSearchActive = false;
+let advancedFilters = {
+    category: '',
+    tag: '',
+    dateFrom: '',
+    dateTo: '',
+    favoritesOnly: false
+};
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
     loadClipboardFromStorage();
     renderClipboard();
     updateStats();
+    updateTagFilter();
     
     // Setup search
     document.getElementById('searchInput').addEventListener('input', handleSearch);
@@ -20,6 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }, 10);
     });
+    
+    // Setup advanced search listeners
+    document.getElementById('searchCategory').addEventListener('change', applyAdvancedSearch);
+    document.getElementById('searchTag').addEventListener('change', applyAdvancedSearch);
+    document.getElementById('searchDateFrom').addEventListener('change', applyAdvancedSearch);
+    document.getElementById('searchDateTo').addEventListener('change', applyAdvancedSearch);
+    document.getElementById('searchFavoritesOnly').addEventListener('change', applyAdvancedSearch);
 });
 
 // Add new clipboard item
@@ -27,17 +43,22 @@ function addClipboardItem() {
     const text = document.getElementById('newClipboardText').value.trim();
     const category = document.getElementById('entryCategory').value;
     const title = document.getElementById('entryTitle').value.trim();
+    const tagsInput = document.getElementById('entryTags').value.trim();
     
     if (!text) {
-        alert('Please enter some text');
+        showNotification('Please enter some text', 'error');
         return;
     }
+    
+    // Parse tags
+    const tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
     
     const item = {
         id: Date.now(),
         text: text,
         category: category,
         title: title || generateTitle(text, category),
+        tags: tags,
         timestamp: new Date().toISOString(),
         favorite: false,
         copyCount: 0
@@ -47,12 +68,14 @@ function addClipboardItem() {
     saveClipboardToStorage();
     renderClipboard();
     updateStats();
+    updateTagFilter();
     
     // Clear inputs
     document.getElementById('newClipboardText').value = '';
     document.getElementById('entryTitle').value = '';
+    document.getElementById('entryTags').value = '';
     
-    showNotification('Added to clipboard!');
+    showNotification('Added to clipboard!', 'success');
 }
 
 // Generate title from text
@@ -107,13 +130,47 @@ function renderClipboard() {
         }
     }
     
-    // Apply search filter
+    // Apply basic search filter
     const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    if (searchTerm) {
-        filteredItems = filteredItems.filter(item => 
-            item.text.toLowerCase().includes(searchTerm) ||
-            item.title.toLowerCase().includes(searchTerm)
-        );
+    if (searchTerm && !advancedSearchActive) {
+        filteredItems = filteredItems.filter(item => {
+            const matchesText = item.text.toLowerCase().includes(searchTerm);
+            const matchesTitle = item.title.toLowerCase().includes(searchTerm);
+            const matchesTags = item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+            return matchesText || matchesTitle || matchesTags;
+        });
+    }
+    
+    // Apply advanced search filters
+    if (advancedSearchActive) {
+        if (advancedFilters.category) {
+            filteredItems = filteredItems.filter(item => item.category === advancedFilters.category);
+        }
+        if (advancedFilters.tag) {
+            filteredItems = filteredItems.filter(item => 
+                item.tags && item.tags.includes(advancedFilters.tag)
+            );
+        }
+        if (advancedFilters.dateFrom) {
+            const fromDate = new Date(advancedFilters.dateFrom);
+            filteredItems = filteredItems.filter(item => new Date(item.timestamp) >= fromDate);
+        }
+        if (advancedFilters.dateTo) {
+            const toDate = new Date(advancedFilters.dateTo);
+            toDate.setHours(23, 59, 59, 999);
+            filteredItems = filteredItems.filter(item => new Date(item.timestamp) <= toDate);
+        }
+        if (advancedFilters.favoritesOnly) {
+            filteredItems = filteredItems.filter(item => item.favorite);
+        }
+        if (searchTerm) {
+            filteredItems = filteredItems.filter(item => {
+                const matchesText = item.text.toLowerCase().includes(searchTerm);
+                const matchesTitle = item.title.toLowerCase().includes(searchTerm);
+                const matchesTags = item.tags && item.tags.some(tag => tag.toLowerCase().includes(searchTerm));
+                return matchesText || matchesTitle || matchesTags;
+            });
+        }
     }
     
     if (filteredItems.length === 0) {
@@ -133,17 +190,22 @@ function renderClipboard() {
                     <strong>${escapeHtml(item.title)}</strong>
                 </div>
                 <div class="item-actions">
-                    <button onclick="toggleFavorite(${item.id})" class="icon-btn" title="Favorite">
+                    <button onclick="toggleFavorite(${item.id})" class="icon-btn" title="Favorite" aria-label="${item.favorite ? 'Remove from favorites' : 'Add to favorites'}">
                         ${item.favorite ? '⭐' : '☆'}
                     </button>
-                    <button onclick="editItem(${item.id})" class="icon-btn" title="Edit">✏️</button>
-                    <button onclick="copyToClipboard(${item.id})" class="icon-btn" title="Copy">📋</button>
-                    <button onclick="deleteItem(${item.id})" class="icon-btn" title="Delete">🗑️</button>
+                    <button onclick="editItem(${item.id})" class="icon-btn" title="Edit" aria-label="Edit item">✏️</button>
+                    <button onclick="copyToClipboard(${item.id})" class="icon-btn" title="Copy" aria-label="Copy to clipboard">📋</button>
+                    <button onclick="deleteItem(${item.id})" class="icon-btn" title="Delete" aria-label="Delete item">🗑️</button>
                 </div>
             </div>
             <div class="item-content">
                 <pre>${escapeHtml(item.text)}</pre>
             </div>
+            ${item.tags && item.tags.length > 0 ? `
+            <div class="item-tags">
+                ${item.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
+            </div>
+            ` : ''}
             <div class="item-footer">
                 <span class="item-time">${formatTime(item.timestamp)}</span>
                 <span class="item-copies">Copied ${item.copyCount} times</span>
@@ -213,9 +275,14 @@ function editItem(id) {
         if (newTitle !== null && newTitle.trim()) {
             item.title = newTitle.trim();
         }
+        const newTags = prompt('Edit tags (comma-separated):', item.tags ? item.tags.join(', ') : '');
+        if (newTags !== null) {
+            item.tags = newTags.split(',').map(tag => tag.trim()).filter(tag => tag);
+        }
         saveClipboardToStorage();
         renderClipboard();
-        showNotification('Item updated!');
+        updateTagFilter();
+        showNotification('Item updated!', 'success');
     }
 }
 
@@ -237,12 +304,85 @@ function filterCategory(category) {
     // Update active button
     document.querySelectorAll('.category-btn').forEach(btn => {
         btn.classList.remove('active');
+        btn.setAttribute('aria-pressed', 'false');
         if (btn.dataset.category === category) {
             btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
         }
     });
     
     renderClipboard();
+}
+
+// Toggle advanced search panel
+function toggleAdvancedSearch() {
+    const panel = document.getElementById('advancedSearchPanel');
+    if (panel.style.display === 'none') {
+        panel.style.display = 'block';
+        advancedSearchActive = true;
+    } else {
+        panel.style.display = 'none';
+        advancedSearchActive = false;
+        clearAdvancedSearch();
+    }
+}
+
+// Apply advanced search filters
+function applyAdvancedSearch() {
+    advancedFilters.category = document.getElementById('searchCategory').value;
+    advancedFilters.tag = document.getElementById('searchTag').value;
+    advancedFilters.dateFrom = document.getElementById('searchDateFrom').value;
+    advancedFilters.dateTo = document.getElementById('searchDateTo').value;
+    advancedFilters.favoritesOnly = document.getElementById('searchFavoritesOnly').checked;
+    
+    advancedSearchActive = true;
+    renderClipboard();
+}
+
+// Clear advanced search filters
+function clearAdvancedSearch() {
+    document.getElementById('searchCategory').value = '';
+    document.getElementById('searchTag').value = '';
+    document.getElementById('searchDateFrom').value = '';
+    document.getElementById('searchDateTo').value = '';
+    document.getElementById('searchFavoritesOnly').checked = false;
+    
+    advancedFilters = {
+        category: '',
+        tag: '',
+        dateFrom: '',
+        dateTo: '',
+        favoritesOnly: false
+    };
+    
+    advancedSearchActive = false;
+    renderClipboard();
+}
+
+// Update tag filter dropdown
+function updateTagFilter() {
+    const tagSelect = document.getElementById('searchTag');
+    const allTags = new Set();
+    
+    clipboardItems.forEach(item => {
+        if (item.tags) {
+            item.tags.forEach(tag => allTags.add(tag));
+        }
+    });
+    
+    const currentValue = tagSelect.value;
+    tagSelect.innerHTML = '<option value="">All Tags</option>';
+    
+    Array.from(allTags).sort().forEach(tag => {
+        const option = document.createElement('option');
+        option.value = tag;
+        option.textContent = tag;
+        tagSelect.appendChild(option);
+    });
+    
+    if (currentValue && allTags.has(currentValue)) {
+        tagSelect.value = currentValue;
+    }
 }
 
 // Handle search
@@ -257,13 +397,26 @@ function clearAllClipboard() {
         saveClipboardToStorage();
         renderClipboard();
         updateStats();
-        showNotification('Clipboard cleared!');
+        updateTagFilter();
+        showNotification('Clipboard cleared!', 'success');
     }
 }
 
 // Export clipboard
 function exportClipboard() {
-    const dataStr = JSON.stringify(clipboardItems, null, 2);
+    if (clipboardItems.length === 0) {
+        showNotification('No items to export', 'warning');
+        return;
+    }
+    
+    const exportData = {
+        version: '2.0',
+        exportDate: new Date().toISOString(),
+        itemCount: clipboardItems.length,
+        items: clipboardItems
+    };
+    
+    const dataStr = JSON.stringify(exportData, null, 2);
     const dataBlob = new Blob([dataStr], { type: 'application/json' });
     const url = URL.createObjectURL(dataBlob);
     const link = document.createElement('a');
@@ -271,7 +424,7 @@ function exportClipboard() {
     link.download = `clipboard-export-${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
-    showNotification('Clipboard exported!');
+    showNotification(`Exported ${clipboardItems.length} items!`, 'success');
 }
 
 // Import clipboard
@@ -287,19 +440,38 @@ function handleImport(event) {
     reader.onload = function(e) {
         try {
             const imported = JSON.parse(e.target.result);
+            let itemsToImport = [];
+            
+            // Handle both old format (array) and new format (object with metadata)
             if (Array.isArray(imported)) {
-                if (confirm(`Import ${imported.length} items? This will add to your existing clipboard.`)) {
-                    clipboardItems = [...imported, ...clipboardItems];
-                    saveClipboardToStorage();
-                    renderClipboard();
-                    updateStats();
-                    showNotification(`Imported ${imported.length} items!`);
-                }
+                itemsToImport = imported;
+            } else if (imported.items && Array.isArray(imported.items)) {
+                itemsToImport = imported.items;
             } else {
-                alert('Invalid clipboard file format');
+                showNotification('Invalid clipboard file format', 'error');
+                return;
+            }
+            
+            // Ensure imported items have tags array
+            itemsToImport = itemsToImport.map(item => ({
+                ...item,
+                tags: item.tags || []
+            }));
+            
+            if (confirm(`Import ${itemsToImport.length} items? This will add to your existing clipboard.`)) {
+                // Merge with existing items, avoiding duplicates by ID
+                const existingIds = new Set(clipboardItems.map(item => item.id));
+                const newItems = itemsToImport.filter(item => !existingIds.has(item.id));
+                
+                clipboardItems = [...newItems, ...clipboardItems];
+                saveClipboardToStorage();
+                renderClipboard();
+                updateStats();
+                updateTagFilter();
+                showNotification(`Imported ${newItems.length} new items!`, 'success');
             }
         } catch (err) {
-            alert('Error reading file: ' + err.message);
+            showNotification('Error reading file: ' + err.message, 'error');
         }
     };
     reader.readAsText(file);
@@ -359,11 +531,13 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function showNotification(message) {
+function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
-    notification.className = 'notification';
+    notification.className = `notification notification-${type}`;
     notification.textContent = message;
+    notification.setAttribute('role', 'alert');
+    notification.setAttribute('aria-live', 'polite');
     document.body.appendChild(notification);
     
     // Trigger animation
