@@ -98,6 +98,17 @@
 
 .stat-item {
   text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
 }
 
 .stat-item strong {
@@ -165,7 +176,7 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -173,8 +184,12 @@
 
 .enhanced-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
   border-color: var(--primary);
+}
+
+.enhanced-card:hover .tool-card-content {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .tool-card-visual {
@@ -437,14 +452,15 @@
   padding: 2.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
 }
 
 .benefit-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
   border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .benefit-icon {
@@ -507,13 +523,14 @@
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
   position: relative;
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
 }
 
 .step-item:hover {
   transform: translateY(-5px);
   border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .step-number {
@@ -566,15 +583,16 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .use-case-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
   border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .use-case-icon {
@@ -615,12 +633,15 @@
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   border-left: 4px solid var(--primary);
+  border: 2px solid rgba(59, 130, 246, 0.1);
+  border-left: 4px solid var(--primary);
   transition: all 0.3s ease;
 }
 
 .faq-item:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .faq-item h3 {
@@ -705,7 +726,7 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -714,8 +735,9 @@
 
 .category-link-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
   border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .category-card-header {
@@ -789,10 +811,10 @@
 .page-header {
   text-align: center;
   padding: 3rem 2rem;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
   border-radius: 16px;
   margin-bottom: 3rem;
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.15);
   position: relative;
 }
 
@@ -846,7 +868,7 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -855,8 +877,9 @@
 
 .tools-category-grid .tool-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  box-shadow: 0 12px 40px rgba(59, 130, 246, 0.15);
   border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .tools-category-grid .tool-card.featured {
@@ -1512,7 +1535,7 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  border: 2px solid var(--border);
+  border: 2px solid rgba(59, 130, 246, 0.1);
   text-align: center;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -1524,8 +1547,9 @@
 
 .quick-nav-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
   border-color: var(--primary);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 .quick-nav-icon {
