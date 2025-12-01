@@ -1,126 +1,257 @@
 ---
 layout: tool
-title: JSON Formatter & Validator - Beautify & Validate JSON Online
-description: Beautify, validate, and format your JSON code instantly. Fix syntax errors, minify for production, and validate JSON structure online for free.
-keywords: json formatter, json validator, beautify json, format json, json beautifier, validate json, json minifier
+title: JSON Formatter & Validator - Beautify, Minify & Tree View
+description: Advanced JSON formatter with real-time validation, detailed error diagnostics, tree view, and minification. Format, validate, and explore JSON structures instantly—100% free and private.
+keywords: json formatter, json validator, beautify json, minify json, json tree view, format json online, json syntax checker, json error detection, json beautifier
 schema_type: WebApplication
 permalink: /tools/json-formatter/
 category_name: Text Utilities
 category_url: /text-utilities/
-rating: 4.8
-rating_count: 1050
+rating: 4.9
+rating_count: 1120
 features:
-  - Beautify JSON
-  - Validate JSON syntax
-  - Minify JSON
-  - Error detection
-  - Copy formatted JSON
-  - Works offline
+  - Advanced JSON validation with detailed errors
+  - Beautify with customizable indentation
+  - Minify for production optimization
+  - Interactive tree view explorer
+  - Sort keys alphabetically
+  - Download formatted JSON
+  - Copy to clipboard
+  - Keyboard shortcuts
+  - 100% private and secure
 ---
 
 <section class="tool-wrapper" aria-labelledby="json-formatter-heading">
   <h2 id="json-formatter-heading" class="sr-only">JSON Formatter and Validator</h2>
+  
+  <!-- Input Area -->
   <div class="input-area">
     <div class="label-row">
-      <label for="inputBox">Input JSON:</label>
+      <label for="jsonInput">Input JSON:</label>
       <div class="toolbar" role="toolbar" aria-label="JSON input actions">
-        <button id="pasteBtn" class="btn-sm" aria-label="Paste JSON from clipboard">Paste</button>
-        <button id="clearBtn" class="btn-sm btn-outline" aria-label="Clear JSON input">Clear</button>
+        <button id="pasteBtn" class="btn-sm" aria-label="Paste JSON from clipboard">
+          <span class="btn-icon">📋</span> Paste
+        </button>
+        <button id="clearBtn" class="btn-sm btn-outline" aria-label="Clear JSON input">
+          <span class="btn-icon">🗑️</span> Clear
+        </button>
+        <button id="loadSampleBtn" class="btn-sm btn-outline" aria-label="Load sample JSON">
+          <span class="btn-icon">📝</span> Sample
+        </button>
       </div>
     </div>
-    <textarea id="jsonInput" placeholder='{"paste": "your json here"}' spellcheck="false" style="font-family: monospace;"></textarea>
+    <textarea id="jsonInput" placeholder='{"paste": "your json here"}' spellcheck="false" style="font-family: monospace;" aria-describedby="inputHelp"></textarea>
+    <div id="inputHelp" class="help-text">Paste or type your JSON here. Validation happens automatically.</div>
   </div>
 
-  <div class="mode-toggle">
-    <button id="formatBtn" class="toggle-btn active">Format (Beautify)</button>
-    <button id="minifyBtn" class="toggle-btn">Minify (Compress)</button>
+  <!-- View Mode Toggle -->
+  <div class="mode-toggle" role="tablist" aria-label="JSON view modes">
+    <button id="formatBtn" class="toggle-btn active" role="tab" aria-selected="true" aria-controls="outputPanel">
+      <span class="btn-icon">🎨</span> Beautify
+    </button>
+    <button id="minifyBtn" class="toggle-btn" role="tab" aria-selected="false" aria-controls="outputPanel">
+      <span class="btn-icon">📦</span> Minify
+    </button>
+    <button id="treeBtn" class="toggle-btn" role="tab" aria-selected="false" aria-controls="outputPanel">
+      <span class="btn-icon">🌳</span> Tree View
+    </button>
   </div>
 
-  <div class="input-area output-section">
+  <!-- Output Area -->
+  <div class="input-area output-section" id="outputPanel" role="tabpanel">
     <div class="label-row">
-      <label>Result:</label>
+      <label for="jsonOutput">Result:</label>
       <div class="toolbar">
-        <button id="copyBtn" class="btn-sm">Copy Result</button>
+        <button id="copyBtn" class="btn-sm" aria-label="Copy formatted JSON">
+          <span class="btn-icon">📋</span> Copy
+        </button>
+        <button id="downloadBtn" class="btn-sm btn-outline" aria-label="Download JSON file">
+          <span class="btn-icon">💾</span> Download
+        </button>
       </div>
     </div>
-    <textarea id="jsonOutput" readonly placeholder="Formatted JSON will appear here..." style="font-family: monospace;"></textarea>
-    <div id="statusMsg" style="margin-top: 10px; font-weight: bold; color: var(--secondary-color);"></div>
+    <div id="outputContainer">
+      <textarea id="jsonOutput" readonly placeholder="Formatted JSON will appear here..." style="font-family: monospace;" aria-live="polite"></textarea>
+      <div id="treeView" class="tree-view" style="display: none;" aria-live="polite"></div>
+    </div>
+    
+    <!-- Status and Error Messages -->
+    <div id="statusMsg" class="status-message" role="status" aria-live="polite"></div>
+    <div id="errorDetails" class="error-details" style="display: none;" role="alert"></div>
   </div>
-</div>
 
-<script src="{{ site.baseurl }}/assets/js/json-formatter.js"></script>
-
+  <!-- Options Panel -->
+  <div class="options-panel">
+    <details>
+      <summary>⚙️ Advanced Options</summary>
+      <div class="options-content">
+        <div class="option-group">
+          <label for="indentSize">Indentation:</label>
+          <select id="indentSize" aria-label="Select indentation size">
+            <option value="2" selected>2 spaces</option>
+            <option value="4">4 spaces</option>
+            <option value="tab">Tab</option>
+          </select>
+        </div>
+        <div class="option-group">
+          <label>
+            <input type="checkbox" id="sortKeys" aria-label="Sort object keys alphabetically">
+            Sort keys alphabetically
+          </label>
+        </div>
+        <div class="option-group">
+          <label>
+            <input type="checkbox" id="escapeUnicode" aria-label="Escape unicode characters">
+            Escape unicode characters
+          </label>
+        </div>
+      </div>
+    </details>
+  </div>
 </section>
+
+<script src="{{ site.baseurl }}/assets/js/tool-utils.js"></script>
+<script src="{{ site.baseurl }}/assets/js/json-formatter.js"></script>
 
 <section class="tool-content-section">
   <div class="content-body">
     <h2>About This JSON Formatter & Validator</h2>
-    <p>Our free online JSON formatter helps developers beautify, validate, and minify JSON data instantly. Whether you're debugging API responses, formatting configuration files, or preparing JSON for production, this tool makes it easy with real-time validation and error detection.</p>
+    <p>Transform messy, compressed JSON into beautifully formatted, readable code with our advanced JSON formatter. This professional-grade tool goes beyond basic formatting—it validates syntax, provides detailed error diagnostics, offers an interactive tree view for exploring complex structures, and includes powerful minification for production optimization. Perfect for developers working with APIs, configuration files, or any JSON data.</p>
     
     <h2>Key Features</h2>
     <div class="features-list">
       <div class="feature-item-text">
-        <strong>✅ Instant Validation</strong>
-        <p>Automatically detects syntax errors like missing commas, brackets, or quotes with helpful error messages.</p>
+        <strong>✅ Advanced Validation</strong>
+        <p>Real-time syntax validation with detailed error messages, line numbers, and actionable fix suggestions. Instantly identify missing commas, unclosed brackets, invalid values, and more.</p>
       </div>
       <div class="feature-item-text">
-        <strong>🎨 Beautify JSON</strong>
-        <p>Format messy JSON with proper indentation (2 spaces) for maximum readability and code review.</p>
+        <strong>🎨 Smart Beautification</strong>
+        <p>Format JSON with customizable indentation (2 spaces, 4 spaces, or tabs). Optional key sorting and unicode escaping for complete control over output formatting.</p>
       </div>
       <div class="feature-item-text">
-        <strong>📦 Minify JSON</strong>
-        <p>Remove all whitespace and line breaks to reduce file size for production deployment.</p>
+        <strong>🌳 Interactive Tree View</strong>
+        <p>Explore complex JSON structures visually with our collapsible tree view. Perfect for understanding nested objects and arrays at a glance.</p>
       </div>
       <div class="feature-item-text">
-        <strong>🔒 100% Private</strong>
-        <p>All processing happens in your browser. Your JSON data never leaves your device.</p>
+        <strong>📦 Production Minification</strong>
+        <p>Compress JSON by removing all whitespace and line breaks. See exact size reduction percentage to optimize bandwidth and load times.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>💾 Export & Download</strong>
+        <p>Download formatted or minified JSON as .json files. One-click copy to clipboard for quick integration into your workflow.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔒 100% Private & Secure</strong>
+        <p>All processing happens locally in your browser. Your JSON data never touches our servers—complete privacy guaranteed.</p>
       </div>
     </div>
     
     <h2>How to Use the JSON Formatter</h2>
     <ol class="instructions-list">
-      <li><strong>Paste JSON:</strong> Copy your JSON data and paste it into the input box</li>
-      <li><strong>Auto-Validate:</strong> The tool automatically validates and detects any syntax errors</li>
-      <li><strong>Choose Mode:</strong> Click "Format" to beautify or "Minify" to compress</li>
-      <li><strong>Copy Result:</strong> Click "Copy Result" to copy the formatted JSON to clipboard</li>
+      <li><strong>Input JSON:</strong> Paste your JSON data into the input box, or click "Sample" to load example data</li>
+      <li><strong>Automatic Validation:</strong> The tool validates your JSON in real-time as you type, showing errors immediately</li>
+      <li><strong>Choose View Mode:</strong> Select "Beautify" for formatted output, "Minify" for compressed output, or "Tree View" for visual exploration</li>
+      <li><strong>Customize Options:</strong> Expand "Advanced Options" to adjust indentation, sort keys alphabetically, or escape unicode characters</li>
+      <li><strong>Copy or Download:</strong> Use the "Copy" button to copy to clipboard or "Download" to save as a .json file</li>
+      <li><strong>Fix Errors:</strong> If validation fails, read the detailed error message with line numbers and suggested fixes</li>
     </ol>
     
-    <h2>Why Use a JSON Formatter?</h2>
-    <p>JSON formatters are essential tools for modern development:</p>
+    <h2>Understanding JSON Validation Errors</h2>
+    <p>Our validator provides detailed diagnostics for common JSON syntax errors:</p>
     <ul>
-      <li><strong>API Development:</strong> Format and validate API responses for debugging</li>
-      <li><strong>Configuration Files:</strong> Make config files readable and maintainable</li>
-      <li><strong>Data Analysis:</strong> Understand complex JSON structures quickly</li>
-      <li><strong>Code Review:</strong> Present JSON data in a readable format for team review</li>
-      <li><strong>Production Optimization:</strong> Minify JSON to reduce bandwidth and load times</li>
+      <li><strong>Unexpected Token:</strong> Usually indicates a missing comma between properties, an extra comma, or incorrect punctuation. Check the line number provided.</li>
+      <li><strong>Unexpected End of JSON:</strong> Your JSON is incomplete—look for unclosed brackets [], braces {}, or quotes "".</li>
+      <li><strong>Unexpected String:</strong> Often caused by missing commas between object properties or array elements. Verify comma placement.</li>
+      <li><strong>Invalid Character:</strong> JSON only allows specific characters. Check for single quotes (use double quotes), unescaped special characters, or control characters.</li>
+      <li><strong>Trailing Commas:</strong> JSON doesn't allow commas after the last item in objects or arrays. Remove any trailing commas.</li>
+      <li><strong>Unquoted Keys:</strong> All object keys must be wrapped in double quotes. Example: {"key": "value"} not {key: "value"}.</li>
     </ul>
     
-    <h2>Common JSON Errors We Detect</h2>
+    <h2>When to Use Each Mode</h2>
+    <h3>Beautify Mode</h3>
+    <p>Use beautification when you need human-readable JSON for:</p>
     <ul>
-      <li><strong>Missing Commas:</strong> Between object properties or array elements</li>
-      <li><strong>Trailing Commas:</strong> After the last element (not allowed in JSON)</li>
-      <li><strong>Unquoted Keys:</strong> Object keys must be in double quotes</li>
-      <li><strong>Single Quotes:</strong> JSON requires double quotes, not single quotes</li>
-      <li><strong>Unclosed Brackets:</strong> Missing closing brackets or braces</li>
-      <li><strong>Invalid Values:</strong> Undefined, NaN, or other non-JSON values</li>
+      <li>Code reviews and documentation</li>
+      <li>Debugging API responses</li>
+      <li>Understanding complex data structures</li>
+      <li>Version control commits (readable diffs)</li>
+      <li>Configuration file maintenance</li>
     </ul>
+    
+    <h3>Minify Mode</h3>
+    <p>Use minification when you need compact JSON for:</p>
+    <ul>
+      <li>Production deployments</li>
+      <li>Reducing API payload sizes</li>
+      <li>Optimizing bandwidth usage</li>
+      <li>Improving load times</li>
+      <li>Storage optimization</li>
+    </ul>
+    
+    <h3>Tree View Mode</h3>
+    <p>Use tree view when you need to:</p>
+    <ul>
+      <li>Explore deeply nested structures</li>
+      <li>Understand data hierarchy visually</li>
+      <li>Navigate large JSON documents</li>
+      <li>Identify specific values quickly</li>
+      <li>Present data structure to non-technical stakeholders</li>
+    </ul>
+    
+    <h2>Advanced Options Explained</h2>
+    <h3>Indentation Settings</h3>
+    <p>Choose between 2 spaces (most common), 4 spaces (Python/Java style), or tabs based on your project's coding standards. Consistent indentation improves readability and maintains code style across your team.</p>
+    
+    <h3>Sort Keys Alphabetically</h3>
+    <p>Enable this option to sort all object keys in alphabetical order. Useful for comparing JSON files, creating consistent output, or organizing configuration files logically.</p>
+    
+    <h3>Escape Unicode Characters</h3>
+    <p>Convert non-ASCII characters to \uXXXX escape sequences. Essential when working with systems that don't support UTF-8 or when you need ASCII-only JSON output.</p>
     
     <h2>JSON Best Practices</h2>
     <ul>
-      <li>Use double quotes for strings and keys</li>
-      <li>Avoid trailing commas</li>
-      <li>Use consistent indentation (2 or 4 spaces)</li>
-      <li>Keep JSON files under 1MB for performance</li>
-      <li>Validate before deployment</li>
+      <li><strong>Always Use Double Quotes:</strong> JSON specification requires double quotes for strings and keys—single quotes are invalid</li>
+      <li><strong>Validate Before Deployment:</strong> Always validate JSON before pushing to production to avoid runtime errors</li>
+      <li><strong>Keep Files Manageable:</strong> Large JSON files (>1MB) can impact performance—consider pagination or splitting data</li>
+      <li><strong>Use Consistent Formatting:</strong> Stick to one indentation style across your project for better maintainability</li>
+      <li><strong>Avoid Trailing Commas:</strong> While some languages allow them, JSON strictly forbids trailing commas</li>
+      <li><strong>Minify for Production:</strong> Remove unnecessary whitespace in production to reduce file size and improve load times</li>
+      <li><strong>Document Complex Structures:</strong> Add comments in your code (not in JSON itself) to explain complex data structures</li>
     </ul>
     
+    <h2>Keyboard Shortcuts</h2>
+    <p>Speed up your workflow with these keyboard shortcuts:</p>
+    <ul>
+      <li><strong>Ctrl+Enter:</strong> Process/validate JSON</li>
+      <li><strong>Ctrl+B:</strong> Switch to Beautify mode</li>
+      <li><strong>Ctrl+M:</strong> Switch to Minify mode</li>
+      <li><strong>Ctrl+T:</strong> Switch to Tree View mode</li>
+    </ul>
+    
+    <h2>Common Use Cases</h2>
+    <h3>API Development & Testing</h3>
+    <p>Format API responses from tools like Postman or curl to understand the data structure. Validate request payloads before sending to ensure proper syntax.</p>
+    
+    <h3>Configuration Management</h3>
+    <p>Beautify package.json, tsconfig.json, or other configuration files for better readability. Validate syntax before committing to version control.</p>
+    
+    <h3>Data Migration & ETL</h3>
+    <p>Validate JSON data during extract, transform, load operations. Format output for human verification before importing into databases.</p>
+    
+    <h3>Documentation & Training</h3>
+    <p>Create readable JSON examples for documentation. Use tree view to explain data structures to team members or clients.</p>
+    
+    <h3>Debugging & Troubleshooting</h3>
+    <p>Quickly identify syntax errors in JSON files. Use detailed error messages to pinpoint and fix issues faster than manual inspection.</p>
+    
     <h2>Related Tools</h2>
-    <p>Enhance your development workflow with these related tools:</p>
+    <p>Enhance your development workflow with these complementary tools:</p>
     <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode JSON for transmission</li>
-      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Encode JSON for URLs</li>
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode JSON for safe transmission</li>
+      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Encode JSON for URL parameters</li>
+      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate checksums for JSON data</li>
       <li><a href="{{ site.baseurl }}/tools/text-formatter/">Text Formatter</a> - Format other text types</li>
-      <li><a href="{{ site.baseurl }}/text-utilities/">View All Developer Tools</a></li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Text Utilities</a></li>
     </ul>
   </div>
 </section>

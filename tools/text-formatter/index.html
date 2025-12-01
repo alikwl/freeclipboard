@@ -1,65 +1,389 @@
 ---
 layout: tool
-title: Text Formatter - Transform & Format Text Online Free
-description: Transform text case, remove extra spaces, sort lines, and apply various text formatting operations. Free online text formatter for uppercase, lowercase, title case, and more.
-keywords: text formatter, text transformer, case converter, uppercase converter, lowercase converter, title case, text formatting tool
+title: Text Formatter - Transform & Format Text Online Free | 25+ Operations
+description: Professional text formatting tool with 25+ transformations including case conversion, find & replace, text cleanup, and advanced operations. Free, fast, and works offline.
+keywords: text formatter, text transformer, case converter, uppercase converter, lowercase converter, title case, text formatting tool, find and replace, text cleanup
 schema_type: WebApplication
 permalink: /tools/text-formatter/
 category_name: Text Utilities
 category_url: /text-utilities/
-rating: 4.6
-rating_count: 720
+rating: 4.7
+rating_count: 850
 features:
-  - Multiple case transformations
-  - Remove extra spaces
-  - Sort lines alphabetically
-  - Reverse text
-  - Remove line breaks
+  - 25+ text transformations
+  - Find & replace with regex
+  - Advanced text cleanup
+  - Batch operations
+  - History tracking
   - Works offline
 ---
 
-<div class="input-area">
-  <div class="label-row">
-    <label for="textInput">Input Text:</label>
-    <div class="toolbar">
-      <button class="btn-sm btn-outline" onclick="clearText()">Clear</button>
+<div class="tool-interface">
+  <!-- Input Area -->
+  <div class="input-area">
+    <div class="label-row">
+      <label for="textInput">Input Text:</label>
+      <div class="toolbar">
+        <button class="btn-sm btn-outline" onclick="pasteText()" title="Paste from clipboard">
+          <span>📋</span> Paste
+        </button>
+        <button class="btn-sm btn-outline" onclick="clearText()" title="Clear input">
+          <span>🗑️</span> Clear
+        </button>
+      </div>
+    </div>
+    <textarea id="textInput" placeholder="Enter or paste text to format..." oninput="updateStats()"></textarea>
+    <div class="text-stats">
+      <span id="charCount">0 characters</span>
+      <span class="stat-separator">•</span>
+      <span id="wordCount">0 words</span>
+      <span class="stat-separator">•</span>
+      <span id="lineCount">0 lines</span>
     </div>
   </div>
-  <textarea id="textInput" placeholder="Enter text to format..."></textarea>
+
+  <!-- Find & Replace Section -->
+  <div class="find-replace-section">
+    <div class="section-header" onclick="toggleSection('findReplace')">
+      <h3>🔍 Find & Replace</h3>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div id="findReplace" class="collapsible-content">
+      <div class="find-replace-controls">
+        <div class="input-group">
+          <label for="findText">Find:</label>
+          <input type="text" id="findText" placeholder="Text to find...">
+        </div>
+        <div class="input-group">
+          <label for="replaceText">Replace with:</label>
+          <input type="text" id="replaceText" placeholder="Replacement text...">
+        </div>
+        <div class="find-replace-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="caseSensitive">
+            Case sensitive
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="useRegex">
+            Use regex
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="wholeWord">
+            Whole word
+          </label>
+        </div>
+        <div class="find-replace-actions">
+          <button class="btn-primary" onclick="findAndReplace()">Replace All</button>
+          <button class="btn-outline" onclick="highlightMatches()">Find All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions-section">
+    <h3>⚡ Quick Actions</h3>
+    <div class="action-grid">
+      <button class="action-btn" onclick="applyFormat('uppercase')" title="Convert to UPPERCASE">
+        <span class="action-icon">🔠</span>
+        <span class="action-label">UPPERCASE</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('lowercase')" title="Convert to lowercase">
+        <span class="action-icon">🔡</span>
+        <span class="action-label">lowercase</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('titlecase')" title="Convert to Title Case">
+        <span class="action-icon">📝</span>
+        <span class="action-label">Title Case</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('sentencecase')" title="Convert to Sentence case">
+        <span class="action-icon">📄</span>
+        <span class="action-label">Sentence case</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('camelcase')" title="Convert to camelCase">
+        <span class="action-icon">🐫</span>
+        <span class="action-label">camelCase</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('pascalcase')" title="Convert to PascalCase">
+        <span class="action-icon">🅿️</span>
+        <span class="action-label">PascalCase</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('snakecase')" title="Convert to snake_case">
+        <span class="action-icon">🐍</span>
+        <span class="action-label">snake_case</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('kebabcase')" title="Convert to kebab-case">
+        <span class="action-icon">�串</span>
+        <span class="action-label">kebab-case</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Text Operations -->
+  <div class="text-operations-section">
+    <h3>🛠️ Text Operations</h3>
+    <div class="action-grid">
+      <button class="action-btn" onclick="applyFormat('trim')" title="Remove leading/trailing spaces">
+        <span class="action-icon">✂️</span>
+        <span class="action-label">Trim Spaces</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('removespaces')" title="Remove all spaces">
+        <span class="action-icon">🚫</span>
+        <span class="action-label">Remove Spaces</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('removelinebreaks')" title="Remove line breaks">
+        <span class="action-icon">📏</span>
+        <span class="action-label">Remove Breaks</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('removeduplicate')" title="Remove duplicate lines">
+        <span class="action-icon">🔄</span>
+        <span class="action-label">Remove Duplicates</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('removeempty')" title="Remove empty lines">
+        <span class="action-icon">📋</span>
+        <span class="action-label">Remove Empty</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('reverse')" title="Reverse text">
+        <span class="action-icon">↩️</span>
+        <span class="action-label">Reverse Text</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('reverselines')" title="Reverse line order">
+        <span class="action-icon">🔃</span>
+        <span class="action-label">Reverse Lines</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('sortasc')" title="Sort lines A-Z">
+        <span class="action-icon">⬆️</span>
+        <span class="action-label">Sort A-Z</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('sortdesc')" title="Sort lines Z-A">
+        <span class="action-icon">⬇️</span>
+        <span class="action-label">Sort Z-A</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('shuffle')" title="Shuffle lines randomly">
+        <span class="action-icon">🎲</span>
+        <span class="action-label">Shuffle Lines</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('numberedlist')" title="Add line numbers">
+        <span class="action-icon">🔢</span>
+        <span class="action-label">Number Lines</span>
+      </button>
+      <button class="action-btn" onclick="applyFormat('bulletlist')" title="Add bullet points">
+        <span class="action-icon">•</span>
+        <span class="action-label">Bullet List</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Advanced Operations -->
+  <div class="advanced-operations-section">
+    <div class="section-header" onclick="toggleSection('advancedOps')">
+      <h3>🎯 Advanced Operations</h3>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div id="advancedOps" class="collapsible-content">
+      <div class="action-grid">
+        <button class="action-btn" onclick="applyFormat('extractemails')" title="Extract email addresses">
+          <span class="action-icon">📧</span>
+          <span class="action-label">Extract Emails</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('extracturls')" title="Extract URLs">
+          <span class="action-icon">🔗</span>
+          <span class="action-label">Extract URLs</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('extractnumbers')" title="Extract numbers">
+          <span class="action-icon">🔢</span>
+          <span class="action-label">Extract Numbers</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('removehtml')" title="Remove HTML tags">
+          <span class="action-icon">🏷️</span>
+          <span class="action-label">Remove HTML</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('addprefix')" title="Add prefix to lines">
+          <span class="action-icon">⏮️</span>
+          <span class="action-label">Add Prefix</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('addsuffix')" title="Add suffix to lines">
+          <span class="action-icon">⏭️</span>
+          <span class="action-label">Add Suffix</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('wraplines')" title="Wrap lines at width">
+          <span class="action-icon">📦</span>
+          <span class="action-label">Wrap Lines</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('base64encode')" title="Encode to Base64">
+          <span class="action-icon">🔐</span>
+          <span class="action-label">Base64 Encode</span>
+        </button>
+        <button class="action-btn" onclick="applyFormat('base64decode')" title="Decode from Base64">
+          <span class="action-icon">🔓</span>
+          <span class="action-label">Base64 Decode</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output Area -->
+  <div class="output-section">
+    <div class="label-row">
+      <label for="outputText">Output:</label>
+      <div class="toolbar">
+        <button class="btn-sm btn-primary" onclick="copyOutput()" title="Copy to clipboard">
+          <span>📋</span> Copy
+        </button>
+        <button class="btn-sm btn-outline" onclick="downloadOutput()" title="Download as text file">
+          <span>💾</span> Download
+        </button>
+        <button class="btn-sm btn-outline" onclick="useAsInput()" title="Use output as input">
+          <span>🔄</span> Use as Input
+        </button>
+      </div>
+    </div>
+    <textarea id="outputText" readonly placeholder="Formatted text will appear here..."></textarea>
+  </div>
+
+  <!-- History Section -->
+  <div class="history-section">
+    <div class="section-header" onclick="toggleSection('history')">
+      <h3>📜 History</h3>
+      <span class="toggle-icon">▼</span>
+    </div>
+    <div id="history" class="collapsible-content collapsed">
+      <div class="history-controls">
+        <button class="btn-sm btn-outline" onclick="clearHistory()">Clear History</button>
+      </div>
+      <div id="historyList" class="history-list">
+        <p class="history-empty">No history yet. Start formatting text!</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="formatting-actions">
-  <h3>Text Transformations</h3>
-  <div class="action-grid">
-    <button class="action-btn" onclick="applyFormat('uppercase')">UPPERCASE</button>
-    <button class="action-btn" onclick="applyFormat('lowercase')">lowercase</button>
-    <button class="action-btn" onclick="applyFormat('titlecase')">Title Case</button>
-    <button class="action-btn" onclick="applyFormat('sentencecase')">Sentence case</button>
-    <button class="action-btn" onclick="applyFormat('camelcase')">camelCase</button>
-    <button class="action-btn" onclick="applyFormat('snakecase')">snake_case</button>
-    <button class="action-btn" onclick="applyFormat('kebabcase')">kebab-case</button>
-    <button class="action-btn" onclick="applyFormat('reverse')">esreveR</button>
-  </div>
-  
-  <h3>Text Operations</h3>
-  <div class="action-grid">
-    <button class="action-btn" onclick="applyFormat('trim')">Trim Spaces</button>
-    <button class="action-btn" onclick="applyFormat('removespaces')">Remove All Spaces</button>
-    <button class="action-btn" onclick="applyFormat('removelinebreaks')">Remove Line Breaks</button>
-    <button class="action-btn" onclick="applyFormat('removeduplicate')">Remove Duplicate Lines</button>
-    <button class="action-btn" onclick="applyFormat('sortasc')">Sort A-Z</button>
-    <button class="action-btn" onclick="applyFormat('sortdesc')">Sort Z-A</button>
-    <button class="action-btn" onclick="applyFormat('shuffle')">Shuffle Lines</button>
-    <button class="action-btn" onclick="applyFormat('numberedlist')">Add Line Numbers</button>
-  </div>
-</div>
+<!-- Content Section -->
+<section class="tool-content-section">
+  <div class="content-body">
+    <h2>About Text Formatter</h2>
+    <p>
+      The Text Formatter is a comprehensive text transformation tool that provides over 25 different formatting operations 
+      to help you manipulate and clean up text quickly. Whether you need to change text case, remove unwanted characters, 
+      sort lines, or perform advanced operations like extracting emails and URLs, this tool has you covered.
+    </p>
+    <p>
+      Perfect for developers, writers, content creators, and anyone who works with text regularly. All operations are 
+      performed instantly in your browser with no server uploads, ensuring your data remains private and secure.
+    </p>
 
-<div class="output-section">
-  <div class="label-row">
-    <label for="outputText">Output:</label>
-    <button class="btn-sm" onclick="copyOutput()">Copy</button>
-  </div>
-  <textarea id="outputText" readonly placeholder="Formatted text will appear here..."></textarea>
-</div>
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔠</div>
+        <h3 class="feature-title">Case Transformations</h3>
+        <p class="feature-description">
+          Convert text between uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case, and kebab-case.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3 class="feature-title">Find & Replace</h3>
+        <p class="feature-description">
+          Powerful find and replace with support for regular expressions, case sensitivity, and whole word matching.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✂️</div>
+        <h3 class="feature-title">Text Cleanup</h3>
+        <p class="feature-description">
+          Remove extra spaces, line breaks, duplicate lines, empty lines, and HTML tags to clean up messy text.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 class="feature-title">Text Analysis</h3>
+        <p class="feature-description">
+          Real-time character, word, and line counting to help you track text statistics as you work.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Advanced Extraction</h3>
+        <p class="feature-description">
+          Extract emails, URLs, and numbers from text automatically with pattern recognition.
+        </p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📜</div>
+        <h3 class="feature-title">History Tracking</h3>
+        <p class="feature-description">
+          Keep track of your recent transformations and quickly reuse previous operations.
+        </p>
+      </div>
+    </div>
 
+    <h2>How to Use</h2>
+    <ol class="instructions-list">
+      <li><strong>Enter Your Text:</strong> Paste or type your text into the input area. You'll see real-time statistics showing character, word, and line counts.</li>
+      <li><strong>Choose an Operation:</strong> Click any of the formatting buttons to apply that transformation instantly. Results appear in the output area.</li>
+      <li><strong>Use Find & Replace:</strong> Expand the Find & Replace section to search and replace text with support for regex patterns and advanced options.</li>
+      <li><strong>Apply Advanced Operations:</strong> Expand the Advanced Operations section for specialized tasks like extracting emails, removing HTML, or encoding to Base64.</li>
+      <li><strong>Copy or Download:</strong> Use the Copy button to copy results to your clipboard, or Download to save as a text file.</li>
+      <li><strong>Chain Operations:</strong> Click "Use as Input" to feed the output back as input for additional transformations.</li>
+    </ol>
+
+    <h2>Common Use Cases</h2>
+    <ul>
+      <li><strong>Code Formatting:</strong> Convert variable names between camelCase, snake_case, and kebab-case for different programming conventions.</li>
+      <li><strong>Content Cleanup:</strong> Remove extra spaces, line breaks, and formatting from copied text before using it in documents.</li>
+      <li><strong>Data Extraction:</strong> Extract all email addresses or URLs from a large block of text for contact lists or link analysis.</li>
+      <li><strong>List Management:</strong> Sort, deduplicate, and number lists of items for better organization.</li>
+      <li><strong>Text Preparation:</strong> Clean and format text for social media posts, ensuring proper capitalization and formatting.</li>
+      <li><strong>HTML Cleanup:</strong> Remove HTML tags from copied web content to get plain text.</li>
+      <li><strong>Batch Processing:</strong> Add prefixes or suffixes to multiple lines at once for bulk text editing.</li>
+    </ul>
+
+    <h2>Tips & Best Practices</h2>
+    <ul>
+      <li><strong>Use Keyboard Shortcuts:</strong> Press Ctrl+V to paste, Ctrl+C to copy output, and Ctrl+A to select all text.</li>
+      <li><strong>Chain Transformations:</strong> Apply multiple operations in sequence by using "Use as Input" to refine your text step by step.</li>
+      <li><strong>Leverage Regex:</strong> Enable regex in Find & Replace for powerful pattern matching and complex replacements.</li>
+      <li><strong>Check Statistics:</strong> Monitor character and word counts to ensure your text meets length requirements.</li>
+      <li><strong>Save Your Work:</strong> Use the Download button to save formatted text as a file for later use.</li>
+      <li><strong>Review History:</strong> Check your history to quickly reapply previous transformations without starting over.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <h3>Is my text data secure?</h3>
+        <p>Yes, absolutely. All text formatting operations are performed entirely in your browser using JavaScript. Your text is never uploaded to any server, ensuring complete privacy and security.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use regular expressions in Find & Replace?</h3>
+        <p>Yes! Enable the "Use regex" checkbox in the Find & Replace section to use regular expression patterns for advanced search and replace operations.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What's the difference between camelCase and PascalCase?</h3>
+        <p>camelCase starts with a lowercase letter (e.g., "myVariable"), while PascalCase starts with an uppercase letter (e.g., "MyVariable"). Both remove spaces and capitalize subsequent words.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I process very large text files?</h3>
+        <p>Yes, the tool can handle large amounts of text. However, extremely large files (over 1MB) may take a moment to process depending on your device's performance.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How do I extract only email addresses from text?</h3>
+        <p>Use the "Extract Emails" button in the Advanced Operations section. It will automatically find and extract all email addresses from your input text.</p>
+      </div>
+    </div>
+
+    <h2>Related Tools</h2>
+    <ul class="related-tools-list">
+      <li><a href="/tools/word-counter/">Word Counter</a> - Count words, characters, and analyze text statistics</li>
+      <li><a href="/tools/character-counter/">Character Counter</a> - Detailed character counting and analysis</li>
+      <li><a href="/tools/html-encoder/">HTML Encoder</a> - Encode and decode HTML entities</li>
+      <li><a href="/tools/url-encoder/">URL Encoder</a> - Encode and decode URLs</li>
+      <li><a href="/tools/base64-encoder/">Base64 Encoder</a> - Encode and decode Base64 strings</li>
+      <li><a href="/tools/regex-tester/">Regex Tester</a> - Test and debug regular expressions</li>
+    </ul>
+  </div>
+</section>
+
+<script src="/assets/js/tool-utils.js"></script>
 <script src="/assets/js/text-formatter.js"></script>

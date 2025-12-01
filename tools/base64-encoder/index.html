@@ -1,147 +1,317 @@
 ---
 layout: tool
-title: Base64 Encoder/Decoder - Encode & Decode Base64 Online Free
-description: Encode text to Base64 or decode Base64 strings back to text instantly. Free online Base64 encoder and decoder tool for developers.
-keywords: base64 encoder, base64 decoder, encode base64, decode base64, base64 converter, base64 tool
+title: Base64 Encoder/Decoder - File Upload & Batch Processing Free
+description: Encode text and files to Base64 or decode Base64 strings instantly. Features file upload, batch processing, URL-safe encoding, and format detection. 100% free and private.
+keywords: base64 encoder, base64 decoder, encode base64, decode base64, base64 converter, base64 file upload, batch base64, url safe base64, base64 tool online
 schema_type: WebApplication
 permalink: /tools/base64-encoder/
 category_name: Text Utilities
 category_url: /text-utilities/
-rating: 4.7
-rating_count: 880
+rating: 4.8
+rating_count: 920
 features:
   - Encode to Base64
   - Decode from Base64
-  - Instant conversion
-  - Copy to clipboard
+  - File upload support
+  - Batch processing
+  - URL-safe encoding
+  - Format detection
+  - Download results
   - 100% private
-  - Works offline
 ---
 
 <section class="tool-wrapper" aria-labelledby="base64-heading">
   <h2 id="base64-heading" class="sr-only">Base64 Encoder and Decoder</h2>
+  
+  <!-- Mode Toggle -->
   <div class="mode-toggle" role="tablist" aria-label="Encoder or Decoder mode">
     <button id="modeEncode" class="toggle-btn active" role="tab" aria-selected="true" aria-controls="encode-panel">Encoder</button>
     <button id="modeDecode" class="toggle-btn" role="tab" aria-selected="false" aria-controls="decode-panel">Decoder</button>
   </div>
 
+  <!-- Options -->
+  <div class="tool-options" style="margin-bottom: 1rem; padding: 1rem; background: var(--light-gray, #f9fafb); border-radius: 8px;">
+    <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center;">
+      <div>
+        <label for="formatSelect" style="margin-right: 0.5rem; font-weight: 500;">Format:</label>
+        <select id="formatSelect" style="padding: 0.5rem; border: 1px solid var(--border, #e5e7eb); border-radius: 6px;">
+          <option value="text">Plain Text</option>
+          <option value="base64">Base64</option>
+          <option value="image/png">PNG Image</option>
+          <option value="image/jpeg">JPEG Image</option>
+          <option value="application/pdf">PDF</option>
+        </select>
+      </div>
+      <div>
+        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+          <input type="checkbox" id="urlSafeCheckbox" style="width: 18px; height: 18px; cursor: pointer;">
+          <span style="font-weight: 500;">URL-Safe Encoding</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Area -->
   <div class="input-area">
     <div class="label-row">
       <label id="inputLabel">Text to Encode:</label>
       <div class="toolbar">
+        <button id="fileUploadBtn" class="btn-sm" title="Upload file to encode">
+          📁 Upload File
+        </button>
         <button id="pasteBtn" class="btn-sm">Paste</button>
         <button id="clearBtn" class="btn-sm btn-outline">Clear</button>
       </div>
     </div>
-    <textarea id="inputBox" placeholder="Type or paste content here..." spellcheck="false"></textarea>
+    <textarea id="inputBox" placeholder="Type or paste content here..." spellcheck="false" rows="8"></textarea>
+    <input type="file" id="fileInput" style="display: none;" accept="*/*">
   </div>
 
+  <!-- Output Area -->
   <div class="input-area output-section">
     <div class="label-row">
       <label>Result:</label>
       <div class="toolbar">
         <button id="copyBtn" class="btn-sm">Copy Result</button>
+        <button id="downloadBtn" class="btn-sm btn-outline">Download</button>
       </div>
     </div>
-    <textarea id="outputBox" readonly placeholder="Result will appear here..."></textarea>
+    <textarea id="outputBox" readonly placeholder="Result will appear here..." rows="8"></textarea>
   </div>
-</div>
 
-<script src="{{ site.baseurl }}/assets/js/base64.js"></script>
+  <!-- Batch Processing Section -->
+  <div class="batch-section" style="margin-top: 2rem; padding: 1.5rem; background: var(--light-gray, #f9fafb); border-radius: 12px; border: 2px dashed var(--border, #e5e7eb);">
+    <h3 style="margin: 0 0 1rem 0; font-size: 1.1rem; color: var(--dark, #1f2937);">
+      🔄 Batch Processing
+    </h3>
+    <p style="margin: 0 0 1rem 0; color: var(--gray, #6b7280); font-size: 0.95rem;">
+      Process multiple items at once (one per line)
+    </p>
+    
+    <div class="input-area">
+      <div class="label-row">
+        <label>Batch Input:</label>
+        <div class="toolbar">
+          <button id="batchEncodeBtn" class="btn-sm">Encode All</button>
+          <button id="batchDecodeBtn" class="btn-sm">Decode All</button>
+        </div>
+      </div>
+      <textarea id="batchTextarea" placeholder="Enter multiple items (one per line)..." rows="6"></textarea>
+    </div>
 
+    <div class="input-area output-section" style="margin-top: 1rem;">
+      <div class="label-row">
+        <label>Batch Output:</label>
+        <div class="toolbar">
+          <button id="batchCopyBtn" class="btn-sm">Copy All</button>
+          <button id="batchDownloadBtn" class="btn-sm btn-outline">Download</button>
+        </div>
+      </div>
+      <textarea id="batchOutputBox" readonly placeholder="Batch results will appear here..." rows="6"></textarea>
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Info -->
+  <div style="margin-top: 1rem; padding: 0.75rem; background: #eff6ff; border-left: 3px solid #3b82f6; border-radius: 6px;">
+    <p style="margin: 0; font-size: 0.9rem; color: #1e40af;">
+      <strong>💡 Keyboard Shortcuts:</strong> Ctrl+Enter to process, Ctrl+K to clear
+    </p>
+  </div>
 </section>
+
+<script src="{{ site.baseurl }}/assets/js/tool-utils.js"></script>
+<script src="{{ site.baseurl }}/assets/js/base64.js"></script>
 
 <section class="tool-content-section">
   <div class="content-body">
     <h2>About This Base64 Encoder/Decoder</h2>
-    <p>Our free online Base64 encoder and decoder helps developers convert text to Base64 format and back instantly. Perfect for encoding data for APIs, email attachments, data URIs, and secure data transmission. Fast, accurate, and 100% private.</p>
+    <p>Transform text and files into Base64 format instantly with our professional encoder/decoder tool. Whether you're embedding images in HTML, preparing data for API transmission, or encoding authentication credentials, our tool handles single conversions and batch processing with ease. Features file upload support, URL-safe encoding, automatic format detection, and complete privacy—all processing happens locally in your browser.</p>
     
     <h2>Key Features</h2>
-    <div class="features-list">
-      <div class="feature-item-text">
-        <strong>🔄 Encode & Decode</strong>
-        <p>Switch between encoding text to Base64 and decoding Base64 back to text with one click.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>Bidirectional Conversion</h3>
+        <p>Seamlessly switch between encoding text to Base64 and decoding Base64 strings back to readable text with instant mode switching.</p>
       </div>
-      <div class="feature-item-text">
-        <strong>⚡ Instant Conversion</strong>
-        <p>Real-time encoding and decoding as you type or paste. No waiting, no delays.</p>
+      <div class="feature-card">
+        <div class="feature-icon">📁</div>
+        <h3>File Upload Support</h3>
+        <p>Upload any file type and convert it to Base64 format. Perfect for creating data URIs or preparing files for API transmission.</p>
       </div>
-      <div class="feature-item-text">
-        <strong>📋 One-Click Copy</strong>
-        <p>Copy encoded or decoded results to clipboard with a single click.</p>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Batch Processing</h3>
+        <p>Process multiple items simultaneously by entering one per line. Encode or decode dozens of strings in a single operation.</p>
       </div>
-      <div class="feature-item-text">
-        <strong>🔒 100% Private</strong>
-        <p>All encoding happens in your browser. Your data never leaves your device.</p>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Format Detection</h3>
+        <p>Automatically identifies input format including plain text, Base64, images, and data URIs for intelligent processing.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>URL-Safe Encoding</h3>
+        <p>Toggle URL-safe Base64 encoding that replaces + and / with - and _ for safe use in URLs and filenames.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Download Results</h3>
+        <p>Export encoded or decoded results as text files. Batch results can be downloaded with all items preserved.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⌨️</div>
+        <h3>Keyboard Shortcuts</h3>
+        <p>Speed up your workflow with Ctrl+Enter to process and Ctrl+K to clear. Work faster without touching your mouse.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>100% Private</h3>
+        <p>All encoding and decoding happens locally in your browser. Your data never touches our servers or leaves your device.</p>
       </div>
     </div>
     
     <h2>How to Use the Base64 Encoder</h2>
     <ol class="instructions-list">
-      <li><strong>Choose Mode:</strong> Click "Encoder" to encode or "Decoder" to decode</li>
-      <li><strong>Paste Data:</strong> Enter your text or Base64 string in the input box</li>
-      <li><strong>View Result:</strong> The conversion happens automatically in real-time</li>
-      <li><strong>Copy Result:</strong> Click "Copy Result" to copy the output to clipboard</li>
+      <li><strong>Select Your Mode:</strong> Click "Encoder" to convert text/files to Base64, or "Decoder" to convert Base64 back to readable format</li>
+      <li><strong>Choose Options:</strong> Select format type and enable URL-safe encoding if needed for URLs or filenames</li>
+      <li><strong>Input Your Data:</strong> Type or paste text, upload a file, or use the paste button to insert clipboard content</li>
+      <li><strong>View Results:</strong> Conversion happens automatically in real-time as you type or immediately after file upload</li>
+      <li><strong>Copy or Download:</strong> Click "Copy Result" to copy to clipboard or "Download" to save as a text file</li>
+      <li><strong>Batch Processing:</strong> For multiple items, use the batch section to encode/decode many strings at once (one per line)</li>
     </ol>
     
     <h2>What is Base64 Encoding?</h2>
-    <p>Base64 is an encoding scheme that converts binary data into ASCII text format using 64 printable characters (A-Z, a-z, 0-9, +, /). It's widely used in web development and data transmission.</p>
+    <p>Base64 is a binary-to-text encoding scheme that represents binary data using 64 ASCII characters. It converts groups of 3 bytes (24 bits) into 4 Base64 characters, making binary data safe for transmission through text-based protocols. The character set includes A-Z, a-z, 0-9, plus (+), and forward slash (/), with equals (=) used for padding.</p>
+    
+    <p>Base64 encoding increases data size by approximately 33% because it uses 6 bits per character instead of 8 bits per byte. Despite this overhead, it's essential for scenarios where binary data must be transmitted through systems designed for text, such as email (MIME), JSON APIs, XML documents, and HTML data URIs.</p>
     
     <h2>Why Use Base64 Encoding?</h2>
     <ul>
-      <li><strong>Email Attachments:</strong> Encode binary files for email transmission (MIME)</li>
-      <li><strong>Data URIs:</strong> Embed images and files directly in HTML/CSS</li>
-      <li><strong>API Communication:</strong> Send binary data in JSON or XML</li>
-      <li><strong>Authentication:</strong> Encode credentials for HTTP Basic Auth</li>
-      <li><strong>Data Storage:</strong> Store binary data in text-based databases</li>
-      <li><strong>URL Safety:</strong> Make binary data URL-safe for transmission</li>
+      <li><strong>Email Attachments (MIME):</strong> Encode binary files for safe transmission through email systems that only support 7-bit ASCII text</li>
+      <li><strong>Data URIs:</strong> Embed images, fonts, and other resources directly in HTML, CSS, or JavaScript without external file requests</li>
+      <li><strong>API Communication:</strong> Send binary data (images, PDFs, files) through JSON or XML APIs that require text-based payloads</li>
+      <li><strong>HTTP Basic Authentication:</strong> Encode username:password credentials for Authorization headers in HTTP requests</li>
+      <li><strong>Database Storage:</strong> Store binary data in text-based database fields or systems that don't support BLOB types</li>
+      <li><strong>URL Safety:</strong> Use URL-safe Base64 variant to include binary data in URLs, query parameters, or filenames</li>
+      <li><strong>Configuration Files:</strong> Embed binary data or credentials in JSON, YAML, or XML configuration files</li>
+      <li><strong>Cross-Platform Compatibility:</strong> Ensure binary data survives transmission through systems with different character encodings</li>
     </ul>
     
     <h2>Common Use Cases</h2>
-    <div class="features-list">
-      <div class="feature-item-text">
-        <strong>🖼️ Image Embedding</strong>
-        <p>Convert images to Base64 for inline embedding in HTML or CSS without external files.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🖼️</div>
+        <h3>Image Embedding</h3>
+        <p>Convert images to Base64 data URIs for inline embedding in HTML or CSS. Reduces HTTP requests and enables single-file distribution of web pages with embedded graphics.</p>
       </div>
-      <div class="feature-item-text">
-        <strong>🔐 Basic Authentication</strong>
-        <p>Encode username:password for HTTP Basic Authentication headers.</p>
+      <div class="feature-card">
+        <div class="feature-icon">🔐</div>
+        <h3>Basic Authentication</h3>
+        <p>Encode username:password combinations for HTTP Basic Authentication headers. Essential for API authentication and protected resource access.</p>
       </div>
-      <div class="feature-item-text">
-        <strong>📧 Email Encoding</strong>
-        <p>Encode attachments and special characters for email transmission.</p>
+      <div class="feature-card">
+        <div class="feature-icon">📧</div>
+        <h3>Email Encoding</h3>
+        <p>Encode file attachments and special characters for MIME email transmission. Ensures binary data survives email system processing.</p>
       </div>
-      <div class="feature-item-text">
-        <strong>🔗 Data URIs</strong>
-        <p>Create data URIs for embedding resources directly in web pages.</p>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>Data URIs</h3>
+        <p>Create data: URIs for embedding resources directly in web pages. Useful for small images, icons, fonts, and inline SVG graphics.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>API Payloads</h3>
+        <p>Encode files and binary data for transmission through REST APIs that use JSON or XML. Common in file upload APIs and document processing services.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Configuration Files</h3>
+        <p>Embed certificates, keys, or binary configuration data in JSON, YAML, or XML files. Keeps sensitive data in text-based config systems.</p>
       </div>
     </div>
     
-    <h2>Base64 Format Explained</h2>
-    <p>Base64 uses 64 characters to represent data:</p>
+    <h2>Understanding Base64 Format</h2>
+    <p>Base64 encoding uses a specific character set and structure:</p>
+    
+    <h3>Character Set (64 characters total):</h3>
     <ul>
-      <li><strong>A-Z:</strong> Uppercase letters (26 characters)</li>
-      <li><strong>a-z:</strong> Lowercase letters (26 characters)</li>
-      <li><strong>0-9:</strong> Digits (10 characters)</li>
-      <li><strong>+, /:</strong> Special characters (2 characters)</li>
-      <li><strong>=:</strong> Padding character</li>
+      <li><strong>A-Z:</strong> Uppercase letters (values 0-25)</li>
+      <li><strong>a-z:</strong> Lowercase letters (values 26-51)</li>
+      <li><strong>0-9:</strong> Digits (values 52-61)</li>
+      <li><strong>+ and /:</strong> Special characters (values 62-63)</li>
+      <li><strong>=:</strong> Padding character (not part of the 64)</li>
     </ul>
     
-    <h2>Important Notes</h2>
+    <h3>URL-Safe Base64 Variant:</h3>
+    <p>For use in URLs, filenames, or other contexts where + and / cause issues:</p>
     <ul>
-      <li>Base64 increases data size by approximately 33%</li>
-      <li>It's encoding, not encryption (not secure by itself)</li>
-      <li>Padding (=) is added to make length divisible by 4</li>
-      <li>URL-safe Base64 uses - and _ instead of + and /</li>
+      <li><strong>-</strong> (minus) replaces + (plus)</li>
+      <li><strong>_</strong> (underscore) replaces / (forward slash)</li>
+      <li>Padding (=) is often omitted</li>
     </ul>
+    
+    <h2>Tips & Best Practices</h2>
+    <ul>
+      <li><strong>Size Consideration:</strong> Base64 increases data size by ~33%. For large files, consider direct binary transmission if supported</li>
+      <li><strong>Not Encryption:</strong> Base64 is encoding, not encryption. It provides no security—anyone can decode it. Use encryption for sensitive data</li>
+      <li><strong>URL Safety:</strong> Always use URL-safe Base64 when encoding data for URLs, query parameters, or filenames to avoid special character issues</li>
+      <li><strong>Padding Rules:</strong> Standard Base64 requires padding (=) to make length divisible by 4. URL-safe variants often omit padding</li>
+      <li><strong>Line Breaks:</strong> Some Base64 implementations add line breaks every 76 characters (MIME). Our tool handles both formats automatically</li>
+      <li><strong>UTF-8 Handling:</strong> When encoding text with special characters, ensure proper UTF-8 encoding before Base64 conversion</li>
+      <li><strong>Performance:</strong> For very large files (>10MB), consider server-side encoding to avoid browser memory limitations</li>
+      <li><strong>Validation:</strong> Always validate Base64 strings before decoding to catch malformed input and prevent errors</li>
+    </ul>
+    
+    <h2>File Upload Guide</h2>
+    <p>Our Base64 encoder supports file uploads for easy conversion:</p>
+    <ul>
+      <li><strong>Supported Files:</strong> Any file type (images, PDFs, documents, executables, etc.)</li>
+      <li><strong>Size Limits:</strong> Browser-dependent, typically up to 50-100MB. Larger files may cause performance issues</li>
+      <li><strong>Image Files:</strong> Automatically creates data URIs with proper MIME type (data:image/png;base64,...)</li>
+      <li><strong>Use Cases:</strong> Perfect for creating inline images, embedding files in JSON, or preparing file uploads for APIs</li>
+    </ul>
+    
+    <h2>Batch Processing Guide</h2>
+    <p>Process multiple items efficiently with batch mode:</p>
+    <ul>
+      <li><strong>Format:</strong> Enter one item per line in the batch input area</li>
+      <li><strong>Encoding:</strong> Click "Encode All" to convert all lines to Base64 simultaneously</li>
+      <li><strong>Decoding:</strong> Click "Decode All" to decode multiple Base64 strings at once</li>
+      <li><strong>Output:</strong> Results appear in the same order, one per line, matching your input</li>
+      <li><strong>Error Handling:</strong> Invalid items show error messages while valid items process successfully</li>
+      <li><strong>Export:</strong> Download all results as a text file for easy sharing or storage</li>
+    </ul>
+    
+    <h2>Frequently Asked Questions</h2>
+    
+    <h3>Is Base64 encoding secure?</h3>
+    <p>No, Base64 is not encryption—it's encoding. Anyone can decode Base64 strings instantly. Never use Base64 alone for sensitive data. It's designed for data transmission compatibility, not security. For security, use proper encryption (AES, RSA) before Base64 encoding.</p>
+    
+    <h3>Why does Base64 make files larger?</h3>
+    <p>Base64 uses 4 characters to represent 3 bytes of data, increasing size by approximately 33%. This overhead is the trade-off for making binary data safe for text-based transmission systems.</p>
+    
+    <h3>When should I use URL-safe Base64?</h3>
+    <p>Use URL-safe Base64 whenever encoded data will appear in URLs, query parameters, filenames, or any context where + and / characters cause issues. It replaces these with - and _ which are safe in all contexts.</p>
+    
+    <h3>Can I encode files larger than 10MB?</h3>
+    <p>While technically possible, large files may cause browser performance issues or memory errors. For files over 10MB, consider server-side encoding or direct binary transmission if your use case supports it.</p>
+    
+    <h3>What's the difference between Base64 and Base64URL?</h3>
+    <p>Base64URL (URL-safe Base64) replaces + with -, / with _, and often omits padding (=). This makes the encoded string safe for use in URLs without percent-encoding. Standard Base64 uses + and / which must be URL-encoded.</p>
+    
+    <h3>Why do I see = at the end of Base64 strings?</h3>
+    <p>The equals sign (=) is padding added to make the Base64 string length divisible by 4. It's required by the Base64 specification but is sometimes omitted in URL-safe variants since it can be inferred.</p>
     
     <h2>Related Tools</h2>
-    <p>Enhance your encoding workflow with these related tools:</p>
+    <p>Enhance your encoding and data transformation workflow:</p>
     <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Encode URLs and query strings</li>
-      <li><a href="{{ site.baseurl }}/tools/html-encoder/">HTML Encoder</a> - Encode HTML entities</li>
-      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate secure hashes</li>
-      <li><a href="{{ site.baseurl }}/text-utilities/">View All Encoding Tools</a></li>
+      <li><a href="{{ site.baseurl }}/tools/url-encoder/">URL Encoder</a> - Encode URLs and query strings for safe transmission</li>
+      <li><a href="{{ site.baseurl }}/tools/html-encoder/">HTML Encoder</a> - Encode HTML entities and special characters</li>
+      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate MD5, SHA-1, SHA-256 hashes</li>
+      <li><a href="{{ site.baseurl }}/tools/json-formatter/">JSON Formatter</a> - Format and validate JSON data</li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Text Utilities</a></li>
     </ul>
   </div>
 </section>

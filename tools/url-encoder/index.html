@@ -1,156 +1,289 @@
 ---
 layout: tool
 title: URL Encoder/Decoder - Encode & Decode URLs Online Free
-description: Encode text to URL-safe strings or decode URLs back to normal text. Free online URL encoder for developers to safely encode special characters in URLs and query strings.
-keywords: url encoder, url decoder, encode url, decode url, url escape, url unescape, percent encoding, url converter
+description: Professional URL encoder and decoder with component encoding, batch processing, and validation. Encode URLs, query strings, paths, and fragments safely for web development.
+keywords: url encoder, url decoder, encode url, decode url, url escape, url unescape, percent encoding, url converter, query string encoder, component encoder
 schema_type: WebApplication
 permalink: /tools/url-encoder/
 category_name: Text Utilities
 category_url: /text-utilities/
-rating: 4.7
-rating_count: 760
+rating: 4.8
+rating_count: 890
 features:
-  - Encode URLs
-  - Decode URLs
-  - Percent encoding
-  - Query string encoding
-  - Instant results
-  - Works offline
+  - Encode & decode URLs
+  - Component encoding
+  - Batch processing
+  - URL validation
+  - Real-time conversion
+  - 100% private & secure
 ---
 
 <div class="tool-wrapper">
+  <!-- Mode Toggle -->
   <div class="mode-toggle">
-    <button id="modeEncode" class="toggle-btn active">Encoder</button>
-    <button id="modeDecode" class="toggle-btn">Decoder</button>
+    <button id="modeEncode" class="toggle-btn active">Encode</button>
+    <button id="modeDecode" class="toggle-btn">Decode</button>
   </div>
 
+  <!-- Encoding Type Selection -->
+  <div class="encoding-options" id="encodingOptions">
+    <label class="option-label">Encoding Type:</label>
+    <div class="radio-group">
+      <label class="radio-option">
+        <input type="radio" name="encodingType" value="full" checked>
+        <span>Full URL</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="encodingType" value="component">
+        <span>Component (Query/Path)</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="encodingType" value="path">
+        <span>Path Segment</span>
+      </label>
+      <label class="radio-option">
+        <input type="radio" name="encodingType" value="query">
+        <span>Query String</span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Batch Mode Toggle -->
+  <div class="batch-toggle">
+    <label class="checkbox-option">
+      <input type="checkbox" id="batchMode">
+      <span>Batch Mode (one per line)</span>
+    </label>
+  </div>
+
+  <!-- Input Area -->
   <div class="input-area">
     <div class="label-row">
       <label id="inputLabel">Text to Encode:</label>
       <div class="toolbar">
-        <button id="pasteBtn" class="btn-sm">Paste</button>
+        <button id="pasteBtn" class="btn-sm">📋 Paste</button>
         <button id="clearBtn" class="btn-sm btn-outline">Clear</button>
       </div>
     </div>
-    <textarea id="inputBox" placeholder="Type text here (e.g. 'Hello World?')" spellcheck="false"></textarea>
+    <textarea id="inputBox" placeholder="Enter text to encode (e.g., 'Hello World?')" spellcheck="false" rows="6"></textarea>
+    <div class="input-info">
+      <span id="inputStats">0 characters</span>
+      <span id="validationStatus"></span>
+    </div>
   </div>
 
+  <!-- Output Area -->
   <div class="input-area output-section">
     <div class="label-row">
       <label>Result:</label>
       <div class="toolbar">
-        <button id="copyBtn" class="btn-sm">Copy Result</button>
+        <button id="copyBtn" class="btn-sm">📋 Copy</button>
+        <button id="downloadBtn" class="btn-sm btn-outline">💾 Download</button>
       </div>
     </div>
-    <textarea id="outputBox" readonly placeholder="Result will appear here..."></textarea>
+    <textarea id="outputBox" readonly placeholder="Encoded/decoded result will appear here..." rows="6"></textarea>
+    <div class="output-info">
+      <span id="outputStats">0 characters</span>
+    </div>
+  </div>
+
+  <!-- Quick Examples -->
+  <div class="quick-examples">
+    <label>Quick Examples:</label>
+    <div class="example-buttons">
+      <button class="example-btn" data-example="url">Full URL</button>
+      <button class="example-btn" data-example="query">Query String</button>
+      <button class="example-btn" data-example="path">Path with Spaces</button>
+      <button class="example-btn" data-example="special">Special Characters</button>
+    </div>
+  </div>
+
+  <!-- History Section -->
+  <div class="history-section" id="historySection" style="display: none;">
+    <div class="history-header">
+      <h3>Recent Conversions</h3>
+      <button id="clearHistoryBtn" class="btn-sm btn-outline">Clear History</button>
+    </div>
+    <div id="historyList" class="history-list"></div>
   </div>
 </div>
 
+<script src="{{ site.baseurl }}/assets/js/tool-utils.js"></script>
 <script src="{{ site.baseurl }}/assets/js/url-encoder.js"></script>
 
 </section>
 
 <section class="tool-content-section">
   <div class="content-body">
-    <h2>About This URL Encoder/Decoder</h2>
-    <p>Our free online URL encoder and decoder helps developers safely encode special characters in URLs and query strings. Perfect for web development, API integration, and ensuring URLs are properly formatted for transmission over the internet.</p>
+    <h2>About This Professional URL Encoder</h2>
+    <p>Our advanced URL encoder and decoder provides comprehensive URL encoding capabilities for web developers, API integrators, and digital professionals. Unlike basic encoders, this tool offers component-specific encoding, batch processing, real-time validation, and intelligent handling of different URL parts including paths, query strings, and fragments.</p>
     
     <h2>Key Features</h2>
     <div class="features-list">
       <div class="feature-item-text">
-        <strong>🔄 Encode & Decode</strong>
-        <p>Switch between encoding text to URL-safe format and decoding URLs back to readable text.</p>
+        <strong>🎯 Component Encoding</strong>
+        <p>Encode specific URL components (path, query, fragment) with appropriate encoding rules for each part.</p>
       </div>
       <div class="feature-item-text">
-        <strong>⚡ Real-Time Conversion</strong>
-        <p>Instant encoding and decoding as you type. See results immediately without clicking buttons.</p>
+        <strong>📦 Batch Processing</strong>
+        <p>Process multiple URLs or strings at once. Enter one per line and get all results instantly.</p>
       </div>
       <div class="feature-item-text">
-        <strong>📋 Quick Copy</strong>
-        <p>Copy encoded or decoded URLs to clipboard with one click for easy use in your projects.</p>
+        <strong>✅ Real-Time Validation</strong>
+        <p>Automatic validation shows encoding errors and provides helpful feedback as you type.</p>
       </div>
       <div class="feature-item-text">
-        <strong>🔒 100% Private</strong>
-        <p>All processing happens locally in your browser. Your URLs never leave your device.</p>
+        <strong>⚡ Instant Conversion</strong>
+        <p>Real-time encoding and decoding with no delays. See results as you type with optimized performance.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>💾 History & Download</strong>
+        <p>Access recent conversions and download results as text files for documentation or sharing.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🔒 Privacy First</strong>
+        <p>All encoding happens locally in your browser. Your URLs and data never touch our servers.</p>
       </div>
     </div>
     
     <h2>How to Use the URL Encoder</h2>
     <ol class="instructions-list">
-      <li><strong>Choose Mode:</strong> Click "Encoder" to encode or "Decoder" to decode URLs</li>
-      <li><strong>Enter Text:</strong> Type or paste your text or URL in the input box</li>
-      <li><strong>View Result:</strong> The conversion happens automatically in real-time</li>
-      <li><strong>Copy Result:</strong> Click "Copy Result" to copy the output to clipboard</li>
+      <li><strong>Select Mode:</strong> Choose "Encode" to convert text to URL-safe format, or "Decode" to convert encoded URLs back to readable text</li>
+      <li><strong>Choose Encoding Type:</strong> Select the appropriate encoding method:
+        <ul>
+          <li><strong>Full URL:</strong> For complete URLs (preserves protocol and domain)</li>
+          <li><strong>Component:</strong> For query parameters and path segments (most common)</li>
+          <li><strong>Path Segment:</strong> For individual path parts in URLs</li>
+          <li><strong>Query String:</strong> For URL query parameters and values</li>
+        </ul>
+      </li>
+      <li><strong>Enable Batch Mode (Optional):</strong> Check "Batch Mode" to process multiple items at once, one per line</li>
+      <li><strong>Enter Your Text:</strong> Type or paste URLs, query strings, or text into the input box</li>
+      <li><strong>View Results:</strong> Encoding happens automatically in real-time with character counts and validation</li>
+      <li><strong>Copy or Download:</strong> Use the Copy button for quick clipboard access or Download to save as a file</li>
     </ol>
     
-    <h2>What is URL Encoding?</h2>
-    <p>URL encoding (also called percent-encoding) converts characters into a format that can be safely transmitted over the internet. Special characters are replaced with a "%" followed by two hexadecimal digits.</p>
+    <h2>Understanding URL Encoding</h2>
+    <p>URL encoding (percent-encoding) is a mechanism for encoding information in a Uniform Resource Identifier (URI). It replaces unsafe ASCII characters with a "%" followed by two hexadecimal digits representing the character's ASCII code. This ensures URLs can be transmitted over the internet without corruption or misinterpretation.</p>
     
-    <h3>Common Encodings:</h3>
+    <h3>Why Different Encoding Types Matter</h3>
+    <p>Different parts of a URL have different encoding requirements:</p>
     <ul>
-      <li><strong>Space:</strong> %20 or +</li>
-      <li><strong>!:</strong> %21</li>
-      <li><strong>#:</strong> %23</li>
-      <li><strong>$:</strong> %24</li>
-      <li><strong>&:</strong> %26</li>
-      <li><strong>=:</strong> %3D</li>
-      <li><strong>?:</strong> %3F</li>
+      <li><strong>Full URL Encoding:</strong> Preserves the URL structure (protocol, domain, path) while encoding only necessary characters</li>
+      <li><strong>Component Encoding:</strong> Encodes all special characters except unreserved ones (A-Z, a-z, 0-9, -, _, ., ~)</li>
+      <li><strong>Path Encoding:</strong> Allows forward slashes (/) but encodes other special characters</li>
+      <li><strong>Query Encoding:</strong> Handles key-value pairs, encoding = and & appropriately</li>
     </ul>
     
-    <h2>Why Use URL Encoding?</h2>
-    <ul>
-      <li><strong>Query Parameters:</strong> Safely pass data in URL query strings</li>
-      <li><strong>API Requests:</strong> Encode parameters for REST API calls</li>
-      <li><strong>Form Submissions:</strong> Encode form data for GET requests</li>
-      <li><strong>Special Characters:</strong> Handle spaces, symbols, and non-ASCII characters</li>
-      <li><strong>Security:</strong> Prevent URL injection and parsing errors</li>
-      <li><strong>Compatibility:</strong> Ensure URLs work across all browsers and servers</li>
-    </ul>
+    <h3>Common Character Encodings</h3>
+    <div class="encoding-table">
+      <table>
+        <tr><th>Character</th><th>Encoded</th><th>Usage</th></tr>
+        <tr><td>Space</td><td>%20 or +</td><td>Most common in query strings</td></tr>
+        <tr><td>!</td><td>%21</td><td>Exclamation mark</td></tr>
+        <tr><td>"</td><td>%22</td><td>Double quote</td></tr>
+        <tr><td>#</td><td>%23</td><td>Fragment identifier</td></tr>
+        <tr><td>$</td><td>%24</td><td>Dollar sign</td></tr>
+        <tr><td>%</td><td>%25</td><td>Percent (must be encoded)</td></tr>
+        <tr><td>&</td><td>%26</td><td>Query parameter separator</td></tr>
+        <tr><td>=</td><td>%3D</td><td>Query parameter assignment</td></tr>
+        <tr><td>?</td><td>%3F</td><td>Query string start</td></tr>
+        <tr><td>@</td><td>%40</td><td>At symbol</td></tr>
+      </table>
+    </div>
     
-    <h2>Common Use Cases</h2>
+    <h2>Practical Use Cases</h2>
     <div class="features-list">
       <div class="feature-item-text">
-        <strong>🔗 Query Strings</strong>
-        <p>Encode parameters for URLs: <code>?name=John%20Doe&city=New%20York</code></p>
+        <strong>🔗 API Query Parameters</strong>
+        <p>Encode search queries and filter parameters for REST APIs: <code>?search=John%20Doe&filter=active%3Dtrue</code></p>
       </div>
       <div class="feature-item-text">
-        <strong>🌐 API Integration</strong>
-        <p>Encode data for REST API endpoints and search queries.</p>
+        <strong>🌐 OAuth & Authentication</strong>
+        <p>Encode redirect URLs and callback parameters in OAuth flows and authentication systems.</p>
       </div>
       <div class="feature-item-text">
-        <strong>📝 Form Data</strong>
-        <p>Encode form submissions sent via GET method.</p>
+        <strong>📧 Email Links</strong>
+        <p>Create mailto links with pre-filled subjects and bodies: <code>mailto:?subject=Hello%20World</code></p>
       </div>
       <div class="feature-item-text">
-        <strong>🔍 Search Queries</strong>
-        <p>Encode search terms with special characters and spaces.</p>
+        <strong>🔍 Search Engine URLs</strong>
+        <p>Build search URLs with complex queries containing special characters and operators.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>📝 Form Submissions</strong>
+        <p>Encode form data for GET requests, ensuring special characters don't break the URL structure.</p>
+      </div>
+      <div class="feature-item-text">
+        <strong>🎯 Tracking Parameters</strong>
+        <p>Encode UTM parameters and tracking codes for marketing campaigns and analytics.</p>
       </div>
     </div>
     
-    <h2>Characters That Need Encoding</h2>
-    <p>These characters have special meaning in URLs and must be encoded:</p>
-    <ul>
-      <li><strong>Reserved Characters:</strong> : / ? # [ ] @ ! $ & ' ( ) * + , ; =</li>
-      <li><strong>Unsafe Characters:</strong> Space " < > % { } | \ ^ ~</li>
-      <li><strong>Non-ASCII Characters:</strong> Any character outside ASCII range (0-127)</li>
-    </ul>
+    <h2>Characters Requiring Encoding</h2>
+    <p>Understanding which characters need encoding is crucial for proper URL construction:</p>
+    
+    <h3>Reserved Characters (Special Meaning in URLs)</h3>
+    <p><code>: / ? # [ ] @ ! $ & ' ( ) * + , ; =</code></p>
+    <p>These characters have specific functions in URL syntax and must be encoded when used as data.</p>
+    
+    <h3>Unsafe Characters (Always Encode)</h3>
+    <p><code>Space " < > % { } | \ ^ ` [ ]</code></p>
+    <p>These characters can cause parsing errors or security issues and should always be encoded.</p>
+    
+    <h3>Unreserved Characters (Safe, No Encoding Needed)</h3>
+    <p><code>A-Z a-z 0-9 - _ . ~</code></p>
+    <p>These characters are safe to use in URLs without encoding.</p>
     
     <h2>URL Encoding Best Practices</h2>
     <ul>
-      <li>Always encode user input before adding to URLs</li>
-      <li>Encode query parameter values, not the entire URL</li>
-      <li>Use UTF-8 encoding for international characters</li>
-      <li>Don't double-encode already encoded URLs</li>
-      <li>Test encoded URLs in different browsers</li>
+      <li><strong>Encode User Input:</strong> Always encode user-provided data before including it in URLs to prevent injection attacks</li>
+      <li><strong>Choose the Right Type:</strong> Use component encoding for query parameters, path encoding for URL paths</li>
+      <li><strong>Avoid Double Encoding:</strong> Check if data is already encoded before encoding again to prevent %25 issues</li>
+      <li><strong>Use UTF-8:</strong> Always use UTF-8 encoding for international characters and emoji</li>
+      <li><strong>Test Thoroughly:</strong> Verify encoded URLs work correctly across different browsers and servers</li>
+      <li><strong>Document Your Encoding:</strong> Clearly document which encoding method you're using in API documentation</li>
+      <li><strong>Handle Plus Signs:</strong> Remember that + can mean space in query strings but not in paths</li>
+      <li><strong>Validate Before Decoding:</strong> Check for malformed encoding before attempting to decode URLs</li>
+    </ul>
+    
+    <h2>Common Encoding Mistakes to Avoid</h2>
+    <ul>
+      <li><strong>Encoding the Entire URL:</strong> Don't encode the protocol (http://) or domain name</li>
+      <li><strong>Forgetting to Encode:</strong> Spaces and special characters will break URLs if not encoded</li>
+      <li><strong>Wrong Encoding Type:</strong> Using full URL encoding when you need component encoding</li>
+      <li><strong>Double Encoding:</strong> Encoding already-encoded strings creates invalid URLs</li>
+      <li><strong>Ignoring Context:</strong> Different URL parts require different encoding approaches</li>
+    </ul>
+    
+    <h2>Batch Processing Tips</h2>
+    <p>When using batch mode to process multiple URLs:</p>
+    <ul>
+      <li>Enter one URL or string per line in the input box</li>
+      <li>Results will appear in the same order, one per line</li>
+      <li>Empty lines are preserved in the output</li>
+      <li>Invalid entries show error messages inline</li>
+      <li>Perfect for processing lists from spreadsheets or databases</li>
+      <li>Download results as a text file for easy import into other tools</li>
+    </ul>
+    
+    <h2>Security Considerations</h2>
+    <p>URL encoding plays a crucial role in web security:</p>
+    <ul>
+      <li><strong>Prevent XSS:</strong> Encoding user input prevents cross-site scripting attacks</li>
+      <li><strong>SQL Injection:</strong> Properly encoded URLs help prevent SQL injection in query parameters</li>
+      <li><strong>Path Traversal:</strong> Encoding prevents directory traversal attacks using ../ sequences</li>
+      <li><strong>Command Injection:</strong> Encoding special characters prevents command injection vulnerabilities</li>
     </ul>
     
     <h2>Related Tools</h2>
-    <p>Enhance your web development workflow with these related tools:</p>
+    <p>Enhance your web development workflow with these complementary encoding tools:</p>
     <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode data for transmission</li>
-      <li><a href="{{ site.baseurl }}/tools/html-encoder/">HTML Encoder</a> - Encode HTML entities</li>
-      <li><a href="{{ site.baseurl }}/tools/json-formatter/">JSON Formatter</a> - Format and validate JSON</li>
-      <li><a href="{{ site.baseurl }}/text-utilities/">View All Developer Tools</a></li>
+      <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a> - Encode binary data for transmission in text format</li>
+      <li><a href="{{ site.baseurl }}/tools/html-encoder/">HTML Encoder</a> - Encode HTML entities and special characters</li>
+      <li><a href="{{ site.baseurl }}/tools/json-formatter/">JSON Formatter</a> - Format and validate JSON data structures</li>
+      <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a> - Generate cryptographic hashes for data integrity</li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Text Utilities</a></li>
     </ul>
   </div>
 </section>

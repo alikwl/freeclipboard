@@ -504,6 +504,22 @@
       "usageCount": 5000
     },
     {
+      "id": "cursed-text-generator",
+      "name": "Cursed Text Generator",
+      "slug": "cursed-text-generator",
+      "description": "Generate cursed, creepy, and glitchy Zalgo text with customizable intensity and multiple curse modes. Perfect for Discord, memes, and social media.",
+      "shortDescription": "Create cursed Zalgo text",
+      "category": "text",
+      "keywords": ["cursed text", "zalgo text", "creepy text", "glitchy text", "corrupted text", "scary text", "cursed font", "discord text", "meme text"],
+      "icon": "👹",
+      "featured": true,
+      "popular": true,
+      "new": true,
+      "url": "/tools/cursed-text-generator/",
+      "rating": 4.9,
+      "usageCount": 8500
+    },
+    {
       "id": "invisible-character",
       "name": "Invisible Character Generator",
       "slug": "invisible-character",

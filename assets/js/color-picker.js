@@ -1,7 +1,10 @@
+// Color Picker Enhanced - with Palette Generator and Gradient Creator
+
 const colorInput = document.getElementById('colorInput');
 const hexInput = document.getElementById('hexInput');
 const colorPreview = document.getElementById('colorPreview');
 
+// Color Conversion Functions
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? {
@@ -71,6 +74,7 @@ function hslToHex(h, s, l) {
   return '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
 }
 
+// Main Color Picker Functions
 function updateColor() {
   const hex = colorInput.value;
   const rgb = hexToRgb(hex);
@@ -94,6 +98,8 @@ function updateColor() {
 
 function generateShades(hsl) {
   const shadesGrid = document.getElementById('shadesGrid');
+  if (!shadesGrid) return;
+  
   shadesGrid.innerHTML = '';
   
   const lightnesses = [10, 20, 30, 40, 50, 60, 70, 80, 90];
@@ -103,48 +109,327 @@ function generateShades(hsl) {
     shade.className = 'shade-box';
     shade.style.backgroundColor = hex;
     shade.title = hex;
+    shade.setAttribute('role', 'button');
+    shade.setAttribute('tabindex', '0');
     shade.onclick = () => {
       colorInput.value = hex;
       updateColor();
+    };
+    shade.onkeypress = (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        colorInput.value = hex;
+        updateColor();
+      }
     };
     shadesGrid.appendChild(shade);
   });
 }
 
 function generateHarmonies(hsl) {
+  const baseColor = colorInput.value;
+  
   // Complementary
   const comp = hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l);
-  document.getElementById('complementary').innerHTML = 
-    `<div class="harmony-box" style="background: ${colorInput.value}"></div>
-     <div class="harmony-box" style="background: ${comp}" onclick="colorInput.value='${comp}'; updateColor();"></div>`;
+  setHarmonyColors('complementary', [baseColor, comp]);
   
   // Analogous
   const ana1 = hslToHex((hsl.h + 30) % 360, hsl.s, hsl.l);
   const ana2 = hslToHex((hsl.h - 30 + 360) % 360, hsl.s, hsl.l);
-  document.getElementById('analogous').innerHTML = 
-    `<div class="harmony-box" style="background: ${ana2}" onclick="colorInput.value='${ana2}'; updateColor();"></div>
-     <div class="harmony-box" style="background: ${colorInput.value}"></div>
-     <div class="harmony-box" style="background: ${ana1}" onclick="colorInput.value='${ana1}'; updateColor();"></div>`;
+  setHarmonyColors('analogous', [ana2, baseColor, ana1]);
   
   // Triadic
   const tri1 = hslToHex((hsl.h + 120) % 360, hsl.s, hsl.l);
   const tri2 = hslToHex((hsl.h + 240) % 360, hsl.s, hsl.l);
-  document.getElementById('triadic').innerHTML = 
-    `<div class="harmony-box" style="background: ${colorInput.value}"></div>
-     <div class="harmony-box" style="background: ${tri1}" onclick="colorInput.value='${tri1}'; updateColor();"></div>
-     <div class="harmony-box" style="background: ${tri2}" onclick="colorInput.value='${tri2}'; updateColor();"></div>`;
+  setHarmonyColors('triadic', [baseColor, tri1, tri2]);
+  
+  // Split Complementary
+  const split1 = hslToHex((hsl.h + 150) % 360, hsl.s, hsl.l);
+  const split2 = hslToHex((hsl.h + 210) % 360, hsl.s, hsl.l);
+  setHarmonyColors('splitComplementary', [baseColor, split1, split2]);
+  
+  // Tetradic
+  const tet1 = hslToHex((hsl.h + 90) % 360, hsl.s, hsl.l);
+  const tet2 = hslToHex((hsl.h + 180) % 360, hsl.s, hsl.l);
+  const tet3 = hslToHex((hsl.h + 270) % 360, hsl.s, hsl.l);
+  setHarmonyColors('tetradic', [baseColor, tet1, tet2, tet3]);
+  
+  // Monochromatic
+  const mono1 = hslToHex(hsl.h, hsl.s, Math.max(10, hsl.l - 20));
+  const mono2 = hslToHex(hsl.h, hsl.s, Math.max(10, hsl.l - 10));
+  const mono3 = hslToHex(hsl.h, hsl.s, Math.min(90, hsl.l + 10));
+  const mono4 = hslToHex(hsl.h, hsl.s, Math.min(90, hsl.l + 20));
+  setHarmonyColors('monochromatic', [mono1, mono2, baseColor, mono3, mono4]);
+}
+
+function setHarmonyColors(harmonyId, colors) {
+  const container = document.getElementById(harmonyId);
+  if (!container) return;
+  
+  container.innerHTML = colors.map(color => 
+    `<div class="harmony-box" 
+          style="background: ${color}" 
+          onclick="colorInput.value='${color}'; updateColor();"
+          onkeypress="if(event.key==='Enter'||event.key===' '){colorInput.value='${color}'; updateColor();}"
+          role="button"
+          tabindex="0"
+          title="${color}">
+       <span class="harmony-hex">${color}</span>
+     </div>`
+  ).join('');
 }
 
 function copyFormat(format) {
   const input = document.getElementById(format + 'Input');
-  navigator.clipboard.writeText(input.value).then(() => {
-    const btn = event.target;
-    const originalText = btn.textContent;
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = originalText, 2000);
-  });
+  if (typeof copyToClipboard === 'function') {
+    copyToClipboard(input.value);
+  } else {
+    navigator.clipboard.writeText(input.value).then(() => {
+      const btn = event.target.closest('button');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<span class="copy-icon">✓</span> Copied!';
+      setTimeout(() => btn.innerHTML = originalHTML, 2000);
+    });
+  }
 }
 
+// Tab Switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tabName = btn.dataset.tab;
+    
+    // Update active tab button
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    // Update active tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+      content.classList.remove('active');
+    });
+    document.getElementById(tabName + '-tab').classList.add('active');
+  });
+});
+
+// Palette Generator Functions
+function generatePalette() {
+  const type = document.getElementById('paletteType').value;
+  const count = parseInt(document.getElementById('paletteCount').value);
+  const display = document.getElementById('paletteDisplay');
+  
+  let colors = [];
+  
+  switch(type) {
+    case 'random':
+      colors = generateRandomColors(count);
+      break;
+    case 'monochromatic':
+      colors = generateMonochromaticPalette(count);
+      break;
+    case 'analogous':
+      colors = generateAnalogousPalette(count);
+      break;
+    case 'complementary':
+      colors = generateComplementaryPalette(count);
+      break;
+    case 'triadic':
+      colors = generateTriadicPalette(count);
+      break;
+    case 'pastel':
+      colors = generatePastelColors(count);
+      break;
+    case 'vibrant':
+      colors = generateVibrantColors(count);
+      break;
+    case 'earth':
+      colors = generateEarthTones(count);
+      break;
+  }
+  
+  displayPalette(colors);
+}
+
+function generateRandomColors(count) {
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    const h = Math.floor(Math.random() * 360);
+    const s = Math.floor(Math.random() * 40) + 60; // 60-100%
+    const l = Math.floor(Math.random() * 30) + 40; // 40-70%
+    colors.push(hslToHex(h, s, l));
+  }
+  return colors;
+}
+
+function generateMonochromaticPalette(count) {
+  const baseHue = Math.floor(Math.random() * 360);
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    const l = 20 + (i * (60 / (count - 1)));
+    colors.push(hslToHex(baseHue, 70, l));
+  }
+  return colors;
+}
+
+function generateAnalogousPalette(count) {
+  const baseHue = Math.floor(Math.random() * 360);
+  const colors = [];
+  const step = 30 / (count - 1);
+  for (let i = 0; i < count; i++) {
+    const h = (baseHue - 15 + (i * step) + 360) % 360;
+    colors.push(hslToHex(h, 70, 50));
+  }
+  return colors;
+}
+
+function generateComplementaryPalette(count) {
+  const baseHue = Math.floor(Math.random() * 360);
+  const colors = [];
+  const half = Math.ceil(count / 2);
+  
+  for (let i = 0; i < half; i++) {
+    colors.push(hslToHex(baseHue, 70, 40 + (i * 10)));
+  }
+  for (let i = 0; i < count - half; i++) {
+    colors.push(hslToHex((baseHue + 180) % 360, 70, 40 + (i * 10)));
+  }
+  return colors;
+}
+
+function generateTriadicPalette(count) {
+  const baseHue = Math.floor(Math.random() * 360);
+  const colors = [];
+  const hues = [baseHue, (baseHue + 120) % 360, (baseHue + 240) % 360];
+  
+  for (let i = 0; i < count; i++) {
+    const hue = hues[i % 3];
+    const l = 40 + ((i % 3) * 10);
+    colors.push(hslToHex(hue, 70, l));
+  }
+  return colors;
+}
+
+function generatePastelColors(count) {
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    const h = Math.floor(Math.random() * 360);
+    const s = Math.floor(Math.random() * 30) + 25; // 25-55%
+    const l = Math.floor(Math.random() * 15) + 75; // 75-90%
+    colors.push(hslToHex(h, s, l));
+  }
+  return colors;
+}
+
+function generateVibrantColors(count) {
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    const h = Math.floor(Math.random() * 360);
+    const s = Math.floor(Math.random() * 20) + 80; // 80-100%
+    const l = Math.floor(Math.random() * 20) + 45; // 45-65%
+    colors.push(hslToHex(h, s, l));
+  }
+  return colors;
+}
+
+function generateEarthTones(count) {
+  const earthHues = [20, 30, 40, 50, 60]; // Browns, oranges, greens
+  const colors = [];
+  for (let i = 0; i < count; i++) {
+    const h = earthHues[Math.floor(Math.random() * earthHues.length)];
+    const s = Math.floor(Math.random() * 30) + 30; // 30-60%
+    const l = Math.floor(Math.random() * 30) + 35; // 35-65%
+    colors.push(hslToHex(h, s, l));
+  }
+  return colors;
+}
+
+function displayPalette(colors) {
+  const display = document.getElementById('paletteDisplay');
+  display.innerHTML = colors.map(color => `
+    <div class="palette-color">
+      <div class="palette-swatch" style="background: ${color}"></div>
+      <div class="palette-info">
+        <span class="palette-hex">${color}</span>
+        <button class="btn-sm" onclick="copyPaletteColor('${color}')">Copy</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function copyPaletteColor(color) {
+  if (typeof copyToClipboard === 'function') {
+    copyToClipboard(color);
+  } else {
+    navigator.clipboard.writeText(color).then(() => {
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = originalText, 2000);
+    });
+  }
+}
+
+function exportPalette() {
+  const display = document.getElementById('paletteDisplay');
+  const colors = Array.from(display.querySelectorAll('.palette-hex')).map(el => el.textContent);
+  
+  if (colors.length === 0) {
+    alert('Generate a palette first!');
+    return;
+  }
+  
+  const paletteData = {
+    name: 'Color Palette',
+    colors: colors,
+    generated: new Date().toISOString()
+  };
+  
+  const blob = new Blob([JSON.stringify(paletteData, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'color-palette.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// Gradient Creator Functions
+function updateGradient() {
+  const color1 = document.getElementById('gradientColor1').value;
+  const color2 = document.getElementById('gradientColor2').value;
+  const type = document.getElementById('gradientType').value;
+  const angle = document.getElementById('gradientAngle').value;
+  
+  document.getElementById('gradientColor1Text').value = color1;
+  document.getElementById('gradientColor2Text').value = color2;
+  document.getElementById('angleValue').textContent = angle + '°';
+  
+  const preview = document.getElementById('gradientPreview');
+  const cssCode = document.getElementById('gradientCSS');
+  
+  let gradient;
+  if (type === 'linear') {
+    gradient = `linear-gradient(${angle}deg, ${color1}, ${color2})`;
+  } else {
+    gradient = `radial-gradient(circle, ${color1}, ${color2})`;
+  }
+  
+  preview.style.background = gradient;
+  cssCode.value = `background: ${gradient};`;
+}
+
+function copyGradientCSS() {
+  const cssCode = document.getElementById('gradientCSS').value;
+  if (typeof copyToClipboard === 'function') {
+    copyToClipboard(cssCode);
+  } else {
+    navigator.clipboard.writeText(cssCode).then(() => {
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = originalText, 2000);
+    });
+  }
+}
+
+// Event Listeners
 hexInput.addEventListener('input', () => {
   let hex = hexInput.value;
   if (hex.match(/^#?[0-9A-Fa-f]{6}$/)) {
@@ -155,4 +440,36 @@ hexInput.addEventListener('input', () => {
 });
 
 colorInput.addEventListener('input', updateColor);
+
+// Gradient color inputs
+document.getElementById('gradientColor1').addEventListener('input', (e) => {
+  document.getElementById('gradientColor1Text').value = e.target.value;
+  updateGradient();
+});
+
+document.getElementById('gradientColor2').addEventListener('input', (e) => {
+  document.getElementById('gradientColor2Text').value = e.target.value;
+  updateGradient();
+});
+
+document.getElementById('gradientColor1Text').addEventListener('input', (e) => {
+  let hex = e.target.value;
+  if (hex.match(/^#?[0-9A-Fa-f]{6}$/)) {
+    if (!hex.startsWith('#')) hex = '#' + hex;
+    document.getElementById('gradientColor1').value = hex;
+    updateGradient();
+  }
+});
+
+document.getElementById('gradientColor2Text').addEventListener('input', (e) => {
+  let hex = e.target.value;
+  if (hex.match(/^#?[0-9A-Fa-f]{6}$/)) {
+    if (!hex.startsWith('#')) hex = '#' + hex;
+    document.getElementById('gradientColor2').value = hex;
+    updateGradient();
+  }
+});
+
+// Initialize
 updateColor();
+updateGradient();

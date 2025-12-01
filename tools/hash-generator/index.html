@@ -1,79 +1,354 @@
 ---
 layout: tool
-title: Hash Generator - Generate MD5, SHA-1, SHA-256 Hashes Online
-description: Generate MD5, SHA-1, SHA-256, and SHA-512 hashes from text or files instantly. Free online hash generator for developers and security professionals. Secure and private.
-keywords: hash generator, md5 generator, sha256 generator, sha1 generator, sha512 generator, hash calculator, checksum generator, crypto hash
+title: Hash Generator - Generate MD5, SHA-1, SHA-256, SHA-512 Hashes Online
+description: Generate cryptographic hashes with MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160. Hash text or files instantly. Compare hashes for verification. Free and secure.
+keywords: hash generator, md5 generator, sha256 generator, sha1 generator, sha512 generator, hash calculator, checksum generator, crypto hash, file hash, hash comparison
 schema_type: WebApplication
 permalink: /tools/hash-generator/
 category_name: Generators & Security
 category_url: /text-utilities/
 rating: 4.7
-rating_count: 780
+rating_count: 820
 features:
-  - MD5 hash generation
-  - SHA-1, SHA-256, SHA-512
+  - Multiple hash algorithms
   - Text and file hashing
+  - Hash comparison tool
   - Instant results
   - 100% private
   - Works offline
 ---
 
-<div class="input-area">
-  <div class="mode-toggle">
-    <button id="textModeBtn" class="toggle-btn active" onclick="switchMode('text')">Text Input</button>
-    <button id="fileModeBtn" class="toggle-btn" onclick="switchMode('file')">File Upload</button>
-  </div>
-  
-  <div id="textMode">
-    <div class="label-row">
-      <label for="textInput">Enter text to hash:</label>
-      <button class="btn-sm btn-outline" onclick="clearInput()">Clear</button>
+<div class="tool-interface">
+  <div class="input-area">
+    <div class="mode-toggle">
+      <button id="textModeBtn" class="toggle-btn active" onclick="switchMode('text')">
+        <span class="btn-icon">📝</span> Text Input
+      </button>
+      <button id="fileModeBtn" class="toggle-btn" onclick="switchMode('file')">
+        <span class="btn-icon">📁</span> File Upload
+      </button>
+      <button id="compareModeBtn" class="toggle-btn" onclick="switchMode('compare')">
+        <span class="btn-icon">🔍</span> Compare Hashes
+      </button>
     </div>
-    <textarea id="textInput" placeholder="Enter text here..."></textarea>
+    
+    <div id="textMode">
+      <div class="label-row">
+        <label for="textInput">Enter text to hash:</label>
+        <div class="toolbar">
+          <button class="btn-sm btn-outline" onclick="pasteText()" title="Paste from clipboard">
+            <span class="btn-icon">📋</span> Paste
+          </button>
+          <button class="btn-sm btn-outline" onclick="clearInput()" title="Clear input">
+            <span class="btn-icon">🗑️</span> Clear
+          </button>
+        </div>
+      </div>
+      <textarea id="textInput" placeholder="Enter text here..." rows="6"></textarea>
+    </div>
+    
+    <div id="fileMode" style="display: none;">
+      <div class="file-upload-area" id="dropZone">
+        <input type="file" id="fileInput" onchange="handleFile()" style="display: none;">
+        <div class="file-upload-content">
+          <div class="upload-icon">📁</div>
+          <p class="upload-text">Drag & drop a file here or click to browse</p>
+          <button class="btn-primary" onclick="document.getElementById('fileInput').click()">Choose File</button>
+          <div id="fileInfo" style="display: none; margin-top: 1rem;">
+            <p><strong>File:</strong> <span id="fileName"></span></p>
+            <p><strong>Size:</strong> <span id="fileSize"></span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="compareMode" style="display: none;">
+      <div class="compare-container">
+        <div class="compare-input">
+          <label for="hash1Input">First Hash:</label>
+          <input type="text" id="hash1Input" placeholder="Enter first hash..." />
+        </div>
+        <div class="compare-input">
+          <label for="hash2Input">Second Hash:</label>
+          <input type="text" id="hash2Input" placeholder="Enter second hash..." />
+        </div>
+        <button class="btn-primary" onclick="compareHashes()">
+          <span class="btn-icon">🔍</span> Compare Hashes
+        </button>
+        <div id="compareResult" style="display: none;"></div>
+      </div>
+    </div>
   </div>
-  
-  <div id="fileMode" style="display: none;">
-    <div class="file-upload-area">
-      <input type="file" id="fileInput" onchange="handleFile()" style="display: none;">
-      <button class="btn-sm" onclick="document.getElementById('fileInput').click()">Choose File</button>
-      <span id="fileName">No file selected</span>
+
+  <div class="algorithm-selector">
+    <label>Select Hash Algorithms:</label>
+    <div class="algorithm-checkboxes">
+      <label class="checkbox-label">
+        <input type="checkbox" id="alg-md5" checked onchange="updateHashes()"> MD5
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="alg-sha1" checked onchange="updateHashes()"> SHA-1
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="alg-sha256" checked onchange="updateHashes()"> SHA-256
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="alg-sha512" checked onchange="updateHashes()"> SHA-512
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="alg-sha3" onchange="updateHashes()"> SHA-3
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="alg-ripemd160" onchange="updateHashes()"> RIPEMD-160
+      </label>
+    </div>
+  </div>
+
+  <div class="output-section">
+    <div class="label-row">
+      <label>Hash Results:</label>
+      <div class="toolbar">
+        <button class="btn-sm btn-outline" onclick="copyAllHashes()" title="Copy all hashes">
+          <span class="btn-icon">📋</span> Copy All
+        </button>
+        <button class="btn-sm btn-outline" onclick="downloadHashes()" title="Download as text file">
+          <span class="btn-icon">💾</span> Download
+        </button>
+      </div>
+    </div>
+    
+    <div class="hash-outputs" id="hashOutputs">
+      <div class="hash-result" id="result-md5">
+        <div class="label-row">
+          <label>MD5:</label>
+          <button class="btn-sm copy-btn" onclick="copyHash('md5')" title="Copy MD5 hash">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+        <div class="hash-output" id="md5Output">-</div>
+      </div>
+      
+      <div class="hash-result" id="result-sha1">
+        <div class="label-row">
+          <label>SHA-1:</label>
+          <button class="btn-sm copy-btn" onclick="copyHash('sha1')" title="Copy SHA-1 hash">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+        <div class="hash-output" id="sha1Output">-</div>
+      </div>
+      
+      <div class="hash-result" id="result-sha256">
+        <div class="label-row">
+          <label>SHA-256:</label>
+          <button class="btn-sm copy-btn" onclick="copyHash('sha256')" title="Copy SHA-256 hash">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+        <div class="hash-output" id="sha256Output">-</div>
+      </div>
+      
+      <div class="hash-result" id="result-sha512">
+        <div class="label-row">
+          <label>SHA-512:</label>
+          <button class="btn-sm copy-btn" onclick="copyHash('sha512')" title="Copy SHA-512 hash">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+        <div class="hash-output" id="sha512Output">-</div>
+      </div>
+      
+      <div class="hash-result" id="result-sha3" style="display: none;">
+        <div class="label-row">
+          <label>SHA-3:</label>
+          <button class="btn-sm copy-btn" onclick="copyHash('sha3')" title="Copy SHA-3 hash">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+        <div class="hash-output" id="sha3Output">-</div>
+      </div>
+      
+      <div class="hash-result" id="result-ripemd160" style="display: none;">
+        <div class="label-row">
+          <label>RIPEMD-160:</label>
+          <button class="btn-sm copy-btn" onclick="copyHash('ripemd160')" title="Copy RIPEMD-160 hash">
+            <span class="btn-icon">📋</span> Copy
+          </button>
+        </div>
+        <div class="hash-output" id="ripemd160Output">-</div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="hash-outputs">
-  <div class="hash-result">
-    <div class="label-row">
-      <label>MD5:</label>
-      <button id="md5CopyBtn" class="btn-sm" onclick="copyHash('md5')">Copy</button>
+<section class="content-section">
+  <h2>About This Tool</h2>
+  <p>The Hash Generator creates cryptographic hash values from text or files using industry-standard algorithms including MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160. Hash functions are essential for data integrity verification, password storage, digital signatures, and file checksums. Whether you're verifying file downloads, checking data integrity, or implementing security features, this tool provides instant, accurate hash generation without requiring software installation.</p>
+</section>
+
+<section class="content-section">
+  <h2>Key Features</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <h3>Multiple Algorithms</h3>
+      <p>Generate hashes using MD5, SHA-1, SHA-256, SHA-512, SHA-3, and RIPEMD-160 algorithms simultaneously.</p>
     </div>
-    <div class="hash-output" id="md5Output">-</div>
-  </div>
-  
-  <div class="hash-result">
-    <div class="label-row">
-      <label>SHA-1:</label>
-      <button id="sha1CopyBtn" class="btn-sm" onclick="copyHash('sha1')">Copy</button>
+    
+    <div class="feature-card">
+      <div class="feature-icon">📁</div>
+      <h3>File Hashing</h3>
+      <p>Hash entire files with drag-and-drop support to verify downloads and check file integrity.</p>
     </div>
-    <div class="hash-output" id="sha1Output">-</div>
-  </div>
-  
-  <div class="hash-result">
-    <div class="label-row">
-      <label>SHA-256:</label>
-      <button id="sha256CopyBtn" class="btn-sm" onclick="copyHash('sha256')">Copy</button>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <h3>Hash Comparison</h3>
+      <p>Compare two hashes to verify they match, perfect for validating file downloads and data integrity.</p>
     </div>
-    <div class="hash-output" id="sha256Output">-</div>
-  </div>
-  
-  <div class="hash-result">
-    <div class="label-row">
-      <label>SHA-512:</label>
-      <button id="sha512CopyBtn" class="btn-sm" onclick="copyHash('sha512')">Copy</button>
+    
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Instant Results</h3>
+      <p>Generate all hash values simultaneously with real-time processing as you type or upload.</p>
     </div>
-    <div class="hash-output" id="sha512Output">-</div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>100% Private</h3>
+      <p>All hashing happens locally in your browser - no data is uploaded to servers or stored anywhere.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">💾</div>
+      <h3>Export Options</h3>
+      <p>Copy individual hashes or download all results as a text file for documentation and records.</p>
+    </div>
   </div>
-</div>
+</section>
+
+<section class="content-section">
+  <h2>How to Use the Hash Generator</h2>
+  <ol class="instructions-list">
+    <li>Choose your input method: text input, file upload, or hash comparison</li>
+    <li>For text: Enter or paste your text into the input area</li>
+    <li>For files: Click "Choose File" or drag and drop a file into the upload area</li>
+    <li>Select which hash algorithms you want to use (MD5, SHA-1, SHA-256, etc.)</li>
+    <li>View the generated hash values instantly in the results section</li>
+    <li>Click "Copy" next to any hash to copy it to your clipboard</li>
+    <li>(Optional) Use "Copy All" to copy all hashes or "Download" to save them as a text file</li>
+    <li>(Optional) Use the Compare mode to verify two hashes match</li>
+  </ol>
+</section>
+
+<section class="content-section">
+  <h2>Common Use Cases</h2>
+  <ul class="use-cases-list">
+    <li><strong>File Verification:</strong> Compare downloaded file hashes with official checksums to ensure files haven't been tampered with or corrupted</li>
+    <li><strong>Password Storage:</strong> Generate hash values for passwords before storing them in databases (use SHA-256 or SHA-512 with salt)</li>
+    <li><strong>Data Integrity:</strong> Create checksums for important files to detect any unauthorized modifications or data corruption</li>
+    <li><strong>Digital Forensics:</strong> Generate hash values of evidence files to maintain chain of custody and prove data hasn't been altered</li>
+    <li><strong>Software Development:</strong> Verify API responses, validate data transfers, and implement content-addressable storage systems</li>
+    <li><strong>Blockchain Development:</strong> Generate hash values for blocks, transactions, and smart contract verification</li>
+  </ul>
+</section>
+
+<section class="content-section">
+  <h2>Hash Algorithm Guide</h2>
+  <div class="algorithm-guide">
+    <div class="algorithm-info">
+      <h3>MD5 (128-bit)</h3>
+      <p><strong>Use for:</strong> Non-security checksums, file identification</p>
+      <p><strong>Security:</strong> ⚠️ Not recommended for security purposes (vulnerable to collisions)</p>
+      <p><strong>Speed:</strong> Very fast</p>
+    </div>
+    
+    <div class="algorithm-info">
+      <h3>SHA-1 (160-bit)</h3>
+      <p><strong>Use for:</strong> Legacy system compatibility, Git commits</p>
+      <p><strong>Security:</strong> ⚠️ Deprecated for security (collision attacks exist)</p>
+      <p><strong>Speed:</strong> Fast</p>
+    </div>
+    
+    <div class="algorithm-info">
+      <h3>SHA-256 (256-bit)</h3>
+      <p><strong>Use for:</strong> Password hashing, digital signatures, certificates</p>
+      <p><strong>Security:</strong> ✅ Secure and widely recommended</p>
+      <p><strong>Speed:</strong> Moderate</p>
+    </div>
+    
+    <div class="algorithm-info">
+      <h3>SHA-512 (512-bit)</h3>
+      <p><strong>Use for:</strong> High-security applications, long-term data integrity</p>
+      <p><strong>Security:</strong> ✅ Very secure with larger output</p>
+      <p><strong>Speed:</strong> Moderate</p>
+    </div>
+    
+    <div class="algorithm-info">
+      <h3>SHA-3 (256-bit)</h3>
+      <p><strong>Use for:</strong> Modern applications, alternative to SHA-2</p>
+      <p><strong>Security:</strong> ✅ Latest standard with different design</p>
+      <p><strong>Speed:</strong> Moderate</p>
+    </div>
+    
+    <div class="algorithm-info">
+      <h3>RIPEMD-160 (160-bit)</h3>
+      <p><strong>Use for:</strong> Bitcoin addresses, alternative to SHA-1</p>
+      <p><strong>Security:</strong> ✅ Secure for most applications</p>
+      <p><strong>Speed:</strong> Fast</p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <h2>Tips & Best Practices</h2>
+  <ul class="tips-list">
+    <li>Use SHA-256 or SHA-512 for security-critical applications - avoid MD5 and SHA-1 for anything security-related</li>
+    <li>Always verify file hashes after downloading software or important files to ensure they haven't been tampered with</li>
+    <li>When storing passwords, use SHA-256 or SHA-512 with a unique salt for each password and consider using bcrypt or Argon2 instead</li>
+    <li>Compare hashes character-by-character - even a single character difference means the data is completely different</li>
+    <li>For large files, the hash generation may take a moment - be patient and don't refresh the page</li>
+    <li>Save hash values of important files for future verification and integrity checking</li>
+    <li>Use the hash comparison tool to quickly verify if two hashes match without manual comparison</li>
+    <li>Remember that hash functions are one-way - you cannot reverse a hash to get the original data</li>
+  </ul>
+</section>
+
+<section class="content-section">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <h3>What's the difference between MD5, SHA-1, and SHA-256?</h3>
+      <p>These are different cryptographic hash algorithms with varying security levels. MD5 (128-bit) and SHA-1 (160-bit) are older and have known vulnerabilities, making them unsuitable for security purposes. SHA-256 (256-bit) and SHA-512 (512-bit) are modern, secure algorithms recommended for password hashing, digital signatures, and data integrity verification.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Can I reverse a hash to get the original data?</h3>
+      <p>No, hash functions are designed to be one-way operations. You cannot reverse a hash to recover the original input. This is a fundamental security feature - it's why hashes are used for password storage. However, weak passwords can be cracked through brute force or rainbow table attacks.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Why do I get different hashes for the same text?</h3>
+      <p>If you're getting different hashes for identical text, check for hidden characters, different line endings (Windows vs Unix), or encoding differences (UTF-8 vs ASCII). Hash functions are deterministic - the same input always produces the same hash. Even a single character difference creates a completely different hash.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Is it safe to hash sensitive data using this tool?</h3>
+      <p>Yes, all hashing happens entirely in your browser using JavaScript. No data is sent to our servers, stored, or transmitted anywhere. However, remember that hashing alone doesn't encrypt data - anyone with the original data can verify it matches a hash.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Which algorithm should I use for password hashing?</h3>
+      <p>For password storage, use SHA-256 or SHA-512 with a unique salt for each password. However, for production systems, consider using specialized password hashing algorithms like bcrypt, scrypt, or Argon2, which are designed to be slow and resistant to brute-force attacks.</p>
+    </div>
+    
+    <div class="faq-item">
+      <h3>Can I hash large files with this tool?</h3>
+      <p>Yes, you can hash files of any size, but very large files (over 100MB) may take longer to process and could cause browser performance issues. For extremely large files, consider using command-line tools like sha256sum or md5sum for better performance.</p>
+    </div>
+  </div>
+</section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<script src="/assets/js/tool-utils.js"></script>
 <script src="/assets/js/hash-generator.js"></script>

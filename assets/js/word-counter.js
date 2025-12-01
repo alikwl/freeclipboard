@@ -43,14 +43,17 @@
             sentenceCount: document.getElementById('sentenceCount'),
             paragraphCount: document.getElementById('paragraphCount') || document.getElementById('paraCount'),
             readingTime: document.getElementById('readingTime') || document.getElementById('readTime'),
-            speakingTime: document.getElementById('speakingTime'),
+            speakingTime: document.getElementById('speakingTime') || document.getElementById('speakTime'),
             avgWordLength: document.getElementById('avgWordLength'),
             avgSentenceLength: document.getElementById('avgSentenceLength'),
-            copyBtn: document.getElementById('copyBtn'),
+            copyTextBtn: document.getElementById('copyTextBtn') || document.getElementById('copyBtn'),
             clearBtn: document.getElementById('clearBtn'),
-            downloadBtn: document.getElementById('downloadBtn'),
+            pasteBtn: document.getElementById('pasteBtn'),
+            downloadTextBtn: document.getElementById('downloadTextBtn') || document.getElementById('downloadBtn'),
+            downloadStatsBtn: document.getElementById('downloadStatsBtn'),
             copyStatsBtn: document.getElementById('copyStatsBtn'),
-            frequencyList: document.getElementById('frequencyList')
+            frequencyList: document.getElementById('frequencyList'),
+            frequencySection: document.getElementById('frequencySection')
         };
         
         // Check if required elements exist
@@ -73,16 +76,24 @@
         elements.textInput.addEventListener('input', debouncedUpdate);
         
         // Button events
-        if (elements.copyBtn) {
-            elements.copyBtn.addEventListener('click', copyText);
+        if (elements.copyTextBtn) {
+            elements.copyTextBtn.addEventListener('click', copyText);
         }
         
         if (elements.clearBtn) {
             elements.clearBtn.addEventListener('click', clearAll);
         }
         
-        if (elements.downloadBtn) {
-            elements.downloadBtn.addEventListener('click', downloadText);
+        if (elements.pasteBtn) {
+            elements.pasteBtn.addEventListener('click', pasteFromClipboard);
+        }
+        
+        if (elements.downloadTextBtn) {
+            elements.downloadTextBtn.addEventListener('click', downloadText);
+        }
+        
+        if (elements.downloadStatsBtn) {
+            elements.downloadStatsBtn.addEventListener('click', downloadStats);
         }
         
         if (elements.copyStatsBtn) {
@@ -181,12 +192,14 @@
             // Advanced metrics
             if (elements.readingTime) {
                 const readingTime = calculateReadingTime(words);
-                updateStatWithAnimation(elements.readingTime, readingTime);
+                const readTimeText = readingTime === 1 ? '1 min' : `${readingTime} min`;
+                elements.readingTime.textContent = readTimeText;
             }
             
             if (elements.speakingTime) {
                 const speakingTime = calculateSpeakingTime(words);
-                updateStatWithAnimation(elements.speakingTime, speakingTime);
+                const speakTimeText = speakingTime === 1 ? '1 min' : `${speakingTime} min`;
+                elements.speakingTime.textContent = speakTimeText;
             }
             
             if (elements.avgWordLength) {
@@ -200,8 +213,10 @@
             }
             
             // Word frequency
-            if (elements.frequencyList) {
+            if (elements.frequencyList && elements.frequencySection) {
                 updateWordFrequency(text);
+                // Show frequency section only if there's text
+                elements.frequencySection.style.display = text.trim() ? 'block' : 'none';
             }
             
         } catch (error) {
@@ -245,14 +260,31 @@
     
     // Button Functions
     async function copyText() {
+        const text = elements.textInput.value;
+        if (!text.trim()) {
+            showNotification('No text to copy!', 'error');
+            return;
+        }
+        
         try {
-            await navigator.clipboard.writeText(elements.textInput.value);
+            await navigator.clipboard.writeText(text);
             showNotification('Text copied to clipboard!', 'success');
         } catch (err) {
             // Fallback for older browsers
             elements.textInput.select();
             document.execCommand('copy');
             showNotification('Text copied to clipboard!', 'success');
+        }
+    }
+    
+    async function pasteFromClipboard() {
+        try {
+            const text = await navigator.clipboard.readText();
+            elements.textInput.value = text;
+            updateAllCounts();
+            showNotification('Text pasted from clipboard!', 'success');
+        } catch (err) {
+            showNotification('Unable to paste. Please use Ctrl+V or Cmd+V', 'error');
         }
     }
     
@@ -273,34 +305,94 @@
             return;
         }
         
-        const blob = new Blob([text], { type: 'text/plain' });
+        const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `text-${Date.now()}.txt`;
+        const timestamp = new Date().toISOString().slice(0, 10);
+        a.download = `word-counter-text-${timestamp}.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
         
-        showNotification('Text downloaded!', 'success');
+        showNotification('Text downloaded successfully!', 'success');
+    }
+    
+    function downloadStats() {
+        const text = elements.textInput.value;
+        if (!text.trim()) {
+            showNotification('No text to analyze!', 'error');
+            return;
+        }
+        
+        const words = countWords(text);
+        const stats = `TEXT STATISTICS REPORT
+${'='.repeat(50)}
+
+Generated: ${new Date().toLocaleString()}
+
+BASIC COUNTS
+${'-'.repeat(50)}
+Words:                      ${formatNumber(words)}
+Characters (with spaces):   ${formatNumber(countCharacters(text, true))}
+Characters (no spaces):     ${formatNumber(countCharacters(text, false))}
+Sentences:                  ${formatNumber(countSentences(text))}
+Paragraphs:                 ${formatNumber(countParagraphs(text))}
+
+TIME ESTIMATES
+${'-'.repeat(50)}
+Reading Time:               ${calculateReadingTime(words)} minutes
+Speaking Time:              ${calculateSpeakingTime(words)} minutes
+
+ADVANCED METRICS
+${'-'.repeat(50)}
+Average Word Length:        ${calculateAverageWordLength(text)} characters
+Average Sentence Length:    ${calculateAverageSentenceLength(text)} words
+
+WORD FREQUENCY (Top 10)
+${'-'.repeat(50)}
+${analyzeWordFrequency(text).slice(0, 10).map(([word, count], i) => 
+    `${(i + 1).toString().padStart(2)}. ${word.padEnd(20)} ${count} times`
+).join('\n')}
+
+${'='.repeat(50)}
+Generated by Word Counter Tool
+`;
+        
+        const blob = new Blob([stats], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        const timestamp = new Date().toISOString().slice(0, 10);
+        a.download = `word-counter-stats-${timestamp}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        
+        showNotification('Statistics downloaded successfully!', 'success');
     }
     
     async function copyStats() {
         const text = elements.textInput.value;
-        const stats = `
-Text Statistics:
+        if (!text.trim()) {
+            showNotification('No text to analyze!', 'error');
+            return;
+        }
+        
+        const words = countWords(text);
+        const stats = `TEXT STATISTICS
 ================
-Words: ${formatNumber(countWords(text))}
+Words: ${formatNumber(words)}
 Characters (with spaces): ${formatNumber(countCharacters(text, true))}
-Characters (without spaces): ${formatNumber(countCharacters(text, false))}
+Characters (no spaces): ${formatNumber(countCharacters(text, false))}
 Sentences: ${formatNumber(countSentences(text))}
 Paragraphs: ${formatNumber(countParagraphs(text))}
-Reading Time: ${calculateReadingTime(countWords(text))} min
-Speaking Time: ${calculateSpeakingTime(countWords(text))} min
-Average Word Length: ${calculateAverageWordLength(text)} characters
-Average Sentence Length: ${calculateAverageSentenceLength(text)} words
-        `.trim();
+Reading Time: ${calculateReadingTime(words)} min
+Speaking Time: ${calculateSpeakingTime(words)} min
+Avg Word Length: ${calculateAverageWordLength(text)} chars
+Avg Sentence Length: ${calculateAverageSentenceLength(text)} words`;
         
         try {
             await navigator.clipboard.writeText(stats);
