@@ -1,0 +1,26 @@
+{% comment %}
+FAQPage Schema Generator
+Usage: {% include schema-faq.html faqs=page.faqs %}
+Pass an array of FAQ objects with 'question' and 'answer' keys
+{% endcomment %}
+
+{% if include.faqs and include.faqs.size > 0 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {% for faq in include.faqs %}
+    {
+      "@type": "Question",
+      "name": "{{ faq.question | escape }}",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "{{ faq.answer | escape }}"
+      }
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}

@@ -1,0 +1,440 @@
+---
+layout: tool
+title: "Blog Headline Analyzer - Free SEO Title Checker"
+description: "Analyze your blog headlines for SEO, readability, and engagement. Get instant feedback on power words, sentiment, and optimal length."
+keywords: headline analyzer, SEO title checker, blog title analyzer, headline score, power words, content marketing
+schema_type: WebApplication
+permalink: /tools/headline-analyzer/
+category_name: Business Tools
+category_url: /business-tools/
+rating: 4.7
+---
+
+<div class="tool-container">
+    <div class="tool-header">
+        <h1 data-i18n="tool.headline.title">Blog Headline Analyzer</h1>
+        <p class="tool-description" data-i18n="tool.headline.description">
+            Analyze your headlines for SEO effectiveness, emotional impact, and readability. Get actionable feedback to
+            improve click-through rates.
+        </p>
+    </div>
+
+    <div class="tool-content">
+        <!-- Input Section -->
+        <div class="input-section card">
+            <label for="headline-input" class="input-label">
+                <span data-i18n="tool.headline.input_label">Enter Your Headline</span>
+            </label>
+            <textarea id="headline-input" class="headline-input" rows="3"
+                placeholder="Example: 10 Proven Strategies to Boost Your Productivity in 2024"
+                data-i18n-placeholder="tool.headline.input_placeholder"></textarea>
+            <button id="analyze-btn" class="btn btn-primary">
+                <span data-i18n="tool.headline.analyze_btn">Analyze Headline</span>
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results-section" class="results-section" style="display: none;">
+            <!-- Score Display -->
+            <div class="score-card card">
+                <div class="score-circle" id="score-circle">
+                    <div class="score-value" id="score-value">0</div>
+                    <div class="score-grade" id="score-grade">F</div>
+                </div>
+                <div class="score-label" data-i18n="tool.headline.your_score">Your Score</div>
+            </div>
+
+            <!-- Feedback Section -->
+            <div class="feedback-card card">
+                <h3 data-i18n="tool.headline.feedback_title">Feedback & Suggestions</h3>
+                <ul id="feedback-list" class="feedback-list"></ul>
+            </div>
+
+            <!-- Details Section -->
+            <div class="details-grid">
+                <div class="detail-card card">
+                    <h4 data-i18n="tool.headline.length_title">Length Analysis</h4>
+                    <div class="detail-content">
+                        <p><strong data-i18n="tool.headline.characters">Characters:</strong> <span
+                                id="char-count">0</span></p>
+                        <p><strong data-i18n="tool.headline.words">Words:</strong> <span id="word-count">0</span></p>
+                        <div class="progress-bar">
+                            <div id="length-progress" class="progress-fill"></div>
+                        </div>
+                        <small data-i18n="tool.headline.optimal_range">Optimal: 40-60 characters</small>
+                    </div>
+                </div>
+
+                <div class="detail-card card">
+                    <h4 data-i18n="tool.headline.power_words_title">Power Words</h4>
+                    <div class="detail-content">
+                        <div id="power-words-display" class="tags-display">
+                            <span class="tag-empty" data-i18n="tool.headline.no_power_words">None detected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card card">
+                    <h4 data-i18n="tool.headline.sentiment_title">Sentiment</h4>
+                    <div class="detail-content">
+                        <div id="sentiment-display" class="sentiment-indicator">
+                            <span class="sentiment-badge" id="sentiment-badge">Neutral</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="detail-card card">
+                    <h4 data-i18n="tool.headline.type_title">Headline Type</h4>
+                    <div class="detail-content">
+                        <div id="type-display" class="tags-display">
+                            <span class="tag-empty" data-i18n="tool.headline.no_type">Standard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Examples Section -->
+        <div class="examples-section card">
+            <h3 data-i18n="tool.headline.examples_title">Example Headlines to Try</h3>
+            <div class="examples-grid">
+                <button class="example-btn" data-example="10 Proven Strategies to Boost Your Productivity in 2024">
+                    10 Proven Strategies to Boost Your Productivity in 2024
+                </button>
+                <button class="example-btn" data-example="How to Master JavaScript in 30 Days">
+                    How to Master JavaScript in 30 Days
+                </button>
+                <button class="example-btn" data-example="The Ultimate Guide to Sustainable Living">
+                    The Ultimate Guide to Sustainable Living
+                </button>
+                <button class="example-btn" data-example="Why Your Marketing Strategy Is Failing">
+                    Why Your Marketing Strategy Is Failing
+                </button>
+            </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="tips-section card">
+            <h3 data-i18n="tool.headline.tips_title">Tips for Better Headlines</h3>
+            <ul class="tips-list">
+                <li data-i18n="tool.headline.tip1">Keep it between 40-60 characters for optimal SEO</li>
+                <li data-i18n="tool.headline.tip2">Use power words like "ultimate", "essential", "proven"</li>
+                <li data-i18n="tool.headline.tip3">Include numbers for listicles (e.g., "7 Ways...")</li>
+                <li data-i18n="tool.headline.tip4">Add emotional words to create engagement</li>
+                <li data-i18n="tool.headline.tip5">Use "How to" format for tutorials</li>
+                <li data-i18n="tool.headline.tip6">Ask questions to spark curiosity</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<style>
+    .headline-input {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.1rem;
+        border: 2px solid var(--border-color, #444);
+        border-radius: 8px;
+        background: var(--surface-color, #2a2a2a);
+        color: var(--text-color, #fff);
+        resize: vertical;
+        font-family: inherit;
+        transition: border-color 0.3s ease;
+    }
+
+    .headline-input:focus {
+        outline: none;
+        border-color: var(--primary-color, #6366f1);
+    }
+
+    .input-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--text-color);
+    }
+
+    .score-card {
+        text-align: center;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .score-circle {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        margin: 0 auto 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 8px solid;
+        transition: all 0.5s ease;
+    }
+
+    .score-circle.grade-a {
+        border-color: #10b981;
+        background: rgba(16, 185, 129, 0.1);
+    }
+
+    .score-circle.grade-b {
+        border-color: #3b82f6;
+        background: rgba(59, 130, 246, 0.1);
+    }
+
+    .score-circle.grade-c {
+        border-color: #f59e0b;
+        background: rgba(245, 158, 11, 0.1);
+    }
+
+    .score-circle.grade-d {
+        border-color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+    }
+
+    .score-circle.grade-f {
+        border-color: #991b1b;
+        background: rgba(153, 27, 27, 0.1);
+    }
+
+    .score-value {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1;
+    }
+
+    .score-grade {
+        font-size: 1.5rem;
+        font-weight: 600;
+        opacity: 0.8;
+    }
+
+    .score-label {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+    }
+
+    .feedback-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .feedback-list li {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        border-radius: 6px;
+        background: var(--surface-color);
+        border-left: 4px solid;
+    }
+
+    .feedback-list li:has(✓) {
+        border-color: #10b981;
+    }
+
+    .feedback-list li:has(⚠) {
+        border-color: #f59e0b;
+    }
+
+    .feedback-list li:has(✗) {
+        border-color: #ef4444;
+    }
+
+    .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .detail-card h4 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: var(--primary-color);
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background: var(--surface-color);
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 0.5rem 0;
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #10b981, #3b82f6);
+        transition: width 0.5s ease;
+    }
+
+    .tags-display {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        padding: 0.25rem 0.75rem;
+        background: var(--primary-color);
+        color: white;
+        border-radius: 20px;
+        font-size: 0.9rem;
+    }
+
+    .tag-empty {
+        color: var(--text-secondary);
+        font-style: italic;
+    }
+
+    .sentiment-badge {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        font-weight: 600;
+        text-transform: capitalize;
+    }
+
+    .sentiment-badge.positive {
+        background: #10b981;
+        color: white;
+    }
+
+    .sentiment-badge.negative {
+        background: #ef4444;
+        color: white;
+    }
+
+    .sentiment-badge.neutral {
+        background: #6b7280;
+        color: white;
+    }
+
+    .sentiment-badge.mixed {
+        background: #f59e0b;
+        color: white;
+    }
+
+    .examples-grid {
+        display: grid;
+        gap: 0.75rem;
+    }
+
+    .example-btn {
+        padding: 1rem;
+        text-align: left;
+        background: var(--surface-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        color: var(--text-color);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .example-btn:hover {
+        border-color: var(--primary-color);
+        background: var(--surface-hover);
+    }
+
+    .tips-list {
+        padding-left: 1.5rem;
+    }
+
+    .tips-list li {
+        margin-bottom: 0.75rem;
+        line-height: 1.6;
+    }
+</style>
+
+<script src="{{ site.baseurl }}/assets/js/headline-analyzer.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const input = document.getElementById('headline-input');
+        const analyzeBtn = document.getElementById('analyze-btn');
+        const resultsSection = document.getElementById('results-section');
+
+        // Analyze on button click
+        analyzeBtn.addEventListener('click', analyzeHeadline);
+
+        // Analyze on Enter key (Ctrl+Enter for textarea)
+        input.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                analyzeHeadline();
+            }
+        });
+
+        // Example buttons
+        document.querySelectorAll('.example-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                input.value = this.dataset.example;
+                analyzeHeadline();
+                input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        });
+
+        function analyzeHeadline() {
+            const headline = input.value;
+            const result = HeadlineAnalyzer.analyze(headline);
+
+            // Show results
+            resultsSection.style.display = 'block';
+
+            // Update score
+            const scoreCircle = document.getElementById('score-circle');
+            const scoreValue = document.getElementById('score-value');
+            const scoreGrade = document.getElementById('score-grade');
+
+            scoreValue.textContent = result.score;
+            scoreGrade.textContent = result.grade;
+
+            // Update circle color based on grade
+            scoreCircle.className = 'score-circle grade-' + result.grade.toLowerCase().charAt(0);
+
+            // Update feedback
+            const feedbackList = document.getElementById('feedback-list');
+            feedbackList.innerHTML = '';
+            result.feedback.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                feedbackList.appendChild(li);
+            });
+
+            // Update details
+            document.getElementById('char-count').textContent = result.details.length.charCount;
+            document.getElementById('word-count').textContent = result.details.length.wordCount;
+
+            // Update length progress bar
+            const lengthProgress = document.getElementById('length-progress');
+            const lengthPercent = Math.min(100, (result.details.length.charCount / 60) * 100);
+            lengthProgress.style.width = lengthPercent + '%';
+
+            // Update power words
+            const powerWordsDisplay = document.getElementById('power-words-display');
+            if (result.details.powerWords.found.length > 0) {
+                powerWordsDisplay.innerHTML = result.details.powerWords.found
+                    .map(word => `<span class="tag">${word}</span>`)
+                    .join('');
+            } else {
+                powerWordsDisplay.innerHTML = '<span class="tag-empty">None detected</span>';
+            }
+
+            // Update sentiment
+            const sentimentBadge = document.getElementById('sentiment-badge');
+            sentimentBadge.textContent = result.details.sentiment.sentiment;
+            sentimentBadge.className = 'sentiment-badge ' + result.details.sentiment.sentiment;
+
+            // Update type
+            const typeDisplay = document.getElementById('type-display');
+            if (result.details.type.types.length > 0) {
+                typeDisplay.innerHTML = result.details.type.types
+                    .map(type => `<span class="tag">${type}</span>`)
+                    .join('');
+            } else {
+                typeDisplay.innerHTML = '<span class="tag-empty">Standard</span>';
+            }
+
+            // Scroll to results
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+</script>

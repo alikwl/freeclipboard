@@ -1,7 +1,72 @@
-<nav aria-label="breadcrumb" class="breadcrumb-nav">
-  <a href="{{ site.baseurl }}/">Home</a>
-  {% if page.url != "/" %}
-    <span>/</span>
-    <span>{{ page.title }}</span>
-  {% endif %}
+<nav aria-label="Breadcrumb" class="breadcrumb-nav" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol class="breadcrumb-list">
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a href="{{ site.baseurl }}/" itemprop="item">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1">
+    </li>
+    
+    {% if page.url contains '/tools/' %}
+      {% comment %} Tool page - show category then tool {% endcomment %}
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ site.baseurl }}{{ page.category_url | default: '/all-tools/' }}" itemprop="item">
+          <span itemprop="name">{{ page.category_name | default: 'Tools' }}</span>
+        </a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">{{ page.title | split: ' - ' | first | split: ' | ' | first }}</span>
+        <meta itemprop="position" content="3">
+      </li>
+      
+    {% elsif page.url contains '/blog/' or page.layout == 'post' %}
+      {% comment %} Blog post {% endcomment %}
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ site.baseurl }}/blog/" itemprop="item">
+          <span itemprop="name">Blog</span>
+        </a>
+        <meta itemprop="position" content="2">
+      </li>
+      {% if page.title %}
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">{{ page.title | truncate: 50 }}</span>
+        <meta itemprop="position" content="3">
+      </li>
+      {% endif %}
+      
+    {% elsif page.url contains '/free-resources/' %}
+      {% comment %} Free resources {% endcomment %}
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        {% if page.url == '/free-resources/' %}
+        <span itemprop="name" aria-current="page">Free Resources</span>
+        {% else %}
+        <a href="{{ site.baseurl }}/free-resources/" itemprop="item">
+          <span itemprop="name">Free Resources</span>
+        </a>
+        {% endif %}
+        <meta itemprop="position" content="2">
+      </li>
+      {% if page.url != '/free-resources/' and page.title %}
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">{{ page.title | truncate: 50 }}</span>
+        <meta itemprop="position" content="3">
+      </li>
+      {% endif %}
+      
+    {% elsif page.url != '/' and page.title %}
+      {% comment %} Other pages {% endcomment %}
+      <li class="breadcrumb-separator" aria-hidden="true">/</li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">{{ page.title | split: ' - ' | first }}</span>
+        <meta itemprop="position" content="2">
+      </li>
+    {% endif %}
+  </ol>
 </nav>

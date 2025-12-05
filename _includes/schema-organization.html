@@ -1,0 +1,56 @@
+{% comment %}
+Organization Schema - Enhanced for E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "{{ site.url }}/#organization",
+  "name": "{{ site.title }}",
+  "alternateName": ["FreeClipboard", "Free Clipboard Tools", "FreeClipboard.com"],
+  "url": "{{ site.url }}",
+  "logo": {
+    "@type": "ImageObject",
+    "@id": "{{ site.url }}/#logo",
+    "url": "{{ site.url }}/assets/images/logo.png",
+    "contentUrl": "{{ site.url }}/assets/images/logo.png",
+    "width": 600,
+    "height": 60,
+    "caption": "FreeClipboard - Free Online Tools"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ site.url }}/assets/images/og-image.png",
+    "width": 1200,
+    "height": 630
+  },
+  "description": "{{ site.description }}",
+  "foundingDate": "2024",
+  "slogan": "Free Online Tools for Everyone",
+  "knowsAbout": [
+    "Web Development Tools",
+    "Text Processing",
+    "Image Conversion",
+    "Password Generation",
+    "QR Code Generation",
+    "JSON Formatting",
+    "Base64 Encoding",
+    "Clipboard Management"
+  ],
+  "sameAs": [
+    "https://twitter.com/{{ site.twitter_username | default: 'freeclipboard' }}",
+    "https://github.com/{{ site.github_username | default: 'freeclipboard' }}"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "{{ site.url }}/contact/",
+    "availableLanguage": ["English"]
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Worldwide"
+  },
+  "serviceType": "Free Online Tools"
+}
+</script>

@@ -3,6 +3,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- Comprehensive SEO, Schema, and Meta Tags -->
   {% include seo.html %}
 
   {% if jekyll.environment == "production" and site.gtag_id %}
@@ -10,25 +11,49 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gtag_id }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);} 
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', '{{ site.gtag_id }}');
   </script>
   {% endif %}
 
+  <!-- Favicons and Touch Icons -->
+  <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon-32x32.png' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ '/assets/images/favicon-16x16.png' | relative_url }}">
   <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
-  <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
+  <link rel="manifest" href="{{ '/manifest.json' | relative_url }}">
+  <meta name="msapplication-TileImage" content="{{ '/assets/images/mstile-150x150.png' | relative_url }}">
+
+  <!-- Base Stylesheets -->
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/navigation.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/header-layout.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/tool-pages.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/category-pages.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/blog.css' | relative_url }}">
-  
+  <link rel="stylesheet" href="{{ '/assets/css/complete-fix.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/language-switcher.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/search.css' | relative_url }}">
+
+  <!-- Global Design System - Load Last for Highest Priority -->
+  <link rel="stylesheet" href="{{ '/assets/css/design-system.css' | relative_url }}">
+
   <!-- Preload Critical Resources -->
-  <!-- Preload main JS for faster interaction -->
   <link rel="preload" href="{{ site.baseurl }}/assets/js/main.js" as="script">
-  
+
+  <!-- i18n Engine -->
+  <script src="{{ site.baseurl }}/assets/js/i18n.js"></script>
+
   <!-- Google AdSense - Async -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
-     crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
+
+  <!-- Set dark mode as default -->
+  <script>
+    (function () {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    })();
+  </script>
 </head>

@@ -1,0 +1,36 @@
+{% comment %}
+HowTo Schema Generator
+Usage: {% include schema-howto.html name="How to..." description="..." steps=page.howto_steps %}
+{% endcomment %}
+
+{% if include.steps and include.steps.size > 0 %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "{{ include.name | escape }}",
+  "description": "{{ include.description | escape }}",
+  "totalTime": "{{ include.time | default: 'PT2M' }}",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "USD",
+    "value": "0"
+  },
+  "tool": {
+    "@type": "HowToTool",
+    "name": "Web Browser"
+  },
+  "step": [
+    {% for step in include.steps %}
+    {
+      "@type": "HowToStep",
+      "position": {{ forloop.index }},
+      "name": "{{ step.name | escape }}",
+      "text": "{{ step.text | escape }}",
+      "url": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}#step-{{ forloop.index }}"
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
+{% endif %}

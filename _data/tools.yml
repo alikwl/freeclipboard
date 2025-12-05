@@ -97,3 +97,75 @@
 - name: Meta Tag Generator for SEO
   url: /tools/meta-tag-generator/
   description: Generate valid meta tags for SEO, Open Graph, Twitter Cards, canonical, favicon, and theme color.
+
+- name: Cat Age Calculator
+  url: /tools/cat-age-calculator/
+  description: Convert cat years to human years with detailed life stage information and health insights.
+
+- name: Cursed Text Generator
+  url: /tools/cursed-text-generator/
+  description: Create creepy, glitchy Zalgo text with customizable intensity and effects for social media.
+
+- name: Glassmorphism CSS Generator
+  url: /tools/glassmorphism-generator/
+  description: Generate stunning frosted glass effects with backdrop blur, transparency, and custom colors.
+
+- name: Neumorphism Shadow Generator
+  url: /tools/neumorphism-generator/
+  description: Create soft UI neumorphic shadows with adjustable depth, light angle, and tactile effects.
+
+- name: SVG Blob Generator
+  url: /tools/svg-blob-generator/
+  description: Generate unique organic blob shapes for modern web design backgrounds and decorative elements.
+
+- name: Social Media Image Resizer
+  url: /tools/social-media-image-resizer/
+  description: Resize images for Instagram, Facebook, Twitter, LinkedIn with perfect platform-specific dimensions.
+
+- name: Pizza Party Calculator
+  url: /tools/pizza-party-calculator/
+  description: Calculate exactly how many pizzas you need based on guests, appetite, and pizza size.
+
+- name: Water Intake Calculator
+  url: /tools/water-intake-calculator/
+  description: Calculate your daily water intake based on weight, activity level, and climate conditions.
+
+- name: Holiday Countdown Timer
+  url: /tools/holiday-countdown/
+  description: Live countdown to Christmas, Halloween, New Year, and all major holidays with real-time updates.
+
+- name: Markdown Preview Editor
+  url: /tools/markdown-preview/
+  description: Write and preview Markdown in real-time with syntax highlighting and HTML export options.
+
+- name: Glitch Text Generator
+  url: /tools/glitch-text-generator/
+  description: Create chaotic Zalgo glitch text with adjustable intensity for edgy social media posts.
+
+- name: Small Caps Text Generator
+  url: /tools/small-caps-generator/
+  description: Convert text to Unicode small capital letters for stylish tweets, bios, and headings.
+
+- name: Blog Headline Analyzer
+  url: /tools/headline-analyzer/
+  description: Analyze headlines for SEO effectiveness, power words, sentiment, and readability with instant scoring.
+
+- name: Home Energy Efficiency Analyzer
+  url: /tools/energy-analyzer/
+  description: Calculate energy consumption, costs, and CO2 emissions for household appliances with savings tips.
+
+- name: Invoice Generator
+  url: /tools/invoice-generator/
+  description: Create professional invoices with PDF download, automatic calculations, and customizable templates.
+
+- name: Flashcards - Spaced Repetition
+  url: /tools/flashcards/
+  description: Study efficiently with SM-2 spaced repetition algorithm. Create decks and optimize your learning.
+
+- name: Waste Reduction Tracker
+  url: /tools/waste-tracker/
+  description: Track your zero-waste journey. Discover eco-friendly alternatives and calculate your sustainability score.
+
+- name: Micro CRM
+  url: /tools/micro-crm/
+  description: Simple CRM for freelancers. Manage clients, track projects, and organize your business privately.

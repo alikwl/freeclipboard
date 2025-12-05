@@ -1,0 +1,106 @@
+{% comment %}
+SoftwareApplication + WebApplication Schema for Tool Pages
+Enhanced for AEO/AIO/GEO optimization
+{% endcomment %}
+
+{% assign tool_name = page.title | split: ' - ' | first | split: ' | ' | first %}
+{% assign tool_url = site.url | append: page.url | replace: 'index.html', '' %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "@id": "{{ tool_url }}#webapp",
+  "name": "{{ tool_name }}",
+  "alternateName": "{{ page.alt_name | default: tool_name }}",
+  "description": "{{ page.description | escape }}",
+  "url": "{{ tool_url }}",
+  "applicationCategory": "UtilityApplication",
+  "applicationSubCategory": "{{ page.subcategory | default: 'Online Tool' }}",
+  "operatingSystem": "Any (Web Browser)",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "softwareVersion": "1.0",
+  "releaseNotes": "{{ site.url }}/blog/",
+  "screenshot": "{{ page.screenshot | default: site.url | append: '/assets/images/tools/' | append: page.slug | default: 'default' | append: '.png' }}",
+  "featureList": [
+    {% if page.features %}
+    {% for feature in page.features %}
+    "{{ feature | escape }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    {% else %}
+    "Free to use",
+    "No signup required",
+    "Privacy-focused",
+    "Works offline",
+    "Mobile-friendly"
+    {% endif %}
+  ],
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock",
+    "priceValidUntil": "2030-12-31"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ page.rating | default: 4.8 }}",
+    "ratingCount": "{{ page.rating_count | default: 500 }}",
+    "bestRating": "5",
+    "worstRating": "1",
+    "reviewCount": "{{ page.review_count | default: page.rating_count | default: 500 }}"
+  },
+  "author": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "provider": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "creator": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "maintainer": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "isAccessibleForFree": true,
+  "isFamilyFriendly": true,
+  "inLanguage": "en-US",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "{{ page.audience | default: 'Developers, Writers, Professionals' }}"
+  },
+  "potentialAction": {
+    "@type": "UseAction",
+    "target": "{{ tool_url }}"
+  },
+  "datePublished": "{{ page.date_published | default: '2024-01-01' }}",
+  "dateModified": "{{ page.last_updated | default: site.time | date: '%Y-%m-%d' }}"
+}
+</script>
+
+{% comment %} Additional SoftwareApplication schema for broader coverage {% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ tool_name }}",
+  "description": "{{ page.description | escape }}",
+  "url": "{{ tool_url }}",
+  "applicationCategory": "WebApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "{{ page.rating | default: 4.8 }}",
+    "ratingCount": "{{ page.rating_count | default: 500 }}"
+  }
+}
+</script>

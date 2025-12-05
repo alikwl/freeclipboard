@@ -2,20 +2,26 @@
 console.log('FreeClipboard loaded successfully');
 
 // Theme handling
-(function() {
+(function () {
   const THEME_KEY = 'theme';
 
   function getPreferredTheme() {
     const saved = localStorage.getItem(THEME_KEY);
     if (saved === 'light' || saved === 'dark') return saved;
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    // Default to dark mode
+    return 'dark';
   }
 
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     const toggle = document.getElementById('themeToggle');
     if (toggle) {
-      toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      const icon = toggle.querySelector('#themeIcon');
+      if (icon) {
+        icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+      } else {
+        toggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+      }
       toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
       toggle.setAttribute('title', theme === 'dark' ? 'Light mode' : 'Dark mode');
     }
@@ -33,12 +39,6 @@ console.log('FreeClipboard loaded successfully');
         applyTheme(next);
       });
     }
-
-    // Sync with system preference changes if user hasn't explicitly set theme
-    if (!localStorage.getItem(THEME_KEY) && window.matchMedia) {
-      const media = window.matchMedia('(prefers-color-scheme: dark)');
-      media.addEventListener('change', (e) => applyTheme(e.matches ? 'dark' : 'light'));
-    }
   }
 
   if (document.readyState === 'loading') {
@@ -52,14 +52,14 @@ console.log('FreeClipboard loaded successfully');
 function toggleMobileMenu() {
   const nav = document.getElementById('siteNav');
   const toggle = document.getElementById('mobileMenuToggle');
-  
+
   if (nav && toggle) {
     const isActive = nav.classList.toggle('active');
     toggle.classList.toggle('active');
-    
+
     // Update aria-expanded for accessibility
     toggle.setAttribute('aria-expanded', isActive);
-    
+
     // Prevent body scroll when menu is open
     if (isActive) {
       document.body.style.overflow = 'hidden';
@@ -72,7 +72,7 @@ function toggleMobileMenu() {
 function closeMobileMenu() {
   const nav = document.getElementById('siteNav');
   const toggle = document.getElementById('mobileMenuToggle');
-  
+
   if (nav && toggle) {
     nav.classList.remove('active');
     toggle.classList.remove('active');
@@ -84,54 +84,54 @@ function closeMobileMenu() {
 // =========================================
 // EVENT LISTENERS
 // =========================================
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   // Mobile menu toggle
   const mobileMenuToggle = document.getElementById('mobileMenuToggle');
   if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener('click', toggleMobileMenu);
   }
-  
+
   // Close mobile menu when clicking on a link
   const navLinks = document.querySelectorAll('.site-nav .page-link');
   navLinks.forEach(link => {
-    link.addEventListener('click', function() {
+    link.addEventListener('click', function () {
       if (window.innerWidth <= 768) {
         closeMobileMenu();
       }
     });
   });
-  
+
   // Close mobile menu when clicking outside
-  document.addEventListener('click', function(event) {
+  document.addEventListener('click', function (event) {
     const nav = document.getElementById('siteNav');
     const toggle = document.getElementById('mobileMenuToggle');
     const themeToggle = document.getElementById('themeToggle');
-    
-    if (nav && toggle && 
-        !nav.contains(event.target) && 
-        !toggle.contains(event.target) &&
-        !themeToggle.contains(event.target)) {
+
+    if (nav && toggle &&
+      !nav.contains(event.target) &&
+      !toggle.contains(event.target) &&
+      !themeToggle.contains(event.target)) {
       closeMobileMenu();
     }
   });
-  
+
   // Close mobile menu when window is resized to desktop
   let resizeTimer;
-  window.addEventListener('resize', function() {
+  window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
+    resizeTimer = setTimeout(function () {
       if (window.innerWidth > 768) {
         closeMobileMenu();
       }
     }, 250);
   });
-  
+
   // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href === '#') return;
-      
+
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
@@ -142,15 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
-  
+
   // Add loading animation
   document.body.classList.add('loaded');
-});
-
-// Listen for system theme changes
-window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
-  if (!localStorage.getItem('theme')) {
-    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-    updateThemeIcon();
-  }
 });

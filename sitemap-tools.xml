@@ -1,0 +1,24 @@
+---
+layout: null
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  {% comment %} Generate sitemap entries for all tools {% endcomment %}
+  {% for tool in site.data.tools-metadata.tools %}
+  <url>
+    <loc>{{ site.url }}{{ tool.url }}</loc>
+    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
+    <changefreq>{% if tool.new %}weekly{% else %}monthly{% endif %}</changefreq>
+    <priority>{% if tool.featured %}0.9{% elsif tool.popular %}0.85{% else %}0.8{% endif %}</priority>
+    {% if tool.thumbnail %}
+    <image:image>
+      <image:loc>{{ site.url }}{{ tool.thumbnail }}</image:loc>
+      <image:title>{{ tool.name | xml_escape }}</image:title>
+      <image:caption>{{ tool.description | xml_escape }}</image:caption>
+    </image:image>
+    {% endif %}
+  </url>
+  {% endfor %}
+</urlset>

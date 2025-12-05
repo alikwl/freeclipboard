@@ -1,0 +1,26 @@
+{% comment %}
+Speakable Schema for Voice Search / AEO Optimization
+Helps Google Assistant and voice search identify key content
+{% endcomment %}
+
+{% if page.speakable or page.description %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page.title | default: site.title | escape }}",
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [
+      ".hero-content h1",
+      ".hero-content p",
+      ".lead",
+      ".tool-header h1",
+      ".tool-header p",
+      "meta[name='description']"
+    ]
+  },
+  "url": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}"
+}
+</script>
+{% endif %}

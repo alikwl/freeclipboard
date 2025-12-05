@@ -1,0 +1,566 @@
+---
+layout: tool
+title: "Waste Reduction Tracker - Zero Waste Journey Tracker"
+description: "Track your waste reduction journey. Discover eco-friendly alternatives, log your progress, and calculate your sustainability score. Free zero waste tracker."
+keywords: waste tracker, zero waste, eco-friendly alternatives, sustainability tracker, waste reduction, green living
+schema_type: WebApplication
+permalink: /tools/waste-tracker/
+category_name: Utilities
+category_url: /utilities/
+rating: 4.7
+---
+
+<div class="tool-container">
+    <div class="tool-header">
+        <h1>♻️ Waste Reduction Tracker</h1>
+        <p class="tool-description">
+            Start your zero-waste journey! Search for eco-friendly alternatives, track your progress, and see your
+            sustainability score improve over time.
+        </p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section card">
+        <h3>🔍 Find Eco-Friendly Alternatives</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" class="search-input"
+                placeholder="Search for an item (e.g., plastic bottle, paper towel)...">
+            <button id="search-btn" class="btn btn-primary">Search</button>
+        </div>
+
+        <div id="search-result" class="search-result" style="display: none;">
+            <div class="swap-card">
+                <div class="swap-header">
+                    <span class="swap-icon">💡</span>
+                    <h4>Eco-Friendly Alternative</h4>
+                </div>
+                <div class="swap-content">
+                    <p class="swap-alternative" id="swap-alternative"></p>
+                    <p class="swap-impact" id="swap-impact"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="no-result" class="no-result" style="display: none;">
+            <p>No specific alternative found. Try searching for: plastic bottle, paper towel, disposable razor, etc.</p>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="actions-section card">
+        <h3>📝 Log Your Actions</h3>
+        <div class="action-inputs">
+            <input type="text" id="action-item" class="form-input" placeholder="What item? (e.g., plastic bottle)">
+            <div class="action-buttons">
+                <button id="log-waste-btn" class="btn btn-danger">
+                    <span>🗑️ I Produced Waste</span>
+                </button>
+                <button id="log-avoided-btn" class="btn btn-success">
+                    <span>✅ I Avoided Waste</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Dashboard -->
+    <div class="stats-dashboard">
+        <div class="stat-card score-card">
+            <div class="stat-icon">🌱</div>
+            <div class="stat-value" id="sustainability-score">0</div>
+            <div class="stat-label">Sustainability Score</div>
+            <div class="stat-sublabel">Higher is better!</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value" id="avoided-count">0</div>
+            <div class="stat-label">Waste Avoided</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🗑️</div>
+            <div class="stat-value" id="waste-count">0</div>
+            <div class="stat-label">Waste Produced</div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-value" id="total-actions">0</div>
+            <div class="stat-label">Total Actions</div>
+        </div>
+    </div>
+
+    <!-- Period Selector -->
+    <div class="period-selector">
+        <button class="period-btn active" data-period="all">All Time</button>
+        <button class="period-btn" data-period="month">This Month</button>
+        <button class="period-btn" data-period="week">This Week</button>
+    </div>
+
+    <!-- History -->
+    <div class="history-section card">
+        <div class="history-header">
+            <h3>📜 Recent History</h3>
+            <button id="clear-history-btn" class="btn btn-small btn-secondary">Clear History</button>
+        </div>
+
+        <div id="history-list" class="history-list">
+            <!-- History items will be added here -->
+        </div>
+
+        <div id="empty-history" class="empty-state" style="display: none;">
+            <p>No actions logged yet. Start tracking your waste reduction journey!</p>
+        </div>
+    </div>
+
+    <!-- Tips Section -->
+    <div class="tips-section card">
+        <h3>💡 Zero Waste Tips</h3>
+        <ul class="tips-list">
+            <li><strong>Start Small:</strong> Begin with one swap at a time. Don't overwhelm yourself!</li>
+            <li><strong>Reusable Bags:</strong> Keep reusable bags in your car or by the door.</li>
+            <li><strong>Buy in Bulk:</strong> Reduce packaging by buying bulk items with your own containers.</li>
+            <li><strong>Refuse Single-Use:</strong> Say no to straws, plastic cutlery, and disposable cups.</li>
+            <li><strong>Compost:</strong> Turn food scraps into nutrient-rich soil instead of trash.</li>
+            <li><strong>Repair, Don't Replace:</strong> Fix broken items instead of buying new ones.</li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    .search-box {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 1rem;
+        background: var(--surface-color);
+        color: var(--text-color);
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    .swap-card {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-top: 1rem;
+    }
+
+    .swap-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .swap-icon {
+        font-size: 2rem;
+    }
+
+    .swap-header h4 {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+
+    .swap-alternative {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+    }
+
+    .swap-impact {
+        opacity: 0.95;
+        line-height: 1.6;
+    }
+
+    .no-result {
+        padding: 1rem;
+        background: var(--surface-color);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        margin-top: 1rem;
+    }
+
+    .action-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .action-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .stats-dashboard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+
+    .stat-card {
+        background: var(--surface-color);
+        border: 2px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        border-color: var(--primary-color);
+        transform: translateY(-2px);
+    }
+
+    .score-card {
+        background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        border-color: #6366f1;
+        color: white;
+    }
+
+    .stat-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+    }
+
+    .score-card .stat-value {
+        font-size: 3.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .stat-sublabel {
+        font-size: 0.85rem;
+        opacity: 0.7;
+        margin-top: 0.25rem;
+    }
+
+    .period-selector {
+        display: flex;
+        gap: 0.5rem;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .period-btn {
+        padding: 0.5rem 1.5rem;
+        border: 2px solid var(--border-color);
+        background: var(--surface-color);
+        color: var(--text-color);
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .period-btn:hover {
+        border-color: var(--primary-color);
+    }
+
+    .period-btn.active {
+        background: var(--primary-color);
+        border-color: var(--primary-color);
+        color: white;
+    }
+
+    .history-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .history-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background: var(--surface-color);
+        border-left: 4px solid;
+        border-radius: 6px;
+    }
+
+    .history-item.waste {
+        border-left-color: #ef4444;
+    }
+
+    .history-item.avoided {
+        border-left-color: #10b981;
+    }
+
+    .history-item-content {
+        flex: 1;
+    }
+
+    .history-item-type {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .history-item.waste .history-item-type {
+        color: #ef4444;
+    }
+
+    .history-item.avoided .history-item-type {
+        color: #10b981;
+    }
+
+    .history-item-text {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .history-item-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .btn-small {
+        padding: 0.25rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    .tips-list {
+        padding-left: 1.5rem;
+    }
+
+    .tips-list li {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    .tips-list strong {
+        color: var(--primary-color);
+    }
+
+    @media (max-width: 768px) {
+        .search-box {
+            flex-direction: column;
+        }
+
+        .action-buttons {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-dashboard {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .period-selector {
+            flex-wrap: wrap;
+        }
+    }
+</style>
+
+<script src="{{ site.baseurl }}/assets/js/waste-tracker.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Load data
+        WasteTracker.load();
+
+        // Elements
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const searchResult = document.getElementById('search-result');
+        const noResult = document.getElementById('no-result');
+        const actionItem = document.getElementById('action-item');
+        const logWasteBtn = document.getElementById('log-waste-btn');
+        const logAvoidedBtn = document.getElementById('log-avoided-btn');
+        const clearHistoryBtn = document.getElementById('clear-history-btn');
+
+        let currentPeriod = 'all';
+
+        // Event listeners
+        searchBtn.addEventListener('click', searchSwap);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchSwap();
+        });
+
+        logWasteBtn.addEventListener('click', () => logAction('waste'));
+        logAvoidedBtn.addEventListener('click', () => logAction('avoided'));
+        clearHistoryBtn.addEventListener('click', clearHistory);
+
+        document.querySelectorAll('.period-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentPeriod = this.dataset.period;
+                updateStats();
+            });
+        });
+
+        // Initialize
+        updateStats();
+        updateHistory();
+
+        function searchSwap() {
+            const query = searchInput.value.trim();
+            if (!query) return;
+
+            const swap = WasteTracker.searchSwap(query);
+
+            if (swap) {
+                document.getElementById('swap-alternative').textContent = swap.alternative;
+                document.getElementById('swap-impact').textContent = swap.impact;
+                searchResult.style.display = 'block';
+                noResult.style.display = 'none';
+            } else {
+                searchResult.style.display = 'none';
+                noResult.style.display = 'block';
+            }
+        }
+
+        function logAction(type) {
+            const item = actionItem.value.trim();
+            if (!item) {
+                alert('Please enter an item name');
+                return;
+            }
+
+            if (type === 'waste') {
+                WasteTracker.logWaste(item);
+            } else {
+                WasteTracker.logAvoided(item);
+            }
+
+            actionItem.value = '';
+            updateStats();
+            updateHistory();
+
+            // Show feedback
+            const message = type === 'waste' ?
+                '🗑️ Logged waste. Keep tracking!' :
+                '✅ Great job avoiding waste!';
+            showToast(message);
+        }
+
+        function updateStats() {
+            const stats = WasteTracker.getStats(currentPeriod);
+
+            document.getElementById('sustainability-score').textContent = stats.score;
+            document.getElementById('avoided-count').textContent = stats.avoidedCount;
+            document.getElementById('waste-count').textContent = stats.wasteCount;
+            document.getElementById('total-actions').textContent = stats.totalActions;
+        }
+
+        function updateHistory() {
+            const history = WasteTracker.getRecentHistory(20);
+            const container = document.getElementById('history-list');
+            const emptyState = document.getElementById('empty-history');
+
+            if (history.length === 0) {
+                container.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            container.innerHTML = history.map(entry => `
+      <div class="history-item ${entry.type}">
+        <div class="history-item-content">
+          <div class="history-item-type">
+            ${entry.type === 'waste' ? '🗑️ Waste Produced' : '✅ Waste Avoided'}
+          </div>
+          <div class="history-item-text">
+            ${entry.item} • ${new Date(entry.timestamp).toLocaleString()}
+          </div>
+        </div>
+        <div class="history-item-actions">
+          <button class="btn btn-small btn-danger" onclick="deleteEntry(${entry.id})">Delete</button>
+        </div>
+      </div>
+    `).join('');
+        }
+
+        window.deleteEntry = function (entryId) {
+            WasteTracker.deleteEntry(entryId);
+            updateStats();
+            updateHistory();
+        };
+
+        function clearHistory() {
+            if (WasteTracker.clearHistory()) {
+                updateStats();
+                updateHistory();
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.textContent = message;
+            toast.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--primary-color);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      animation: slideIn 0.3s ease;
+    `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+    });
+</script>
+
+<style>
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+</style>

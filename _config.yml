@@ -1,11 +1,18 @@
 # _config.yml - Full Configuration
 
 title: FreeClipboard - Free Online Tools
-description: "Free online tools for developers, writers, and professionals. Clipboard manager, text utilities, QR code generator, password generator, and 17+ more tools. No signup required, 100% privacy-focused."
+description: "Free online tools for developers, writers, and professionals. Clipboard manager, text utilities, QR code generator, password generator, and 40+ more tools. No signup required, 100% privacy-focused."
 url: "https://freeclipboard.com"
 baseurl: ""
 author: "FreeClipboard Team"
-keywords: "free online tools, clipboard manager, text tools, developer tools, online utilities"
+keywords: "free online tools, clipboard manager, text tools, developer tools, online utilities, word counter, json formatter, password generator"
+lang: "en"
+locale: "en_US"
+
+# SEO Settings
+logo: "/assets/images/logo.png"
+og_image: "/assets/images/og-image.png"
+twitter_card: "summary_large_image"
 
 # Analytics
 gtag_id: "G-JHGQJK8CCH"
@@ -13,6 +20,11 @@ gtag_id: "G-JHGQJK8CCH"
 # Social
 twitter_username: freeclipboard
 github_username: freeclipboard
+social:
+  name: FreeClipboard
+  links:
+    - https://twitter.com/freeclipboard
+    - https://github.com/freeclipboard
 
 # Essential for GitHub Pages
 github: [metadata]

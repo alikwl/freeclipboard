@@ -7,7 +7,13 @@
       "description": "Store, manage, and organize unlimited clipboard items with smart categorization, search, favorites, and export/import capabilities.",
       "shortDescription": "Store & organize clipboard history",
       "category": "clipboard",
-      "keywords": ["clipboard manager", "clipboard history", "clipboard organizer", "copy paste manager", "text storage"],
+      "keywords": [
+        "clipboard manager",
+        "clipboard history",
+        "clipboard organizer",
+        "copy paste manager",
+        "text storage"
+      ],
       "thumbnail": "/assets/images/tools/clipboard-manager.png",
       "icon": "📋",
       "featured": true,
@@ -23,7 +29,13 @@
       "description": "Count words, characters, sentences, paragraphs, and reading time in real-time. Perfect for writers, students, and content creators.",
       "shortDescription": "Count words & characters",
       "category": "clipboard",
-      "keywords": ["word counter", "character counter", "word count", "text analysis", "reading time"],
+      "keywords": [
+        "word counter",
+        "character counter",
+        "word count",
+        "text analysis",
+        "reading time"
+      ],
       "thumbnail": "/assets/images/tools/word-counter.png",
       "icon": "📝",
       "featured": true,
@@ -39,7 +51,12 @@
       "description": "Count characters, letters, numbers, and special characters in your text with detailed statistics and analysis.",
       "shortDescription": "Analyze text characters",
       "category": "clipboard",
-      "keywords": ["character counter", "letter counter", "text analysis", "character count"],
+      "keywords": [
+        "character counter",
+        "letter counter",
+        "text analysis",
+        "character count"
+      ],
       "thumbnail": "/assets/images/tools/character-counter.png",
       "icon": "🔢",
       "featured": false,
@@ -55,7 +72,13 @@
       "description": "Generate strong, secure, random passwords with customizable length and character options for maximum security.",
       "shortDescription": "Create secure passwords",
       "category": "security",
-      "keywords": ["password generator", "strong password", "secure password", "random password", "password creator"],
+      "keywords": [
+        "password generator",
+        "strong password",
+        "secure password",
+        "random password",
+        "password creator"
+      ],
       "thumbnail": "/assets/images/tools/password-generator.png",
       "icon": "🔐",
       "featured": true,
@@ -71,7 +94,13 @@
       "description": "Convert images between PNG, JPG, WebP formats with resize and compression options. Fast and easy to use.",
       "shortDescription": "Convert image formats",
       "category": "image",
-      "keywords": ["image converter", "convert png to jpg", "webp converter", "image format converter", "resize image"],
+      "keywords": [
+        "image converter",
+        "convert png to jpg",
+        "webp converter",
+        "image format converter",
+        "resize image"
+      ],
       "thumbnail": "/assets/images/tools/image-converter.png",
       "icon": "🔄",
       "featured": true,
@@ -87,7 +116,12 @@
       "description": "Generate QR codes from text, URLs, emails, phone numbers, and WiFi credentials with customizable size and instant download.",
       "shortDescription": "Create QR codes",
       "category": "image",
-      "keywords": ["qr code generator", "create qr code", "qr code maker", "generate qr code"],
+      "keywords": [
+        "qr code generator",
+        "create qr code",
+        "qr code maker",
+        "generate qr code"
+      ],
       "thumbnail": "/assets/images/tools/qr-generator.png",
       "icon": "📱",
       "featured": false,
@@ -103,7 +137,12 @@
       "description": "Pick colors and convert between HEX, RGB, and HSL formats. Perfect for designers and developers.",
       "shortDescription": "Pick & convert colors",
       "category": "image",
-      "keywords": ["color picker", "color converter", "hex to rgb", "color tool"],
+      "keywords": [
+        "color picker",
+        "color converter",
+        "hex to rgb",
+        "color tool"
+      ],
       "thumbnail": "/assets/images/tools/color-picker.png",
       "icon": "🎨",
       "featured": false,
@@ -119,7 +158,13 @@
       "description": "Beautify, validate, and format JSON code instantly. Fix syntax errors and minify for production.",
       "shortDescription": "Beautify & validate JSON",
       "category": "text",
-      "keywords": ["json formatter", "json validator", "beautify json", "format json", "json minifier"],
+      "keywords": [
+        "json formatter",
+        "json validator",
+        "beautify json",
+        "format json",
+        "json minifier"
+      ],
       "thumbnail": "/assets/images/tools/json-formatter.png",
       "icon": "{ }",
       "featured": false,
@@ -135,7 +180,12 @@
       "description": "Encode text to Base64 or decode Base64 strings back to text instantly. Essential for developers.",
       "shortDescription": "Encode/decode Base64",
       "category": "text",
-      "keywords": ["base64 encoder", "base64 decoder", "encode base64", "decode base64"],
+      "keywords": [
+        "base64 encoder",
+        "base64 decoder",
+        "encode base64",
+        "decode base64"
+      ],
       "thumbnail": "/assets/images/tools/base64-encoder.png",
       "icon": "🔐",
       "featured": false,
@@ -151,7 +201,13 @@
       "description": "Encode text to URL-safe strings or decode URLs. Essential for web development and API work.",
       "shortDescription": "Encode/decode URLs",
       "category": "text",
-      "keywords": ["url encoder", "url decoder", "encode url", "decode url", "url escape"],
+      "keywords": [
+        "url encoder",
+        "url decoder",
+        "encode url",
+        "decode url",
+        "url escape"
+      ],
       "thumbnail": "/assets/images/tools/url-encoder.png",
       "icon": "🔗",
       "featured": false,
@@ -167,7 +223,12 @@
       "description": "Encode HTML entities or decode HTML strings safely. Prevent XSS attacks and display HTML correctly.",
       "shortDescription": "Encode HTML entities",
       "category": "text",
-      "keywords": ["html encoder", "html decoder", "html entities", "encode html"],
+      "keywords": [
+        "html encoder",
+        "html decoder",
+        "html entities",
+        "encode html"
+      ],
       "thumbnail": "/assets/images/tools/html-encoder.png",
       "icon": "🌐",
       "featured": false,
@@ -183,7 +244,13 @@
       "description": "Transform text case, remove spaces, and format text in various ways. Uppercase, lowercase, title case, and more.",
       "shortDescription": "Format & transform text",
       "category": "text",
-      "keywords": ["text formatter", "case converter", "text transform", "uppercase", "lowercase"],
+      "keywords": [
+        "text formatter",
+        "case converter",
+        "text transform",
+        "uppercase",
+        "lowercase"
+      ],
       "thumbnail": "/assets/images/tools/text-formatter.png",
       "icon": "📄",
       "featured": false,
@@ -199,7 +266,14 @@
       "description": "Convert typed text into realistic handwriting on ruled or graph paper. Choose fonts, colors, spacing, and export as PNG/JPG.",
       "shortDescription": "Generate handwritten notes",
       "category": "text",
-      "keywords": ["text to handwriting", "handwriting converter", "handwritten notes", "handwriting font", "lined paper", "graph paper"],
+      "keywords": [
+        "text to handwriting",
+        "handwriting converter",
+        "handwritten notes",
+        "handwriting font",
+        "lined paper",
+        "graph paper"
+      ],
       "thumbnail": "/assets/images/tools/text-to-handwriting.png",
       "icon": "✍️",
       "featured": false,
@@ -215,7 +289,12 @@
       "description": "Test and debug regular expressions with live pattern matching and explanations. Perfect for developers.",
       "shortDescription": "Test regular expressions",
       "category": "text",
-      "keywords": ["regex tester", "regular expression", "regex validator", "pattern matching"],
+      "keywords": [
+        "regex tester",
+        "regular expression",
+        "regex validator",
+        "pattern matching"
+      ],
       "thumbnail": "/assets/images/tools/regex-tester.png",
       "icon": "🔍",
       "featured": false,
@@ -231,7 +310,13 @@
       "description": "Generate MD5, SHA-1, SHA-256, and other hash values from text. Secure hashing for passwords and data.",
       "shortDescription": "Generate MD5, SHA hashes",
       "category": "security",
-      "keywords": ["hash generator", "md5", "sha256", "sha1", "hash calculator"],
+      "keywords": [
+        "hash generator",
+        "md5",
+        "sha256",
+        "sha1",
+        "hash calculator"
+      ],
       "thumbnail": "/assets/images/tools/hash-generator.png",
       "icon": "🔒",
       "featured": false,
@@ -247,7 +332,12 @@
       "description": "Generate unique UUIDs (v4) for your applications instantly. Perfect for database keys and identifiers.",
       "shortDescription": "Generate unique IDs",
       "category": "security",
-      "keywords": ["uuid generator", "guid generator", "unique id", "uuid v4"],
+      "keywords": [
+        "uuid generator",
+        "guid generator",
+        "unique id",
+        "uuid v4"
+      ],
       "thumbnail": "/assets/images/tools/uuid-generator.png",
       "icon": "🆔",
       "featured": false,
@@ -263,7 +353,12 @@
       "description": "Convert between different units of measurement instantly. Length, weight, temperature, and more.",
       "shortDescription": "Convert measurement units",
       "category": "utility",
-      "keywords": ["unit converter", "measurement converter", "convert units", "length converter"],
+      "keywords": [
+        "unit converter",
+        "measurement converter",
+        "convert units",
+        "length converter"
+      ],
       "thumbnail": "/assets/images/tools/unit-converter.png",
       "icon": "📏",
       "featured": false,
@@ -279,7 +374,12 @@
       "description": "Generate formatted code snippets in multiple programming languages with syntax highlighting.",
       "shortDescription": "Generate code snippets",
       "category": "utility",
-      "keywords": ["code snippet", "code generator", "syntax highlighting", "code formatter"],
+      "keywords": [
+        "code snippet",
+        "code generator",
+        "syntax highlighting",
+        "code formatter"
+      ],
       "thumbnail": "/assets/images/tools/code-snippet.png",
       "icon": "💻",
       "featured": false,
@@ -295,7 +395,12 @@
       "description": "Preview markdown in real-time with live rendering. Perfect for documentation and README files.",
       "shortDescription": "Preview markdown live",
       "category": "utility",
-      "keywords": ["markdown preview", "markdown editor", "markdown viewer", "md preview"],
+      "keywords": [
+        "markdown preview",
+        "markdown editor",
+        "markdown viewer",
+        "md preview"
+      ],
       "thumbnail": "/assets/images/tools/markdown-preview.png",
       "icon": "📝",
       "featured": false,
@@ -303,8 +408,7 @@
       "url": "/tools/markdown-preview/",
       "rating": 4.7,
       "usageCount": 10000
-    }
-    ,
+    },
     {
       "id": "json-to-csv-converter",
       "name": "JSON to CSV Converter",
@@ -312,7 +416,13 @@
       "description": "Convert JSON and NDJSON to CSV with optional flattening, custom delimiter, headers, quoting, and BOM.",
       "shortDescription": "Convert JSON/NDJSON to CSV",
       "category": "utility",
-      "keywords": ["json to csv", "ndjson", "csv converter", "flatten json", "delimiter"],
+      "keywords": [
+        "json to csv",
+        "ndjson",
+        "csv converter",
+        "flatten json",
+        "delimiter"
+      ],
       "thumbnail": "/assets/images/tools/json-to-csv-converter.png",
       "icon": "📊",
       "featured": true,
@@ -328,7 +438,14 @@
       "description": "Create a standards-compliant robots.txt with visual allow/disallow rules, user-agent selection, crawl-delay, and sitemap URL.",
       "shortDescription": "Build robots.txt visually",
       "category": "utility",
-      "keywords": ["robots.txt", "seo", "crawl-delay", "sitemap", "disallow", "allow"],
+      "keywords": [
+        "robots.txt",
+        "seo",
+        "crawl-delay",
+        "sitemap",
+        "disallow",
+        "allow"
+      ],
       "thumbnail": "/assets/images/tools/robots-txt-generator.png",
       "icon": "🤖",
       "featured": true,
@@ -344,7 +461,14 @@
       "description": "Generate valid meta tags: description, robots, canonical, Open Graph, Twitter Cards, favicon, and theme color.",
       "shortDescription": "Generate SEO meta tags",
       "category": "utility",
-      "keywords": ["meta tags", "open graph", "twitter cards", "canonical", "favicon", "seo"],
+      "keywords": [
+        "meta tags",
+        "open graph",
+        "twitter cards",
+        "canonical",
+        "favicon",
+        "seo"
+      ],
       "thumbnail": "/assets/images/tools/meta-tag-generator.png",
       "icon": "🏷️",
       "featured": true,
@@ -360,7 +484,12 @@
       "description": "Calculate your cat's age in human years with accurate life stage information.",
       "shortDescription": "Convert cat years to human years",
       "category": "utility",
-      "keywords": ["cat age", "pet calculator", "cat years", "human years"],
+      "keywords": [
+        "cat age",
+        "pet calculator",
+        "cat years",
+        "human years"
+      ],
       "icon": "🐱",
       "featured": false,
       "popular": false,
@@ -375,7 +504,12 @@
       "description": "Count down to major holidays with live timer and celebration animations.",
       "shortDescription": "Countdown to holidays",
       "category": "utility",
-      "keywords": ["holiday countdown", "christmas countdown", "new year", "timer"],
+      "keywords": [
+        "holiday countdown",
+        "christmas countdown",
+        "new year",
+        "timer"
+      ],
       "icon": "🎄",
       "featured": false,
       "popular": false,
@@ -390,7 +524,12 @@
       "description": "Calculate your daily water intake needs based on weight, activity level, and climate.",
       "shortDescription": "Calculate daily water needs",
       "category": "utility",
-      "keywords": ["water intake", "hydration calculator", "daily water", "health"],
+      "keywords": [
+        "water intake",
+        "hydration calculator",
+        "daily water",
+        "health"
+      ],
       "icon": "💧",
       "featured": false,
       "popular": false,
@@ -405,7 +544,12 @@
       "description": "Calculate how many pizzas you need for your party based on guests and appetite.",
       "shortDescription": "Plan pizza for parties",
       "category": "utility",
-      "keywords": ["pizza calculator", "party planning", "pizza party", "food calculator"],
+      "keywords": [
+        "pizza calculator",
+        "party planning",
+        "pizza party",
+        "food calculator"
+      ],
       "icon": "🍕",
       "featured": false,
       "popular": false,
@@ -420,7 +564,13 @@
       "description": "Resize images to perfect dimensions for Instagram, Facebook, Twitter, and more.",
       "shortDescription": "Resize for social media",
       "category": "image",
-      "keywords": ["image resizer", "social media", "instagram", "facebook", "twitter"],
+      "keywords": [
+        "image resizer",
+        "social media",
+        "instagram",
+        "facebook",
+        "twitter"
+      ],
       "icon": "📱",
       "featured": true,
       "popular": true,
@@ -435,7 +585,12 @@
       "description": "Create organic SVG blob shapes with customizable complexity and colors.",
       "shortDescription": "Generate organic SVG blobs",
       "category": "design",
-      "keywords": ["svg blob", "organic shapes", "svg generator", "design"],
+      "keywords": [
+        "svg blob",
+        "organic shapes",
+        "svg generator",
+        "design"
+      ],
       "icon": "🫧",
       "featured": true,
       "popular": true,
@@ -450,7 +605,12 @@
       "description": "Generate neumorphic design CSS with soft shadows and modern UI effects.",
       "shortDescription": "Create neumorphic designs",
       "category": "design",
-      "keywords": ["neumorphism", "css generator", "soft ui", "design"],
+      "keywords": [
+        "neumorphism",
+        "css generator",
+        "soft ui",
+        "design"
+      ],
       "icon": "🎨",
       "featured": true,
       "popular": true,
@@ -465,7 +625,12 @@
       "description": "Create glassmorphic designs with frosted glass effects and backdrop blur.",
       "shortDescription": "Generate glass effects",
       "category": "design",
-      "keywords": ["glassmorphism", "css generator", "frosted glass", "backdrop blur"],
+      "keywords": [
+        "glassmorphism",
+        "css generator",
+        "frosted glass",
+        "backdrop blur"
+      ],
       "icon": "🪟",
       "featured": true,
       "popular": true,
@@ -480,7 +645,12 @@
       "description": "Generate Discord spoiler text with ||spoiler|| formatting.",
       "shortDescription": "Create Discord spoilers",
       "category": "text",
-      "keywords": ["discord", "spoiler text", "discord formatting", "text generator"],
+      "keywords": [
+        "discord",
+        "spoiler text",
+        "discord formatting",
+        "text generator"
+      ],
       "icon": "🎮",
       "featured": false,
       "popular": false,
@@ -495,7 +665,12 @@
       "description": "Create glitchy, zalgo-style text with diacritical marks for unique effects.",
       "shortDescription": "Generate glitch text",
       "category": "text",
-      "keywords": ["glitch text", "zalgo", "text generator", "unicode"],
+      "keywords": [
+        "glitch text",
+        "zalgo",
+        "text generator",
+        "unicode"
+      ],
       "icon": "⚡",
       "featured": false,
       "popular": true,
@@ -510,7 +685,17 @@
       "description": "Generate cursed, creepy, and glitchy Zalgo text with customizable intensity and multiple curse modes. Perfect for Discord, memes, and social media.",
       "shortDescription": "Create cursed Zalgo text",
       "category": "text",
-      "keywords": ["cursed text", "zalgo text", "creepy text", "glitchy text", "corrupted text", "scary text", "cursed font", "discord text", "meme text"],
+      "keywords": [
+        "cursed text",
+        "zalgo text",
+        "creepy text",
+        "glitchy text",
+        "corrupted text",
+        "scary text",
+        "cursed font",
+        "discord text",
+        "meme text"
+      ],
       "icon": "👹",
       "featured": true,
       "popular": true,
@@ -526,7 +711,12 @@
       "description": "Generate invisible characters for blank text, empty names, and spacing tricks.",
       "shortDescription": "Create invisible text",
       "category": "text",
-      "keywords": ["invisible character", "blank text", "empty space", "unicode"],
+      "keywords": [
+        "invisible character",
+        "blank text",
+        "empty space",
+        "unicode"
+      ],
       "icon": "🫥",
       "featured": false,
       "popular": true,
@@ -541,13 +731,150 @@
       "description": "Convert text to small caps using Unicode characters for stylish formatting.",
       "shortDescription": "Generate small caps text",
       "category": "text",
-      "keywords": ["small caps", "text generator", "unicode", "text formatting"],
+      "keywords": [
+        "small caps",
+        "text generator",
+        "unicode",
+        "text formatting"
+      ],
       "icon": "ᴀʙᴄ",
       "featured": false,
       "popular": false,
       "url": "/tools/small-caps-generator/",
       "rating": 4.5,
       "usageCount": 3500
+    },
+    {
+      "id": "energy-analyzer",
+      "name": "Home Energy Efficiency Analyzer",
+      "slug": "energy-analyzer",
+      "description": "Calculate energy consumption, costs, and CO2 emissions for household appliances with savings tips and efficiency ratings.",
+      "shortDescription": "Analyze home energy usage",
+      "category": "utility",
+      "keywords": [
+        "energy calculator",
+        "co2 footprint",
+        "energy efficiency",
+        "appliance calculator",
+        "electricity cost"
+      ],
+      "icon": "⚡",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/energy-analyzer/",
+      "rating": 5.0,
+      "usageCount": 500
+    },
+    {
+      "id": "waste-tracker",
+      "name": "Waste Reduction Tracker",
+      "slug": "waste-tracker",
+      "description": "Track your zero-waste journey. Discover eco-friendly alternatives and calculate your sustainability score.",
+      "shortDescription": "Track waste reduction",
+      "category": "utility",
+      "keywords": [
+        "waste tracker",
+        "eco-friendly",
+        "sustainability",
+        "zero waste",
+        "eco swaps"
+      ],
+      "icon": "♻️",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/waste-tracker/",
+      "rating": 5.0,
+      "usageCount": 500
+    },
+    {
+      "id": "flashcards",
+      "name": "Flashcards - Spaced Repetition",
+      "slug": "flashcards",
+      "description": "Study efficiently with SM-2 spaced repetition algorithm. Create unlimited decks and optimize your learning.",
+      "shortDescription": "Study with spaced repetition",
+      "category": "education",
+      "keywords": [
+        "flashcards",
+        "spaced repetition",
+        "SM-2 algorithm",
+        "study tool",
+        "learning"
+      ],
+      "icon": "🎴",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/flashcards/",
+      "rating": 5.0,
+      "usageCount": 500
+    },
+    {
+      "id": "headline-analyzer",
+      "name": "Blog Headline Analyzer",
+      "slug": "headline-analyzer",
+      "description": "Analyze headlines for SEO effectiveness, power words, sentiment, and readability with instant scoring.",
+      "shortDescription": "Analyze headline SEO",
+      "category": "education",
+      "keywords": [
+        "headline analyzer",
+        "SEO tool",
+        "power words",
+        "sentiment analysis",
+        "content creation"
+      ],
+      "icon": "📝",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/headline-analyzer/",
+      "rating": 5.0,
+      "usageCount": 500
+    },
+    {
+      "id": "invoice-generator",
+      "name": "Invoice Generator",
+      "slug": "invoice-generator",
+      "description": "Create professional invoices with PDF download, automatic calculations, and customizable templates.",
+      "shortDescription": "Generate professional invoices",
+      "category": "business",
+      "keywords": [
+        "invoice generator",
+        "PDF invoice",
+        "freelancer tool",
+        "billing",
+        "invoice template"
+      ],
+      "icon": "📄",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/invoice-generator/",
+      "rating": 5.0,
+      "usageCount": 500
+    },
+    {
+      "id": "micro-crm",
+      "name": "Micro CRM",
+      "slug": "micro-crm",
+      "description": "Simple CRM for freelancers. Manage clients, track projects, and organize your business privately.",
+      "shortDescription": "Manage clients & projects",
+      "category": "business",
+      "keywords": [
+        "CRM",
+        "client management",
+        "project tracking",
+        "freelancer tool",
+        "business management"
+      ],
+      "icon": "👥",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/micro-crm/",
+      "rating": 5.0,
+      "usageCount": 500
     }
   ],
   "categories": [
@@ -592,6 +919,20 @@
       "description": "CSS generators, SVG blobs, and design effects",
       "icon": "🎨",
       "url": "/design-tools/"
+    },
+    {
+      "id": "education",
+      "name": "Education & Learning",
+      "description": "Flashcards, headline analysis, and learning tools",
+      "icon": "📚",
+      "url": "/education-tools/"
+    },
+    {
+      "id": "business",
+      "name": "Business & Freelancer",
+      "description": "Invoices, CRM, and business management tools",
+      "icon": "💼",
+      "url": "/business-tools/"
     }
   ]
 }

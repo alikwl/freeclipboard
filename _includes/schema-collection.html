@@ -1,0 +1,29 @@
+{% comment %}
+CollectionPage Schema for Category Pages
+{% endcomment %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "{{ page.title | escape }}",
+  "description": "{{ page.description | escape }}",
+  "url": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}",
+  "isPartOf": {
+    "@id": "{{ site.url }}/#website"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "{{ page.category_name | default: 'Online Tools' }}"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ include.count | default: 10 }},
+    "itemListOrder": "https://schema.org/ItemListUnordered"
+  },
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "inLanguage": "en-US"
+}
+</script>

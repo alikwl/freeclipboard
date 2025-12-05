@@ -2,12 +2,12 @@
 <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
 <header class="site-header">
-  <div class="container header-container">
+  <div class="header-inner">
     <a class="site-title" href="{{ site.baseurl }}/" aria-label="FreeClipboard home">
       <span class="logo-icon" aria-hidden="true">📋</span>
       <span class="logo-text">FreeClipboard</span>
     </a>
-    
+
     <nav class="desktop-nav" id="desktopNav">
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
@@ -40,6 +40,18 @@
               <span class="item-icon">🔧</span>
               <span class="item-text">Utilities</span>
             </a>
+            <a href="{{ site.baseurl }}/calculators/" class="dropdown-item">
+              <span class="item-icon">🧮</span>
+              <span class="item-text">Calculators</span>
+            </a>
+            <a href="{{ site.baseurl }}/education-tools/" class="dropdown-item">
+              <span class="item-icon">📚</span>
+              <span class="item-text">Education Tools</span>
+            </a>
+            <a href="{{ site.baseurl }}/business-tools/" class="dropdown-item">
+              <span class="item-icon">💼</span>
+              <span class="item-text">Business Tools</span>
+            </a>
           </div>
           <div class="dropdown-section">
             <h4>Popular Tools</h4>
@@ -49,18 +61,48 @@
             <a href="{{ site.baseurl }}/tools/image-converter/" class="dropdown-item">Image Converter</a>
           </div>
           <div class="dropdown-footer">
-            <a href="{{ site.baseurl }}/all-tools/" class="btn-dropdown-cta">View All 35+ Tools →</a>
+            <a href="{{ site.baseurl }}/all-tools/" class="btn-dropdown-cta">View All 41 Tools →</a>
           </div>
         </div>
       </div>
-      
+
       <a href="{{ site.baseurl }}/blog/" class="nav-link">Blog</a>
       <a href="{{ site.baseurl }}/free-resources/" class="nav-link">Free Resources</a>
       <a href="{{ site.baseurl }}/about/" class="nav-link">About</a>
       <a href="{{ site.baseurl }}/contact/" class="nav-link">Contact</a>
     </nav>
-    
+
+    <!-- Global Search Bar -->
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input type="search" id="globalSearch" class="search-input" placeholder="Search tools..."
+          aria-label="Search tools and pages" autocomplete="off">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+
+      <!-- Search Results Dropdown -->
+      <div class="search-results" id="searchResults" aria-live="polite" hidden>
+        <div class="search-results-inner"></div>
+      </div>
+    </div>
+
+
     <div class="header-actions">
+      <!-- Language Switcher -->
+      <div class="language-switcher-wrapper">
+        <select id="language-switcher" class="language-switcher" aria-label="Select language">
+          <option value="en">🇬🇧 EN</option>
+          <option value="es">🇪🇸 ES</option>
+          <option value="fr">🇫🇷 FR</option>
+          <option value="de">🇩🇪 DE</option>
+          <option value="ar">🇸🇦 AR</option>
+        </select>
+      </div>
+
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
         <span id="themeIcon">🌙</span>
       </button>
@@ -71,9 +113,9 @@
       </button>
     </div>
   </div>
-  
+
   <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
     <div class="mobile-menu-content">
       <div class="mobile-menu-section">
         <h3 class="mobile-menu-title">Tools by Category</h3>
@@ -101,8 +143,20 @@
           <span class="item-icon">🔧</span>
           <span class="item-text">Utilities</span>
         </a>
+        <a href="{{ site.baseurl }}/calculators/" class="mobile-menu-item">
+          <span class="item-icon">🧮</span>
+          <span class="item-text">Calculators</span>
+        </a>
+        <a href="{{ site.baseurl }}/education-tools/" class="mobile-menu-item">
+          <span class="item-icon">📚</span>
+          <span class="item-text">Education Tools</span>
+        </a>
+        <a href="{{ site.baseurl }}/business-tools/" class="mobile-menu-item">
+          <span class="item-icon">💼</span>
+          <span class="item-text">Business Tools</span>
+        </a>
       </div>
-      
+
       <div class="mobile-menu-section">
         <h3 class="mobile-menu-title">Popular Tools</h3>
         <a href="{{ site.baseurl }}/tools/free-clipboard/" class="mobile-menu-item">Clipboard Manager</a>
@@ -110,14 +164,14 @@
         <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="mobile-menu-item">QR Code Generator</a>
         <a href="{{ site.baseurl }}/tools/image-converter/" class="mobile-menu-item">Image Converter</a>
       </div>
-      
+
       <div class="mobile-menu-section">
         <a href="{{ site.baseurl }}/blog/" class="mobile-menu-item">📝 Blog</a>
         <a href="{{ site.baseurl }}/free-resources/" class="mobile-menu-item">🎁 Free Resources</a>
         <a href="{{ site.baseurl }}/about/" class="mobile-menu-item">ℹ️ About</a>
         <a href="{{ site.baseurl }}/contact/" class="mobile-menu-item">✉️ Contact</a>
       </div>
-      
+
       <div class="mobile-menu-footer">
         <a href="{{ site.baseurl }}/all-tools/" class="btn btn-primary btn-block">View All Tools</a>
       </div>

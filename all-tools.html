@@ -1,9 +1,21 @@
 ---
 layout: default
-title: All Tools Directory - Complete Collection of Free Online Tools
-description: Browse our complete collection of 35+ free online tools organized by category. Clipboard managers, text utilities, image converters, design tools, and more.
-keywords: all tools, tools directory, free online tools, web tools, developer tools, design tools, text tools
+title: All Tools Directory - 41+ Free Online Tools | FreeClipboard
+description: Browse our complete collection of 41+ free online tools organized by category. Clipboard managers, text utilities, image converters, design tools, password generators, and more. 100% free, no signup.
+keywords: all tools, tools directory, free online tools, web tools, developer tools, design tools, text tools, online utilities, free web apps
 schema_type: CollectionPage
+og_type: website
+category_name: All Tools
+tools_count: 41
+faqs:
+  - question: "How many tools are available?"
+    answer: "We currently offer 41+ free online tools across 8 categories including clipboard tools, text utilities, image tools, design tools, security generators, utilities, education tools, and business tools."
+  - question: "Are all tools really free?"
+    answer: "Yes! Every single tool is 100% free with no hidden costs, premium plans, or usage limits. We're ad-supported to keep everything free for everyone."
+  - question: "Do I need to create an account?"
+    answer: "No signup required! Just visit any tool and start using it immediately. No registration, no email verification, no hassle."
+  - question: "Which tools are most popular?"
+    answer: "Our most popular tools include the Clipboard Manager, Word Counter, Password Generator, JSON Formatter, and Image Converter. All are free and privacy-focused."
 ---
 
 <section class="category-hero tools-directory-hero" aria-labelledby="directory-title">
@@ -14,15 +26,16 @@ schema_type: CollectionPage
         <span class="badge-text">Complete Tools Directory</span>
       </div>
       <h1 id="directory-title">All Free Online Tools</h1>
-      <p class="hero-subtitle">Browse our complete collection of 35+ professional-grade tools organized by category. Everything you need for text processing, image conversion, design, security, and more.</p>
-      
+      <p class="hero-subtitle">Browse our complete collection of 41 professional-grade tools organized by category.
+        Everything you need for text processing, image conversion, design, security, and more.</p>
+
       <div class="hero-stats" role="list" aria-label="Directory statistics">
         <div class="stat-item" role="listitem">
-          <strong>35+</strong>
+          <strong>41</strong>
           <span>Free Tools</span>
         </div>
         <div class="stat-item" role="listitem">
-          <strong>6</strong>
+          <strong>8</strong>
           <span>Categories</span>
         </div>
         <div class="stat-item" role="listitem">
@@ -34,10 +47,11 @@ schema_type: CollectionPage
           <span>Free Forever</span>
         </div>
       </div>
-      
+
       <nav class="hero-cta" aria-label="Hero navigation">
         <a href="#tools" class="btn btn-primary btn-lg" aria-label="Browse all tools">Browse Tools</a>
-        <a href="#categories" class="btn btn-outline btn-lg" aria-label="Jump to category navigation">Jump to Category</a>
+        <a href="#categories" class="btn btn-outline btn-lg" aria-label="Jump to category navigation">Jump to
+          Category</a>
       </nav>
     </div>
   </div>
@@ -50,16 +64,16 @@ schema_type: CollectionPage
       <h2 id="quick-nav-heading"><span aria-hidden="true">🗂️</span> Quick Navigation</h2>
       <p>Jump directly to any category</p>
     </header>
-    
+
     <nav class="quick-nav-grid" aria-label="Category navigation">
       {% assign categories = site.data.tools-metadata.categories %}
       {% for category in categories %}
-        <a href="#category-{{ category.id }}" class="quick-nav-card" aria-label="Jump to {{ category.name }} category">
-          <div class="quick-nav-icon" aria-hidden="true">{{ category.icon }}</div>
-          <h3>{{ category.name }}</h3>
-          {% assign catTools = site.data.tools-metadata.tools | where: 'category', category.id %}
-          <span class="quick-nav-count">{{ catTools | size }} tools</span>
-        </a>
+      <a href="#category-{{ category.id }}" class="quick-nav-card" aria-label="Jump to {{ category.name }} category">
+        <div class="quick-nav-icon" aria-hidden="true">{{ category.icon }}</div>
+        <h3>{{ category.name }}</h3>
+        {% assign catTools = site.data.tools-metadata.tools | where: 'category', category.id %}
+        <span class="quick-nav-count">{{ catTools | size }} tools</span>
+      </a>
       {% endfor %}
     </nav>
   </div>
@@ -70,81 +84,81 @@ schema_type: CollectionPage
   <div class="container">
     {% assign categories = site.data.tools-metadata.categories %}
     {% assign tools = site.data.tools-metadata.tools %}
-    
+
     {% for category in categories %}
-      {% assign catTools = tools | where: 'category', category.id | sort: 'name' %}
-      
-      <div class="tool-category-section" id="category-{{ category.id }}">
-        <div class="category-section-header">
-          <div class="category-title-group">
-            <h2>{{ category.icon }} {{ category.name }}</h2>
-            <span class="category-count-badge">{{ catTools | size }} Tools</span>
-          </div>
-          <p class="category-description">{{ category.description }}</p>
-          {% if category.url and category.url != '/tools/' %}
-            <a href="{{ category.url | relative_url }}" class="category-page-link">View Category Page →</a>
-          {% endif %}
+    {% assign catTools = tools | where: 'category', category.id | sort: 'name' %}
+
+    <div class="tool-category-section" id="category-{{ category.id }}">
+      <div class="category-section-header">
+        <div class="category-title-group">
+          <h2>{{ category.icon }} {{ category.name }}</h2>
+          <span class="category-count-badge">{{ catTools | size }} Tools</span>
         </div>
-        
-        <div class="tools-grid enhanced-grid">
-          {% for tool in catTools %}
-            <article class="tool-card enhanced-card">
-              <div class="tool-card-visual">
-                <div class="tool-icon-large">{{ tool.icon }}</div>
-                {% if tool.featured %}
-                  <span class="tool-badge badge-featured">⭐ Featured</span>
-                {% elsif tool.popular %}
-                  <span class="tool-badge badge-popular">🔥 Popular</span>
-                {% elsif tool.new %}
-                  <span class="tool-badge badge-new">✨ New</span>
-                {% endif %}
-              </div>
-              
-              <div class="tool-card-content">
-                <h3 class="tool-title">{{ tool.name }}</h3>
-                <p class="tool-description">{{ tool.description }}</p>
-                
-                <div class="tool-features">
-                  <span class="feature-tag">✓ Free Forever</span>
-                  <span class="feature-tag">✓ No Signup</span>
-                  <span class="feature-tag">✓ Privacy First</span>
-                </div>
-                
-                <div class="tool-meta">
-                  {% if tool.rating %}
-                    <span class="tool-rating">
-                      <span class="rating-stars">⭐⭐⭐⭐⭐</span>
-                      <span class="rating-value">{{ tool.rating }}</span>
-                    </span>
-                  {% endif %}
-                  {% if tool.usageCount %}
-                    <span class="tool-usage">
-                      <span class="usage-icon">👥</span>
-                      {{ tool.usageCount | divided_by: 1000 }}K+ uses
-                    </span>
-                  {% endif %}
-                </div>
-                
-                <div class="tool-keywords">
-                  {% for keyword in tool.keywords limit:4 %}
-                    <span class="keyword-tag">{{ keyword }}</span>
-                  {% endfor %}
-                </div>
-              </div>
-              
-              <div class="tool-card-footer">
-                <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block">
-                  Try {{ tool.name }} →
-                </a>
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-        
-        <div class="back-to-top">
-          <a href="#categories" class="btn btn-outline">↑ Back to Categories</a>
-        </div>
+        <p class="category-description">{{ category.description }}</p>
+        {% if category.url and category.url != '/tools/' %}
+        <a href="{{ category.url | relative_url }}" class="category-page-link">View Category Page →</a>
+        {% endif %}
       </div>
+
+      <div class="tools-grid enhanced-grid">
+        {% for tool in catTools %}
+        <article class="tool-card enhanced-card">
+          <div class="tool-card-visual">
+            <div class="tool-icon-large">{{ tool.icon }}</div>
+            {% if tool.featured %}
+            <span class="tool-badge badge-featured">⭐ Featured</span>
+            {% elsif tool.popular %}
+            <span class="tool-badge badge-popular">🔥 Popular</span>
+            {% elsif tool.new %}
+            <span class="tool-badge badge-new">✨ New</span>
+            {% endif %}
+          </div>
+
+          <div class="tool-card-content">
+            <h3 class="tool-title">{{ tool.name }}</h3>
+            <p class="tool-description">{{ tool.description }}</p>
+
+            <div class="tool-features">
+              <span class="feature-tag">✓ Free Forever</span>
+              <span class="feature-tag">✓ No Signup</span>
+              <span class="feature-tag">✓ Privacy First</span>
+            </div>
+
+            <div class="tool-meta">
+              {% if tool.rating %}
+              <span class="tool-rating">
+                <span class="rating-stars">⭐⭐⭐⭐⭐</span>
+                <span class="rating-value">{{ tool.rating }}</span>
+              </span>
+              {% endif %}
+              {% if tool.usageCount %}
+              <span class="tool-usage">
+                <span class="usage-icon">👥</span>
+                {{ tool.usageCount | divided_by: 1000 }}K+ uses
+              </span>
+              {% endif %}
+            </div>
+
+            <div class="tool-keywords">
+              {% for keyword in tool.keywords limit:4 %}
+              <span class="keyword-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="tool-card-footer">
+            <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block">
+              Try {{ tool.name }} →
+            </a>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+
+      <div class="back-to-top">
+        <a href="#categories" class="btn btn-outline">↑ Back to Categories</a>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </section>
@@ -156,7 +170,7 @@ schema_type: CollectionPage
       <h2>💎 Why Choose Our Tools?</h2>
       <p>Everything you need in one place</p>
     </div>
-    
+
     <div class="benefits-grid enhanced-benefits">
       <div class="benefit-item">
         <div class="benefit-icon">🆓</div>
@@ -168,7 +182,7 @@ schema_type: CollectionPage
           <li>No paywalls</li>
         </ul>
       </div>
-      
+
       <div class="benefit-item">
         <div class="benefit-icon">⚡</div>
         <h3>Lightning Fast</h3>
@@ -179,7 +193,7 @@ schema_type: CollectionPage
           <li>Works offline</li>
         </ul>
       </div>
-      
+
       <div class="benefit-item">
         <div class="benefit-icon">🔒</div>
         <h3>Privacy First</h3>
@@ -190,7 +204,7 @@ schema_type: CollectionPage
           <li>Privacy guaranteed</li>
         </ul>
       </div>
-      
+
       <div class="benefit-item">
         <div class="benefit-icon">📱</div>
         <h3>Mobile Friendly</h3>
@@ -201,7 +215,7 @@ schema_type: CollectionPage
           <li>Works everywhere</li>
         </ul>
       </div>
-      
+
       <div class="benefit-item">
         <div class="benefit-icon">🎯</div>
         <h3>Professional Quality</h3>
@@ -212,7 +226,7 @@ schema_type: CollectionPage
           <li>Regular updates</li>
         </ul>
       </div>
-      
+
       <div class="benefit-item">
         <div class="benefit-icon">🌐</div>
         <h3>No Installation</h3>
@@ -234,46 +248,54 @@ schema_type: CollectionPage
       <h2>❓ Frequently Asked Questions</h2>
       <p>Everything you need to know about our tools</p>
     </div>
-    
+
     <div class="faq-grid">
       <div class="faq-item">
         <h3>Are all these tools really free?</h3>
-        <p>Yes! Every single tool is 100% free with no hidden costs, premium plans, or usage limits. We're ad-supported to keep everything free for everyone.</p>
+        <p>Yes! Every single tool is 100% free with no hidden costs, premium plans, or usage limits. We're ad-supported
+          to keep everything free for everyone.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>Do I need to create an account?</h3>
-        <p>No signup required! Just visit any tool and start using it immediately. No registration, no email verification, no hassle.</p>
+        <p>No signup required! Just visit any tool and start using it immediately. No registration, no email
+          verification, no hassle.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>Is my data safe and private?</h3>
-        <p>Absolutely! All tools run entirely in your browser. Your data never leaves your device, and we don't collect, store, or track any information.</p>
+        <p>Absolutely! All tools run entirely in your browser. Your data never leaves your device, and we don't collect,
+          store, or track any information.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>Do the tools work offline?</h3>
-        <p>Yes! After the first visit, most tools work offline. All processing happens in your browser, so no internet connection is needed.</p>
+        <p>Yes! After the first visit, most tools work offline. All processing happens in your browser, so no internet
+          connection is needed.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>Can I use these tools on mobile?</h3>
-        <p>Yes! All our tools are fully responsive and work perfectly on desktop, tablet, and mobile devices with touch-optimized interfaces.</p>
+        <p>Yes! All our tools are fully responsive and work perfectly on desktop, tablet, and mobile devices with
+          touch-optimized interfaces.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>How often are new tools added?</h3>
-        <p>We regularly add new tools based on user feedback and needs. Check back often or follow us for updates on new releases.</p>
+        <p>We regularly add new tools based on user feedback and needs. Check back often or follow us for updates on new
+          releases.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>Can I suggest a new tool?</h3>
-        <p>Absolutely! We love hearing from our users. Contact us with your suggestions and we'll consider adding them to our collection.</p>
+        <p>Absolutely! We love hearing from our users. Contact us with your suggestions and we'll consider adding them
+          to our collection.</p>
       </div>
-      
+
       <div class="faq-item">
         <h3>Are these tools suitable for commercial use?</h3>
-        <p>Yes! All tools are free for both personal and commercial use. Use them in your projects, business, or workflow without restrictions.</p>
+        <p>Yes! All tools are free for both personal and commercial use. Use them in your projects, business, or
+          workflow without restrictions.</p>
       </div>
     </div>
   </div>
@@ -284,7 +306,7 @@ schema_type: CollectionPage
   <div class="container">
     <div class="cta-content">
       <h2>Ready to Get Started?</h2>
-      <p>Choose from 35+ professional tools and start working instantly - no signup required!</p>
+      <p>Choose from 41 professional tools and start working instantly - no signup required!</p>
       <div class="cta-buttons">
         <a href="#tools" class="btn btn-primary btn-lg">Browse All Tools</a>
         <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn btn-outline btn-lg">Try Clipboard Manager</a>

@@ -1,0 +1,32 @@
+{% comment %}
+WebSite Schema with SearchAction for Sitelinks Search Box
+{% endcomment %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "{{ site.url }}/#website",
+  "name": "{{ site.title }}",
+  "alternateName": "FreeClipboard",
+  "url": "{{ site.url }}",
+  "description": "{{ site.description }}",
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "inLanguage": "en-US",
+  "potentialAction": [
+    {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "{{ site.url }}/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  ],
+  "copyrightYear": "2024",
+  "copyrightHolder": {
+    "@id": "{{ site.url }}/#organization"
+  }
+}
+</script>

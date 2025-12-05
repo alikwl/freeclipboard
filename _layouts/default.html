@@ -1,84 +1,78 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: 'en' }}">
-  {% include head.html %}
-  <body>
-    {% include header.html %}
-    
-    <main id="main-content" class="page-content" aria-label="Main content">
-      <div class="container">
-        {{ content }}
-      </div>
-    </main>
+{% include head.html %}
 
-    {% include footer.html %}
-    
-    <!-- Mobile Sticky CTA Bar - Only show on homepage and category pages -->
-    {% unless page.layout == 'tool' or page.layout == 'post' or page.url contains '/tools/' or page.url contains '/about' or page.url contains '/contact' or page.url contains '/privacy' or page.url contains '/terms' %}
-    <div class="mobile-sticky-cta" id="mobileCTA" aria-label="Quick actions">
-      <div class="cta-buttons">
-        <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn btn-primary">Try Clipboard</a>
-        <a href="{{ site.baseurl }}/clipboard-tools/" class="btn btn-secondary">Browse Tools</a>
-      </div>
+<body>
+  {% include header.html %}
+
+  <main id="main-content" class="page-content" aria-label="Main content">
+    <div class="container">
+      {{ content }}
     </div>
-    {% endunless %}
-    
-    <!-- Defer Non-Critical JavaScript -->
-    <script defer src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
-    <script defer src="{{ '/assets/js/tool-previews.js' | relative_url }}"></script>
-    
-    <!-- Inline Critical JS for First Paint -->
-    <script>
-      // Mark body as loaded immediately
-      document.body.classList.add('loaded');
-      
-      // Mobile Sticky CTA Logic
-      (function() {
-        const mobileCTA = document.getElementById('mobileCTA');
-        if (!mobileCTA || window.innerWidth > 768) return;
-        
-        let lastScroll = 0;
-        let ticking = false;
-        
-        function updateCTA() {
-          const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-          const heroHeight = 400; // Approximate hero section height
-          
-          if (scrollY > heroHeight && scrollY > lastScroll) {
-            // Scrolling down past hero
-            mobileCTA.classList.add('visible');
-          } else if (scrollY < heroHeight) {
-            // Back at top
-            mobileCTA.classList.remove('visible');
-          }
-          
-          lastScroll = scrollY;
-          ticking = false;
+  </main>
+
+  {% include footer.html %}
+
+
+  <!-- Defer Non-Critical JavaScript -->
+  <script defer src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/tool-previews.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>
+
+  <!-- Inline Critical JS for First Paint -->
+  <script>
+    // Mark body as loaded immediately
+    document.body.classList.add('loaded');
+
+    // Mobile Sticky CTA Logic
+    (function () {
+      const mobileCTA = document.getElementById('mobileCTA');
+      if (!mobileCTA || window.innerWidth > 768) return;
+
+      let lastScroll = 0;
+      let ticking = false;
+
+      function updateCTA() {
+        const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const heroHeight = 400; // Approximate hero section height
+
+        if (scrollY > heroHeight && scrollY > lastScroll) {
+          // Scrolling down past hero
+          mobileCTA.classList.add('visible');
+        } else if (scrollY < heroHeight) {
+          // Back at top
+          mobileCTA.classList.remove('visible');
         }
-        
-        window.addEventListener('scroll', function() {
-          if (!ticking) {
-            window.requestAnimationFrame(updateCTA);
-            ticking = true;
-          }
-        }, { passive: true });
-      })();
-      
-      // Lazy Load Images
-      if ('loading' in HTMLImageElement.prototype) {
-        // Native lazy loading supported
-        const images = document.querySelectorAll('img[data-src]');
-        images.forEach(img => {
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-        });
-      } else {
-        // Fallback for older browsers
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-        script.async = true;
-        document.body.appendChild(script);
+
+        lastScroll = scrollY;
+        ticking = false;
       }
-    </script>
-  </body>
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(updateCTA);
+          ticking = true;
+        }
+      }, { passive: true });
+    })();
+
+    // Lazy Load Images
+    if ('loading' in HTMLImageElement.prototype) {
+      // Native lazy loading supported
+      const images = document.querySelectorAll('img[data-src]');
+      images.forEach(img => {
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+    } else {
+      // Fallback for older browsers
+      const script = document.createElement('script');
+      script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+
 </html>
