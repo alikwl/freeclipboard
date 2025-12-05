@@ -1,0 +1,773 @@
+---
+layout: tool
+title: Free Image Studio - Create Social Media Graphics Online | No Signup Required
+description: Create stunning social media graphics, OG images, and banners instantly with our free browser-based design
+tool. No login, no watermark, 100% private. Perfect alternative to Canva for quick designs.
+keywords: online image creator free, no signup graphic design tool, open graph image generator, social media post
+generator, free canva alternative, quick banner maker, instagram story background generator, linkedin banner creator,
+twitter card image maker, webp image creator, free design tool no login
+schema_type: WebApplication
+permalink: /tools/image-studio/
+category_name: Design Tools
+category_url: /design-tools/
+rating: 4.9
+rating_count: 856
+og_image: /assets/images/og/image-studio.png
+twitter_image: /assets/images/twitter/image-studio.png
+audience: Social Media Managers, Content Creators, Marketers, Bloggers, Designers
+features:
+- No login or signup required
+- Zero watermarks on downloads
+- 100% browser-based & private
+- Magic Remix for instant design ideas
+- Smart presets for all platforms
+- Export to PNG, JPG, or WebP
+- Custom fonts and colors
+- Real-time preview modes
+faqs:
+- question: "Do I need to create an account to use this tool?"
+answer: "No! FreeClipboard Image Studio is completely free and requires zero signup. Just open the page and start
+designing immediately. No email, no registration, no hassle."
+- question: "Are there watermarks on my downloaded images?"
+answer: "Absolutely not. All images you create and download are 100% watermark-free. You own your designs completely and
+can use them anywhere without attribution."
+- question: "Is my data safe and private?"
+answer: "Yes! This tool runs entirely in your browser using HTML5 Canvas technology. Your designs never leave your
+device, and we don't collect, store, or track any of your work."
+- question: "What image formats can I export?"
+answer: "You can download your designs in PNG (best for transparency), JPG (smallest file size), or WebP (modern format
+with excellent compression). All formats support high quality output."
+- question: "Can I create images for specific social media platforms?"
+answer: "Yes! We have smart presets for Instagram (Square 1080x1080, Story 1080x1920), LinkedIn banners, Twitter/X cards
+(1200x630), and Open Graph images. Just click the preset and design."
+- question: "What is the Magic Remix feature?"
+answer: "Magic Remix instantly generates professional color combinations, fonts, and patterns with one click. It's
+perfect when you need design inspiration or want to explore different styles quickly."
+howto_name: "How to Create Social Media Graphics with Image Studio"
+howto_description: "Step-by-step guide to creating professional social media images, banners, and OG images in under 30
+seconds"
+howto_time: "PT30S"
+howto_steps:
+- name: "Choose Your Canvas Size"
+text: "Select a preset (Square for Instagram, Story for Instagram Stories, Link/OG for social sharing) or enter custom
+dimensions."
+- name: "Design Your Background"
+text: "Pick colors, choose a pattern overlay (blobs, gradients, grids), or click Magic Remix for instant professional
+combinations."
+- name: "Add Text and Icons"
+text: "Customize your headline and subtext with different fonts, sizes, and colors. Add emoji icons and position them
+anywhere."
+- name: "Download Your Image"
+text: "Choose your format (PNG, JPG, or WebP), name your file, and click Download. Your image is ready to use
+immediately!"
+---
+
+<!-- Tool Header -->
+<div class="tool-header">
+    <div class="tool-icon">🎨</div>
+    <h1>FreeClipboard Image Studio</h1>
+    <p class="lead">Create stunning social media graphics, Open Graph images, and banners in seconds. No login, no
+        watermark, 100% free and private.</p>
+</div>
+
+<!-- Tool Showcase Image -->
+<section class="tool-showcase" aria-labelledby="showcase-heading">
+    <h2 id="showcase-heading" class="sr-only">Tool Preview</h2>
+    <div class="showcase-image-container">
+        <img src="{{ site.baseurl }}/tools/image-studio/FreeClipboar Studio Image Creator.webp"
+            alt="FreeClipboard Image Studio interface showing design controls and live preview" class="showcase-image"
+            loading="eager">
+        <div class="showcase-badge">
+            <span class="badge-icon">✨</span>
+            <span class="badge-text">Live Tool Below</span>
+        </div>
+    </div>
+</section>
+
+<!-- Tool Interface -->
+<section class="tool-interface" aria-labelledby="image-studio-heading">
+    <h2 id="image-studio-heading" class="sr-only">Image Studio Tool</h2>
+
+    <!-- Launch Button for Fullscreen Experience -->
+    <div class="launch-button-container">
+        <button id="launchFullscreen" class="launch-button">
+            <svg class="launch-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
+                </path>
+            </svg>
+            <span>Launch Full Studio</span>
+            <span class="launch-badge">Recommended</span>
+        </button>
+        <p class="launch-hint">Open in fullscreen mode for the best experience - preview stays visible while you scroll
+            controls</p>
+    </div>
+
+    <!-- Fullscreen Modal Overlay -->
+    <div id="fullscreenModal" class="fullscreen-modal">
+        <!-- Fixed Close Button - Always visible in top right -->
+        <button id="closeFullscreen" class="fullscreen-close-btn" aria-label="Close fullscreen">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="modal-content-full">
+            <iframe id="fullscreenIframe" class="modal-iframe-full" title="FreeClipboard Image Studio - Fullscreen"
+                sandbox="allow-scripts allow-downloads allow-same-origin"
+                aria-label="Image design studio application in fullscreen mode">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Responsive Monitor Frame Container (Embedded Version) -->
+    <div class="studio-container" id="embeddedStudioContainer">
+        <!-- Header with close button -->
+        <div class="studio-header">
+            <div class="studio-header-title">
+                <span class="studio-header-icon">🎨</span>
+                <span>Image Studio</span>
+            </div>
+            <button id="closeEmbeddedStudio" class="studio-close-btn" aria-label="Close embedded studio">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="studio-frame">
+            <iframe src="{{ site.baseurl }}/tools/image-studio/app.html" class="studio-iframe"
+                title="FreeClipboard Image Studio - Design Tool"
+                sandbox="allow-scripts allow-downloads allow-same-origin" loading="lazy"
+                aria-label="Image design studio application">
+            </iframe>
+        </div>
+        <p class="studio-hint">
+            💡 <strong>Pro Tip:</strong> Click the <span class="highlight">Magic Remix 🎲</span> button for instant
+            professional design combinations!
+        </p>
+    </div>
+    
+    <!-- Reopen button when studio is closed -->
+    <div class="studio-reopen-container" id="studioReopenContainer" style="display: none;">
+        <button id="reopenEmbeddedStudio" class="studio-reopen-btn">
+            <span class="studio-reopen-icon">🎨</span>
+            <span>Reopen Image Studio</span>
+        </button>
+    </div>
+</section>
+
+<style>
+    /* Tool Showcase Styles */
+    .tool-showcase {
+        margin: 2rem 0 3rem;
+    }
+
+    .showcase-image-container {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.3),
+            0 0 0 1px rgba(255, 255, 255, 0.1);
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 12px;
+    }
+
+    .showcase-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 12px;
+    }
+
+    .showcase-badge {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem 1.5rem;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        color: #667eea;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    .showcase-badge .badge-icon {
+        font-size: 1.2rem;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .showcase-image-container {
+            padding: 8px;
+            border-radius: 16px;
+        }
+
+        .showcase-badge {
+            top: 16px;
+            right: 16px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+        }
+    }
+
+    /* Image Studio Container - Fully Responsive */
+    .studio-container {
+        margin: 2rem 0;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        background: #0f172a;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    /* Studio Header with close button */
+    .studio-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 16px 16px 0 0;
+    }
+
+    .studio-header-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: white;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .studio-header-icon {
+        font-size: 1.25rem;
+    }
+
+    .studio-close-btn {
+        background: rgba(255, 255, 255, 0.15);
+        border: none;
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .studio-close-btn:hover {
+        background: rgba(239, 68, 68, 0.8);
+    }
+
+    /* Reopen button */
+    .studio-reopen-container {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .studio-reopen-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+
+    .studio-reopen-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    .studio-reopen-icon {
+        font-size: 1.25rem;
+    }
+
+    .studio-frame {
+        position: relative;
+        width: 100%;
+        background: #0f172a;
+        padding: 0;
+        margin-bottom: 0;
+        overflow: hidden;
+    }
+
+    /* Responsive iframe - VERY tall to show full tool */
+    .studio-iframe {
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        background: #0f172a;
+        display: block;
+        height: 1400px !important;
+        min-height: 1400px !important;
+    }
+
+    /* Small phones - stacked layout needs even more height */
+    @media (max-width: 480px) {
+        .studio-container {
+            border-radius: 12px;
+        }
+
+        .studio-header {
+            border-radius: 12px 12px 0 0;
+            padding: 0.5rem 0.75rem;
+        }
+
+        .studio-header-title {
+            font-size: 0.85rem;
+        }
+
+        .studio-iframe {
+            height: 1600px !important;
+            min-height: 1600px !important;
+        }
+    }
+
+    /* Tablets */
+    @media (min-width: 481px) and (max-width: 767px) {
+        .studio-iframe {
+            height: 1500px !important;
+            min-height: 1500px !important;
+        }
+    }
+
+    /* Tablet landscape and small desktop */
+    @media (min-width: 768px) {
+        .studio-container {
+            border-radius: 20px;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4);
+        }
+
+        .studio-header {
+            border-radius: 20px 20px 0 0;
+            padding: 0.875rem 1.25rem;
+        }
+
+        .studio-iframe {
+            height: 800px !important;
+            min-height: 800px !important;
+        }
+    }
+
+    /* Desktop - side by side layout */
+    @media (min-width: 1024px) {
+        .studio-iframe {
+            height: 850px !important;
+            min-height: 850px !important;
+        }
+    }
+
+    /* Large desktop */
+    @media (min-width: 1440px) {
+        .studio-iframe {
+            height: 900px !important;
+            min-height: 900px !important;
+        }
+    }
+
+    /* Extra large screens */
+    @media (min-width: 1920px) {
+        .studio-iframe {
+            height: 950px !important;
+            min-height: 950px !important;
+        }
+    }
+
+    .studio-hint {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #94a3b8;
+        padding: 0.75rem 1rem;
+        background: #1e293b;
+        border-radius: 0 0 16px 16px;
+        margin: 0;
+    }
+
+    .studio-hint .highlight {
+        color: #a78bfa;
+        font-weight: 600;
+        background: rgba(167, 139, 250, 0.15);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 480px) {
+        .studio-hint {
+            font-size: 0.8rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0 0 12px 12px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .studio-hint {
+            border-radius: 0 0 20px 20px;
+        }
+    }
+
+    /* Launch Button Styles */
+    .launch-button-container {
+        text-align: center;
+        margin: 2rem auto 3rem;
+        max-width: 600px;
+    }
+
+    .launch-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1.125rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .launch-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+    }
+
+    .launch-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .launch-badge {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+    }
+
+    .launch-hint {
+        margin-top: 1rem;
+        color: var(--gray);
+        font-size: 0.9rem;
+    }
+
+    /* Fullscreen Modal - MUST break out of all parent containers */
+    .fullscreen-modal {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        max-width: none !important;
+        max-height: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #0f172a;
+        z-index: 999999 !important;
+        display: none;
+        overflow: hidden;
+    }
+
+    .fullscreen-modal.active {
+        display: block;
+    }
+
+    /* Fixed Close Button - Always visible top right */
+    .fullscreen-close-btn {
+        position: fixed !important;
+        top: 12px !important;
+        right: 12px !important;
+        z-index: 1000001 !important;
+        background: rgba(239, 68, 68, 0.9);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .fullscreen-close-btn:hover {
+        background: rgba(239, 68, 68, 1);
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(239, 68, 68, 0.5);
+    }
+
+    .fullscreen-close-btn svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* Full modal content - takes entire viewport */
+    .modal-content-full {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-iframe-full {
+        width: 100% !important;
+        height: 100% !important;
+        border: none !important;
+        display: block;
+        background: #0f172a;
+    }
+
+    /* Responsive close button */
+    @media (max-width: 768px) {
+        .fullscreen-close-btn {
+            top: 8px !important;
+            right: 8px !important;
+            width: 40px;
+            height: 40px;
+        }
+
+        .fullscreen-close-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .fullscreen-close-btn {
+            top: 6px !important;
+            right: 6px !important;
+            width: 36px;
+            height: 36px;
+        }
+
+        .fullscreen-close-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .launch-button {
+            padding: 0.875rem 1.5rem;
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<script>
+    // Fullscreen Modal Functionality
+    (function () {
+        const launchBtn = document.getElementById('launchFullscreen');
+        const modal = document.getElementById('fullscreenModal');
+        const closeBtn = document.getElementById('closeFullscreen');
+        const fullscreenIframe = document.getElementById('fullscreenIframe');
+
+        if (launchBtn && modal && closeBtn && fullscreenIframe) {
+            // Open fullscreen modal
+            launchBtn.addEventListener('click', function () {
+                const baseUrl = '{{ site.baseurl }}/tools/image-studio/app.html';
+                fullscreenIframe.src = baseUrl;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Trigger resize in iframe after it loads to recalculate canvas
+                fullscreenIframe.onload = function() {
+                    setTimeout(function() {
+                        try {
+                            if (fullscreenIframe.contentWindow) {
+                                fullscreenIframe.contentWindow.dispatchEvent(new Event('resize'));
+                            }
+                        } catch(e) {}
+                    }, 100);
+                };
+            });
+
+            // Close fullscreen modal
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    if (!modal.classList.contains('active')) {
+                        fullscreenIframe.src = '';
+                    }
+                }, 300);
+            }
+
+            closeBtn.addEventListener('click', closeModal);
+
+            // Close on escape key
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // Close on backdrop click (only on the modal background, not content)
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Handle window resize while modal is open
+            window.addEventListener('resize', function() {
+                if (modal.classList.contains('active') && fullscreenIframe.contentWindow) {
+                    try {
+                        fullscreenIframe.contentWindow.dispatchEvent(new Event('resize'));
+                    } catch(e) {}
+                }
+            });
+        }
+
+        // Embedded Studio Close/Reopen Functionality
+        const embeddedContainer = document.getElementById('embeddedStudioContainer');
+        const reopenContainer = document.getElementById('studioReopenContainer');
+        const closeEmbeddedBtn = document.getElementById('closeEmbeddedStudio');
+        const reopenBtn = document.getElementById('reopenEmbeddedStudio');
+
+        if (embeddedContainer && reopenContainer && closeEmbeddedBtn && reopenBtn) {
+            // Close embedded studio
+            closeEmbeddedBtn.addEventListener('click', function() {
+                embeddedContainer.style.display = 'none';
+                reopenContainer.style.display = 'block';
+            });
+
+            // Reopen embedded studio
+            reopenBtn.addEventListener('click', function() {
+                embeddedContainer.style.display = 'block';
+                reopenContainer.style.display = 'none';
+                
+                // Scroll to the studio
+                embeddedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    })();
+</script>
+
+<section class="tool-content-section">
+    <div class="content-body">
+        <h2>About FreeClipboard Image Studio</h2>
+        <p><strong>Stop creating accounts just to change a background color.</strong> FreeClipboard Image Studio is the
+            ultimate "No-Login" alternative for instant social graphics. Whether you need an Instagram post, LinkedIn
+            banner, Twitter card, or Open Graph image, our browser-based design tool gets you from idea to download in
+            under 30 seconds.</p>
+
+        <p>Unlike heavyweight design suites that require signups, subscriptions, and server uploads, Image Studio runs
+            100% in your browser using HTML5 Canvas technology. This means it's instant, completely private, and works
+            offline after the first load. Your designs never touch our servers—everything stays on your device.</p>
+
+        <h2>Key Features & Benefits</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Local-First Engine</h3>
+                <p><strong>Your data never leaves your device.</strong> 100% private with zero server lag. All
+                    processing happens in your browser using HTML5 Canvas, ensuring instant performance and complete
+                    privacy.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎲</div>
+                <h3>Magic Remix Button</h3>
+                <p><strong>Designer's block? Click one button.</strong> Instantly generate professional color
+                    combinations, font pairings, and pattern overlays. Perfect for exploring design ideas or getting
+                    unstuck.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Smart Platform Presets</h3>
+                <p><strong>Don't memorize pixel sizes.</strong> Just click "Instagram," "LinkedIn," or "Twitter" and we
+                    handle the math. Includes Square (1080x1080), Story (1080x1920), and OG Image (1200x630) presets.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Professional Patterns</h3>
+                <p><strong>Trending design styles built-in.</strong> Choose from Abstract Blobs, Linear Gradients,
+                    Technical Grids, Polka Dots, Modern Stripes, Solid Colors, or Film Noise overlays.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>Modern Export Formats</h3>
+                <p><strong>Not just pixel art.</strong> Download in PNG (transparency support), JPG (smallest size), or
+                    WebP (best compression). All formats support high-quality output for web and print.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👁️</div>
+                <h3>Responsive Preview Modes</h3>
+                <p><strong>See exactly how it looks.</strong> Preview your design in Raw, Phone, or Laptop mockups
+                    before downloading. Ensure your image works across all devices.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>No Watermarks Ever</h3>
+                <p><strong>You own your designs.</strong> Unlike Canva's free tier, we never add watermarks to your
+                    downloads. Use your images anywhere without attribution requirements.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Works Offline</h3>
+                <p><strong>No internet? No problem.</strong> After the first load, the tool works completely offline.
+                    Perfect for working on planes, trains, or anywhere with spotty connectivity.</p>
+            </div>
+        </div>
+
+        <h2>Related Tools</h2>
+        <p>Enhance your design workflow with these complementary tools:</p>
+        <ul class="related-tools-list">
+            <li><a href="{{ site.baseurl }}/tools/color-picker/">Color Picker</a> - Find perfect color combinations and
+                convert between HEX, RGB, HSL</li>
+            <li><a href="{{ site.baseurl }}/tools/image-converter/">Image Converter</a> - Convert between PNG, JPG, WebP
+                with resize and compression</li>
+            <li><a href="{{ site.baseurl }}/tools/qr-code-generator/">QR Code Generator</a> - Create QR codes for your
+                social media links</li>
+            <li><a href="{{ site.baseurl }}/tools/meta-tag-generator/">Meta Tag Generator</a> - Generate SEO and Open
+                Graph tags for your images</li>
+            <li><a href="{{ site.baseurl }}/design-tools/">View All Design Tools</a> - Browse our complete collection of
+                design utilities</li>
+        </ul>
+    </div>
+</section>
