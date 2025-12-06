@@ -76,15 +76,28 @@
         { title: 'Free Resources', description: 'Free tools and resources', category: 'Page', icon: '🎁', url: '/free-resources/' }
     ];
 
-    // DOM elements
+    // DOM elements - Desktop
     const searchInput = document.getElementById('globalSearch');
     const searchResults = document.getElementById('searchResults');
     const searchResultsInner = searchResults?.querySelector('.search-results-inner');
 
-    if (!searchInput || !searchResults || !searchResultsInner) {
-        console.warn('Search elements not found');
-        return;
+    // DOM elements - Mobile
+    const mobileSearchInput = document.getElementById('mobileSearch');
+    const mobileSearchResults = document.getElementById('mobileSearchResults');
+    const mobileSearchResultsInner = mobileSearchResults?.querySelector('.search-results-inner');
+
+    // Initialize desktop search if elements exist
+    if (searchInput && searchResults && searchResultsInner) {
+        initializeSearch(searchInput, searchResults, searchResultsInner);
     }
+
+    // Initialize mobile search if elements exist
+    if (mobileSearchInput && mobileSearchResults && mobileSearchResultsInner) {
+        initializeSearch(mobileSearchInput, mobileSearchResults, mobileSearchResultsInner);
+    }
+
+    // Main search initialization function
+    function initializeSearch(input, results, resultsInner) {
 
     // Debounce function
     function debounce(func, wait) {
@@ -106,33 +119,18 @@
         return text.replace(regex, '<span class="search-highlight">$1</span>');
     }
 
-    // Perform search
-    function performSearch(query) {
-        if (!query || query.length < 2) {
-            searchResults.hidden = true;
-            return;
-        }
 
-        const lowerQuery = query.toLowerCase();
-        const results = searchData.filter(item => {
-            return item.title.toLowerCase().includes(lowerQuery) ||
-                item.description.toLowerCase().includes(lowerQuery) ||
-                item.category.toLowerCase().includes(lowerQuery);
-        }).slice(0, 8); // Limit to 8 results
-
-        displayResults(results, query);
-    }
 
     // Display search results
-    function displayResults(results, query) {
+    function displayResults(results, query, resultsInner, resultsContainer) {
         if (results.length === 0) {
-            searchResultsInner.innerHTML = `
+            resultsInner.innerHTML = `
         <div class="search-no-results">
           <div class="search-no-results-icon">🔍</div>
           <div class="search-no-results-text">No results found for "${query}"</div>
         </div>
       `;
-            searchResults.hidden = false;
+            resultsContainer.hidden = false;
             return;
         }
 
@@ -147,49 +145,68 @@
       </a>
     `).join('');
 
-        searchResultsInner.innerHTML = html;
-        searchResults.hidden = false;
+        resultsInner.innerHTML = html;
+        resultsContainer.hidden = false;
+    }
+
+    // Perform search with specific elements
+    function performSearchWithElements(query, resultsInner, resultsContainer) {
+        if (!query || query.length < 2) {
+            resultsContainer.hidden = true;
+            return;
+        }
+
+        const lowerQuery = query.toLowerCase();
+        const results = searchData.filter(item => {
+            return item.title.toLowerCase().includes(lowerQuery) ||
+                item.description.toLowerCase().includes(lowerQuery) ||
+                item.category.toLowerCase().includes(lowerQuery);
+        }).slice(0, 8); // Limit to 8 results
+
+        displayResults(results, query, resultsInner, resultsContainer);
     }
 
     // Event listeners
-    searchInput.addEventListener('input', debounce((e) => {
-        performSearch(e.target.value.trim());
+    input.addEventListener('input', debounce((e) => {
+        performSearchWithElements(e.target.value.trim(), resultsInner, results);
     }, 300));
 
-    searchInput.addEventListener('focus', () => {
-        if (searchInput.value.trim().length >= 2) {
-            performSearch(searchInput.value.trim());
+    input.addEventListener('focus', () => {
+        if (input.value.trim().length >= 2) {
+            performSearchWithElements(input.value.trim(), resultsInner, results);
         }
     });
 
     // Close results when clicking outside
     document.addEventListener('click', (e) => {
-        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-            searchResults.hidden = true;
+        if (!input.contains(e.target) && !results.contains(e.target)) {
+            results.hidden = true;
         }
     });
 
-    // Keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-        // Ctrl/Cmd + K to focus search
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            searchInput.focus();
-            searchInput.select();
-        }
+    // Keyboard shortcuts (only for desktop search)
+    if (input.id === 'globalSearch') {
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + K to focus search
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                input.focus();
+                input.select();
+            }
 
-        // Escape to close results
-        if (e.key === 'Escape') {
-            searchResults.hidden = true;
-            searchInput.blur();
-        }
-    });
+            // Escape to close results
+            if (e.key === 'Escape') {
+                results.hidden = true;
+                input.blur();
+            }
+        });
+    }
 
     // Arrow key navigation
-    searchInput.addEventListener('keydown', (e) => {
+    input.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
             e.preventDefault();
-            const items = searchResults.querySelectorAll('.search-result-item');
+            const items = results.querySelectorAll('.search-result-item');
             if (items.length === 0) return;
 
             const activeIndex = Array.from(items).findIndex(item => item === document.activeElement);
@@ -203,12 +220,13 @@
             }
         }
 
-        if (e.key === 'Enter' && !searchResults.hidden) {
-            const firstResult = searchResults.querySelector('.search-result-item');
+        if (e.key === 'Enter' && !results.hidden) {
+            const firstResult = results.querySelector('.search-result-item');
             if (firstResult) {
                 window.location.href = firstResult.href;
             }
         }
     });
+    } // End of initializeSearch function
 
 })();

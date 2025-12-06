@@ -192,6 +192,16 @@
     color: #D1D5DB;
 }
 
+[data-theme="dark"] .mobile-search-container {
+    border-bottom-color: #374151;
+}
+
+[data-theme="dark"] .mobile-search-input {
+    background: #0F172A;
+    border-color: #374151;
+    color: var(--white);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .search-input {
@@ -207,6 +217,30 @@
     .search-container {
         display: none;
         /* Hide on mobile, show in mobile menu instead */
+    }
+
+    /* Mobile Search in Menu */
+    .mobile-search-container {
+        padding: 0 0 1.5rem 0;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--border);
+    }
+
+    .mobile-search-input {
+        width: 100%;
+        padding: 0.875rem 1rem 0.875rem 2.75rem;
+        font-size: 1rem;
+        border-radius: 12px;
+    }
+
+    .mobile-search-input:focus {
+        width: 100%;
+    }
+
+    .mobile-search-results {
+        position: relative;
+        top: 0.5rem;
+        margin-top: 0.5rem;
     }
 }
 

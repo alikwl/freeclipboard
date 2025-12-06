@@ -13,12 +13,15 @@
 
   {% include footer.html %}
 
+  <!-- Cookie Consent Banner -->
+  {% include cookie-consent.html %}
 
   <!-- Defer Non-Critical JavaScript -->
   <script defer src="{{ '/assets/js/navigation.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/main.min.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/tool-previews.js' | relative_url }}"></script>
   <script defer src="{{ '/assets/js/search.js' | relative_url }}"></script>
+  <script defer src="{{ '/assets/js/cookie-consent.js' | relative_url }}"></script>
 
   <!-- Inline Critical JS for First Paint -->
   <script>

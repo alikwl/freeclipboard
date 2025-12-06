@@ -612,37 +612,6 @@
         "design"
       ],
       "icon": "🎨",
-      "featured": true,
-      "popular": true,
-      "url": "/tools/neumorphism-generator/",
-      "rating": 4.8,
-      "usageCount": 5500
-    },
-    {
-      "id": "glassmorphism-generator",
-      "name": "Glassmorphism CSS Generator",
-      "slug": "glassmorphism-generator",
-      "description": "Create glassmorphic designs with frosted glass effects and backdrop blur.",
-      "shortDescription": "Generate glass effects",
-      "category": "design",
-      "keywords": [
-        "glassmorphism",
-        "css generator",
-        "frosted glass",
-        "backdrop blur"
-      ],
-      "icon": "🪟",
-      "featured": true,
-      "popular": true,
-      "url": "/tools/glassmorphism-generator/",
-      "rating": 4.9,
-      "usageCount": 7000
-    },
-    {
-      "id": "discord-spoiler-text-generator",
-      "name": "Discord Spoiler Text Generator",
-      "slug": "discord-spoiler-text-generator",
-      "description": "Generate Discord spoiler text with ||spoiler|| formatting.",
       "shortDescription": "Create Discord spoilers",
       "category": "text",
       "keywords": [

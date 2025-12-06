@@ -327,9 +327,13 @@ img {
 .mobile-menu-toggle span {
   width: 25px;
   height: 3px;
-  background: currentColor;
+  background: #1F2937;
   border-radius: 3px;
   transition: var(--transition);
+}
+
+[data-theme="dark"] .mobile-menu-toggle span {
+  background: #F9FAFB;
 }
 
 .mobile-menu-toggle.active span:nth-child(1) {
@@ -342,10 +346,6 @@ img {
 
 .mobile-menu-toggle.active span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -7px);
-}
-
-:root[data-theme="dark"] .mobile-menu-toggle {
-  color: var(--white);
 }
 
 /* =========================================
@@ -1581,6 +1581,8 @@ button:disabled,
     border-top: 2px solid var(--border);
     margin-top: 1rem;
     animation: slideDown 0.3s ease-out;
+    max-height: none;
+    overflow: visible;
   }
 
   @keyframes slideDown {
@@ -1604,6 +1606,7 @@ button:disabled,
     text-align: left;
     padding: 15px 20px;
     border-bottom: 1px solid var(--border);
+    display: block;
   }
 
   .site-nav .page-link:last-child {
@@ -1612,6 +1615,14 @@ button:disabled,
 
   .site-nav .page-link::after {
     display: none;
+  }
+  
+  /* Ensure nav theme toggle is visible on mobile */
+  .nav-theme-toggle {
+    width: 100%;
+    text-align: left;
+    margin: 0;
+    border-radius: var(--radius);
   }
 
   /* Homepage grids & cards: reduce size on mobile */
@@ -2608,10 +2619,19 @@ body.loaded {
   color: #4B5563;
 }
 
+[data-theme="dark"] .post-content p {
+  color: #D1D5DB;
+}
+
 .post-content ul,
 .post-content ol {
   margin: 1.5rem 0 2rem 2rem;
   color: #4B5563;
+}
+
+[data-theme="dark"] .post-content ul,
+[data-theme="dark"] .post-content ol {
+  color: #D1D5DB;
 }
 
 .post-content li {
@@ -4760,6 +4780,8 @@ a.category-card {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   border: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .content-body h2 {
@@ -4912,7 +4934,8 @@ a.category-card {
 
 @media (max-width: 768px) {
   .content-body {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem;
+    margin: 0;
   }
 
   .content-body h2 {

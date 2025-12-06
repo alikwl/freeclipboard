@@ -117,6 +117,23 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
     <div class="mobile-menu-content">
+      <!-- Mobile Search Bar -->
+      <div class="mobile-search-container">
+        <div class="search-wrapper">
+          <input type="search" id="mobileSearch" class="search-input mobile-search-input" placeholder="Search tools..."
+            aria-label="Search tools and pages" autocomplete="off">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <!-- Mobile Search Results -->
+        <div class="search-results mobile-search-results" id="mobileSearchResults" aria-live="polite" hidden>
+          <div class="search-results-inner"></div>
+        </div>
+      </div>
+
       <div class="mobile-menu-section">
         <h3 class="mobile-menu-title">Tools by Category</h3>
         <a href="{{ site.baseurl }}/clipboard-tools/" class="mobile-menu-item">

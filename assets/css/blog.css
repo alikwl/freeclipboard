@@ -348,7 +348,7 @@
 .post-content {
   font-size: 1.15rem;
   line-height: 1.85;
-  color: #374151;
+  color: var(--text-primary);
 }
 
 .post-content h2 {
@@ -382,13 +382,13 @@
 
 .post-content p {
   margin-bottom: 2rem;
-  color: #4B5563;
+  color: var(--text-secondary);
 }
 
 .post-content ul,
 .post-content ol {
   margin: 2rem 0 2.5rem 2.5rem;
-  color: #4B5563;
+  color: var(--text-secondary);
 }
 
 .post-content li {
@@ -414,12 +414,12 @@
 
 .post-content em {
   font-style: italic;
-  color: var(--gray);
+  color: var(--text-muted);
 }
 
 .post-content code {
-  background: #F3F4F6;
-  color: #DC2626;
+  background: var(--code-bg);
+  color: var(--code-text);
   padding: 4px 10px;
   border-radius: 6px;
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
@@ -449,10 +449,10 @@
   border-left: 5px solid var(--primary);
   padding: 1.5rem 2rem;
   margin: 2.5rem 0;
-  background: var(--light-gray);
+  background: var(--blockquote-bg);
   border-radius: 0 12px 12px 0;
   font-style: italic;
-  color: var(--gray);
+  color: var(--text-secondary);
 }
 
 .post-content img {
@@ -1157,15 +1157,7 @@
   background: #0F172A;
 }
 
-[data-theme="dark"] .post-content code {
-  background: #0F172A;
-  color: #F87171;
-}
-
-[data-theme="dark"] .post-content blockquote {
-  background: #0F172A;
-  border-color: var(--primary);
-}
+/* Code and blockquote styling now uses CSS variables from design-system.css */
 
 [data-theme="dark"] .share-btn {
   background: #0F172A;
@@ -1411,3 +1403,6 @@
     border-color: var(--primary);
   }
 }
+
+
+/* Dark theme styles moved to consolidated section below */

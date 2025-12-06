@@ -44,12 +44,14 @@
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .language-switcher-wrapper {
-    margin-right: 0.5rem;
+    margin-right: 0;
+    order: 1;
   }
   
   .language-switcher {
     font-size: 0.85rem;
     padding: 0.4rem 1.75rem 0.4rem 0.6rem;
+    min-width: auto;
   }
 }
 
