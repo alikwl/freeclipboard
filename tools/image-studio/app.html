@@ -16,27 +16,9 @@
 
     <style>
         /* Base & UI */
-        html, body {
+        body {
             font-family: 'Inter', sans-serif;
             background-color: #0f172a;
-            height: 100%;
-            min-height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        
-        /* Iframe-friendly layout - side by side on larger screens */
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        /* Side by side at 640px and up for better iframe experience */
-        @media (min-width: 640px) {
-            body {
-                flex-direction: row;
-            }
         }
 
         /* Custom Scrollbar */
@@ -73,7 +55,6 @@
         /* Ranges */
         input[type=range] {
             -webkit-appearance: none;
-            appearance: none;
             background: transparent;
         }
 
@@ -150,128 +131,36 @@
         .animate-pop {
             animation: pop 0.3s ease-out;
         }
-        
-        /* Mobile: stacked layout with scrolling */
-        @media (max-width: 639px) {
-            html, body {
-                height: auto;
-                min-height: 100%;
-                overflow-y: auto;
-                overflow-x: hidden;
-            }
-        }
-        
-        /* Tablet and up - side by side, no scroll on body */
-        @media (min-width: 640px) {
-            html, body {
-                height: 100%;
-                overflow: hidden;
-            }
-        }
-        
-        /* Better touch targets on mobile */
-        @media (max-width: 640px) {
-            button, select, input[type="text"], input[type="number"] {
-                min-height: 40px;
-            }
-        }
-
-        /* Sidebar responsive widths - optimized for iframe */
-        .sidebar-controls {
-            width: 100%;
-            flex-shrink: 0;
-        }
-
-        /* Small tablets - narrow sidebar for more preview space */
-        @media (min-width: 640px) {
-            .sidebar-controls {
-                width: 220px;
-                min-width: 220px;
-                max-width: 220px;
-                height: 100vh;
-                overflow-y: auto;
-            }
-        }
-
-        /* Medium tablets */
-        @media (min-width: 768px) {
-            .sidebar-controls {
-                width: 250px;
-                min-width: 250px;
-                max-width: 250px;
-            }
-        }
-
-        /* Small desktop */
-        @media (min-width: 900px) {
-            .sidebar-controls {
-                width: 280px;
-                min-width: 280px;
-                max-width: 280px;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .sidebar-controls {
-                width: 300px;
-                min-width: 300px;
-                max-width: 300px;
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .sidebar-controls {
-                width: 340px;
-                min-width: 340px;
-                max-width: 340px;
-            }
-        }
-
-        @media (min-width: 1440px) {
-            .sidebar-controls {
-                width: 380px;
-                min-width: 380px;
-                max-width: 380px;
-            }
-        }
-
-        /* Preview area takes remaining space */
-        .preview-area {
-            flex: 1;
-            min-width: 0;
-            min-height: 300px;
-        }
-
-        @media (min-width: 640px) {
-            .preview-area {
-                height: 100vh;
-                min-height: 100vh;
-            }
-        }
     </style>
 </head>
 
-<body class="text-slate-200 min-h-screen">
+<body class="text-slate-200 h-screen flex flex-col md:flex-row overflow-hidden">
 
     <!-- LEFT SIDEBAR: STUDIO CONTROLS -->
     <div
-        class="sidebar-controls bg-slate-900 border-r border-slate-800 flex flex-col z-20 min-h-[350px] sm:min-h-0 sm:h-full shadow-2xl relative">
+        class="w-full md:w-[400px] bg-slate-900 border-r border-slate-800 flex flex-col z-20 flex-shrink-0 h-[50vh] md:h-full shadow-2xl relative">
 
         <!-- Header -->
-        <div class="p-2 sm:p-3 border-b border-slate-800 bg-slate-900 sticky top-0 z-30 flex items-center justify-between">
-            <div class="flex items-center gap-2">
+        <div class="p-4 border-b border-slate-800 bg-slate-900 sticky top-0 z-30 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
                 <div
-                    class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
-                    <i class="ph-bold ph-clipboard-text text-base sm:text-lg"></i>
+                    class="w-9 h-9 rounded-lg bg-sky-500 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
+                    <i class="ph-bold ph-clipboard-text text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="font-bold text-sm sm:text-base leading-tight text-white tracking-tight">FreeClipboard</h1>
-                    <div class="text-[9px] sm:text-[10px] text-sky-400 font-mono tracking-widest uppercase">Studio Editor</div>
+                    <a href="https://freeclipboard.com/tools/image-studio" class="block">
+                        <h1 class="font-bold text-base leading-tight text-white tracking-tight">
+                            FreeClipboard
+                        </h1>
+                        <div class="text-[10px] text-sky-400 font-mono tracking-widest uppercase">
+                            Studio Editor
+                        </div>
+                    </a>
                 </div>
             </div>
             <!-- Magic Button -->
             <button onclick="remix()"
-                class="group relative px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-[10px] sm:text-xs font-bold shadow-lg shadow-purple-500/20 hover:scale-105 transition-all overflow-hidden">
+                class="group relative px-3 py-1.5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-bold shadow-lg shadow-purple-500/20 hover:scale-105 transition-all overflow-hidden">
                 <div
                     class="absolute inset-0 bg-white/20 group-hover:translate-x-full transition-transform duration-500 skew-x-12 -ml-4">
                 </div>
@@ -282,7 +171,7 @@
         </div>
 
         <!-- Controls Scroll Area -->
-        <div class="flex-1 overflow-y-auto overflow-x-hidden custom-scroll p-2 sm:p-3 md:p-4 space-y-3 sm:space-y-4">
+        <div class="flex-1 overflow-y-auto custom-scroll p-5 space-y-6">
 
             <!-- 1. Quick Presets (Vibes) -->
             <section>
@@ -492,22 +381,22 @@
                 </div>
             </section>
 
-            <div class="h-4 sm:h-6"></div>
+            <div class="h-10"></div>
         </div>
 
         <!-- Footer: Export -->
-        <div class="p-2 sm:p-3 bg-slate-900 border-t border-slate-800">
-            <div class="flex gap-1 sm:gap-2">
+        <div class="p-4 bg-slate-900 border-t border-slate-800">
+            <div class="flex gap-2">
                 <input type="text" id="fname" value="freeclipboard-design"
-                    class="bg-slate-800 border border-slate-700 rounded px-2 text-[10px] sm:text-xs w-1/4 sm:w-1/3 focus:outline-none text-slate-400 focus:text-white text-right hidden sm:block">
+                    class="bg-slate-800 border border-slate-700 rounded px-3 text-xs w-1/3 focus:outline-none text-slate-400 focus:text-white text-right">
                 <select id="fmt"
-                    class="bg-slate-800 border border-slate-700 rounded px-1 sm:px-2 text-[10px] sm:text-xs text-slate-300 focus:outline-none">
+                    class="bg-slate-800 border border-slate-700 rounded px-2 text-xs text-slate-300 focus:outline-none">
                     <option value="png">PNG</option>
                     <option value="jpeg">JPG</option>
                     <option value="webp">WEBP</option>
                 </select>
                 <button onclick="download()"
-                    class="flex-1 bg-sky-600 hover:bg-sky-500 text-white font-bold py-2 rounded shadow-lg shadow-sky-600/20 transition-all flex items-center justify-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                    class="flex-1 bg-sky-600 hover:bg-sky-500 text-white font-bold py-2.5 rounded shadow-lg shadow-sky-600/20 transition-all flex items-center justify-center gap-2 text-sm">
                     <i class="ph-bold ph-download-simple"></i> Download
                 </button>
             </div>
@@ -515,21 +404,21 @@
     </div>
 
     <!-- RIGHT: PREVIEW AREA -->
-    <div class="preview-area bg-[#0b0f19] relative flex flex-col min-h-[250px] sm:min-h-0 sm:h-full overflow-hidden">
+    <div class="flex-1 bg-[#0b0f19] relative flex flex-col h-[50vh] md:h-full overflow-hidden">
 
         <!-- View Toolbar -->
         <div
-            class="h-10 sm:h-11 border-b border-slate-800 bg-slate-900/80 backdrop-blur flex items-center justify-center gap-1 sm:gap-2 px-2 sm:px-4 z-30 flex-shrink-0">
+            class="h-12 border-b border-slate-800 bg-slate-900/80 backdrop-blur flex items-center justify-center gap-2 px-4 z-30">
             <button onclick="setView('raw')" id="v-raw"
-                class="px-2 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-white text-slate-900 transition">Raw</button>
+                class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white text-slate-900 transition">Raw</button>
             <button onclick="setView('phone')" id="v-phone"
-                class="px-2 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 hover:text-white transition">Phone</button>
+                class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-500 hover:text-white transition">Phone</button>
             <button onclick="setView('laptop')" id="v-laptop"
-                class="px-2 sm:px-3 py-1 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-slate-500 hover:text-white transition">Laptop</button>
+                class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-slate-500 hover:text-white transition">Laptop</button>
         </div>
 
         <!-- Canvas Stage -->
-        <div class="flex-1 relative overflow-hidden check-pattern flex items-center justify-center p-1 sm:p-2 md:p-4"
+        <div class="flex-1 relative overflow-hidden check-pattern flex items-center justify-center p-8 md:p-16"
             id="stage">
             <div id="mockupWrapper" class="relative shadow-2xl origin-center">
                 <canvas id="canvas" class="block"></canvas>
@@ -537,8 +426,8 @@
         </div>
 
         <!-- Branding Watermark -->
-        <div class="absolute bottom-1 sm:bottom-2 left-1 sm:left-2 text-[8px] sm:text-[10px] text-slate-600 font-mono select-none opacity-60">
-            FreeClipboard.com
+        <div class="absolute bottom-4 left-4 text-[10px] text-slate-600 font-mono select-none">
+            Powered by FreeClipboard.com
         </div>
     </div>
 
@@ -722,6 +611,7 @@
         }
 
         // --- UI ACTIONS & BINDING ---
+        // Helper to manually trigger input events so listeners fire
         function updateVal(id, val) {
             const el = document.getElementById(id);
             if (el) {
@@ -731,9 +621,11 @@
             }
         }
 
+        // Action: Apply Theme
         window.applyTheme = (name) => {
             const t = THEMES[name];
             if (!t) return;
+            // Update UI & State sequentially
             updateVal('c1', t.c1);
             updateVal('c2', t.c2);
             updateVal('pattern', t.pat);
@@ -746,6 +638,7 @@
             triggerPop();
         };
 
+        // Action: Remix
         window.remix = () => {
             const keys = Object.keys(THEMES);
             const randTheme = THEMES[keys[Math.floor(Math.random() * keys.length)]];
@@ -767,7 +660,7 @@
 
         function triggerPop() {
             wrapper.classList.remove('animate-pop');
-            void wrapper.offsetWidth;
+            void wrapper.offsetWidth; // trigger reflow
             wrapper.classList.add('animate-pop');
         }
 
@@ -794,30 +687,12 @@
 
         window.fit = () => {
             const stage = document.getElementById('stage');
-            if (!stage) return;
-            
-            // Adaptive padding based on screen size
-            const screenWidth = window.innerWidth;
-            let padding;
-            if (screenWidth < 480) {
-                padding = 16;
-            } else if (screenWidth < 768) {
-                padding = 24;
-            } else {
-                padding = 32;
-            }
-            
+            const padding = 60;
             const availW = stage.clientWidth - padding;
             const availH = stage.clientHeight - padding;
 
-            // Ensure we have valid dimensions
-            if (availW <= 0 || availH <= 0) return;
-
             let scale = Math.min(availW / STATE.w, availH / STATE.h);
             if (STATE.view !== 'raw') scale *= 0.85;
-            
-            // Ensure minimum scale for visibility
-            scale = Math.max(scale, 0.1);
 
             wrapper.style.transform = `scale(${scale})`;
 
@@ -840,6 +715,10 @@
         };
 
         function bindInputs() {
+            // General Binder
+            // id: HTML Element ID
+            // root: Key in STATE object (e.g., 'icon') or 'null' if top level
+            // key: Subkey in STATE object (e.g., 'size')
             const bind = (id, rootKey, subKey) => {
                 const el = document.getElementById(id);
                 if (!el) return;
@@ -848,11 +727,12 @@
                     const val = el.type === 'checkbox' ? el.checked : el.value;
 
                     if (subKey) {
-                        STATE[rootKey][subKey] = val;
+                        STATE[rootKey][subKey] = val; // e.g., STATE.icon.size
                     } else {
-                        STATE[rootKey] = val;
+                        STATE[rootKey] = val; // e.g., STATE.c1
                     }
 
+                    // Hex Sync logic
                     if (id === 'c1') document.getElementById('hex1').value = val;
                     if (id === 'hex1') document.getElementById('c1').value = val;
                     if (id === 'c2') document.getElementById('hex2').value = val;
@@ -863,15 +743,18 @@
                 });
             };
 
+            // Canvas Size
             document.getElementById('inpW').addEventListener('input', (e) => { STATE.w = parseInt(e.target.value); draw(); fit(); });
             document.getElementById('inpH').addEventListener('input', (e) => { STATE.h = parseInt(e.target.value); draw(); fit(); });
 
+            // Background
             bind('c1', 'c1');
             bind('hex1', 'c1');
             bind('c2', 'c2');
             bind('hex2', 'c2');
             bind('pattern', 'pat');
 
+            // Icon
             document.getElementById('showIcon').addEventListener('change', (e) => {
                 STATE.icon.show = e.target.checked;
                 document.getElementById('iconControls').style.opacity = e.target.checked ? '1' : '0.3';
@@ -883,12 +766,15 @@
             bind('iconX', 'icon', 'x');
             bind('iconY', 'icon', 'y');
 
+            // Typography
             bind('font', 'font');
+            // Text 1
             bind('t1', 't1', 'text');
             bind('tc1', 't1', 'col');
             bind('ts1', 't1', 'size');
             bind('ty1', 't1', 'y');
             bind('th1', 't1', 'hl');
+            // Text 2
             bind('t2', 't2', 'text');
             bind('tc2', 't2', 'col');
             bind('ts2', 't2', 'size');

@@ -599,6 +599,32 @@
       "usageCount": 6500
     },
     {
+      "id": "image-studio",
+      "name": "Image Studio",
+      "slug": "image-studio",
+      "description": "Create stunning social media graphics, Open Graph images, and banners instantly with our free browser-based design tool. No login, no watermark, 100% private.",
+      "shortDescription": "Create social media graphics",
+      "category": "design",
+      "keywords": [
+        "image studio",
+        "social media graphics",
+        "og image generator",
+        "banner maker",
+        "instagram post creator",
+        "canva alternative",
+        "graphic design tool",
+        "no signup design",
+        "free design tool"
+      ],
+      "icon": "🎨",
+      "featured": true,
+      "popular": false,
+      "new": true,
+      "url": "/tools/image-studio/",
+      "rating": 4.9,
+      "usageCount": 856
+    },
+    {
       "id": "neumorphism-generator",
       "name": "Neumorphism CSS Generator",
       "slug": "neumorphism-generator",
@@ -612,20 +638,11 @@
         "design"
       ],
       "icon": "🎨",
-      "shortDescription": "Create Discord spoilers",
-      "category": "text",
-      "keywords": [
-        "discord",
-        "spoiler text",
-        "discord formatting",
-        "text generator"
-      ],
-      "icon": "🎮",
-      "featured": false,
+      "featured": true,
       "popular": false,
-      "url": "/tools/discord-spoiler-text-generator/",
-      "rating": 4.5,
-      "usageCount": 4000
+      "url": "/tools/neumorphism-generator/",
+      "rating": 4.7,
+      "usageCount": 5500
     },
     {
       "id": "glitch-text-generator",

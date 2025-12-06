@@ -88,9 +88,10 @@ immediately!"
 <section class="tool-interface" aria-labelledby="image-studio-heading">
     <h2 id="image-studio-heading" class="sr-only">Image Studio Tool</h2>
 
-    <!-- Launch Button for Fullscreen Experience -->
+    <!-- Launch Button for Full Studio Experience -->
     <div class="launch-button-container">
-        <button id="launchFullscreen" class="launch-button">
+        <a href="{{ site.baseurl }}/tools/image-studio/app" target="_blank" rel="noopener noreferrer"
+            class="launch-button">
             <svg class="launch-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4">
@@ -98,25 +99,9 @@ immediately!"
             </svg>
             <span>Launch Full Studio</span>
             <span class="launch-badge">Recommended</span>
-        </button>
+        </a>
         <p class="launch-hint">Open in fullscreen mode for the best experience - preview stays visible while you scroll
             controls</p>
-    </div>
-
-    <!-- Fullscreen Modal Overlay -->
-    <div id="fullscreenModal" class="fullscreen-modal">
-        <!-- Fixed Close Button - Always visible in top right -->
-        <button id="closeFullscreen" class="fullscreen-close-btn" aria-label="Close fullscreen">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="24" height="24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
-        <div class="modal-content-full">
-            <iframe id="fullscreenIframe" class="modal-iframe-full" title="FreeClipboard Image Studio - Fullscreen"
-                sandbox="allow-scripts allow-downloads allow-same-origin"
-                aria-label="Image design studio application in fullscreen mode">
-            </iframe>
-        </div>
     </div>
 
     <!-- Responsive Monitor Frame Container (Embedded Version) -->
@@ -129,12 +114,13 @@ immediately!"
             </div>
             <button id="closeEmbeddedStudio" class="studio-close-btn" aria-label="Close embedded studio">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
             </button>
         </div>
         <div class="studio-frame">
-            <iframe src="{{ site.baseurl }}/tools/image-studio/app.html" class="studio-iframe"
+            <iframe src="{{ site.baseurl }}/tools/image-studio/app" class="studio-iframe"
                 title="FreeClipboard Image Studio - Design Tool"
                 sandbox="allow-scripts allow-downloads allow-same-origin" loading="lazy"
                 aria-label="Image design studio application">
@@ -145,7 +131,7 @@ immediately!"
             professional design combinations!
         </p>
     </div>
-    
+
     <!-- Reopen button when studio is closed -->
     <div class="studio-reopen-container" id="studioReopenContainer" style="display: none;">
         <button id="reopenEmbeddedStudio" class="studio-reopen-btn">
@@ -456,6 +442,7 @@ immediately!"
         cursor: pointer;
         transition: all 0.3s ease;
         box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        text-decoration: none;
     }
 
     .launch-button:hover {
@@ -592,93 +579,28 @@ immediately!"
 </style>
 
 <script>
-    // Fullscreen Modal Functionality
-    (function () {
-        const launchBtn = document.getElementById('launchFullscreen');
-        const modal = document.getElementById('fullscreenModal');
-        const closeBtn = document.getElementById('closeFullscreen');
-        const fullscreenIframe = document.getElementById('fullscreenIframe');
+    // Embedded Studio Close/Reopen Functionality
+    const embeddedContainer = document.getElementById('embeddedStudioContainer');
+    const reopenContainer = document.getElementById('studioReopenContainer');
+    const closeEmbeddedBtn = document.getElementById('closeEmbeddedStudio');
+    const reopenBtn = document.getElementById('reopenEmbeddedStudio');
 
-        if (launchBtn && modal && closeBtn && fullscreenIframe) {
-            // Open fullscreen modal
-            launchBtn.addEventListener('click', function () {
-                const baseUrl = '{{ site.baseurl }}/tools/image-studio/app.html';
-                fullscreenIframe.src = baseUrl;
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-                
-                // Trigger resize in iframe after it loads to recalculate canvas
-                fullscreenIframe.onload = function() {
-                    setTimeout(function() {
-                        try {
-                            if (fullscreenIframe.contentWindow) {
-                                fullscreenIframe.contentWindow.dispatchEvent(new Event('resize'));
-                            }
-                        } catch(e) {}
-                    }, 100);
-                };
-            });
+    if (embeddedContainer && reopenContainer && closeEmbeddedBtn && reopenBtn) {
+        // Close embedded studio
+        closeEmbeddedBtn.addEventListener('click', function () {
+            embeddedContainer.style.display = 'none';
+            reopenContainer.style.display = 'block';
+        });
 
-            // Close fullscreen modal
-            function closeModal() {
-                modal.classList.remove('active');
-                document.body.style.overflow = '';
-                setTimeout(() => {
-                    if (!modal.classList.contains('active')) {
-                        fullscreenIframe.src = '';
-                    }
-                }, 300);
-            }
+        // Reopen embedded studio
+        reopenBtn.addEventListener('click', function () {
+            embeddedContainer.style.display = 'block';
+            reopenContainer.style.display = 'none';
 
-            closeBtn.addEventListener('click', closeModal);
-
-            // Close on escape key
-            document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    closeModal();
-                }
-            });
-
-            // Close on backdrop click (only on the modal background, not content)
-            modal.addEventListener('click', function (e) {
-                if (e.target === modal) {
-                    closeModal();
-                }
-            });
-
-            // Handle window resize while modal is open
-            window.addEventListener('resize', function() {
-                if (modal.classList.contains('active') && fullscreenIframe.contentWindow) {
-                    try {
-                        fullscreenIframe.contentWindow.dispatchEvent(new Event('resize'));
-                    } catch(e) {}
-                }
-            });
-        }
-
-        // Embedded Studio Close/Reopen Functionality
-        const embeddedContainer = document.getElementById('embeddedStudioContainer');
-        const reopenContainer = document.getElementById('studioReopenContainer');
-        const closeEmbeddedBtn = document.getElementById('closeEmbeddedStudio');
-        const reopenBtn = document.getElementById('reopenEmbeddedStudio');
-
-        if (embeddedContainer && reopenContainer && closeEmbeddedBtn && reopenBtn) {
-            // Close embedded studio
-            closeEmbeddedBtn.addEventListener('click', function() {
-                embeddedContainer.style.display = 'none';
-                reopenContainer.style.display = 'block';
-            });
-
-            // Reopen embedded studio
-            reopenBtn.addEventListener('click', function() {
-                embeddedContainer.style.display = 'block';
-                reopenContainer.style.display = 'none';
-                
-                // Scroll to the studio
-                embeddedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        }
-    })();
+            // Scroll to the studio
+            embeddedContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
 </script>
 
 <section class="tool-content-section">
