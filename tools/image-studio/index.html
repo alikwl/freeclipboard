@@ -90,6 +90,10 @@ immediately!"
 
     <!-- Launch Button for Full Studio Experience -->
     <div class="launch-button-container">
+        <!-- Strong Call-to-Action -->
+        <h3 class="launch-cta-heading">🎨 Create Stunning Graphics in Seconds!</h3>
+        <p class="launch-cta-subtext">No signup, no watermarks, 100% free. Design like a pro instantly.</p>
+
         <a href="{{ site.baseurl }}/tools/image-studio/app" target="_blank" rel="noopener noreferrer"
             class="launch-button">
             <svg class="launch-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -98,10 +102,9 @@ immediately!"
                 </path>
             </svg>
             <span>Launch Full Studio</span>
-            <span class="launch-badge">Recommended</span>
+            <span class="launch-badge">FREE</span>
         </a>
-        <p class="launch-hint">Open in fullscreen mode for the best experience - preview stays visible while you scroll
-            controls</p>
+        <p class="launch-hint">✨ Opens in new tab - Full-screen workspace with live preview</p>
     </div>
 
     <!-- Responsive Monitor Frame Container (Embedded Version) -->
@@ -425,29 +428,75 @@ immediately!"
     .launch-button-container {
         text-align: center;
         margin: 2rem auto 3rem;
-        max-width: 600px;
+        max-width: 700px;
+    }
+
+    /* CTA Heading */
+    .launch-cta-heading {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--white);
+        margin-bottom: 0.75rem;
+        line-height: 1.2;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* CTA Subtext */
+    .launch-cta-subtext {
+        font-size: 1.125rem;
+        color: var(--gray);
+        margin-bottom: 1.5rem;
+        font-weight: 500;
     }
 
     .launch-button {
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
-        padding: 1rem 2rem;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1.25rem 2.5rem;
+        background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
         color: white;
         border: none;
-        border-radius: 12px;
-        font-size: 1.125rem;
-        font-weight: 600;
+        border-radius: 16px;
+        font-size: 1.25rem;
+        font-weight: 700;
         cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+        transition: all 0.4s ease;
+        box-shadow: 0 6px 25px rgba(220, 38, 38, 0.5);
         text-decoration: none;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .launch-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .launch-button:hover::before {
+        left: 100%;
     }
 
     .launch-button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        transform: translateY(-3px) scale(1.02);
+        background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        color: #000;
+        box-shadow: 0 10px 40px rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.4);
+    }
+
+    .launch-button:hover .launch-icon {
+        stroke: #000;
+    }
+
+    .launch-button:hover .launch-badge {
+        background: rgba(0, 0, 0, 0.2);
+        color: #000;
     }
 
     .launch-icon {
@@ -456,16 +505,19 @@ immediately!"
     }
 
     .launch-badge {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 0.25rem 0.75rem;
+        background: rgba(255, 255, 255, 0.25);
+        padding: 0.35rem 0.85rem;
         border-radius: 20px;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
     }
 
     .launch-hint {
         margin-top: 1rem;
         color: var(--gray);
-        font-size: 0.9rem;
+        font-size: 1rem;
+        font-weight: 500;
     }
 
     /* Fullscreen Modal - MUST break out of all parent containers */
