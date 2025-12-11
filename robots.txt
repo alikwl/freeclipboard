@@ -1,0 +1,62 @@
+# robots.txt for FreeClipboard.com
+# Last updated: 2025-01-28
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow non-essential paths
+Disallow: /assets/js/
+Disallow: /assets/css/
+Disallow: /*.json$
+Disallow: /_includes/
+Disallow: /_layouts/
+Disallow: /_data/
+Disallow: /.jekyll-cache/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vscode/
+
+# Allow important assets for rich results
+Allow: /assets/images/
+Allow: /assets/downloads/
+
+# Googlebot specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Googlebot Image
+User-agent: Googlebot-Image
+Allow: /assets/images/
+
+# Bingbot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# GPTBot (OpenAI) - Allow for AI training/indexing
+User-agent: GPTBot
+Allow: /
+
+# Google-Extended (Bard/Gemini) - Allow for AI
+User-agent: Google-Extended
+Allow: /
+
+# CCBot (Common Crawl) - Allow for AI datasets
+User-agent: CCBot
+Allow: /
+
+# Anthropic Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Sitemaps
+Sitemap: https://freeclipboard.com/sitemap.xml
+Sitemap: https://freeclipboard.com/sitemap-tools.xml
+
+# Host
+Host: https://freeclipboard.com
