@@ -601,7 +601,7 @@
     {
       "id": "image-studio",
       "name": "Image Studio",
-      "slug": "image-studio",
+      "slug": "free-clipboard-image-studio",
       "description": "Create stunning social media graphics, Open Graph images, and banners instantly with our free browser-based design tool. No login, no watermark, 100% private.",
       "shortDescription": "Create social media graphics",
       "category": "design",
@@ -620,9 +620,33 @@
       "featured": true,
       "popular": false,
       "new": true,
-      "url": "/tools/image-studio/",
+      "url": "/tools/free-clipboard-image-studio/",
       "rating": 4.9,
       "usageCount": 856
+    },
+    {
+      "id": "screenshot-beautifier",
+      "name": "Instant Screenshot Beautifier",
+      "slug": "screenshot-beautifier",
+      "description": "Instantly add backgrounds, shadows, and rounded corners to your screenshots. Create beautiful mockups for social media.",
+      "shortDescription": "Create beautiful screenshot mockups",
+      "category": "image",
+      "keywords": [
+        "screenshot beautifier",
+        "image mockup",
+        "social media images",
+        "twitter card creator",
+        "instagram post maker",
+        "screenshot editor"
+      ],
+      "thumbnail": "/assets/images/tools/screenshot-beautifier.png",
+      "icon": "✨",
+      "featured": true,
+      "popular": true,
+      "new": true,
+      "url": "/tools/screenshot-beautifier/",
+      "rating": 5.0,
+      "usageCount": 120
     },
     {
       "id": "neumorphism-generator",
