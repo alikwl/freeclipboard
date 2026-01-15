@@ -1,0 +1,270 @@
+<!-- Homepage Promotional Popup -->
+<div id="homepage-promo-popup" class="promo-popup-backdrop" style="display: none;" aria-hidden="true">
+    <div class="promo-popup-card">
+        <button id="promo-popup-close" class="promo-popup-close" aria-label="Close popup">&times;</button>
+
+        <div class="promo-popup-content">
+            <div class="promo-popup-badge">New Release</div>
+            <h2 class="promo-popup-title">Stop Wasting Time!</h2>
+            <p class="promo-popup-subtitle">Full VEO 3 Automation</p>
+            <p class="promo-popup-desc">Text & Image to Video <span class="highlight">— At Scale</span></p>
+
+            <a href="https://freeclipboard.com/free-resources/flow-veo-automator/" class="promo-popup-cta">
+                Get Automator Now
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Scoped Styles for Promo Popup */
+    .promo-popup-backdrop {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .promo-popup-backdrop.is-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .promo-popup-card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        border-radius: 20px;
+        padding: 40px;
+        max-width: 480px;
+        width: 100%;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .promo-popup-backdrop.is-visible .promo-popup-card {
+        transform: translateY(0);
+    }
+
+    /* Decorative background glow */
+    .promo-popup-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(76, 175, 80, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .promo-popup-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 2;
+        transition: color 0.2s ease;
+        padding: 5px;
+    }
+
+    .promo-popup-close:hover {
+        color: #fff;
+    }
+
+    .promo-popup-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #ffffff;
+    }
+
+    .promo-popup-badge {
+        background: rgba(76, 175, 80, 0.2);
+        color: #4CAF50;
+        font-size: 0.85rem;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(76, 175, 80, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .promo-popup-title {
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0 0 10px 0;
+        line-height: 1.1;
+        background: linear-gradient(to right, #ffffff, #e0e0e0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .promo-popup-subtitle {
+        font-size: 1.25rem;
+        color: #4CAF50;
+        /* Green accent color */
+        margin: 0 0 15px 0;
+        font-weight: 600;
+    }
+
+    .promo-popup-desc {
+        font-size: 1rem;
+        color: #b0b0b0;
+        margin: 0 0 30px 0;
+        line-height: 1.5;
+    }
+
+    .promo-popup-desc .highlight {
+        color: #fff;
+        font-style: italic;
+    }
+
+    .promo-popup-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background-color: #4CAF50;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 1.1em;
+        padding: 16px 32px;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 0 0 0 rgba(76, 175, 80, 0.4);
+    }
+
+    .promo-popup-cta:hover {
+        transform: translateY(-2px);
+        background-color: #43a047;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(76, 175, 80, 0.2);
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .promo-popup-cta:active {
+        transform: translateY(0);
+    }
+
+    .promo-popup-cta .arrow {
+        transition: transform 0.2s ease;
+    }
+
+    .promo-popup-cta:hover .arrow {
+        transform: translateX(4px);
+    }
+
+    @media (max-width: 480px) {
+        .promo-popup-card {
+            padding: 30px 20px;
+        }
+
+        .promo-popup-title {
+            font-size: 1.75rem;
+        }
+
+        .promo-popup-subtitle {
+            font-size: 1.1rem;
+        }
+
+        .promo-popup-cta {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        // Only run if sessionStorage is available
+        if (typeof sessionStorage === 'undefined') return;
+
+        var POPUP_ID = 'homepage_promo_seen';
+        var popupElement = document.getElementById('homepage-promo-popup');
+        var closeBtn = document.getElementById('promo-popup-close');
+        var backdrop = document.getElementById('homepage-promo-popup');
+
+        // 1. Check if already seen in this session
+        if (sessionStorage.getItem(POPUP_ID)) {
+            return;
+        }
+
+        // 2. Show popup with a slight delay for better UX
+        setTimeout(function () {
+            if (popupElement) {
+                popupElement.style.display = 'flex';
+                // Force reflow
+                popupElement.offsetHeight;
+                popupElement.classList.add('is-visible');
+                popupElement.setAttribute('aria-hidden', 'false');
+            }
+        }, 1500); // 1.5 seconds delay
+
+        // 3. Close Function
+        function closePopup() {
+            if (!popupElement) return;
+
+            popupElement.classList.remove('is-visible');
+            popupElement.setAttribute('aria-hidden', 'true');
+
+            // Mark as seen for session
+            sessionStorage.setItem(POPUP_ID, 'true');
+
+            // Remove from DOM after transition to keep clean
+            setTimeout(function () {
+                popupElement.style.display = 'none';
+            }, 300);
+        }
+
+        // 4. Eevent Listeners
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                closePopup();
+            });
+        }
+
+        if (backdrop) {
+            backdrop.addEventListener('click', function (e) {
+                if (e.target === backdrop) {
+                    closePopup();
+                }
+            });
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && popupElement && popupElement.classList.contains('is-visible')) {
+                closePopup();
+            }
+        });
+
+    })();
+</script>
