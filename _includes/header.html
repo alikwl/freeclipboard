@@ -1,201 +1,329 @@
 <!-- Skip to main content link for keyboard navigation -->
 <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
-<header class="site-header">
-  <div class="header-inner">
-    <a class="site-title" href="{{ site.baseurl }}/" aria-label="FreeClipboard home">
-      <span class="logo-icon" aria-hidden="true">📋</span>
-      <span class="logo-text">FreeClipboard</span>
+<!-- Trust Bar (Above Header) -->
+<div
+  style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 0.5rem 1rem; text-align: center;">
+  <div
+    style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; font-size: 0.875rem;">
+    <span>🔒 No Signup Required</span>
+    <span>🚀 100% Free Tools</span>
+    <span>🛡️ Privacy First</span>
+  </div>
+</div>
+
+<!-- New Professional Header -->
+<header class="new-header">
+  <!-- Logo -->
+  <a class="logo" href="{{ site.baseurl }}/" aria-label="FreeClipboard home">
+    <span aria-hidden="true">📋</span>
+    <span>FreeClipboard</span>
+  </a>
+
+  <!-- Center Search Bar with Better Placeholder -->
+  <div class="header-search">
+    <div class="header-search-wrapper">
+      <svg class="header-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <input type="search" id="headerSearch" class="header-search-input"
+        placeholder="Search tools like JSON Formatter, Image Compressor, Word Counter..." aria-label="Search tools"
+        autocomplete="off">
+    </div>
+    <!-- Search Results Dropdown -->
+    <div class="search-results" id="headerSearchResults" aria-live="polite" hidden>
+      <div class="search-results-inner"></div>
+    </div>
+  </div>
+
+  <!-- Right Navigation -->
+  <nav class="header-nav">
+    <!-- Tools Dropdown with Popular Tools -->
+    <div class="tools-dropdown">
+      <button class="tools-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+        Tools <span>▼</span>
+      </button>
+      <div class="tools-dropdown-menu" aria-label="Tools submenu" style="min-width: 280px;">
+        <!-- Categories -->
+        <div style="padding: 0.25rem 0;">
+          <a href="{{ site.baseurl }}/text-utilities/" class="tools-dropdown-item">
+            <span class="icon">📝</span>
+            <span>Text & Writing <span style="color: #ef4444; font-size: 0.75rem; font-weight: 600;">🔥 Most
+                Used</span></span>
+          </a>
+          <a href="{{ site.baseurl }}/image-tools/" class="tools-dropdown-item">
+            <span class="icon">🎨</span>
+            <span>Image & Design</span>
+          </a>
+          <a href="{{ site.baseurl }}/utilities/" class="tools-dropdown-item">
+            <span class="icon">💼</span>
+            <span>Developer Tools</span>
+          </a>
+          <a href="{{ site.baseurl }}/generators-security/" class="tools-dropdown-item">
+            <span class="icon">🔐</span>
+            <span>Security & Generators</span>
+          </a>
+          <a href="{{ site.baseurl }}/calculators/" class="tools-dropdown-item">
+            <span class="icon">🧮</span>
+            <span>Calculators & Utilities</span>
+          </a>
+        </div>
+
+        <hr style="margin: 0.5rem 0; border-color: #e5e7eb;">
+
+        <!-- Popular Tools Section -->
+        <div style="padding: 0.25rem 0;">
+          <div
+            style="padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase;">
+            ⭐ Popular Tools
+          </div>
+          <a href="{{ site.baseurl }}/tools/json-formatter/" class="tools-dropdown-item" style="padding-left: 2.5rem;">
+            JSON Formatter
+          </a>
+          <a href="{{ site.baseurl }}/tools/image-converter/" class="tools-dropdown-item" style="padding-left: 2.5rem;">
+            Image Converter
+          </a>
+          <a href="{{ site.baseurl }}/tools/password-generator/" class="tools-dropdown-item"
+            style="padding-left: 2.5rem;">
+            Password Generator
+          </a>
+          <a href="{{ site.baseurl }}/tools/word-counter/" class="tools-dropdown-item" style="padding-left: 2.5rem;">
+            Word Counter
+          </a>
+        </div>
+
+        <hr style="margin: 0.5rem 0; border-color: #e5e7eb;">
+
+        <a href="{{ site.baseurl }}/all-tools/" class="tools-dropdown-item" style="color: #3b82f6; font-weight: 600;">
+          <span class="icon">👉</span>
+          <span>View All 41+ Tools →</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Blog Dropdown with Categories -->
+    <div class="tools-dropdown">
+      <button class="tools-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+        📝 Blog <span>▼</span>
+      </button>
+      <div class="tools-dropdown-menu" aria-label="Blog submenu">
+        <a href="{{ site.baseurl }}/blog/" class="tools-dropdown-item">
+          <span class="icon">📰</span>
+          <span>All Posts</span>
+        </a>
+        <hr style="margin: 0.5rem 0; border-color: #e5e7eb;">
+        <a href="{{ site.baseurl }}/blog/#guides" class="tools-dropdown-item">
+          <span class="icon">📖</span>
+          <span>Tool Guides</span>
+        </a>
+        <a href="{{ site.baseurl }}/blog/#tips" class="tools-dropdown-item">
+          <span class="icon">💡</span>
+          <span>Productivity Tips</span>
+        </a>
+        <a href="{{ site.baseurl }}/blog/#developer" class="tools-dropdown-item">
+          <span class="icon">👨‍💻</span>
+          <span>Developer Articles</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Extensions Button (Highlighted) -->
+    <a href="{{ site.baseurl }}/free-resources/" class="btn-extensions"
+      style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);"
+      title="Chrome & Browser Extensions – 100% Free">
+      🎁 Extensions
+    </a>
+  </nav>
+
+  <!-- Mobile Menu Toggle -->
+  <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<!-- Mobile Menu Overlay -->
+<div class="mobile-menu-overlay" id="mobileMenuOverlay"
+  style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 40;"></div>
+
+<!-- Mobile Menu Drawer -->
+<div class="mobile-menu-drawer" id="mobileMenuDrawer"
+  style="display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 80%; max-width: 320px; background: white; z-index: 45; padding: 1.5rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease;">
+
+  <!-- Mobile Search (Top Priority) -->
+  <div style="margin-bottom: 1.5rem;">
+    <input type="search" id="mobileSearchInput" placeholder="Search tools like JSON Formatter..."
+      style="width: 100%; padding: 0.875rem 1rem; border: 2px solid #3b82f6; border-radius: 0.5rem; font-size: 1rem; outline: none;">
+  </div>
+
+  <!-- Popular Tools Section (Quick Access) -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3
+      style="font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
+      ⭐ Popular Tools
+    </h3>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <a href="{{ site.baseurl }}/tools/json-formatter/"
+        style="padding: 0.75rem; background: #eff6ff; color: #1e40af; font-weight: 500; text-decoration: none; border-radius: 0.5rem; font-size: 0.875rem;">
+        JSON Formatter
+      </a>
+      <a href="{{ site.baseurl }}/tools/password-generator/"
+        style="padding: 0.75rem; background: #f0fdf4; color: #15803d; font-weight: 500; text-decoration: none; border-radius: 0.5rem; font-size: 0.875rem;">
+        Password Generator
+      </a>
+      <a href="{{ site.baseurl }}/tools/word-counter/"
+        style="padding: 0.75rem; background: #fef3c7; color: #92400e; font-weight: 500; text-decoration: none; border-radius: 0.5rem; font-size: 0.875rem;">
+        Word Counter
+      </a>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
+    <h3
+      style="font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
+      Categories
+    </h3>
+    <a href="{{ site.baseurl }}/text-utilities/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem; transition: background 0.15s;">
+      <span>📝</span> Text & Writing
+    </a>
+    <a href="{{ site.baseurl }}/image-tools/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>🎨</span> Image & Design
+    </a>
+    <a href="{{ site.baseurl }}/generators-security/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>🔐</span> Security & Generators
+    </a>
+    <a href="{{ site.baseurl }}/utilities/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>💼</span> Developer Tools
+    </a>
+    <a href="{{ site.baseurl }}/calculators/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>🧮</span> Calculators
     </a>
 
-    <nav class="desktop-nav" id="desktopNav">
-      <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle" aria-expanded="false" aria-haspopup="true">
-          Tools <span class="dropdown-arrow">▼</span>
-        </a>
-        <div class="dropdown-menu" aria-label="Tools submenu">
-          <div class="dropdown-section">
-            <h4>By Category</h4>
-            <a href="{{ site.baseurl }}/clipboard-tools/" class="dropdown-item">
-              <span class="item-icon">📋</span>
-              <span class="item-text">Clipboard Tools</span>
-            </a>
-            <a href="{{ site.baseurl }}/text-utilities/" class="dropdown-item">
-              <span class="item-icon">✍️</span>
-              <span class="item-text">Text Utilities</span>
-            </a>
-            <a href="{{ site.baseurl }}/image-tools/" class="dropdown-item">
-              <span class="item-icon">🖼️</span>
-              <span class="item-text">Image Tools</span>
-            </a>
-            <a href="{{ site.baseurl }}/design-tools/" class="dropdown-item">
-              <span class="item-icon">🎨</span>
-              <span class="item-text">Design Tools</span>
-            </a>
-            <a href="{{ site.baseurl }}/generators-security/" class="dropdown-item">
-              <span class="item-icon">🔐</span>
-              <span class="item-text">Generators & Security</span>
-            </a>
-            <a href="{{ site.baseurl }}/utilities/" class="dropdown-item">
-              <span class="item-icon">🔧</span>
-              <span class="item-text">Utilities</span>
-            </a>
-            <a href="{{ site.baseurl }}/calculators/" class="dropdown-item">
-              <span class="item-icon">🧮</span>
-              <span class="item-text">Calculators</span>
-            </a>
-            <a href="{{ site.baseurl }}/education-tools/" class="dropdown-item">
-              <span class="item-icon">📚</span>
-              <span class="item-text">Education Tools</span>
-            </a>
-            <a href="{{ site.baseurl }}/business-tools/" class="dropdown-item">
-              <span class="item-icon">💼</span>
-              <span class="item-text">Business Tools</span>
-            </a>
-          </div>
-          <div class="dropdown-section">
-            <h4>Popular Tools</h4>
-            <a href="{{ site.baseurl }}/tools/image-studio/" class="dropdown-item">Image Studio</a>
-            <a href="{{ site.baseurl }}/tools/screenshot-beautifier/" class="dropdown-item">Screenshot Beautifier</a>
-            <a href="{{ site.baseurl }}/tools/free-clipboard/" class="dropdown-item">Clipboard Manager</a>
-            <a href="{{ site.baseurl }}/tools/password-generator/" class="dropdown-item">Password Generator</a>
-            <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="dropdown-item">QR Code Generator</a>
-            <a href="{{ site.baseurl }}/tools/image-converter/" class="dropdown-item">Image Converter</a>
-          </div>
-          <div class="dropdown-footer">
-            <a href="{{ site.baseurl }}/all-tools/" class="btn-dropdown-cta">View All 41 Tools →</a>
-          </div>
-        </div>
-      </div>
+    <hr style="margin: 1rem 0; border-color: #e5e7eb;">
 
-      <a href="{{ site.baseurl }}/blog/" class="nav-link">Blog</a>
-      <a href="{{ site.baseurl }}/free-resources/" class="nav-link">Free Resources</a>
-      <a href="{{ site.baseurl }}/about/" class="nav-link">About</a>
-      <a href="{{ site.baseurl }}/contact/" class="nav-link">Contact</a>
-    </nav>
+    <a href="{{ site.baseurl }}/blog/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>📝</span> Blog
+    </a>
+    <a href="{{ site.baseurl }}/about/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>ℹ️</span> About
+    </a>
+    <a href="{{ site.baseurl }}/contact/"
+      style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem;">
+      <span>✉️</span> Contact
+    </a>
 
-    <!-- Global Search Bar -->
-    <div class="search-container">
-      <div class="search-wrapper">
-        <input type="search" id="globalSearch" class="search-input" placeholder="Search tools..."
-          aria-label="Search tools and pages" autocomplete="off">
-        <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
+    <hr style="margin: 1rem 0; border-color: #e5e7eb;">
 
-      <!-- Search Results Dropdown -->
-      <div class="search-results" id="searchResults" aria-live="polite" hidden>
-        <div class="search-results-inner"></div>
-      </div>
-    </div>
+    <a href="{{ site.baseurl }}/free-resources/"
+      style="display: block; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.875rem 1.5rem; border-radius: 0.5rem; text-align: center; text-decoration: none; font-weight: 600;">
+      🎁 Free Extensions
+    </a>
+    <a href="{{ site.baseurl }}/all-tools/"
+      style="display: block; background: #3b82f6; color: white; padding: 0.875rem 1.5rem; border-radius: 0.5rem; text-align: center; text-decoration: none; font-weight: 600; margin-top: 0.5rem;">
+      View All 41+ Tools
+    </a>
+  </nav>
+</div>
 
+<script>
+  (function () {
+    const toggle = document.getElementById('mobileMenuToggle');
+    const drawer = document.getElementById('mobileMenuDrawer');
+    const overlay = document.getElementById('mobileMenuOverlay');
 
-    <div class="header-actions">
-      <!-- Language Switcher -->
-      <div class="language-switcher-wrapper">
-        <select id="language-switcher" class="language-switcher" aria-label="Select language">
-          <option value="en">🇬🇧 EN</option>
-          <option value="es">🇪🇸 ES</option>
-          <option value="fr">🇫🇷 FR</option>
-          <option value="de">🇩🇪 DE</option>
-          <option value="ar">🇸🇦 AR</option>
-        </select>
-      </div>
+    if (toggle && drawer && overlay) {
+      function openMenu() {
+        drawer.style.display = 'block';
+        overlay.style.display = 'block';
+        setTimeout(() => {
+          drawer.style.transform = 'translateX(0)';
+        }, 10);
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
 
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-        <span id="themeIcon">🌙</span>
-      </button>
-      <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </div>
+      function closeMenu() {
+        drawer.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          drawer.style.display = 'none';
+          overlay.style.display = 'none';
+        }, 300);
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+      }
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true" inert>
-    <div class="mobile-menu-content">
-      <!-- Mobile Search Bar -->
-      <div class="mobile-search-container">
-        <div class="search-wrapper">
-          <input type="search" id="mobileSearch" class="search-input mobile-search-input" placeholder="Search tools..."
-            aria-label="Search tools and pages" autocomplete="off">
-          <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-        </div>
-        <!-- Mobile Search Results -->
-        <div class="search-results mobile-search-results" id="mobileSearchResults" aria-live="polite" hidden>
-          <div class="search-results-inner"></div>
-        </div>
-      </div>
+      toggle.addEventListener('click', () => {
+        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+        isOpen ? closeMenu() : openMenu();
+      });
 
-      <div class="mobile-menu-section">
-        <h3 class="mobile-menu-title">Tools by Category</h3>
-        <a href="{{ site.baseurl }}/clipboard-tools/" class="mobile-menu-item">
-          <span class="item-icon">📋</span>
-          <span class="item-text">Clipboard Tools</span>
-        </a>
-        <a href="{{ site.baseurl }}/text-utilities/" class="mobile-menu-item">
-          <span class="item-icon">✍️</span>
-          <span class="item-text">Text Utilities</span>
-        </a>
-        <a href="{{ site.baseurl }}/image-tools/" class="mobile-menu-item">
-          <span class="item-icon">🖼️</span>
-          <span class="item-text">Image Tools</span>
-        </a>
-        <a href="{{ site.baseurl }}/design-tools/" class="mobile-menu-item">
-          <span class="item-icon">🎨</span>
-          <span class="item-text">Design Tools</span>
-        </a>
-        <a href="{{ site.baseurl }}/generators-security/" class="mobile-menu-item">
-          <span class="item-icon">🔐</span>
-          <span class="item-text">Generators & Security</span>
-        </a>
-        <a href="{{ site.baseurl }}/utilities/" class="mobile-menu-item">
-          <span class="item-icon">🔧</span>
-          <span class="item-text">Utilities</span>
-        </a>
-        <a href="{{ site.baseurl }}/calculators/" class="mobile-menu-item">
-          <span class="item-icon">🧮</span>
-          <span class="item-text">Calculators</span>
-        </a>
-        <a href="{{ site.baseurl }}/education-tools/" class="mobile-menu-item">
-          <span class="item-icon">📚</span>
-          <span class="item-text">Education Tools</span>
-        </a>
-        <a href="{{ site.baseurl }}/business-tools/" class="mobile-menu-item">
-          <span class="item-icon">💼</span>
-          <span class="item-text">Business Tools</span>
-        </a>
-      </div>
+      overlay.addEventListener('click', closeMenu);
+    }
 
-      <div class="mobile-menu-section">
-        <h3 class="mobile-menu-title">Popular Tools</h3>
-        <a href="{{ site.baseurl }}/tools/image-studio/" class="mobile-menu-item">Image Studio</a>
-        <a href="{{ site.baseurl }}/tools/screenshot-beautifier/" class="mobile-menu-item">Screenshot Beautifier</a>
-        <a href="{{ site.baseurl }}/tools/free-clipboard/" class="mobile-menu-item">Clipboard Manager</a>
-        <a href="{{ site.baseurl }}/tools/password-generator/" class="mobile-menu-item">Password Generator</a>
-        <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="mobile-menu-item">QR Code Generator</a>
-        <a href="{{ site.baseurl }}/tools/image-converter/" class="mobile-menu-item">Image Converter</a>
-      </div>
+    // Header search functionality
+    const headerSearch = document.getElementById('headerSearch');
+    if (headerSearch) {
+      headerSearch.addEventListener('input', function (e) {
+        const query = e.target.value.trim().toLowerCase();
+        if (query.length > 1) {
+          const toolsDirectory = document.getElementById('tools-directory');
+          const toolsSearchInput = document.getElementById('tools-search');
+          if (toolsDirectory && toolsSearchInput) {
+            toolsSearchInput.value = query;
+            toolsSearchInput.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        }
+      });
 
-      <div class="mobile-menu-section">
-        <a href="{{ site.baseurl }}/blog/" class="mobile-menu-item">📝 Blog</a>
-        <a href="{{ site.baseurl }}/free-resources/" class="mobile-menu-item">🎁 Free Resources</a>
-        <a href="{{ site.baseurl }}/about/" class="mobile-menu-item">ℹ️ About</a>
-        <a href="{{ site.baseurl }}/contact/" class="mobile-menu-item">✉️ Contact</a>
-      </div>
+      headerSearch.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+          const toolsDirectory = document.getElementById('tools-directory');
+          if (toolsDirectory) {
+            toolsDirectory.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    }
 
-      <div class="mobile-menu-footer">
-        <a href="{{ site.baseurl }}/all-tools/" class="btn btn-primary btn-block">View All Tools</a>
-      </div>
-    </div>
-  </div>
-</header>
+    // Dropdown functionality
+    document.querySelectorAll('.tools-dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const menu = this.nextElementSibling;
+        const isOpen = this.getAttribute('aria-expanded') === 'true';
+
+        // Close all other dropdowns
+        document.querySelectorAll('.tools-dropdown-btn').forEach(otherBtn => {
+          if (otherBtn !== this) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.nextElementSibling.style.display = 'none';
+          }
+        });
+
+        // Toggle this dropdown
+        this.setAttribute('aria-expanded', !isOpen);
+        menu.style.display = isOpen ? 'none' : 'block';
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.tools-dropdown')) {
+        document.querySelectorAll('.tools-dropdown-btn').forEach(btn => {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.nextElementSibling.style.display = 'none';
+        });
+      }
+    });
+  })();
+</script>

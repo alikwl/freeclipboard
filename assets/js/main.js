@@ -8,8 +8,8 @@ console.log('FreeClipboard loaded successfully');
   function getPreferredTheme() {
     const saved = localStorage.getItem(THEME_KEY);
     if (saved === 'light' || saved === 'dark') return saved;
-    // Default to dark mode
-    return 'dark';
+    // Default to light mode
+    return 'light';
   }
 
   function applyTheme(theme) {

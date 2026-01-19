@@ -1,122 +1,190 @@
 ---
 layout: default
-title: Contact Us - Get in Touch with FreeClipboard
-description: Contact FreeClipboard for support, feedback, or inquiries. We're here to help you with our free online tools.
-keywords: contact, support, feedback, help, inquiries
+title: Contact FreeClipboard - Get in Touch | Free Online Tools
+meta_description: "Contact FreeClipboard team. Suggest new tools, report bugs, or ask questions. We'd love to hear from
+you. Quick response guaranteed!"
+description: Get in touch with the FreeClipboard team. Suggest new tools, report bugs, or ask questions. We're here to
+help and improve our free online tools.
+keywords: contact freeclipboard, support, feedback, suggest tools, report bugs, get in touch
+og_type: website
 ---
 
-<div class="page-header">
-  <h1>📧 Contact Us</h1>
-  <p class="lead">We'd love to hear from you!</p>
-</div>
+<!-- Hero Section -->
+<section class="category-hero-new" style="background: linear-gradient(135deg, #10b981, #059669);">
+  <div class="category-hero-badge">
+    <span>✉️</span>
+    <span>Contact Us</span>
+  </div>
+  <h1 class="category-hero-title">Get in Touch</h1>
+  <p class="category-hero-subtitle">Have suggestions for new tools? Found a bug? Want to contribute? We'd love to hear
+    from you! We typically respond within 24 hours.</p>
 
-<div class="contact-container">
-  <div class="contact-form-section">
-    <h2>Send us a message</h2>
-    <p>Have a question, suggestion, or feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
+  <div class="category-hero-stats">
+    <div class="category-hero-stat">
+      <strong>&lt;24h</strong>
+      <span>Response Time</span>
+    </div>
+    <div class="category-hero-stat">
+      <strong>100%</strong>
+      <span>Free Support</span>
+    </div>
+    <div class="category-hero-stat">
+      <strong>Always</strong>
+      <span>Here to Help</span>
+    </div>
+  </div>
 
-    <form id="contactForm" class="contact-form" onsubmit="handleContactSubmit(event)">
-      <div class="form-group">
-        <label for="name">Name *</label>
-        <input type="text" id="name" name="name" required placeholder="Your name">
+  <div class="category-hero-cta">
+    <a href="#contact-form" class="btn-category-primary">Send Message</a>
+    <a href="{{ site.baseurl }}/about/" class="btn-category-secondary">About Us</a>
+  </div>
+</section>
+
+<!-- Contact Options Section -->
+<section class="category-benefits-section">
+  <div class="category-section-header">
+    <h2>💬 How Can We Help?</h2>
+    <p>Choose the best way to reach us</p>
+  </div>
+
+  <div class="category-benefits-grid">
+    <div class="category-benefit-card">
+      <div class="category-benefit-icon">🐛</div>
+      <h3 class="category-benefit-title">Report a Bug</h3>
+      <p class="category-benefit-desc">Found an issue? Let us know!</p>
+      <ul class="category-benefit-list">
+        <li>Tool not working</li>
+        <li>Display issues</li>
+        <li>Error messages</li>
+        <li>Performance problems</li>
+      </ul>
+    </div>
+
+    <div class="category-benefit-card">
+      <div class="category-benefit-icon">💡</div>
+      <h3 class="category-benefit-title">Suggest a Tool</h3>
+      <p class="category-benefit-desc">Have an idea for a new tool?</p>
+      <ul class="category-benefit-list">
+        <li>New tool ideas</li>
+        <li>Feature requests</li>
+        <li>Improvements</li>
+        <li>Enhancements</li>
+      </ul>
+    </div>
+
+    <div class="category-benefit-card">
+      <div class="category-benefit-icon">❓</div>
+      <h3 class="category-benefit-title">General Inquiry</h3>
+      <p class="category-benefit-desc">Questions or feedback?</p>
+      <ul class="category-benefit-list">
+        <li>How to use tools</li>
+        <li>General questions</li>
+        <li>Feedback</li>
+        <li>Partnerships</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="category-tools-section" id="contact-form" style="background: white;">
+  <div style="max-width: 48rem; margin: 0 auto;">
+    <div class="category-section-header">
+      <h2>📧 Send Us a Message</h2>
+      <p>Fill out the form below and we'll get back to you soon</p>
+    </div>
+
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+      style="background: #f8fafc; border-radius: 1rem; padding: 2rem; border: 1px solid #e5e7eb;">
+      <div style="margin-bottom: 1.5rem;">
+        <label for="name" style="display: block; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Your
+          Name</label>
+        <input type="text" id="name" name="name" required
+          style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem;">
       </div>
 
-      <div class="form-group">
-        <label for="email">Email *</label>
-        <input type="email" id="email" name="email" required placeholder="your@email.com">
+      <div style="margin-bottom: 1.5rem;">
+        <label for="email" style="display: block; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Email
+          Address</label>
+        <input type="email" id="email" name="email" required
+          style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem;">
       </div>
 
-      <div class="form-group">
-        <label for="subject">Subject *</label>
-        <select id="subject" name="subject" required>
-          <option value="">Select a subject</option>
-          <option value="general">General Inquiry</option>
-          <option value="support">Technical Support</option>
-          <option value="feedback">Feedback</option>
-          <option value="feature">Feature Request</option>
+      <div style="margin-bottom: 1.5rem;">
+        <label for="subject"
+          style="display: block; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Subject</label>
+        <select id="subject" name="subject" required
+          style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem;">
+          <option value="">Select a topic...</option>
           <option value="bug">Bug Report</option>
+          <option value="feature">Feature Request</option>
+          <option value="tool-suggestion">New Tool Suggestion</option>
+          <option value="question">General Question</option>
+          <option value="feedback">Feedback</option>
           <option value="other">Other</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="message">Message *</label>
-        <textarea id="message" name="message" rows="6" required placeholder="Your message..."></textarea>
+      <div style="margin-bottom: 1.5rem;">
+        <label for="message"
+          style="display: block; font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Message</label>
+        <textarea id="message" name="message" rows="6" required
+          style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; resize: vertical;"></textarea>
       </div>
 
-      <button type="submit" class="btn-primary">Send Message</button>
+      <button type="submit"
+        style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 1rem; border: none; border-radius: 0.5rem; font-size: 1.125rem; font-weight: 600; cursor: pointer; transition: transform 0.2s;">
+        Send Message →
+      </button>
     </form>
 
-    <div id="formSuccess" class="form-message success" style="display: none;">
-      <strong>✓ Message sent successfully!</strong> We'll get back to you soon.
-    </div>
-
-    <div id="formError" class="form-message error" style="display: none;">
-      <strong>✗ Error sending message.</strong> Please try again or email us directly.
+    <div style="text-align: center; margin-top: 2rem; color: #6b7280;">
+      <p>Or email us directly at: <a href="mailto:contact@freeclipboard.com"
+          style="color: #10b981; font-weight: 600; text-decoration: none;">contact@freeclipboard.com</a></p>
     </div>
   </div>
+</section>
 
-  <div class="contact-info-section">
-    <h2>Other ways to reach us</h2>
-    
-    <div class="contact-info-card">
-      <div class="info-icon">📧</div>
-      <h3>Email</h3>
-      <p><a href="mailto:support@freeclipboard.com">support@freeclipboard.com</a></p>
+<!-- FAQ Section -->
+<section class="category-faq-section">
+  <div class="category-section-header">
+    <h2>❓ Before You Contact</h2>
+    <p>Quick answers to common questions</p>
+  </div>
+
+  <div class="category-faq-grid">
+    <div class="category-faq-item">
+      <h3>How long does it take to get a response?</h3>
+      <p>We typically respond within 24 hours during business days. For urgent issues, please mention "URGENT" in your
+        subject line.</p>
     </div>
 
-    <div class="contact-info-card">
-      <div class="info-icon">💬</div>
-      <h3>Response Time</h3>
-      <p>We typically respond within 24-48 hours</p>
+    <div class="category-faq-item">
+      <h3>Can you add feature X to tool Y?</h3>
+      <p>We love hearing feature requests! Please be as specific as possible about what you'd like to see and how it
+        would help you.</p>
     </div>
 
-    <div class="contact-info-card">
-      <div class="info-icon">🌐</div>
-      <h3>Social Media</h3>
-      <p>Follow us for updates and tips</p>
-      <div class="social-links">
-        <a href="#" aria-label="Twitter">Twitter</a>
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="LinkedIn">LinkedIn</a>
-      </div>
+    <div class="category-faq-item">
+      <h3>I found a bug, what should I include?</h3>
+      <p>Please include: which tool, what you were trying to do, what happened instead, your browser and OS. Screenshots
+        help a lot!</p>
     </div>
 
-    <div class="contact-info-card">
-      <div class="info-icon">❓</div>
-      <h3>FAQ</h3>
-      <p>Check our <a href="{{ site.baseurl }}/about/">About page</a> for common questions</p>
+    <div class="category-faq-item">
+      <h3>Do you offer custom development?</h3>
+      <p>We focus on our free tools, but we're open to partnerships and collaborations. Contact us to discuss your
+        needs.</p>
     </div>
   </div>
-</div>
+</section>
 
-<script>
-function handleContactSubmit(event) {
-  event.preventDefault();
-  
-  const form = event.target;
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData);
-  
-  // Hide previous messages
-  document.getElementById('formSuccess').style.display = 'none';
-  document.getElementById('formError').style.display = 'none';
-  
-  // Simulate form submission (replace with actual endpoint)
-  setTimeout(() => {
-    // Show success message
-    document.getElementById('formSuccess').style.display = 'block';
-    form.reset();
-    
-    // Scroll to success message
-    document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    
-    // In production, send to your email service:
-    // fetch('/api/contact', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(data)
-    // })
-  }, 500);
-}
-</script>
+<!-- CTA Section -->
+<section class="category-cta-section" style="background: linear-gradient(135deg, #10b981, #059669);">
+  <h2 class="category-cta-title">Haven't Found What You're Looking For?</h2>
+  <p class="category-cta-subtitle">Explore our tools or read more about our mission</p>
+  <div class="category-cta-buttons">
+    <a href="{{ site.baseurl }}/all-tools/" class="btn-category-primary">Browse All Tools</a>
+    <a href="{{ site.baseurl }}/about/" class="btn-category-secondary">About Us</a>
+  </div>
+</section>

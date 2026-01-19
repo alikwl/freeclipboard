@@ -1,409 +1,192 @@
 ---
 layout: default
-title: Utilities - Free Unit Converter, Code Snippets & Markdown Preview
-description: Handy utilities including unit conversion, code snippet generator, markdown preview, JSON to CSV converter, and more. Fast, free, privacy-first developer tools.
-keywords: unit converter, code snippet generator, markdown preview, developer tools, json to csv, robots.txt generator, meta tag generator, online utilities
+title: Developer Tools - Free JSON Formatter, Regex Tester & More
+description: Free developer tools including JSON formatter, regex tester, base64 encoder, and more. Optimize your
+development workflow instantly. 100% private.
+keywords: json formatter, regex tester, developer tools, code formatter, base64 encoder, url encoder, dev tools
 schema_type: CollectionPage
 og_type: website
-category_name: Utilities
+category_name: Developer Tools
 tools_count: 10
-faqs:
-  - question: "What units can I convert?"
-    answer: "Our unit converter supports length, weight, temperature, volume, area, speed, time, and digital storage conversions with instant results."
-  - question: "What programming languages are supported for code snippets?"
-    answer: "Generate formatted code snippets in JavaScript, Python, Java, C++, HTML, CSS, SQL, and many more languages with syntax highlighting."
-  - question: "Can I preview markdown in real-time?"
-    answer: "Yes! Our markdown preview shows live rendering as you type, with support for GitHub Flavored Markdown, tables, code blocks, and more."
-  - question: "Are these tools useful for developers?"
-    answer: "Absolutely! These utilities are designed for developers, including JSON to CSV conversion, robots.txt generator, meta tag generator, and regex tester."
 ---
 
-<section class="category-hero utilities-hero">
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-icon">🔧</span>
-        <span class="badge-text">Utilities</span>
-      </div>
-      <h1>Professional Developer Utilities</h1>
-      <p class="hero-subtitle">Essential utilities for everyday tasks including unit conversion, code snippets, calculators, and more. Simple, fast, and secure tools for developers and users.</p>
-      
-      <div class="hero-stats">
-        <div class="stat-item">
-          <strong>10</strong>
-          <span>Utility Tools</span>
-        </div>
-        <div class="stat-item">
-          <strong>75K+</strong>
-          <span>Monthly Users</span>
-        </div>
-        <div class="stat-item">
-          <strong>100%</strong>
-          <span>Free Forever</span>
-        </div>
-      </div>
-      
-      <div class="hero-cta">
-        <a href="#tools" class="btn btn-primary btn-lg">Explore Tools</a>
-        <a href="#how-it-works" class="btn btn-outline btn-lg">Learn More</a>
-      </div>
+<!-- Hero Section -->
+<section class="category-hero-new" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">
+  <div class="category-hero-badge">
+    <span>💼</span>
+    <span>Developer Tools</span>
+  </div>
+  <h1 class="category-hero-title">Professional Developer Tools</h1>
+  <p class="category-hero-subtitle">Format JSON, test regex, encode data, and more. Essential utilities for every
+    developer.</p>
+
+  <div class="category-hero-stats">
+    <div class="category-hero-stat">
+      <strong>10+</strong>
+      <span>Dev Tools</span>
     </div>
+    <div class="category-hero-stat">
+      <strong>50K+</strong>
+      <span>Daily Uses</span>
+    </div>
+    <div class="category-hero-stat">
+      <strong>100%</strong>
+      <span>Free Forever</span>
+    </div>
+  </div>
+
+  <div class="category-hero-cta">
+    <a href="#tools" class="btn-category-primary">Explore Tools</a>
+    <a href="#benefits" class="btn-category-secondary">Learn More</a>
   </div>
 </section>
 
-<section class="tools-category-section" id="tools">
-  <div class="container">
-    <div class="section-header">
-      <h2>🔧 Utilities Collection</h2>
-      <p>Professional tools for everyday tasks and calculations</p>
-    </div>
-    
-    {% assign utilTools = site.data.tools-metadata.tools | where: 'category', 'utility' | sort: 'name' %}
-    
-    <div class="tools-grid enhanced-grid">
-      {% for tool in utilTools %}
-        <article class="tool-card enhanced-card">
-          <div class="tool-card-visual">
-            <div class="tool-icon-large">{{ tool.icon }}</div>
-            {% if tool.featured %}
-              <span class="tool-badge badge-featured">⭐ Featured</span>
-            {% elsif tool.popular %}
-              <span class="tool-badge badge-popular">🔥 Popular</span>
-            {% elsif tool.new %}
-              <span class="tool-badge badge-new">✨ New</span>
-            {% endif %}
-          </div>
-          
-          <div class="tool-card-content">
-            <h3 class="tool-title">{{ tool.name }}</h3>
-            <p class="tool-description">{{ tool.description }}</p>
-            
-            <div class="tool-features">
-              <span class="feature-tag">✓ Instant Results</span>
-              <span class="feature-tag">✓ Privacy First</span>
-              <span class="feature-tag">✓ Easy to Use</span>
-            </div>
-            
-            <div class="tool-meta">
-              {% if tool.rating %}
-                <span class="tool-rating">
-                  <span class="rating-stars">⭐⭐⭐⭐⭐</span>
-                  <span class="rating-value">{{ tool.rating }}</span>
-                </span>
-              {% endif %}
-              {% if tool.usageCount %}
-                <span class="tool-usage">
-                  <span class="usage-icon">👥</span>
-                  {{ tool.usageCount | divided_by: 1000 }}K+ uses
-                </span>
-              {% endif %}
-            </div>
-            
-            <div class="tool-keywords">
-              {% for keyword in tool.keywords limit:4 %}
-                <span class="keyword-tag">{{ keyword }}</span>
-              {% endfor %}
-            </div>
-          </div>
-          
-          <div class="tool-card-footer">
-            <a href="{{ tool.url | relative_url }}" class="btn btn-primary btn-block">
-              Try {{ tool.name }} →
-            </a>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
+<!-- Tools Grid Section -->
+<section class="category-tools-section" id="tools">
+  <div class="category-section-header">
+    <h2>💼 Developer Tools Collection</h2>
+    <p>Essential utilities for developers and programmers</p>
   </div>
-</section>
 
-<section class="category-benefits" id="how-it-works">
-  <div class="container">
-    <div class="section-header">
-      <h2>💎 Why Choose Our Utilities?</h2>
-      <p>Everything you need for everyday tasks and calculations</p>
-    </div>
-    
-    <div class="benefits-grid enhanced-benefits">
-      <div class="benefit-item">
-        <div class="benefit-icon">⚡</div>
-        <h3>Instant Calculations</h3>
-        <p>All calculations and conversions happen instantly in your browser. No waiting, just immediate results.</p>
-        <ul class="benefit-features">
-          <li>Real-time conversion</li>
-          <li>Instant feedback</li>
-          <li>No delays</li>
-        </ul>
-      </div>
-      
-      <div class="benefit-item">
-        <div class="benefit-icon">🔢</div>
-        <h3>Unit Conversion</h3>
-        <p>Convert between various units including length, weight, temperature, and more with accuracy.</p>
-        <ul class="benefit-features">
-          <li>Multiple categories</li>
-          <li>Accurate conversion</li>
-          <li>Common units</li>
-        </ul>
-      </div>
-      
-      <div class="benefit-item">
-        <div class="benefit-icon">🧮</div>
-        <h3>Handy Calculators</h3>
-        <p>Specialized calculators for specific tasks like age calculation, water intake, and more.</p>
-        <ul class="benefit-features">
-          <li>Purpose-built tools</li>
-          <li>Easy to use</li>
-          <li>Accurate results</li>
-        </ul>
-      </div>
-      
-      <div class="benefit-item">
-        <div class="benefit-icon">🆓</div>
-        <h3>100% Free Forever</h3>
-        <p>All tools are completely free with no limitations. Use in any project, personal or commercial.</p>
-        <ul class="benefit-features">
-          <li>No registration required</li>
-          <li>Unlimited usage</li>
-          <li>No hidden costs</li>
-        </ul>
-      </div>
-      
-      <div class="benefit-item">
-        <div class="benefit-icon">🔒</div>
-        <h3>Privacy First</h3>
-        <p>All processing happens in your browser. Your data never leaves your device.</p>
-        <ul class="benefit-features">
-          <li>No data collection</li>
-          <li>Works offline</li>
-          <li>100% secure</li>
-        </ul>
-      </div>
-      
-      <div class="benefit-item">
-        <div class="benefit-icon">📱</div>
-        <h3>Mobile Friendly</h3>
-        <p>Use our tools on any device - desktop, tablet, or mobile. Fully responsive design.</p>
-        <ul class="benefit-features">
-          <li>Touch optimized</li>
-          <li>Responsive layout</li>
-          <li>Works everywhere</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+  {% assign devTools = site.data.tools-metadata.tools | where: 'category', 'developer' | sort: 'name' %}
 
-<!-- How It Works Section -->
-<section class="how-it-works-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>🚀 How It Works</h2>
-      <p>Use our utilities in three simple steps</p>
-    </div>
-    
-    <div class="steps-grid">
-      <div class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3>Choose Your Tool</h3>
-          <p>Select from unit converters, calculators, or other utility tools based on your needs.</p>
+  <div class="category-tools-grid">
+    {% for tool in devTools %}
+    <article class="category-tool-card">
+      <div class="category-tool-visual" style="background: linear-gradient(135deg, #ede9fe, #ddd6fe);">
+        <div class="category-tool-icon">{{ tool.icon }}</div>
+        {% if tool.featured %}
+        <span class="category-tool-badge featured">⭐ Featured</span>
+        {% elsif tool.popular %}
+        <span class="category-tool-badge popular">🔥 Popular</span>
+        {% endif %}
+      </div>
+
+      <div class="category-tool-content">
+        <h3 class="category-tool-name">{{ tool.name }}</h3>
+        <p class="category-tool-desc">{{ tool.description }}</p>
+
+        <div class="category-tool-tags">
+          {% for keyword in tool.keywords limit:3 %}
+          <span class="category-tool-tag">{{ keyword }}</span>
+          {% endfor %}
         </div>
       </div>
-      
-      <div class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3>Enter Your Data</h3>
-          <p>Input your values, select units, or enter information. Processing happens instantly.</p>
-        </div>
+
+      <div class="category-tool-footer">
+        <a href="{{ tool.url | relative_url }}" class="category-tool-btn"
+          style="background: linear-gradient(135deg, #7c3aed, #a855f7);">
+          Try {{ tool.name }} →
+        </a>
       </div>
-      
-      <div class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3>Get Results</h3>
-          <p>View instant results, copy values, or use the information in your projects.</p>
-        </div>
-      </div>
-    </div>
+    </article>
+    {% endfor %}
   </div>
 </section>
 
-<!-- Use Cases Section -->
-<section class="use-cases-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>💼 Perfect For</h2>
-      <p>Who benefits from our utilities?</p>
-    </div>
-    
-    <div class="use-cases-grid">
-      <div class="use-case-card">
-        <div class="use-case-icon">👨‍💻</div>
-        <h3>Developers</h3>
-        <p>Convert units, generate code snippets, and use developer-focused utilities.</p>
-      </div>
-      
-      <div class="use-case-card">
-        <div class="use-case-icon">📊</div>
-        <h3>Data Analysts</h3>
-        <p>Convert between units, perform calculations, and process data efficiently.</p>
-      </div>
-      
-      <div class="use-case-card">
-        <div class="use-case-icon">🏃</div>
-        <h3>Health Enthusiasts</h3>
-        <p>Calculate water intake, track metrics, and use health-related calculators.</p>
-      </div>
-      
-      <div class="use-case-card">
-        <div class="use-case-icon">👤</div>
-        <h3>Everyone</h3>
-        <p>Quick conversions, calculations, and utilities for everyday tasks.</p>
-      </div>
-    </div>
+<!-- Benefits Section -->
+<section class="category-benefits-section" id="benefits">
+  <div class="category-section-header">
+    <h2>💎 Why Developers Love Our Tools</h2>
+    <p>Built by developers, for developers</p>
   </div>
-</section>
 
-<!-- FAQ Section -->
-<section class="faq-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>❓ Frequently Asked Questions</h2>
-      <p>Everything you need to know about our utilities</p>
+  <div class="category-benefits-grid">
+    <div class="category-benefit-card">
+      <div class="category-benefit-icon">⚡</div>
+      <h3 class="category-benefit-title">Instant Results</h3>
+      <p class="category-benefit-desc">Format, validate, and convert data instantly. No waiting.</p>
+      <ul class="category-benefit-list">
+        <li>Real-time processing</li>
+        <li>Syntax highlighting</li>
+        <li>Error detection</li>
+      </ul>
     </div>
-    
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h3>Are these tools really free?</h3>
-        <p>Yes! All our utilities are 100% free with no hidden costs, registration requirements, or usage limits.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>How accurate are the conversions?</h3>
-        <p>Our unit converter uses standard conversion factors and provides accurate results for all supported units.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Do you store my data?</h3>
-        <p>No. All processing happens locally in your browser. We never collect, store, or transmit your data.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>What units can I convert?</h3>
-        <p>Our unit converter supports length, weight, temperature, volume, area, and many other unit categories.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I use these tools offline?</h3>
-        <p>Yes! Once loaded, most tools work completely offline. Your data is processed locally in your browser.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Are the calculators accurate?</h3>
-        <p>Yes, all calculators use standard formulas and provide accurate results based on the input provided.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I use these tools on mobile?</h3>
-        <p>Absolutely! All tools are fully responsive and work perfectly on smartphones and tablets.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I request new utilities?</h3>
-        <p>Yes! We're always improving our collection. Contact us with your suggestions for new utility tools.</p>
-      </div>
+
+    <div class="category-benefit-card">
+      <div class="category-benefit-icon">🔧</div>
+      <h3 class="category-benefit-title">Feature Rich</h3>
+      <p class="category-benefit-desc">Advanced options for power users. Customize as needed.</p>
+      <ul class="category-benefit-list">
+        <li>Custom indentation</li>
+        <li>Multiple formats</li>
+        <li>Export options</li>
+      </ul>
+    </div>
+
+    <div class="category-benefit-card">
+      <div class="category-benefit-icon">🔒</div>
+      <h3 class="category-benefit-title">Privacy First</h3>
+      <p class="category-benefit-desc">Your code stays on your device. Perfect for sensitive data.</p>
+      <ul class="category-benefit-list">
+        <li>No server uploads</li>
+        <li>Works offline</li>
+        <li>100% secure</li>
+      </ul>
     </div>
   </div>
 </section>
 
 <!-- CTA Section -->
-<section class="cta-section utilities-cta">
-  <div class="container">
-    <div class="cta-content">
-      <h2>Ready to Simplify Your Tasks?</h2>
-      <p>Start using our professional utilities now - no signup required!</p>
-      <div class="cta-buttons">
-        <a href="{{ site.baseurl }}/tools/unit-converter/" class="btn btn-primary btn-lg">Try Unit Converter</a>
-        <a href="{{ site.baseurl }}/tools/water-intake-calculator/" class="btn btn-outline btn-lg">Try Water Calculator</a>
-        <a href="{{ site.baseurl }}/tools/cat-age-calculator/" class="btn btn-outline btn-lg">Try Age Calculator</a>
-      </div>
-    </div>
+<section class="category-cta-section" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">
+  <h2 class="category-cta-title">Supercharge Your Workflow</h2>
+  <p class="category-cta-subtitle">Start using professional developer tools now!</p>
+  <div class="category-cta-buttons">
+    <a href="{{ site.baseurl }}/tools/json-formatter/" class="btn-category-primary">Try JSON Formatter</a>
+    <a href="{{ site.baseurl }}/tools/regex-tester/" class="btn-category-secondary">Try Regex Tester</a>
   </div>
 </section>
 
-<section class="related-categories">
-  <div class="container">
-    <div class="section-header">
-      <h2>🔍 Explore More Tools</h2>
-      <p>Discover other categories of professional tools</p>
-    </div>
-    
-    <div class="category-links enhanced-category-links">
-      <a href="{{ site.baseurl }}/text-utilities/" class="category-link-card">
-        <div class="category-card-header">
-          <span class="category-icon">✍️</span>
-          <span class="category-badge">12 Tools</span>
-        </div>
-        <h3>Text Utilities</h3>
-        <p>Format, encode, decode, count, and process text with powerful utilities</p>
-        <div class="category-tools-list">
-          <span>Text Formatter</span>
-          <span>JSON Formatter</span>
-          <span>Base64 Encoder</span>
-        </div>
-        <span class="category-link-arrow">Explore →</span>
-      </a>
-      
-      <a href="{{ site.baseurl }}/generators-security/" class="category-link-card">
-        <div class="category-card-header">
-          <span class="category-icon">🔐</span>
-          <span class="category-badge">7 Tools</span>
-        </div>
-        <h3>Generators & Security</h3>
-        <p>Generate passwords, hashes, UUIDs, and secure random data</p>
-        <div class="category-tools-list">
-          <span>Password Generator</span>
-          <span>Hash Generator</span>
-          <span>UUID Generator</span>
-        </div>
-        <span class="category-link-arrow">Explore →</span>
-      </a>
-      
-      <a href="{{ site.baseurl }}/clipboard-tools/" class="category-link-card">
-        <div class="category-card-header">
-          <span class="category-icon">📋</span>
-          <span class="category-badge">3 Tools</span>
-        </div>
-        <h3>Clipboard & Text Tools</h3>
-        <p>Manage clipboard, count words and characters, analyze text efficiently</p>
-        <div class="category-tools-list">
-          <span>Clipboard Manager</span>
-          <span>Word Counter</span>
-          <span>Character Counter</span>
-        </div>
-        <span class="category-link-arrow">Explore →</span>
-      </a>
-      
-      <a href="{{ site.baseurl }}/design-tools/" class="category-link-card">
-        <div class="category-card-header">
-          <span class="category-icon">🎨</span>
-          <span class="category-badge">3 Tools</span>
-        </div>
-        <h3>Design & CSS Tools</h3>
-        <p>Create glassmorphism, neumorphism, and organic SVG blob shapes</p>
-        <div class="category-tools-list">
-          <span>Glassmorphism</span>
-          <span>Neumorphism</span>
-          <span>SVG Blobs</span>
-        </div>
-        <span class="category-link-arrow">Explore →</span>
-      </a>
-    </div>
-    
-    <div class="view-all-categories">
-      <a href="{{ site.baseurl }}/all-tools/" class="btn btn-secondary btn-lg">View All 35+ Tools →</a>
-    </div>
+<!-- Related Categories -->
+<section class="related-categories-section">
+  <div class="category-section-header">
+    <h2>🔍 Explore More Tools</h2>
+    <p>Discover other categories of professional tools</p>
+  </div>
+
+  <div class="related-categories-grid">
+    <a href="{{ site.baseurl }}/text-utilities/" class="related-category-card">
+      <div class="related-category-header">
+        <span class="related-category-icon">📝</span>
+        <span class="related-category-badge">15+ Tools</span>
+      </div>
+      <h3>Text & Writing</h3>
+      <p>Word counter, encoders, formatters</p>
+      <span class="related-category-arrow">Explore →</span>
+    </a>
+
+    <a href="{{ site.baseurl }}/image-tools/" class="related-category-card">
+      <div class="related-category-header">
+        <span class="related-category-icon">🎨</span>
+        <span class="related-category-badge">10+ Tools</span>
+      </div>
+      <h3>Image & Design</h3>
+      <p>Image converter, QR codes</p>
+      <span class="related-category-arrow">Explore →</span>
+    </a>
+
+    <a href="{{ site.baseurl }}/generators-security/" class="related-category-card">
+      <div class="related-category-header">
+        <span class="related-category-icon">🔐</span>
+        <span class="related-category-badge">8+ Tools</span>
+      </div>
+      <h3>Security & Generators</h3>
+      <p>Password generator, hash tools</p>
+      <span class="related-category-arrow">Explore →</span>
+    </a>
+
+    <a href="{{ site.baseurl }}/calculators/" class="related-category-card">
+      <div class="related-category-header">
+        <span class="related-category-icon">🧮</span>
+        <span class="related-category-badge">10+ Tools</span>
+      </div>
+      <h3>Calculators</h3>
+      <p>Unit converter, age calculator</p>
+      <span class="related-category-arrow">Explore →</span>
+    </a>
+  </div>
+
+  <div class="view-all-categories-btn">
+    <a href="{{ site.baseurl }}/all-tools/">View All 41+ Tools →</a>
   </div>
 </section>

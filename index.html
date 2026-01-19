@@ -29,317 +29,165 @@ answer: "We display minimal, non-intrusive ads to keep the service free. No subs
 advertising."
 ---
 
-<!-- SECTION 1: HERO / ABOVE THE FOLD -->
-<section class="hero-main" aria-labelledby="hero-heading">
-  <div class="hero-content">
-    <h1 id="hero-heading">Free Clipboard Online Tools for Writers, Developers, & More</h1>
-    <p class="hero-subheading">Fast, Accurate, No Signup Required</p>
-    <p class="hero-description">Professional-grade utilities that run entirely in your browser. 100% free,
-      privacy-focused, and lightning fast.</p>
-    <div class="hero-cta">
-      <a href="{{ site.baseurl }}/clipboard-tools/" class="btn-hero-primary">Browse Tools</a>
-      <a href="{{ '/tools/free-clipboard/' | relative_url }}" class="btn-hero-secondary">Try Clipboard Manager</a>
-    </div>
-    <div class="hero-trust">
-      <span class="trust-badge">⭐ Trusted by 100K+ users monthly</span>
-      <span class="trust-badge">🔒 100% Privacy Focused</span>
-      <span class="trust-badge">⚡ Lightning Fast</span>
-    </div>
+<!-- ===========================
+     SECTION 1: NEW HERO
+     =========================== -->
+<section class="new-hero" aria-labelledby="hero-heading">
+  <h1 id="hero-heading" class="new-hero-title">41+ Free Privacy-First Tools</h1>
+  <p class="new-hero-subtitle">Fast, secure, no signup. Copy-paste results instantly. All processing happens in your
+    browser.</p>
+
+  <!-- Trust Badges -->
+  <div class="trust-badges-row">
+    <span class="trust-badge-new"><span class="icon">✓</span> 100% Free</span>
+    <span class="trust-badge-new"><span class="icon">✓</span> No Signup</span>
+    <span class="trust-badge-new"><span class="icon">✓</span> Privacy First</span>
+    <span class="trust-badge-new"><span class="icon">✓</span> Works Offline</span>
+  </div>
+
+  <!-- Featured Tools Grid (6 Popular) -->
+  <div class="featured-tools-grid" style="margin-top: 3rem;">
+    <a href="{{ '/tools/free-clipboard/' | relative_url }}" class="featured-tool-card">
+      <span class="featured-tool-icon">📋</span>
+      <span class="featured-tool-name">Clipboard Manager</span>
+      <span class="featured-tool-desc">Store & organize</span>
+    </a>
+    <a href="{{ '/tools/word-counter/' | relative_url }}" class="featured-tool-card">
+      <span class="featured-tool-icon">📝</span>
+      <span class="featured-tool-name">Word Counter</span>
+      <span class="featured-tool-desc">Count words & chars</span>
+    </a>
+    <a href="{{ '/tools/password-generator/' | relative_url }}" class="featured-tool-card">
+      <span class="featured-tool-icon">🔐</span>
+      <span class="featured-tool-name">Password Generator</span>
+      <span class="featured-tool-desc">Secure passwords</span>
+    </a>
+    <a href="{{ '/tools/json-formatter/' | relative_url }}" class="featured-tool-card">
+      <span class="featured-tool-icon">{ }</span>
+      <span class="featured-tool-name">JSON Formatter</span>
+      <span class="featured-tool-desc">Beautify & validate</span>
+    </a>
+    <a href="{{ '/tools/image-converter/' | relative_url }}" class="featured-tool-card">
+      <span class="featured-tool-icon">🖼️</span>
+      <span class="featured-tool-name">Image Converter</span>
+      <span class="featured-tool-desc">Convert formats</span>
+    </a>
+    <a href="{{ '/tools/qr-code-generator/' | relative_url }}" class="featured-tool-card">
+      <span class="featured-tool-icon">📱</span>
+      <span class="featured-tool-name">QR Generator</span>
+      <span class="featured-tool-desc">Create QR codes</span>
+    </a>
+  </div>
+
+  <!-- CTA Button -->
+  <div style="margin-top: 2.5rem;">
+    <a href="#tools-directory"
+      style="display: inline-block; background: linear-gradient(135deg, #2563eb, #4f46e5); color: white; padding: 1rem 2.5rem; border-radius: 0.75rem; font-weight: 600; text-decoration: none; box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3); transition: all 0.2s;">
+      Explore All Tools →
+    </a>
   </div>
 </section>
 
-<!-- SECTION 2: FEATURED TOOLS WITH LIVE PREVIEWS -->
-<section id="featured-tools" class="featured-tools-section" aria-labelledby="featured-heading">
-  <div class="container">
-    <h2 id="featured-heading">Most Popular Tools</h2>
-    <p class="section-subtitle">See our tools in action with live interactive previews</p>
+<!-- ===========================
+     SECTION 2: WHY FREECLIPBOARD
+     =========================== -->
+<section class="why-section" aria-labelledby="why-heading">
+  <h2 id="why-heading" class="why-section-title">Why FreeClipboard?</h2>
 
-    <div class="tools-preview-grid">
-      <!-- Word Counter Preview -->
-      <div class="tool-preview-card" data-tool="word-counter">
-        <div class="preview-header">
-          <div class="preview-icon">📝</div>
-          <div class="preview-title">
-            <h3>Word Counter</h3>
-            <p>Real-time text analysis</p>
-          </div>
-          <span class="preview-badge">Popular</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/word-counter/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Clipboard Manager Preview -->
-      <div class="tool-preview-card" data-tool="clipboard-manager">
-        <div class="preview-header">
-          <div class="preview-icon">📋</div>
-          <div class="preview-title">
-            <h3>Clipboard Manager</h3>
-            <p>Organize your clipboard</p>
-          </div>
-          <span class="preview-badge">Featured</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/free-clipboard/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Password Generator Preview -->
-      <div class="tool-preview-card" data-tool="password-generator">
-        <div class="preview-header">
-          <div class="preview-icon">🔐</div>
-          <div class="preview-title">
-            <h3>Password Generator</h3>
-            <p>Secure passwords instantly</p>
-          </div>
-          <span class="preview-badge">Security</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/password-generator/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- JSON Formatter Preview -->
-      <div class="tool-preview-card" data-tool="json-formatter">
-        <div class="preview-header">
-          <div class="preview-icon">{ }</div>
-          <div class="preview-title">
-            <h3>JSON Formatter</h3>
-            <p>Beautify & validate JSON</p>
-          </div>
-          <span class="preview-badge">Dev Tool</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/json-formatter/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Base64 Encoder Preview -->
-      <div class="tool-preview-card" data-tool="base64-encoder">
-        <div class="preview-header">
-          <div class="preview-icon">🔐</div>
-          <div class="preview-title">
-            <h3>Base64 Encoder</h3>
-            <p>Encode & decode Base64</p>
-          </div>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/base64-encoder/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- QR Code Generator Preview -->
-      <div class="tool-preview-card" data-tool="qr-code">
-        <div class="preview-header">
-          <div class="preview-icon">📱</div>
-          <div class="preview-title">
-            <h3>QR Code Generator</h3>
-            <p>Create QR codes instantly</p>
-          </div>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/qr-code-generator/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Color Picker Preview -->
-      <div class="tool-preview-card" data-tool="color-picker">
-        <div class="preview-header">
-          <div class="preview-icon">🎨</div>
-          <div class="preview-title">
-            <h3>Color Picker</h3>
-            <p>Pick & convert colors</p>
-          </div>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/color-picker/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Image Converter Preview -->
-      <div class="tool-preview-card" data-tool="image-converter">
-        <div class="preview-header">
-          <div class="preview-icon">🔄</div>
-          <div class="preview-title">
-            <h3>Image Converter</h3>
-            <p>Convert image formats</p>
-          </div>
-          <span class="preview-badge">New</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/image-converter/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Image Studio Preview -->
-      <div class="tool-preview-card" data-tool="image-studio">
-        <div class="preview-header">
-          <div class="preview-icon">🎨</div>
-          <div class="preview-title">
-            <h3>Image Studio</h3>
-            <p>Create social media graphics</p>
-          </div>
-          <span class="preview-badge">New</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/image-studio/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Screenshot Beautifier Preview -->
-      <div class="tool-preview-card" data-tool="screenshot-beautifier">
-        <div class="preview-header">
-          <div class="preview-icon">✨</div>
-          <div class="preview-title">
-            <h3>Screenshot Beautifier</h3>
-            <p>Mockups & enhancements</p>
-          </div>
-          <span class="preview-badge">New</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/screenshot-beautifier/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Text to Handwriting Preview -->
-      <div class="tool-preview-card" data-tool="text-to-handwriting">
-        <div class="preview-header">
-          <div class="preview-icon">✍️</div>
-          <div class="preview-title">
-            <h3>Text to Handwriting</h3>
-            <p>Realistic handwritten notes</p>
-          </div>
-          <span class="preview-badge">New</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/text-to-handwriting/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-
-      <!-- Glitch Text Generator Preview -->
-      <div class="tool-preview-card" data-tool="glitch-text">
-        <div class="preview-header">
-          <div class="preview-icon">🫠</div>
-          <div class="preview-title">
-            <h3>Glitch Text Generator</h3>
-            <p>Chaos for edgy comments</p>
-          </div>
-          <span class="preview-badge">New</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/glitch-text-generator/" class="preview-link">Try it now</a>
-        </div>
-      </div>
-      <!-- Invisible Character Preview -->
-      <div class="tool-preview-card" data-tool="invisible-character">
-        <div class="preview-header">
-          <div class="preview-icon">🫥</div>
-          <div class="preview-title">
-            <h3>Invisible Character</h3>
-            <p>Create blank lines for Instagram</p>
-          </div>
-          <span class="preview-badge">New</span>
-        </div>
-        <div class="preview-content">
-          <!-- Animated preview will be injected here -->
-        </div>
-        <div class="preview-footer">
-          <a href="{{ site.baseurl }}/tools/invisible-character/" class="preview-link">Try it now</a>
-        </div>
-      </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-card-icon">⚡</div>
+      <h3 class="why-card-title">Lightning Fast</h3>
+      <p class="why-card-desc">All tools run instantly in your browser. No server delays, no waiting.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-icon">🔒</div>
+      <h3 class="why-card-title">100% Private</h3>
+      <p class="why-card-desc">Your data never leaves your device. We don't collect or store anything.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-icon">🎁</div>
+      <h3 class="why-card-title">Completely Free</h3>
+      <p class="why-card-desc">No hidden costs, no premium tiers, no paywalls. Everything is free.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-card-icon">🚀</div>
+      <h3 class="why-card-title">41+ Tools</h3>
+      <p class="why-card-desc">Text, image, security, developer, and more. All in one place.</p>
     </div>
   </div>
 </section>
 
 {% include ads.html %}
 
-<!-- SECTION 3: BENEFITS / WHY USE -->
-<section class="benefits-section" aria-labelledby="benefits-heading">
-  <div class="container">
-    <h2 id="benefits-heading">Why Choose FreeClipboard?</h2>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">💎</div>
-        <h3>100% Free - Forever</h3>
-        <p>No premium plans, no hidden fees, no paywalls. Every feature is completely free and always will be.</p>
-      </div>
+<!-- ===========================
+     SECTION 3: EXPLORE CATEGORIES
+     =========================== -->
+<section id="tools-directory" class="categories-section-new" aria-labelledby="categories-heading">
+  <h2 id="categories-heading" class="categories-title">Explore Categories</h2>
 
-      <div class="benefit-card">
-        <div class="benefit-icon">⚡</div>
-        <h3>Lightning Fast - No Servers Needed</h3>
-        <p>All processing happens in your browser. Instant results with no server delays or waiting times.</p>
-      </div>
+  <div class="categories-grid">
+    <a href="{{ '/text-utilities/' | relative_url }}" class="category-card-new">
+      <div class="category-card-icon">📝</div>
+      <h3>Text & Writing Tools</h3>
+      <p>Word counter, text formatter, encoders & more</p>
+      <span class="category-tool-count-new">15+ tools</span>
+    </a>
 
-      <div class="benefit-card">
-        <div class="benefit-icon">🔒</div>
-        <h3>Privacy Focused - No Data Collection</h3>
-        <p>Your data never leaves your device. No tracking, no analytics, no data storage. Complete privacy guaranteed.
-        </p>
-      </div>
+    <a href="{{ '/image-tools/' | relative_url }}" class="category-card-new">
+      <div class="category-card-icon">🎨</div>
+      <h3>Image & Design Tools</h3>
+      <p>Image converter, QR codes, color picker</p>
+      <span class="category-tool-count-new">10+ tools</span>
+    </a>
 
-      <div class="benefit-card">
-        <div class="benefit-icon">📺</div>
-        <h3>Ad Supported - Completely Free</h3>
-        <p>We show minimal ads to keep the service free for everyone. No subscriptions, no payments required.</p>
-      </div>
-    </div>
+    <a href="{{ '/generators-security/' | relative_url }}" class="category-card-new">
+      <div class="category-card-icon">🔐</div>
+      <h3>Security & Generators</h3>
+      <p>Password generator, hash tools, UUIDs</p>
+      <span class="category-tool-count-new">8+ tools</span>
+    </a>
+
+    <a href="{{ '/utilities/' | relative_url }}" class="category-card-new">
+      <div class="category-card-icon">💼</div>
+      <h3>Developer Tools</h3>
+      <p>JSON formatter, regex tester, code tools</p>
+      <span class="category-tool-count-new">10+ tools</span>
+    </a>
+
+    <a href="{{ '/calculators/' | relative_url }}" class="category-card-new">
+      <div class="category-card-icon">🧮</div>
+      <h3>Calculators & Utilities</h3>
+      <p>Unit converter, age calculator, planners</p>
+      <span class="category-tool-count-new">10+ tools</span>
+    </a>
   </div>
 </section>
 
-<!-- SECTION 4: ALL TOOLS DIRECTORY -->
-<section class="tools-directory-section" aria-labelledby="directory-heading">
-  <div class="container">
-    <h2 id="directory-heading">Complete Tools Directory</h2>
-    <p class="section-subtitle">Browse all 40+ free online tools organized by category</p>
+<!-- ===========================
+     SECTION 4: COMPLETE TOOLS DIRECTORY
+     =========================== -->
+<section class="tools-directory-section" style="background: white; padding: 5rem 2rem;"
+  aria-labelledby="directory-heading">
+  <div style="max-width: 80rem; margin: 0 auto;">
+    <h2 id="directory-heading" style="font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 1rem;">
+      Complete Tools Directory</h2>
+    <p style="text-align: center; color: #6b7280; margin-bottom: 2rem;">Browse all 41+ free online tools organized by
+      category</p>
 
-    <div class="tools-search-sort" aria-label="Directory controls">
-      <div class="tools-search-container" role="search" aria-label="Search tools">
-        <input type="search" id="tools-search" class="tools-search-input"
+    <div class="tools-search-sort"
+      style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;"
+      aria-label="Directory controls">
+      <div class="tools-search-container" role="search" aria-label="Search tools" style="flex: 1; max-width: 400px;">
+        <input type="search" id="tools-search"
+          style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem;"
           placeholder="Search tools by name or description…" aria-controls="tools-directory"
           aria-describedby="tools-search-help" />
-        <small id="tools-search-help" class="tools-search-help">Type to filter tools instantly. Matching results update
-          below.</small>
       </div>
       <div class="tools-sort-container" aria-label="Sort tools">
         <label for="tools-sort" class="sr-only">Sort tools</label>
-        <select id="tools-sort" class="tools-sort-select">
+        <select id="tools-sort"
+          style="padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem; background: white;">
           <option value="alpha">Alphabetical (A→Z)</option>
           <option value="rating">Rating (High→Low)</option>
           <option value="usage">Popularity (High→Low)</option>
@@ -354,38 +202,36 @@ advertising."
     {% for category in categories %}
     {% assign catTools = tools | where: 'category', category.id %}
     {% assign catTools = catTools | sort: 'name' %}
-    <div class="tool-category">
-      <div class="category-header">
-        <h3>{{ category.icon }} {{ category.name }} <span class="category-count">({{ catTools | size }})</span></h3>
+    <div class="tool-category" style="margin-bottom: 2.5rem;">
+      <div class="category-header"
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #1f2937;">{{ category.icon }} {{ category.name }} <span
+            style="color: #6b7280; font-weight: 400;">({{ catTools | size }})</span></h3>
         {% if category.url and category.url != '/tools/' %}
-        <a href="{{ category.url | relative_url }}" class="view-all-link">View All →</a>
+        <a href="{{ category.url | relative_url }}"
+          style="color: #3b82f6; font-size: 0.875rem; text-decoration: none; font-weight: 500;">View All →</a>
         {% endif %}
       </div>
-      {% if category.description %}
-      <p class="category-description">{{ category.description }}</p>
-      {% endif %}
-      <div class="tools-grid-compact">
+      <div class="tools-grid-compact"
+        style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
         {% for tool in catTools %}
         <a href="{{ tool.url | relative_url }}" class="tool-card-compact"
+          style="background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 1.25rem; text-decoration: none; color: inherit; transition: all 0.2s;"
           title="{{ tool.name }} — {{ tool.shortDescription }}" data-tags="{{ tool.keywords | join: '|' }}"
           data-category="{{ category.id }}" data-name="{{ tool.name | downcase }}" data-rating="{{ tool.rating }}"
-          data-usage="{{ tool.usageCount }}" data-featured="{{ tool.featured }}" data-popular="{{ tool.popular }}">
-          <strong>
+          data-usage="{{ tool.usageCount }}" data-featured="{{ tool.featured }}" data-popular="{{ tool.popular }}"
+          onmouseover="this.style.boxShadow='0 10px 25px -5px rgba(0,0,0,0.1)'; this.style.transform='translateY(-2px)'; this.style.borderColor='#3b82f6';"
+          onmouseout="this.style.boxShadow='none'; this.style.transform='none'; this.style.borderColor='#e5e7eb';">
+          <strong style="display: block; color: #1f2937; margin-bottom: 0.25rem;">
             {{ tool.name }}
-            {% if tool.featured %}<span class="tool-badge badge-featured" aria-label="Featured tool">Featured</span>{%
+            {% if tool.featured %}<span
+              style="background: #dbeafe; color: #2563eb; font-size: 0.625rem; padding: 0.125rem 0.5rem; border-radius: 999px; margin-left: 0.5rem;">Featured</span>{%
             endif %}
-            {% if tool.popular %}<span class="tool-badge badge-popular" aria-label="Popular tool">Popular</span>{% endif
-            %}
+            {% if tool.popular %}<span
+              style="background: #fef3c7; color: #d97706; font-size: 0.625rem; padding: 0.125rem 0.5rem; border-radius: 999px; margin-left: 0.25rem;">Popular</span>{%
+            endif %}
           </strong>
-          <span class="tool-subtext">{{ tool.shortDescription }}</span>
-          {% if tool.keywords %}
-          <span class="tool-tags" aria-label="Tool tags">
-            {% for k in tool.keywords limit:3 %}
-            <span class="tool-tag">{{ k }}</span>
-            {% endfor %}
-          </span>
-          {% endif %}
-          {% if tool.rating %}<span class="tool-meta" aria-label="Average rating">★ {{ tool.rating }}</span>{% endif %}
+          <span style="display: block; color: #6b7280; font-size: 0.875rem;">{{ tool.shortDescription }}</span>
         </a>
         {% endfor %}
       </div>
@@ -393,6 +239,7 @@ advertising."
     {% endfor %}
   </div>
 </section>
+
 <script>
   (function () {
     var input = document.getElementById('tools-search');
@@ -435,7 +282,6 @@ advertising."
     input.addEventListener('input', function (e) { applyFilter(e.target.value); sortCategoryGrids(sortSelect ? sortSelect.value : 'alpha'); });
     if (sortSelect) sortSelect.addEventListener('change', function (e) { sortCategoryGrids(e.target.value); });
 
-    // Initialize from URL param ?q= for SEO SearchAction consistency
     var params = new URLSearchParams(window.location.search);
     var initialQ = params.get('q');
     if (initialQ) { input.value = initialQ; }
@@ -443,6 +289,7 @@ advertising."
     sortCategoryGrids(sortSelect ? sortSelect.value : 'alpha');
   })();
 </script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -456,6 +303,7 @@ advertising."
   }
 }
 </script>
+
 {% assign alltools = site.data.tools-metadata.tools %}
 <script type="application/ld+json">
 {
@@ -477,125 +325,122 @@ advertising."
 }
 </script>
 
-<!-- SECTION 5: TRUST & SOCIAL PROOF -->
-<section class="trust-section" aria-labelledby="trust-heading">
-  <div class="container">
-    <h2 id="trust-heading">Trusted by 100K+ Users Monthly</h2>
-    <p class="section-subtitle">Join thousands of professionals who rely on our tools daily</p>
-
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"The clipboard manager is a lifesaver! I use it every day for my writing work. No
-          more losing important snippets."</p>
-        <div class="testimonial-author">
-          <strong>Sarah M.</strong>
-          <span>Content Writer</span>
-        </div>
+<!-- ===========================
+     SECTION 5: TESTIMONIALS
+     =========================== -->
+<section style="background: #f8fafc; padding: 5rem 2rem;" aria-labelledby="testimonials-heading">
+  <div style="max-width: 80rem; margin: 0 auto;">
+    <!-- Stats -->
+    <div
+      style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 48rem; margin: 0 auto 3rem; text-align: center;">
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: #1f2937;">100K+</div>
+        <div style="color: #6b7280;">Monthly Users</div>
       </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"Fast, reliable, and completely free. The JSON formatter and Base64 encoder are
-          essential for my development workflow."</p>
-        <div class="testimonial-author">
-          <strong>David K.</strong>
-          <span>Software Developer</span>
-        </div>
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: #1f2937;">41+</div>
+        <div style="color: #6b7280;">Free Tools</div>
       </div>
-
-      <div class="testimonial-card">
-        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-        <p class="testimonial-text">"Love that everything works offline and my data stays private. The password
-          generator is my go-to for creating secure passwords."</p>
-        <div class="testimonial-author">
-          <strong>Emily R.</strong>
-          <span>Digital Marketer</span>
-        </div>
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: #1f2937;">1M+</div>
+        <div style="color: #6b7280;">Tools Used</div>
+      </div>
+      <div>
+        <div style="font-size: 2.5rem; font-weight: 800; color: #1f2937;">4.9/5</div>
+        <div style="color: #6b7280;">User Rating</div>
       </div>
     </div>
 
-    <div class="trust-stats">
-      <div class="stat-item">
-        <div class="stat-number">100K+</div>
-        <div class="stat-label">Monthly Users</div>
+    <h2 id="testimonials-heading" style="font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 2rem;">
+      What Users Say</h2>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+      <div style="background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e5e7eb;">
+        <div style="color: #f59e0b; margin-bottom: 0.75rem;">⭐⭐⭐⭐⭐</div>
+        <p style="color: #374151; margin-bottom: 1rem; line-height: 1.6;">"The clipboard manager is a lifesaver! I use
+          it every day for my writing work."</p>
+        <div>
+          <strong style="color: #1f2937;">Sarah M.</strong>
+          <span style="color: #6b7280; font-size: 0.875rem;"> • Content Writer</span>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">40+</div>
-        <div class="stat-label">Free Tools</div>
+      <div style="background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e5e7eb;">
+        <div style="color: #f59e0b; margin-bottom: 0.75rem;">⭐⭐⭐⭐⭐</div>
+        <p style="color: #374151; margin-bottom: 1rem; line-height: 1.6;">"Fast, reliable, and completely free. The JSON
+          formatter is essential for my workflow."</p>
+        <div>
+          <strong style="color: #1f2937;">David K.</strong>
+          <span style="color: #6b7280; font-size: 0.875rem;"> • Software Developer</span>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">1M+</div>
-        <div class="stat-label">Tools Used</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">4.9/5</div>
-        <div class="stat-label">User Rating</div>
+      <div style="background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e5e7eb;">
+        <div style="color: #f59e0b; margin-bottom: 0.75rem;">⭐⭐⭐⭐⭐</div>
+        <p style="color: #374151; margin-bottom: 1rem; line-height: 1.6;">"Love that everything works offline and my
+          data stays private."</p>
+        <div>
+          <strong style="color: #1f2937;">Emily R.</strong>
+          <span style="color: #6b7280; font-size: 0.875rem;"> • Digital Marketer</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION 6: FAQ -->
-<section class="faq-section" aria-labelledby="faq-heading">
-  <div class="container">
-    <h2 id="faq-heading">Frequently Asked Questions</h2>
-    <p class="section-subtitle">Everything you need to know about FreeClipboard</p>
+<!-- ===========================
+     SECTION 6: FAQ
+     =========================== -->
+<section style="background: white; padding: 5rem 2rem;" aria-labelledby="faq-heading">
+  <div style="max-width: 64rem; margin: 0 auto;">
+    <h2 id="faq-heading" style="font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 2rem;">Frequently
+      Asked Questions</h2>
 
-    <div class="faq-grid">
-      <div class="faq-item">
-        <h3>Are these tools really free?</h3>
-        <p>Yes! All our tools are 100% free with no hidden costs, premium plans, or paywalls. We're ad-supported to keep
-          everything free for everyone.</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+      <div style="background: #f8fafc; border-radius: 0.75rem; padding: 1.5rem;">
+        <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Are these tools really free?</h3>
+        <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6;">Yes! All 41+ tools are 100% free with no hidden
+          costs or paywalls.</p>
       </div>
-
-      <div class="faq-item">
-        <h3>Do I need to create an account?</h3>
-        <p>No signup required! Just visit any tool and start using it immediately. No registration, no email
-          verification, no hassle.</p>
+      <div style="background: #f8fafc; border-radius: 0.75rem; padding: 1.5rem;">
+        <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Do I need to create an account?</h3>
+        <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6;">No signup required! Just visit any tool and
+          start using it immediately.</p>
       </div>
-
-      <div class="faq-item">
-        <h3>Is my data safe and private?</h3>
-        <p>Absolutely! All tools run entirely in your browser. Your data never leaves your device, and we don't collect,
-          store, or track any information.</p>
+      <div style="background: #f8fafc; border-radius: 0.75rem; padding: 1.5rem;">
+        <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Is my data safe and private?</h3>
+        <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6;">Absolutely! All tools run in your browser. Your
+          data never leaves your device.</p>
       </div>
-
-      <div class="faq-item">
-        <h3>Do the tools work offline?</h3>
-        <p>Yes! After the first visit, most tools work offline. All processing happens in your browser, so no internet
-          connection is needed.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>Can I use these tools on mobile?</h3>
-        <p>Yes! All our tools are fully responsive and work perfectly on desktop, tablet, and mobile devices.</p>
-      </div>
-
-      <div class="faq-item">
-        <h3>How do you make money?</h3>
-        <p>We display minimal, non-intrusive ads to keep the service free. No subscriptions, no data selling, just
-          simple advertising.</p>
+      <div style="background: #f8fafc; border-radius: 0.75rem; padding: 1.5rem;">
+        <h3 style="font-weight: 600; color: #1f2937; margin-bottom: 0.5rem;">Do the tools work offline?</h3>
+        <p style="color: #6b7280; font-size: 0.9rem; line-height: 1.6;">Yes! After the first visit, most tools work
+          offline.</p>
       </div>
     </div>
 
-    <div class="faq-cta">
-      <p>Have more questions?</p>
-      <a href="{{ site.baseurl }}/contact/" class="btn-outline">Contact Us</a>
+    <div style="text-align: center; margin-top: 2rem;">
+      <a href="{{ site.baseurl }}/contact/"
+        style="display: inline-block; border: 2px solid #3b82f6; color: #3b82f6; padding: 0.75rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 500; transition: all 0.2s;">
+        Have questions? Contact Us
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Final CTA -->
-<section class="final-cta-section">
-  <div class="container">
-    <h2>Ready to Get Started?</h2>
-    <p>Choose from 40+ free online tools and start working instantly</p>
-    <div class="cta-buttons">
-      <a href="{{ site.baseurl }}/clipboard-tools/" class="btn-cta-primary">Browse All Tools</a>
-      <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn-cta-secondary">Try Clipboard Manager</a>
-    </div>
+<!-- ===========================
+     SECTION 7: FINAL CTA
+     =========================== -->
+<section style="background: linear-gradient(135deg, #2563eb, #4f46e5); padding: 5rem 2rem; text-align: center;">
+  <h2 style="font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 1rem;">Ready to Get Started?</h2>
+  <p style="color: rgba(255,255,255,0.9); margin-bottom: 2rem; font-size: 1.125rem;">Choose from 41+ free online tools
+    and start working instantly</p>
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="#tools-directory"
+      style="background: white; color: #2563eb; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600; transition: transform 0.2s;">
+      Browse All Tools
+    </a>
+    <a href="{{ site.baseurl }}/tools/free-clipboard/"
+      style="background: rgba(255,255,255,0.15); color: white; border: 2px solid white; padding: 1rem 2rem; border-radius: 0.5rem; text-decoration: none; font-weight: 600;">
+      Try Clipboard Manager
+    </a>
   </div>
 </section>
-
-{% include homepage-promo-popup.html %}

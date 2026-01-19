@@ -3,6 +3,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            primary: '#3B82F6',
+            secondary: '#1E40AF',
+            accent: '#10B981',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
   <!-- Comprehensive SEO, Schema, and Meta Tags -->
   {% include seo.html %}
 
@@ -40,6 +65,7 @@
 
   <!-- Global Design System - Load Last for Highest Priority -->
   <link rel="stylesheet" href="{{ '/assets/css/design-system.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/redesign.css' | relative_url }}">
 
   <!-- Preload Critical Resources -->
   <link rel="preload" href="{{ site.baseurl }}/assets/js/main.js" as="script">
@@ -51,10 +77,16 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"
     crossorigin="anonymous"></script>
 
-  <!-- Set dark mode as default -->
+  <!-- Set light mode as default -->
   <script>
     (function () {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      // Only set light if no saved preference exists
+      var saved = localStorage.getItem('theme');
+      if (!saved) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', saved);
+      }
     })();
   </script>
 </head>
