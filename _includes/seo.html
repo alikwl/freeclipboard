@@ -39,7 +39,11 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 <meta property="og:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
 <meta property="og:title" content="{{ seo_title }}">
 <meta property="og:description" content="{{ seo_description }}">
-<meta property="og:image" content="{{ page.og_image | default: site.url | append: '/assets/images/og-image.png' }}">
+{% if page.og_image %}
+<meta property="og:image" content="{{ site.url }}{{ page.og_image }}">
+{% else %}
+<meta property="og:image" content="{{ site.url }}/assets/images/og-image.png">
+{% endif %}
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{{ seo_title }}">
@@ -52,7 +56,13 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 <meta name="twitter:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
 <meta name="twitter:title" content="{{ seo_title }}">
 <meta name="twitter:description" content="{{ seo_description }}">
-<meta name="twitter:image" content="{{ page.twitter_image | default: site.url | append: '/assets/images/twitter-card.png' }}">
+{% if page.twitter_image %}
+<meta name="twitter:image" content="{{ site.url }}{{ page.twitter_image }}">
+{% elsif page.og_image %}
+<meta name="twitter:image" content="{{ site.url }}{{ page.og_image }}">
+{% else %}
+<meta name="twitter:image" content="{{ site.url }}/assets/images/twitter-card.png">
+{% endif %}
 <meta name="twitter:image:alt" content="{{ seo_title }}">
 
 <!-- Additional SEO Meta Tags -->
@@ -105,7 +115,7 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
   "@type": "Article",
   "headline": "{{ page.title | escape }}",
   "description": "{{ page.description | escape }}",
-  "image": "{{ page.image | default: site.url | append: '/assets/images/default-article.png' }}",
+  "image": "{% if page.image %}{{ site.url }}{{ page.image }}{% else %}{{ site.url }}/assets/images/default-article.png{% endif %}",
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified | default: page.date | date_to_xmlschema }}",
   "author": {

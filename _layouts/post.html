@@ -127,24 +127,23 @@ layout: default
       </div>
     </div>
 
-    <!-- Categories - Scrolls Normally -->
+    <!-- Categories - Dynamically Generated -->
     <div class="sidebar-widget categories-widget">
       <h3>📂 Categories</h3>
       <ul class="category-list">
         <li><a href="{{ site.baseurl }}/blog/">All Posts</a></li>
-        <li><a href="#">Tutorials</a></li>
-        <li><a href="#">Tips & Tricks</a></li>
-        <li><a href="#">Guides</a></li>
-        <li><a href="#">Productivity</a></li>
-        <li><a href="#">Security</a></li>
+        {% assign categories = site.posts | map: 'category' | compact | uniq | sort %}
+        {% for cat in categories %}
+        <li><a href="{{ site.baseurl }}/blog/#{{ cat | slugify }}">{{ cat | replace: '-', ' ' | capitalize }}</a></li>
+        {% endfor %}
       </ul>
     </div>
 
-    <!-- Newsletter CTA - Scrolls Normally -->
+    <!-- Follow CTA - Scrolls Normally -->
     <div class="sidebar-widget newsletter-widget">
       <h3>📬 Stay Updated</h3>
-      <p>Get the latest tips and tutorials delivered to your inbox.</p>
-      <a href="{{ site.baseurl }}/contact/" class="btn btn-primary btn-block">Subscribe</a>
+      <p>Follow us for the latest tools, tips, and tutorials.</p>
+      <a href="https://twitter.com/{{ site.twitter_username | default: 'freeclipboard' }}" target="_blank" rel="noopener" class="btn btn-primary btn-block">Follow on X →</a>
     </div>
 
   </aside>
@@ -208,7 +207,7 @@ layout: default
 
 <!-- Table of Contents Generator Script -->
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
   const content = document.querySelector('.post-content');
   const toc = document.getElementById('toc');
   
@@ -279,5 +278,5 @@ layout: default
       }
     });
   }
-})();
+});
 </script>

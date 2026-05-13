@@ -3,7 +3,7 @@ layout: post
 title: "Top 10 Free Online Developer Tools That Work Without Login in 2026"
 description: "Tired of signup walls? Here are 10 genuinely useful developer tools that work instantly in your browser — no account, no email, no friction. Includes JSON formatters, clipboard managers, regex testers, and more."
 date: 2026-05-13
-author: FreeClipboard Team
+author: Ali
 category: developer-tools
 tags: [Developer Tools, Productivity, Free Tools, No Signup, Web Tools]
 keywords: free developer tools, no login tools, online dev tools 2026, JSON formatter free, regex tester online, clipboard manager free
