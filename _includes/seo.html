@@ -5,10 +5,22 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 =============================================================================
 {% endcomment %}
 
+<!-- Compute SEO title: Homepage = site.title, other pages = "Page Title | FreeClipboard" -->
+{% if page.url == "/" or page.url == "/index.html" %}
+  {% assign seo_title = site.title %}
+{% elsif page.title %}
+  {% assign seo_title = page.title | append: " | FreeClipboard" %}
+{% else %}
+  {% assign seo_title = site.title %}
+{% endif %}
+
+<!-- Compute SEO description with fallback -->
+{% assign seo_description = page.description | default: site.description %}
+
 <!-- Primary Meta Tags -->
-<title>{{ page.title | default: site.title }}</title>
-<meta name="title" content="{{ page.title | default: site.title }}">
-<meta name="description" content="{{ page.description | default: site.description }}">
+<title>{{ seo_title }}</title>
+<meta name="title" content="{{ seo_title }}">
+<meta name="description" content="{{ seo_description }}">
 <meta name="keywords" content="{{ page.keywords | default: site.keywords }}">
 <meta name="author" content="{{ site.author | default: 'FreeClipboard Team' }}">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -25,12 +37,12 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="{{ page.og_type | default: 'website' }}">
 <meta property="og:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
-<meta property="og:title" content="{{ page.title | default: site.title }}">
-<meta property="og:description" content="{{ page.description | default: site.description }}">
+<meta property="og:title" content="{{ seo_title }}">
+<meta property="og:description" content="{{ seo_description }}">
 <meta property="og:image" content="{{ page.og_image | default: site.url | append: '/assets/images/og-image.png' }}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{{ page.title | default: site.title }}">
+<meta property="og:image:alt" content="{{ seo_title }}">
 <meta property="og:site_name" content="{{ site.title }}">
 
 <!-- Twitter Card -->
@@ -38,10 +50,10 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 <meta name="twitter:site" content="@{{ site.twitter_username | default: 'freeclipboard' }}">
 <meta name="twitter:creator" content="@{{ site.twitter_username | default: 'freeclipboard' }}">
 <meta name="twitter:url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
-<meta name="twitter:title" content="{{ page.title | default: site.title }}">
-<meta name="twitter:description" content="{{ page.description | default: site.description }}">
+<meta name="twitter:title" content="{{ seo_title }}">
+<meta name="twitter:description" content="{{ seo_description }}">
 <meta name="twitter:image" content="{{ page.twitter_image | default: site.url | append: '/assets/images/twitter-card.png' }}">
-<meta name="twitter:image:alt" content="{{ page.title | default: site.title }}">
+<meta name="twitter:image:alt" content="{{ seo_title }}">
 
 <!-- Additional SEO Meta Tags -->
 <meta name="theme-color" content="#3B82F6">
@@ -57,9 +69,9 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 <meta name="geo.placename" content="United States">
 
 <!-- Dublin Core Metadata for Enhanced Indexing -->
-<meta name="DC.title" content="{{ page.title | default: site.title }}">
+<meta name="DC.title" content="{{ seo_title }}">
 <meta name="DC.creator" content="{{ site.author | default: 'FreeClipboard Team' }}">
-<meta name="DC.description" content="{{ page.description | default: site.description }}">
+<meta name="DC.description" content="{{ seo_description }}">
 <meta name="DC.publisher" content="{{ site.title }}">
 <meta name="DC.type" content="InteractiveResource">
 <meta name="DC.format" content="text/html">
