@@ -1,96 +1,401 @@
 ---
 layout: tool
 title: "Online Scratch Pad - Quick Notes in Browser | FreeClipboard"
-description: "Instant online scratch pad. Open browser, start typing. Zero friction — no tabs, no buttons, just a clean writing space that auto-saves."
+description: "Instant online scratch pad. Open browser, start typing. Zero friction — no tabs, no buttons, just a clean
+writing space that auto-saves."
 permalink: /tools/scratch-pad/
 canonical: https://freeclipboard.com/tools/scratch-pad/
 category: "Clipboard & Text Tools"
 category_name: "Clipboard & Text Tools"
-category_url: /clipboard-text-tools/
+category_url: /clipboard-tools/
 keywords: "online scratch pad, quick notes online, browser scratch pad, instant notepad online, type and save online"
 rating: 4.9
 rating_count: 1350
 schema_type: WebApplication
 features:
-  - Distraction-free writing
-  - Auto-save every second
-  - Dark mode
-  - Ultra minimal UI
-  - Works offline
-  - Download as .txt
-  - 100% private
-  - Keyboard shortcuts
+- Distraction-free writing
+- Auto-save every second
+- Dark mode
+- Ultra minimal UI
+- Works offline
+- Download as .txt
+- 100% private
+- Keyboard shortcuts
 ---
 
 <style>
-/* ── Scratch Pad Core ─────────────────── */
-.sp-wrap{position:relative;max-width:72rem;margin:0 auto}
-.sp-editor{width:100%;min-height:80vh;border:none;outline:none;resize:none;padding:2rem 2.5rem;font-size:16px;line-height:1.6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#1e293b;background:transparent;transition:color .3s,background .3s}
-.sp-editor::placeholder{color:#c0c8d4;font-style:italic}
-.sp-editor::-webkit-scrollbar{width:4px}
-.sp-editor::-webkit-scrollbar-thumb{background:#d1d5db;border-radius:4px}
+  /* ── Scratch Pad Core ─────────────────── */
+  .sp-wrap {
+    position: relative;
+    max-width: 72rem;
+    margin: 0 auto
+  }
 
-/* ── Save Dot ─────────────────────────── */
-.sp-dot{position:fixed;top:5.5rem;right:1.5rem;width:10px;height:10px;border-radius:50%;background:#22c55e;z-index:100;transition:opacity .3s}
-.sp-dot.saving{animation:sp-blink .6s ease-in-out infinite}
-@keyframes sp-blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .sp-editor {
+    width: 100%;
+    min-height: 80vh;
+    border: none;
+    outline: none;
+    resize: none;
+    padding: 2rem 2.5rem;
+    font-size: 16px;
+    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+    background: transparent;
+    transition: color .3s, background .3s
+  }
 
-/* ── Floating Toolbar ─────────────────── */
-.sp-toolbar{position:fixed;bottom:1.5rem;right:1.5rem;display:flex;gap:4px;padding:6px 8px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid #e2e8f0;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);z-index:100;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none}
-.sp-toolbar.visible{opacity:1;transform:translateY(0);pointer-events:auto}
-.sp-tb{width:38px;height:38px;border:none;background:transparent;border-radius:8px;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .15s;position:relative}
-.sp-tb:hover{background:#f1f5f9}
-.sp-tb[data-tip]:hover::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);padding:4px 10px;background:#1e293b;color:#fff;font-size:.72rem;border-radius:4px;white-space:nowrap;pointer-events:none}
+  .sp-editor::placeholder {
+    color: #c0c8d4;
+    font-style: italic
+  }
 
-/* ── Stats Popup ──────────────────────── */
-.sp-stats{position:fixed;bottom:4.5rem;right:1.5rem;background:#fff;border:1px solid #e2e8f0;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.12);padding:1rem 1.25rem;z-index:101;display:none;min-width:180px}
-.sp-stats.show{display:block}
-.sp-stats h4{margin:0 0 8px;font-size:.85rem;color:#1e293b}
-.sp-stat-row{display:flex;justify-content:space-between;padding:4px 0;font-size:.82rem;color:#475569;border-bottom:1px solid #f1f5f9}
-.sp-stat-row:last-child{border:none}
-.sp-stat-row span:last-child{font-weight:600;color:#1e293b}
+  .sp-editor::-webkit-scrollbar {
+    width: 4px
+  }
 
-/* ── Dark Mode ────────────────────────── */
-.sp-wrap.dark .sp-editor{color:#e0e0e0;background:#1a1a2e}
-.sp-wrap.dark .sp-editor::placeholder{color:#4a4a6a}
-.sp-wrap.dark .sp-editor::-webkit-scrollbar-thumb{background:#3a3a5a}
-.sp-wrap.dark~.sp-toolbar,.sp-wrap.dark~.sp-stats{background:rgba(22,33,62,.95);border-color:#2a2a4a}
-.sp-wrap.dark~.sp-toolbar .sp-tb:hover{background:#2a2a4a}
-.sp-wrap.dark~.sp-stats{background:#16213e;border-color:#2a2a4a}
-.sp-wrap.dark~.sp-stats h4{color:#e0e0e0}
-.sp-wrap.dark~.sp-stats .sp-stat-row{color:#a0a0c0;border-color:#2a2a4a}
-.sp-wrap.dark~.sp-stats .sp-stat-row span:last-child{color:#e0e0e0}
+  .sp-editor::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px
+  }
 
-/* ── Esc hint ─────────────────────────── */
-.sp-hint{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:.75rem;color:#94a3b8;opacity:0;transition:opacity 2s;pointer-events:none;z-index:50}
-.sp-hint.show{opacity:1;transition:opacity .3s}
+  /* ── Save Dot ─────────────────────────── */
+  .sp-dot {
+    position: fixed;
+    top: 5.5rem;
+    right: 1.5rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    z-index: 100;
+    transition: opacity .3s
+  }
 
-/* ── Responsive ───────────────────────── */
-@media(max-width:640px){
-  .sp-editor{padding:1rem 1.25rem;font-size:15px;min-height:70vh}
-  .sp-toolbar{bottom:1rem;right:1rem}
-  .sp-stats{bottom:4rem;right:1rem}
-}
+  .sp-dot.saving {
+    animation: sp-blink .6s ease-in-out infinite
+  }
 
-/* ── SEO Sections ─────────────────────── */
-.sp-seo{max-width:48rem;margin:0 auto;padding:3rem 1rem}
-.sp-seo h2{font-size:1.5rem;font-weight:700;color:#1e293b;margin:2.5rem 0 1rem;padding-bottom:.5rem;border-bottom:2px solid #e2e8f0}
-.sp-seo h2:first-child{margin-top:0}
-.sp-seo p{color:#475569;line-height:1.8;margin-bottom:1rem;font-size:.95rem}
-.sp-seo ol,.sp-seo ul{color:#475569;line-height:1.8;margin-bottom:1.25rem;padding-left:1.25rem}
-.sp-seo li{margin-bottom:.5rem;font-size:.95rem}
-.sp-feat{list-style:none;padding:0}
-.sp-feat li{padding:8px 0 8px 28px;position:relative}
-.sp-feat li::before{content:'✅';position:absolute;left:0;top:8px}
-.sp-faq details{border:1px solid #e2e8f0;border-radius:8px;margin-bottom:.75rem;overflow:hidden}
-.sp-faq summary{padding:1rem 1.25rem;font-weight:600;color:#1e293b;cursor:pointer;background:#f8fafc;font-size:.95rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.sp-faq summary::-webkit-details-marker{display:none}
-.sp-faq summary::after{content:'▼';font-size:.65rem;color:#94a3b8;transition:transform .2s}
-.sp-faq details[open] summary::after{transform:rotate(180deg)}
-.sp-faq .faq-a{padding:0 1.25rem 1rem;color:#475569;line-height:1.7;font-size:.9rem}
-.sp-related{display:flex;flex-wrap:wrap;gap:.75rem;list-style:none;padding:0}
-.sp-related a{display:inline-block;padding:8px 18px;background:#eff6ff;color:#2563eb;border-radius:6px;text-decoration:none;font-weight:500;font-size:.9rem;border:1px solid #bfdbfe;transition:all .2s}
-.sp-related a:hover{background:#3B82F6;color:#fff}
+  @keyframes sp-blink {
+
+    0%,
+    100% {
+      opacity: 1
+    }
+
+    50% {
+      opacity: .3
+    }
+  }
+
+  /* ── Floating Toolbar ─────────────────── */
+  .sp-toolbar {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 4px;
+    padding: 6px 8px;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity .3s, transform .3s;
+    pointer-events: none
+  }
+
+  .sp-toolbar.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto
+  }
+
+  .sp-tb {
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .15s;
+    position: relative
+  }
+
+  .sp-tb:hover {
+    background: #f1f5f9
+  }
+
+  .sp-tb[data-tip]:hover::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 4px 10px;
+    background: #1e293b;
+    color: #fff;
+    font-size: .72rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    pointer-events: none
+  }
+
+  /* ── Stats Popup ──────────────────────── */
+  .sp-stats {
+    position: fixed;
+    bottom: 4.5rem;
+    right: 1.5rem;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .12);
+    padding: 1rem 1.25rem;
+    z-index: 101;
+    display: none;
+    min-width: 180px
+  }
+
+  .sp-stats.show {
+    display: block
+  }
+
+  .sp-stats h4 {
+    margin: 0 0 8px;
+    font-size: .85rem;
+    color: #1e293b
+  }
+
+  .sp-stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: .82rem;
+    color: #475569;
+    border-bottom: 1px solid #f1f5f9
+  }
+
+  .sp-stat-row:last-child {
+    border: none
+  }
+
+  .sp-stat-row span:last-child {
+    font-weight: 600;
+    color: #1e293b
+  }
+
+  /* ── Dark Mode ────────────────────────── */
+  .sp-wrap.dark .sp-editor {
+    color: #e0e0e0;
+    background: #1a1a2e
+  }
+
+  .sp-wrap.dark .sp-editor::placeholder {
+    color: #4a4a6a
+  }
+
+  .sp-wrap.dark .sp-editor::-webkit-scrollbar-thumb {
+    background: #3a3a5a
+  }
+
+  .sp-wrap.dark~.sp-toolbar,
+  .sp-wrap.dark~.sp-stats {
+    background: rgba(22, 33, 62, .95);
+    border-color: #2a2a4a
+  }
+
+  .sp-wrap.dark~.sp-toolbar .sp-tb:hover {
+    background: #2a2a4a
+  }
+
+  .sp-wrap.dark~.sp-stats {
+    background: #16213e;
+    border-color: #2a2a4a
+  }
+
+  .sp-wrap.dark~.sp-stats h4 {
+    color: #e0e0e0
+  }
+
+  .sp-wrap.dark~.sp-stats .sp-stat-row {
+    color: #a0a0c0;
+    border-color: #2a2a4a
+  }
+
+  .sp-wrap.dark~.sp-stats .sp-stat-row span:last-child {
+    color: #e0e0e0
+  }
+
+  /* ── Esc hint ─────────────────────────── */
+  .sp-hint {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: .75rem;
+    color: #94a3b8;
+    opacity: 0;
+    transition: opacity 2s;
+    pointer-events: none;
+    z-index: 50
+  }
+
+  .sp-hint.show {
+    opacity: 1;
+    transition: opacity .3s
+  }
+
+  /* ── Responsive ───────────────────────── */
+  @media(max-width:640px) {
+    .sp-editor {
+      padding: 1rem 1.25rem;
+      font-size: 15px;
+      min-height: 70vh
+    }
+
+    .sp-toolbar {
+      bottom: 1rem;
+      right: 1rem
+    }
+
+    .sp-stats {
+      bottom: 4rem;
+      right: 1rem
+    }
+  }
+
+  /* ── SEO Sections ─────────────────────── */
+  .sp-seo {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 3rem 1rem
+  }
+
+  .sp-seo h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid #e2e8f0
+  }
+
+  .sp-seo h2:first-child {
+    margin-top: 0
+  }
+
+  .sp-seo p {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: .95rem
+  }
+
+  .sp-seo ol,
+  .sp-seo ul {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 1.25rem;
+    padding-left: 1.25rem
+  }
+
+  .sp-seo li {
+    margin-bottom: .5rem;
+    font-size: .95rem
+  }
+
+  .sp-feat {
+    list-style: none;
+    padding: 0
+  }
+
+  .sp-feat li {
+    padding: 8px 0 8px 28px;
+    position: relative
+  }
+
+  .sp-feat li::before {
+    content: '✅';
+    position: absolute;
+    left: 0;
+    top: 8px
+  }
+
+  .sp-faq details {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: .75rem;
+    overflow: hidden
+  }
+
+  .sp-faq summary {
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    cursor: pointer;
+    background: #f8fafc;
+    font-size: .95rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+  }
+
+  .sp-faq summary::-webkit-details-marker {
+    display: none
+  }
+
+  .sp-faq summary::after {
+    content: '▼';
+    font-size: .65rem;
+    color: #94a3b8;
+    transition: transform .2s
+  }
+
+  .sp-faq details[open] summary::after {
+    transform: rotate(180deg)
+  }
+
+  .sp-faq .faq-a {
+    padding: 0 1.25rem 1rem;
+    color: #475569;
+    line-height: 1.7;
+    font-size: .9rem
+  }
+
+  .sp-related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    list-style: none;
+    padding: 0
+  }
+
+  .sp-related a {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #eff6ff;
+    color: #2563eb;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .9rem;
+    border: 1px solid #bfdbfe;
+    transition: all .2s
+  }
+
+  .sp-related a:hover {
+    background: #3B82F6;
+    color: #fff
+  }
 </style>
 
 <!-- Save Dot -->
@@ -98,7 +403,8 @@ features:
 
 <!-- Editor -->
 <div class="sp-wrap" id="spWrap">
-  <textarea class="sp-editor" id="spEditor" placeholder="Just start typing... ✍️" autofocus spellcheck="true"></textarea>
+  <textarea class="sp-editor" id="spEditor" placeholder="Just start typing... ✍️" autofocus
+    spellcheck="true"></textarea>
 </div>
 
 <!-- Floating Toolbar -->
@@ -123,144 +429,144 @@ features:
 <div class="sp-hint" id="spHint">Press <strong>Esc</strong> to toggle toolbar</div>
 
 <script>
-(function(){
-  const editor = document.getElementById('spEditor');
-  const wrap = document.getElementById('spWrap');
-  const toolbar = document.getElementById('spToolbar');
-  const dot = document.getElementById('saveDot');
-  const stats = document.getElementById('spStats');
-  const hint = document.getElementById('spHint');
-  let saveTimer = null;
-  let toolbarTimer = null;
-  let toolbarVisible = false;
-  const TITLE_BASE = ' | FreeClipboard';
+  (function () {
+    const editor = document.getElementById('spEditor');
+    const wrap = document.getElementById('spWrap');
+    const toolbar = document.getElementById('spToolbar');
+    const dot = document.getElementById('saveDot');
+    const stats = document.getElementById('spStats');
+    const hint = document.getElementById('spHint');
+    let saveTimer = null;
+    let toolbarTimer = null;
+    let toolbarVisible = false;
+    const TITLE_BASE = ' | FreeClipboard';
 
-  // ── Restore ────────────────────
-  editor.value = localStorage.getItem('scratchpad_text') || '';
-  if (localStorage.getItem('scratchpad_dark') === 'true') setDark(true);
-  updateTitle();
-
-  // Show hint briefly on load
-  hint.classList.add('show');
-  setTimeout(() => hint.classList.remove('show'), 4000);
-
-  // ── Auto-save ──────────────────
-  editor.addEventListener('input', function(){
+    // ── Restore ────────────────────
+    editor.value = localStorage.getItem('scratchpad_text') || '';
+    if (localStorage.getItem('scratchpad_dark') === 'true') setDark(true);
     updateTitle();
-    dot.classList.add('saving');
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(function(){
-      localStorage.setItem('scratchpad_text', editor.value);
-      dot.classList.remove('saving');
-    }, 1000);
-  });
 
-  // ── Dynamic Title ──────────────
-  function updateTitle(){
-    const text = editor.value.trim();
-    if (text) {
-      const preview = text.substring(0, 30).replace(/\n/g, ' ');
-      document.title = preview + (text.length > 30 ? '...' : '') + TITLE_BASE;
-    } else {
-      document.title = 'Scratch Pad' + TITLE_BASE;
+    // Show hint briefly on load
+    hint.classList.add('show');
+    setTimeout(() => hint.classList.remove('show'), 4000);
+
+    // ── Auto-save ──────────────────
+    editor.addEventListener('input', function () {
+      updateTitle();
+      dot.classList.add('saving');
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(function () {
+        localStorage.setItem('scratchpad_text', editor.value);
+        dot.classList.remove('saving');
+      }, 1000);
+    });
+
+    // ── Dynamic Title ──────────────
+    function updateTitle() {
+      const text = editor.value.trim();
+      if (text) {
+        const preview = text.substring(0, 30).replace(/\n/g, ' ');
+        document.title = preview + (text.length > 30 ? '...' : '') + TITLE_BASE;
+      } else {
+        document.title = 'Scratch Pad' + TITLE_BASE;
+      }
     }
-  }
 
-  // ── Toolbar Visibility ─────────
-  function showToolbar(){
-    toolbarVisible = true;
-    toolbar.classList.add('visible');
-    clearTimeout(toolbarTimer);
-    toolbarTimer = setTimeout(hideToolbar, 4000);
-  }
-  function hideToolbar(){
-    if (stats.classList.contains('show')) return;
-    toolbarVisible = false;
-    toolbar.classList.remove('visible');
-  }
-  function toggleToolbar(){
-    if (toolbarVisible) hideToolbar(); else showToolbar();
-  }
-
-  // Show on hover/focus near bottom
-  document.addEventListener('mousemove', function(e){
-    if (e.clientY > window.innerHeight - 100 && e.clientX > window.innerWidth - 200) showToolbar();
-  });
-  toolbar.addEventListener('mouseenter', function(){ clearTimeout(toolbarTimer); });
-  toolbar.addEventListener('mouseleave', function(){ toolbarTimer = setTimeout(hideToolbar, 2000); });
-
-  // Escape key
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') { e.preventDefault(); toggleToolbar(); stats.classList.remove('show'); }
-  });
-
-  // ── Dark Mode ──────────────────
-  function setDark(on){
-    wrap.classList.toggle('dark', on);
-    document.getElementById('darkBtn').textContent = on ? '☀️' : '🌙';
-    localStorage.setItem('scratchpad_dark', on);
-  }
-  document.getElementById('darkBtn').addEventListener('click', function(){
-    setDark(!wrap.classList.contains('dark'));
-  });
-
-  // ── Copy All ───────────────────
-  document.getElementById('copyBtn').addEventListener('click', function(){
-    navigator.clipboard.writeText(editor.value).then(() => {
-      this.textContent = '✅'; setTimeout(() => this.textContent = '📋', 1500);
-    }).catch(() => { editor.select(); document.execCommand('copy'); });
-  });
-
-  // ── Download ───────────────────
-  document.getElementById('downloadBtn').addEventListener('click', function(){
-    const blob = new Blob([editor.value], {type:'text/plain'});
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'scratch-pad.txt';
-    a.click();
-    URL.revokeObjectURL(a.href);
-  });
-
-  // ── Clear ──────────────────────
-  document.getElementById('clearBtn').addEventListener('click', function(){
-    if (editor.value && !confirm('Clear everything?')) return;
-    editor.value = '';
-    localStorage.setItem('scratchpad_text', '');
-    updateTitle();
-    editor.focus();
-  });
-
-  // ── Stats ──────────────────────
-  document.getElementById('statsBtn').addEventListener('click', function(){
-    const text = editor.value;
-    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-    document.getElementById('stWords').textContent = words.toLocaleString();
-    document.getElementById('stChars').textContent = text.length.toLocaleString();
-    document.getElementById('stLines').textContent = (text ? text.split('\n').length : 0).toLocaleString();
-    document.getElementById('stRead').textContent = Math.max(1, Math.ceil(words / 200)) + ' min';
-    stats.classList.toggle('show');
-  });
-
-  // Close stats on outside click
-  document.addEventListener('click', function(e){
-    if (!stats.contains(e.target) && e.target.id !== 'statsBtn') stats.classList.remove('show');
-  });
-
-  // ── Tab key → indent ──────────
-  editor.addEventListener('keydown', function(e){
-    if (e.key === 'Tab') {
-      e.preventDefault();
-      const s = this.selectionStart, end = this.selectionEnd;
-      this.value = this.value.substring(0, s) + '    ' + this.value.substring(end);
-      this.selectionStart = this.selectionEnd = s + 4;
+    // ── Toolbar Visibility ─────────
+    function showToolbar() {
+      toolbarVisible = true;
+      toolbar.classList.add('visible');
+      clearTimeout(toolbarTimer);
+      toolbarTimer = setTimeout(hideToolbar, 4000);
     }
-    if (e.ctrlKey && e.key === 's') {
-      e.preventDefault();
-      localStorage.setItem('scratchpad_text', editor.value);
-      dot.classList.remove('saving');
+    function hideToolbar() {
+      if (stats.classList.contains('show')) return;
+      toolbarVisible = false;
+      toolbar.classList.remove('visible');
     }
-  });
-})();
+    function toggleToolbar() {
+      if (toolbarVisible) hideToolbar(); else showToolbar();
+    }
+
+    // Show on hover/focus near bottom
+    document.addEventListener('mousemove', function (e) {
+      if (e.clientY > window.innerHeight - 100 && e.clientX > window.innerWidth - 200) showToolbar();
+    });
+    toolbar.addEventListener('mouseenter', function () { clearTimeout(toolbarTimer); });
+    toolbar.addEventListener('mouseleave', function () { toolbarTimer = setTimeout(hideToolbar, 2000); });
+
+    // Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); toggleToolbar(); stats.classList.remove('show'); }
+    });
+
+    // ── Dark Mode ──────────────────
+    function setDark(on) {
+      wrap.classList.toggle('dark', on);
+      document.getElementById('darkBtn').textContent = on ? '☀️' : '🌙';
+      localStorage.setItem('scratchpad_dark', on);
+    }
+    document.getElementById('darkBtn').addEventListener('click', function () {
+      setDark(!wrap.classList.contains('dark'));
+    });
+
+    // ── Copy All ───────────────────
+    document.getElementById('copyBtn').addEventListener('click', function () {
+      navigator.clipboard.writeText(editor.value).then(() => {
+        this.textContent = '✅'; setTimeout(() => this.textContent = '📋', 1500);
+      }).catch(() => { editor.select(); document.execCommand('copy'); });
+    });
+
+    // ── Download ───────────────────
+    document.getElementById('downloadBtn').addEventListener('click', function () {
+      const blob = new Blob([editor.value], { type: 'text/plain' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'scratch-pad.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    // ── Clear ──────────────────────
+    document.getElementById('clearBtn').addEventListener('click', function () {
+      if (editor.value && !confirm('Clear everything?')) return;
+      editor.value = '';
+      localStorage.setItem('scratchpad_text', '');
+      updateTitle();
+      editor.focus();
+    });
+
+    // ── Stats ──────────────────────
+    document.getElementById('statsBtn').addEventListener('click', function () {
+      const text = editor.value;
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      document.getElementById('stWords').textContent = words.toLocaleString();
+      document.getElementById('stChars').textContent = text.length.toLocaleString();
+      document.getElementById('stLines').textContent = (text ? text.split('\n').length : 0).toLocaleString();
+      document.getElementById('stRead').textContent = Math.max(1, Math.ceil(words / 200)) + ' min';
+      stats.classList.toggle('show');
+    });
+
+    // Close stats on outside click
+    document.addEventListener('click', function (e) {
+      if (!stats.contains(e.target) && e.target.id !== 'statsBtn') stats.classList.remove('show');
+    });
+
+    // ── Tab key → indent ──────────
+    editor.addEventListener('keydown', function (e) {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const s = this.selectionStart, end = this.selectionEnd;
+        this.value = this.value.substring(0, s) + '    ' + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = s + 4;
+      }
+      if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();
+        localStorage.setItem('scratchpad_text', editor.value);
+        dot.classList.remove('saving');
+      }
+    });
+  })();
 </script>
 
 <!-- ═══ SEO CONTENT ═══════════════════════════════ -->
@@ -268,52 +574,73 @@ features:
   <div class="content-body">
 
     <h2>Free Online Scratch Pad — Zero Friction Writing</h2>
-    <p>Sometimes you don't need tabs, toolbars, or formatting options. You just need a blank space to think. FreeClipboard's Scratch Pad is the fastest way to capture a thought — open your browser and start typing. That's it. No signup, no buttons to click, no decisions to make.</p>
-    <p>Your text auto-saves every second to your browser's local storage. Close the tab, restart your computer, come back tomorrow — your words are still there. It's the digital equivalent of a sticky note that never falls off your monitor, with the added benefit of dark mode for late-night thinkers.</p>
+    <p>Sometimes you don't need tabs, toolbars, or formatting options. You just need a blank space to think.
+      FreeClipboard's Scratch Pad is the fastest way to capture a thought — open your browser and start typing. That's
+      it. No signup, no buttons to click, no decisions to make.</p>
+    <p>Your text auto-saves every second to your browser's local storage. Close the tab, restart your computer, come
+      back tomorrow — your words are still there. It's the digital equivalent of a sticky note that never falls off your
+      monitor, with the added benefit of dark mode for late-night thinkers.</p>
 
     <h2>How to Use the Scratch Pad</h2>
     <ol>
-      <li><strong>Open and Type:</strong> Just visit this page and start typing. The full-screen editor is ready immediately — no clicks needed.</li>
-      <li><strong>Auto-Save:</strong> Everything saves automatically every second. Watch the tiny green dot in the corner — solid means saved, blinking means saving.</li>
-      <li><strong>Access the Toolbar:</strong> Hover your mouse near the bottom-right corner, or press <strong>Esc</strong> to show the floating toolbar with dark mode, copy, download, clear, and stats.</li>
-      <li><strong>Export Your Work:</strong> Click the download button to save your text as a .txt file, or copy everything to your clipboard with one click.</li>
+      <li><strong>Open and Type:</strong> Just visit this page and start typing. The full-screen editor is ready
+        immediately — no clicks needed.</li>
+      <li><strong>Auto-Save:</strong> Everything saves automatically every second. Watch the tiny green dot in the
+        corner — solid means saved, blinking means saving.</li>
+      <li><strong>Access the Toolbar:</strong> Hover your mouse near the bottom-right corner, or press
+        <strong>Esc</strong> to show the floating toolbar with dark mode, copy, download, clear, and stats.</li>
+      <li><strong>Export Your Work:</strong> Click the download button to save your text as a .txt file, or copy
+        everything to your clipboard with one click.</li>
     </ol>
 
     <h2>Why Choose the Scratch Pad?</h2>
     <ul class="sp-feat">
-      <li><strong>Zero Friction:</strong> No buttons, no menus, no settings. Just you and a blank page that auto-saves.</li>
+      <li><strong>Zero Friction:</strong> No buttons, no menus, no settings. Just you and a blank page that auto-saves.
+      </li>
       <li><strong>Ultra Minimal:</strong> The interface disappears so you can focus on what matters — your words.</li>
       <li><strong>Instant Auto-Save:</strong> Text saves every second. You never have to think about saving.</li>
       <li><strong>Dark Mode:</strong> Easy on the eyes during night sessions. Toggle from the floating toolbar.</li>
-      <li><strong>Dynamic Tab Title:</strong> Your browser tab shows the first few words of your text for easy identification.</li>
-      <li><strong>100% Private:</strong> Everything stays in your browser's local storage. Nothing is sent to any server.</li>
-      <li><strong>Works Offline:</strong> Once loaded, the scratch pad works without internet — perfect for focused writing.</li>
+      <li><strong>Dynamic Tab Title:</strong> Your browser tab shows the first few words of your text for easy
+        identification.</li>
+      <li><strong>100% Private:</strong> Everything stays in your browser's local storage. Nothing is sent to any
+        server.</li>
+      <li><strong>Works Offline:</strong> Once loaded, the scratch pad works without internet — perfect for focused
+        writing.</li>
     </ul>
 
     <h2>Scratch Pad vs. Online Notepad</h2>
-    <p>We offer both tools because different situations call for different approaches. The <a href="/tools/online-notepad/">Online Notepad</a> is feature-rich with multiple tabs, a full toolbar, word counts, and font controls. The Scratch Pad is intentionally stripped down — one space, one purpose, zero distractions. Choose the Notepad when you need organization; choose the Scratch Pad when you need to think.</p>
+    <p>We offer both tools because different situations call for different approaches. The <a
+        href="/tools/online-notepad/">Online Notepad</a> is feature-rich with multiple tabs, a full toolbar, word
+      counts, and font controls. The Scratch Pad is intentionally stripped down — one space, one purpose, zero
+      distractions. Choose the Notepad when you need organization; choose the Scratch Pad when you need to think.</p>
 
     <h2>Frequently Asked Questions</h2>
     <div class="sp-faq">
       <details>
         <summary>Will my text be saved if I close the browser?</summary>
-        <div class="faq-a">Yes. Text is saved to localStorage every second, which persists across browser sessions. Your text will be here when you return — unless you clear browser data or use incognito mode.</div>
+        <div class="faq-a">Yes. Text is saved to localStorage every second, which persists across browser sessions. Your
+          text will be here when you return — unless you clear browser data or use incognito mode.</div>
       </details>
       <details>
         <summary>Is the Scratch Pad really private?</summary>
-        <div class="faq-a">Completely. All data stays in your browser's local storage on your device. Nothing is uploaded, transmitted, or stored on any server. We can't see your text even if we wanted to.</div>
+        <div class="faq-a">Completely. All data stays in your browser's local storage on your device. Nothing is
+          uploaded, transmitted, or stored on any server. We can't see your text even if we wanted to.</div>
       </details>
       <details>
         <summary>Where is the toolbar?</summary>
-        <div class="faq-a">It's intentionally hidden to keep the interface minimal. Hover your mouse near the bottom-right corner of the screen, or press the Escape key to toggle it. It auto-hides after 4 seconds of inactivity.</div>
+        <div class="faq-a">It's intentionally hidden to keep the interface minimal. Hover your mouse near the
+          bottom-right corner of the screen, or press the Escape key to toggle it. It auto-hides after 4 seconds of
+          inactivity.</div>
       </details>
       <details>
         <summary>Can I use keyboard shortcuts?</summary>
-        <div class="faq-a">Yes — Ctrl+S to force-save, Tab to indent with 4 spaces, and Esc to toggle the floating toolbar. The editor also supports standard browser shortcuts like Ctrl+A (select all) and Ctrl+Z (undo).</div>
+        <div class="faq-a">Yes — Ctrl+S to force-save, Tab to indent with 4 spaces, and Esc to toggle the floating
+          toolbar. The editor also supports standard browser shortcuts like Ctrl+A (select all) and Ctrl+Z (undo).</div>
       </details>
       <details>
         <summary>How much text can I store?</summary>
-        <div class="faq-a">Browsers typically allow 5–10 MB of localStorage per domain — that's millions of characters. For very long writing, we recommend downloading as .txt periodically as a backup.</div>
+        <div class="faq-a">Browsers typically allow 5–10 MB of localStorage per domain — that's millions of characters.
+          For very long writing, we recommend downloading as .txt periodically as a backup.</div>
       </details>
     </div>
 
