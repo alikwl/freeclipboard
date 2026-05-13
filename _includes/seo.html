@@ -85,15 +85,17 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 <!-- Organization Schema (Global) -->
 {% include schema-organization.html %}
 
-<!-- Website Schema (Global) -->
+<!-- Website Schema with SiteLinksSearchBox (Homepage Only) -->
+{% if page.url == "/" or page.url == "/index.html" %}
 {% include schema-website.html %}
+{% endif %}
 
 <!-- Breadcrumb Schema -->
 {% include schema-breadcrumb.html %}
 
 <!-- Page-Specific Schema.org Structured Data -->
 {% if page.schema_type == 'WebApplication' %}
-  {% include schema-software.html %}
+  {% comment %} WebApplication schema is handled by tool-schema.html in _layouts/tool.html {% endcomment %}
   {% include schema-speakable.html %}
 
 {% elsif page.schema_type == 'Article' %}

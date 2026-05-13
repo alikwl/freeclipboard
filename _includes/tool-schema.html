@@ -10,6 +10,26 @@ Supports: WebApplication, SoftwareApplication, FAQPage, HowTo, Review
 {% assign tool_url = site.url | append: page.url | replace: 'index.html', '' %}
 
 {% comment %} Main WebApplication Schema {% endcomment %}
+
+{% comment %} Map category_name to Schema.org applicationCategory {% endcomment %}
+{% assign cat_name = page.category_name | downcase %}
+{% if cat_name == "text utilities" or cat_name == "text & writing" %}
+  {% assign app_category = "UtilityApplication" %}
+{% elsif cat_name == "developer tools" %}
+  {% assign app_category = "DeveloperApplication" %}
+{% elsif cat_name == "image & design" or cat_name == "design tools" %}
+  {% assign app_category = "DesignApplication" %}
+{% elsif cat_name == "security & generators" %}
+  {% assign app_category = "SecurityApplication" %}
+{% elsif cat_name == "calculators" or cat_name == "calculators & utilities" %}
+  {% assign app_category = "UtilityApplication" %}
+{% elsif cat_name == "business tools" %}
+  {% assign app_category = "BusinessApplication" %}
+{% elsif cat_name == "education tools" %}
+  {% assign app_category = "EducationalApplication" %}
+{% else %}
+  {% assign app_category = "UtilityApplication" %}
+{% endif %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -19,7 +39,7 @@ Supports: WebApplication, SoftwareApplication, FAQPage, HowTo, Review
   "alternateName": "{{ page.alt_name | default: tool_name }} - FreeClipboard",
   "description": "{{ page.description | escape }}",
   "url": "{{ tool_url }}",
-  "applicationCategory": "UtilityApplication",
+  "applicationCategory": "{{ app_category }}",
   "applicationSubCategory": "{{ page.subcategory | default: 'Online Tool' }}",
   "operatingSystem": "Any (Web Browser)",
   "browserRequirements": "Requires JavaScript. Requires HTML5.",
