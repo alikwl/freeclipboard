@@ -1,5 +1,6 @@
 {% comment %}
-Organization Schema - Enhanced for E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
+Organization Schema - Enhanced for E-E-A-T and AI Entity Recognition
+Includes founder linkage, knowledge graph signals, and topical authority markers
 {% endcomment %}
 <script type="application/ld+json">
 {
@@ -7,7 +8,7 @@ Organization Schema - Enhanced for E-E-A-T (Experience, Expertise, Authoritative
   "@type": "Organization",
   "@id": "{{ site.url }}/#organization",
   "name": "{{ site.title }}",
-  "alternateName": ["FreeClipboard", "Free Clipboard Tools", "FreeClipboard.com"],
+  "alternateName": ["FreeClipboard", "Free Clipboard Tools", "FreeClipboard.com", "Bismillah Tech"],
   "url": "{{ site.url }}",
   "logo": {
     "@type": "ImageObject",
@@ -26,6 +27,9 @@ Organization Schema - Enhanced for E-E-A-T (Experience, Expertise, Authoritative
   },
   "description": "{{ site.description }}",
   "foundingDate": "2024",
+  "founder": {
+    "@id": "{{ site.url }}/#founder"
+  },
   "slogan": "Free Online Tools for Everyone",
   "knowsAbout": [
     "Web Development Tools",
@@ -35,7 +39,14 @@ Organization Schema - Enhanced for E-E-A-T (Experience, Expertise, Authoritative
     "QR Code Generation",
     "JSON Formatting",
     "Base64 Encoding",
-    "Clipboard Management"
+    "Clipboard Management",
+    "Client-Side JavaScript",
+    "Browser-Based Applications",
+    "Privacy-First Software",
+    "Developer Productivity Tools",
+    "Online Utility Applications",
+    "Web Cryptography API",
+    "Progressive Web Applications"
   ],
   "sameAs": [
     "https://twitter.com/{{ site.twitter_username | default: 'freeclipboard' }}",
@@ -51,6 +62,13 @@ Organization Schema - Enhanced for E-E-A-T (Experience, Expertise, Authoritative
     "@type": "Place",
     "name": "Worldwide"
   },
-  "serviceType": "Free Online Tools"
+  "serviceType": "Free Online Tools",
+  "numberOfEmployees": {
+    "@type": "QuantitativeValue",
+    "value": 1
+  },
+  "ethicsPolicy": "{{ site.url }}/privacy-policy/",
+  "actionableFeedbackPolicy": "{{ site.url }}/contact/",
+  "publishingPrinciples": "All tools are free, open-access, and process data exclusively client-side with zero server uploads."
 }
 </script>

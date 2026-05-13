@@ -1,0 +1,201 @@
+<!-- Related Tools Section — driven by page.related_tools slugs -->
+<!-- Falls back to category-based matching if no slugs are specified -->
+
+{% assign has_explicit = false %}
+{% if page.related_tools and page.related_tools.size > 0 %}
+  {% assign has_explicit = true %}
+{% endif %}
+
+<section class="related-tools-section" aria-labelledby="related-tools-heading">
+  <div class="related-tools-inner">
+    <div class="related-tools-header">
+      <h2 id="related-tools-heading">🔗 Related Free Tools</h2>
+      <p>You might also like these tools</p>
+    </div>
+
+    <div class="related-tools-grid" role="list">
+      {% if has_explicit %}
+        <!-- Explicit slug-based related tools -->
+        {% for slug in page.related_tools %}
+          {% for tool in site.data.tools-metadata.tools %}
+            {% if tool.slug == slug %}
+              <a href="{{ tool.url | relative_url }}" class="related-tool-card" role="listitem" aria-label="Try {{ tool.name }}">
+                <div class="related-tool-icon">{{ tool.icon }}</div>
+                <div class="related-tool-body">
+                  <h3 class="related-tool-name">{{ tool.name }}</h3>
+                  <p class="related-tool-desc">{{ tool.shortDescription | default: tool.description | truncate: 90 }}</p>
+                </div>
+                <span class="related-tool-arrow" aria-hidden="true">→</span>
+              </a>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      {% else %}
+        <!-- Fallback: category-based matching -->
+        {% assign related_count = 0 %}
+        {% for tool in site.data.tools-metadata.tools %}
+          {% if tool.url != page.url and related_count < 3 %}
+            {% if tool.category == page.category or tool.featured %}
+              <a href="{{ tool.url | relative_url }}" class="related-tool-card" role="listitem" aria-label="Try {{ tool.name }}">
+                <div class="related-tool-icon">{{ tool.icon }}</div>
+                <div class="related-tool-body">
+                  <h3 class="related-tool-name">{{ tool.name }}</h3>
+                  <p class="related-tool-desc">{{ tool.shortDescription | default: tool.description | truncate: 90 }}</p>
+                </div>
+                <span class="related-tool-arrow" aria-hidden="true">→</span>
+              </a>
+              {% assign related_count = related_count | plus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <div class="related-tools-cta">
+      <a href="{{ site.baseurl }}/all-tools/" class="related-tools-browse">Browse All 40+ Free Tools →</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── Related Tools Section ─────────────────────────── */
+.related-tools-section {
+  background: #f8fafc;
+  padding: 3.5rem 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.related-tools-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.related-tools-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.related-tools-header h2 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.4rem;
+}
+
+.related-tools-header p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ── Card Grid ─────────────────────────────────────── */
+.related-tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .related-tools-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+}
+
+/* ── Card ───────────────────────────────────────────── */
+.related-tool-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.875rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.related-tool-card:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.12), 0 1px 4px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.related-tool-card:focus-visible {
+  outline: 2px solid #6366f1;
+  outline-offset: 2px;
+}
+
+/* Icon */
+.related-tool-icon {
+  flex-shrink: 0;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #ede9fe, #e0e7ff);
+  border-radius: 0.75rem;
+}
+
+/* Body */
+.related-tool-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.related-tool-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 0.2rem;
+  line-height: 1.3;
+}
+
+.related-tool-desc {
+  font-size: 0.8125rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Arrow */
+.related-tool-arrow {
+  flex-shrink: 0;
+  font-size: 1.125rem;
+  color: #a5b4fc;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.related-tool-card:hover .related-tool-arrow {
+  color: #6366f1;
+  transform: translateX(3px);
+}
+
+/* ── Browse CTA ────────────────────────────────────── */
+.related-tools-cta {
+  text-align: center;
+  margin-top: 1.75rem;
+}
+
+.related-tools-browse {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #6366f1;
+  text-decoration: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  transition: background 0.2s ease;
+}
+
+.related-tools-browse:hover {
+  background: #ede9fe;
+}
+</style>

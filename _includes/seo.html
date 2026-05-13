@@ -144,3 +144,6 @@ Supports: Search Engines, AI Assistants, Voice Search, Featured Snippets
 {% if page.howto_steps %}
   {% include schema-howto.html name=page.howto_name description=page.howto_description steps=page.howto_steps time=page.howto_time %}
 {% endif %}
+
+{% comment %} AI Search Engine Optimization (GEO/AIO) {% endcomment %}
+{% include ai-meta.html %}

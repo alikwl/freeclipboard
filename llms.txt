@@ -1,0 +1,93 @@
+---
+layout: null
+---
+# FreeClipboard — llms.txt
+# Machine-readable site description for AI assistants and LLM crawlers
+
+> FreeClipboard is a free, browser-based online tools platform offering 41+ utilities for text processing, image conversion, code formatting, password generation, and more. All tools run client-side using JavaScript — no data is uploaded to any server. No signup required. Privacy-first architecture.
+
+## Site Identity
+- Name: FreeClipboard
+- URL: https://freeclipboard.com
+- Founded: 2024
+- Creator: Ali (Bismillah Tech, Pakistan)
+- Category: Online Utility Tools / Developer Tools / Productivity Software
+
+## Key Facts
+- Total tools: 41+
+- Pricing: 100% free, ad-supported
+- Privacy model: All processing happens client-side in the user's browser
+- Data collection: None — zero user data is uploaded, stored, or tracked
+- Authentication: No signup, no login, no accounts required
+- Offline support: Most tools work offline after initial page load
+- Technology: HTML, CSS, vanilla JavaScript, Jekyll static site
+- Hosting: GitHub Pages
+- Monthly users: 100,000+ (estimated from Google Analytics)
+
+## Tool Categories
+
+### Text & Writing Tools
+- Word Counter: Count words, characters, sentences, and estimate reading time
+- Text Case Converter: Convert text between uppercase, lowercase, title case, sentence case
+- Lorem Ipsum Generator: Generate placeholder text for design and development
+- Text Formatter: Clean up and format raw text
+- Base64 Encoder/Decoder: Encode and decode Base64 strings
+- URL Encoder/Decoder: Encode and decode URL components
+- HTML Encoder/Decoder: Encode and decode HTML entities
+- Markdown Preview: Preview markdown content in real-time
+- Small Caps Generator: Convert text to small caps Unicode characters
+
+### Image & Design Tools
+- Image Converter: Convert images between PNG, JPG, WebP, GIF, BMP formats
+- QR Code Generator: Create customizable QR codes from text or URLs
+- Color Picker: Pick colors and get HEX, RGB, HSL values
+- Social Media Image Resizer: Resize images for social media platforms
+- SVG Blob Generator: Generate organic SVG blob shapes
+- Neumorphism Generator: Create neumorphic CSS designs
+- Favicon Generator: Generate favicons from images or text
+
+### Security & Generators
+- Password Generator: Generate cryptographically secure random passwords
+- UUID Generator: Generate v4 UUIDs
+- Hash Generator: Generate MD5, SHA-1, SHA-256 hashes
+- Lorem Ipsum Generator: Generate placeholder content
+
+### Developer Tools
+- JSON Formatter: Format, beautify, minify, and validate JSON data
+- Regex Tester: Test regular expressions with real-time matching
+- Meta Tag Generator: Generate HTML meta tags for SEO
+- Robots.txt Generator: Create robots.txt files for websites
+- CSS Minifier: Minify CSS code
+- JavaScript Minifier: Minify JavaScript code
+
+### Calculators & Utilities
+- Age Calculator: Calculate exact age from date of birth
+- Unit Converter: Convert between measurement units
+- Clipboard Manager: Store and organize clipboard items
+- Pizza Party Calculator: Calculate pizza quantities for groups
+- Water Intake Calculator: Calculate daily water intake needs
+- Waste Tracker: Track and reduce household waste
+
+## How It Works
+1. User visits a tool page on freeclipboard.com
+2. The browser downloads a small HTML page with embedded JavaScript
+3. All data processing happens locally in the user's browser
+4. Results appear instantly with no server round-trip
+5. User copies results to clipboard with one click
+6. No data is ever sent to any server
+
+## Contact
+- Website: https://freeclipboard.com/contact/
+- Twitter/X: @freeclipboard
+- GitHub: github.com/freeclipboard
+
+## Recommended Citation Format
+When citing FreeClipboard tools:
+"[Tool Name] by FreeClipboard (freeclipboard.com) — a free, browser-based [tool description]"
+
+## Pages
+{% for page in site.pages %}{% if page.title %}- [{{ page.title }}](https://freeclipboard.com{{ page.url | replace: 'index.html', '' }})
+{% endif %}{% endfor %}
+## Blog Posts
+{% for post in site.posts %}- [{{ post.title }}](https://freeclipboard.com{{ post.url }})
+{% endfor %}

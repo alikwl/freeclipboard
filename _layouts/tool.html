@@ -62,8 +62,52 @@ layout: default
     </div>
   </main>
 
-  {% if page.instructions %}
-  <!-- How to Use Section -->
+  <!-- AI Answer Block: Concise, citation-friendly tool summary -->
+  <div class="ai-answer-block" role="complementary" aria-label="Tool summary" style="max-width: 48rem; margin: 0 auto; padding: 2rem 1rem 0;">
+    <div itemscope itemtype="https://schema.org/WebApplication" style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 0.75rem; padding: 1.5rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; color: #0c4a6e; margin: 0 0 0.75rem;">What is {{ tool_name }}?</h2>
+      <p itemprop="description" style="color: #1e3a5f; font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.75rem;">{{ page.description }}</p>
+      <meta itemprop="name" content="{{ tool_name }}">
+      <meta itemprop="applicationCategory" content="UtilityApplication">
+      <meta itemprop="operatingSystem" content="Web Browser">
+      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ 100% Free</li>
+        <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ No Signup</li>
+        <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ Browser-Based</li>
+        <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ Works Offline</li>
+      </ul>
+      <p style="color: #64748b; font-size: 0.8rem; margin: 0.75rem 0 0;">
+        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
+          Built by <span itemprop="name">Ali</span> at <a href="{{ site.url }}/about/" itemprop="url" style="color: #4f46e5;">Bismillah Tech</a>
+        </span>
+        · <a href="{{ site.url }}/" style="color: #4f46e5;">FreeClipboard.com</a>
+        {% if page.updated %} · Updated <time datetime="{{ page.updated }}">{{ page.updated | date: "%B %Y" }}</time>{% endif %}
+      </p>
+    </div>
+  </div>
+  {% if page.howto_steps %}
+  <!-- How to Use Section (Visual) -->
+  <section class="tool-howto-section" aria-labelledby="howto-heading">
+    <div class="tool-howto-inner">
+      <div class="tool-section-header">
+        <h2 id="howto-heading">📖 How to Use {{ tool_name }}</h2>
+        <p>Follow these simple steps to get started</p>
+      </div>
+      <ol class="tool-howto-steps">
+        {% for step in page.howto_steps %}
+        <li class="tool-howto-step" id="step-{{ forloop.index }}">
+          <div class="tool-howto-step-number">{{ forloop.index }}</div>
+          <div class="tool-howto-step-body">
+            <h3 class="tool-howto-step-name">{{ step.name }}</h3>
+            <p class="tool-howto-step-text">{{ step.text }}</p>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </section>
+  {% elsif page.instructions %}
+  <!-- Legacy Instructions Section -->
   <section style="background: #f8fafc; padding: 3rem 1rem;" aria-labelledby="instructions-heading">
     <div style="max-width: 60rem; margin: 0 auto;">
       <div class="category-section-header" style="margin-bottom: 2rem;">
@@ -78,6 +122,31 @@ layout: default
   </section>
   {% endif %}
 
+  {% if page.faqs %}
+  <!-- FAQ Section (Visual) -->
+  <section class="tool-faq-section" aria-labelledby="faq-heading">
+    <div class="tool-faq-inner">
+      <div class="tool-section-header">
+        <h2 id="faq-heading">❓ Frequently Asked Questions</h2>
+        <p>Common questions about {{ tool_name }}</p>
+      </div>
+      <div class="tool-faq-list">
+        {% for faq in page.faqs %}
+        <details class="tool-faq-item">
+          <summary class="tool-faq-question">
+            <span>{{ faq.question }}</span>
+            <svg class="tool-faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div class="tool-faq-answer">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </details>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
   <!-- Bottom Ad -->
   <aside class="ad-container ad-bottom" style="background: #f8fafc; padding: 1.5rem 1rem; text-align: center;"
     aria-label="Advertisement">
@@ -86,52 +155,14 @@ layout: default
   </aside>
 
   <!-- Related Tools Section -->
-  <section style="background: white; padding: 3rem 1rem;" aria-labelledby="related-tools-heading">
-    <div style="max-width: 80rem; margin: 0 auto;">
-      <div class="category-section-header" style="margin-bottom: 2rem;">
-        <h2 id="related-tools-heading">🔗 Related Tools You Might Like</h2>
-        <p>Discover more professional tools in the same category</p>
-      </div>
+  {% include related-tools.html %}
 
-      <div class="category-tools-grid" role="list">
-        {% assign current_category = page.category_name | default: 'clipboard' %}
-        {% assign related_count = 0 %}
-        {% for tool in site.data.tools-metadata.tools %}
-        {% if tool.url != page.url and related_count < 4 %} {% if tool.category==page.category or tool.featured %}
-          <article class="category-tool-card" role="listitem">
-          <div class="category-tool-visual">
-            <div class="category-tool-icon">{{ tool.icon }}</div>
-            {% if tool.featured %}
-            <span class="category-tool-badge featured">⭐ Featured</span>
-            {% elsif tool.popular %}
-            <span class="category-tool-badge popular">🔥 Popular</span>
-            {% endif %}
-          </div>
-
-          <div class="category-tool-content">
-            <h3 class="category-tool-name">{{ tool.name }}</h3>
-            <p class="category-tool-desc">{{ tool.shortDescription | default: tool.description | truncate: 80 }}</p>
-
-            <div class="category-tool-tags">
-              {% for keyword in tool.keywords limit:2 %}
-              <span class="category-tool-tag">{{ keyword }}</span>
-              {% endfor %}
-            </div>
-          </div>
-
-          <div class="category-tool-footer">
-            <a href="{{ tool.url | relative_url }}" class="category-tool-btn" itemprop="relatedLink">
-              Try {{ tool.name }} →
-            </a>
-          </div>
-</article>
-{% assign related_count = related_count | plus: 1 %}
-{% endif %}
-{% endif %}
-{% endfor %}
-</div>
-</div>
-</section>
+  <!-- Last Updated -->
+  {% if page.updated %}
+  <div class="tool-last-updated">
+    <span>🔄 Last updated: <time datetime="{{ page.updated }}">{{ page.updated | date: "%B %d, %Y" }}</time></span>
+  </div>
+  {% endif %}
 
 <!-- Navigation Footer -->
 <nav class="category-cta-section" aria-label="Tool navigation"
@@ -150,3 +181,169 @@ layout: default
 
 <!-- Additional Tool-Specific Schema -->
 {% include tool-schema.html %}
+
+<!-- ── How-To, FAQ & Last Updated Styles ──────────────── -->
+<style>
+/* ── Section Headers ─────────────────────────────── */
+.tool-section-header {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+.tool-section-header h2 {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 0.4rem;
+}
+.tool-section-header p {
+  color: #64748b;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* ── How-To Section ──────────────────────────────── */
+.tool-howto-section {
+  background: #f8fafc;
+  padding: 3.5rem 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.tool-howto-inner {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.tool-howto-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: none;
+}
+.tool-howto-step {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.875rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.tool-howto-step:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.08);
+}
+.tool-howto-step-number {
+  flex-shrink: 0;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  border-radius: 0.625rem;
+}
+.tool-howto-step-body {
+  flex: 1;
+  min-width: 0;
+}
+.tool-howto-step-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 0.3rem;
+}
+.tool-howto-step-text {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ── FAQ Section ─────────────────────────────────── */
+.tool-faq-section {
+  background: #ffffff;
+  padding: 3.5rem 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.tool-faq-inner {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+.tool-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.tool-faq-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+.tool-faq-item[open] {
+  border-color: #c7d2fe;
+}
+.tool-faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.125rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #1e293b;
+  cursor: pointer;
+  background: #f8fafc;
+  list-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+.tool-faq-question::-webkit-details-marker { display: none; }
+.tool-faq-question::marker { display: none; content: ""; }
+.tool-faq-question:hover {
+  background: #ede9fe;
+}
+.tool-faq-chevron {
+  flex-shrink: 0;
+  color: #9ca3af;
+  transition: transform 0.25s ease, color 0.2s ease;
+}
+.tool-faq-item[open] .tool-faq-chevron {
+  transform: rotate(180deg);
+  color: #6366f1;
+}
+.tool-faq-answer {
+  padding: 0 1.25rem 1.25rem;
+}
+.tool-faq-answer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* ── Last Updated ────────────────────────────────── */
+.tool-last-updated {
+  text-align: center;
+  padding: 1rem 1rem;
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+.tool-last-updated time {
+  font-weight: 500;
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  .tool-howto-step {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+</style>

@@ -2,8 +2,10 @@
 layout: default
 title: About FreeClipboard - Our Story & Mission | Built in Pakistan 🇵🇰
 description: FreeClipboard is built by a solo developer from Pakistan under Bismillah Tech. 41+ free, privacy-first online tools — no signups, no data collection. Here's the real story.
-keywords: about freeclipboard, bismillah tech, privacy-focused tools, free online tools, built in pakistan, founder story
+keywords: about freeclipboard, bismillah tech, privacy-focused tools, free online tools, built in pakistan, founder story, ali developer
 og_type: website
+last_updated: 2026-05-13
+author: Ali
 ---
 
 <!-- Hero Section -->
@@ -194,3 +196,58 @@ og_type: website
     <a href="{{ site.baseurl }}/contact/" class="btn-category-secondary">Say Hello</a>
   </div>
 </section>
+
+<!-- ProfilePage Schema for Author Entity Optimization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "{{ site.url }}/#founder",
+    "name": "Ali",
+    "jobTitle": "Founder & Lead Developer",
+    "description": "Solo developer from Pakistan who built FreeClipboard — a collection of 41+ free, privacy-first online tools used by 100K+ people monthly.",
+    "knowsAbout": [
+      "Web Development",
+      "JavaScript",
+      "Client-Side Processing",
+      "Privacy Engineering",
+      "Browser APIs",
+      "Progressive Web Applications",
+      "Static Site Generation",
+      "Open Source Software"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "Bismillah Tech"
+    },
+    "nationality": {
+      "@type": "Country",
+      "name": "Pakistan"
+    },
+    "url": "{{ site.url }}/about/",
+    "sameAs": [
+      "https://twitter.com/{{ site.twitter_username | default: 'freeclipboard' }}",
+      "https://github.com/{{ site.github_username | default: 'freeclipboard' }}"
+    ],
+    "makesOffer": {
+      "@type": "Offer",
+      "itemOffered": {
+        "@type": "SoftwareApplication",
+        "name": "FreeClipboard",
+        "url": "{{ site.url }}",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    }
+  },
+  "dateModified": "2026-05-13"
+}
+</script>

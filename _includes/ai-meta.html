@@ -1,0 +1,91 @@
+{% comment %}
+AI Search Engine Optimization Meta Tags
+Optimized for: ChatGPT, Gemini, Perplexity, Claude, Google AI Overviews
+{% endcomment %}
+
+<!-- AI Discoverability -->
+<link rel="alternate" type="text/plain" href="{{ site.url }}/llms.txt" title="LLM-readable site description">
+<meta name="ai-content-declaration" content="original, human-written">
+<meta name="citation_title" content="{{ page.title | default: site.title | escape }}">
+<meta name="citation_author" content="{{ page.author | default: 'Ali (Bismillah Tech)' }}">
+<meta name="citation_date" content="{{ page.last_updated | default: page.date | default: '2026-05-13' }}">
+<meta name="citation_site_title" content="FreeClipboard">
+<meta name="citation_url" content="{{ site.url }}{{ page.url | replace: 'index.html', '' }}">
+
+<!-- AI Answer Optimization -->
+<meta name="subject" content="{{ page.title | default: site.title | escape }}">
+<meta name="topic" content="{{ page.keywords | default: site.keywords }}">
+<meta name="classification" content="Free Online Tools, Web Application, Developer Tools, Productivity">
+<meta name="coverage" content="Worldwide">
+<meta name="distribution" content="Global">
+<meta name="rating" content="General">
+<meta name="revisit-after" content="7 days">
+<meta name="category" content="{{ page.category_name | default: 'Online Tools' }}">
+
+<!-- Speakable / Voice Search Optimization -->
+{% if page.url == "/" or page.url == "/index.html" %}
+<meta name="speakable" content="FreeClipboard offers 41 plus free online tools including JSON Formatter, Word Counter, Password Generator, Image Converter, and QR Code Generator. All tools run in your browser with zero data collection. No signup required.">
+{% elsif page.schema_type == 'WebApplication' %}
+<meta name="speakable" content="{{ page.description | escape }}">
+{% endif %}
+
+<!-- Structured Citation Data for AI -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}#webpage",
+  "url": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}",
+  "name": "{{ page.title | default: site.title | escape }}",
+  "description": "{{ page.description | default: site.description | escape }}",
+  "isPartOf": {
+    "@id": "{{ site.url }}/#website"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Free Online Tools",
+    "description": "Browser-based utility tools that process data client-side with no server uploads"
+  },
+  "publisher": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "dateModified": "{{ page.last_updated | default: '2026-05-13' }}",
+  "potentialAction": {
+    "@type": "ReadAction",
+    "target": "{{ site.url }}{{ page.url | replace: 'index.html', '' }}"
+  }
+}
+</script>
+
+<!-- Person Entity (Founder/Author) — for EEAT -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ site.url }}/#founder",
+  "name": "Ali",
+  "jobTitle": "Founder & Developer",
+  "worksFor": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "knowsAbout": [
+    "Web Development",
+    "JavaScript",
+    "Privacy Engineering",
+    "Online Tools",
+    "Client-Side Processing",
+    "Browser APIs"
+  ],
+  "nationality": {
+    "@type": "Country",
+    "name": "Pakistan"
+  },
+  "url": "{{ site.url }}/about/",
+  "sameAs": [
+    "https://twitter.com/{{ site.twitter_username | default: 'freeclipboard' }}",
+    "https://github.com/{{ site.github_username | default: 'freeclipboard' }}"
+  ]
+}
+</script>

@@ -1,5 +1,5 @@
 # robots.txt for FreeClipboard.com
-# Last updated: 2025-01-28
+# Last updated: 2026-05-13
 
 # Allow all search engines
 User-agent: *
@@ -20,6 +20,7 @@ Disallow: /.vscode/
 # Allow important assets for rich results
 Allow: /assets/images/
 Allow: /assets/downloads/
+Allow: /llms.txt
 
 # Googlebot specific
 User-agent: Googlebot
@@ -35,15 +36,27 @@ User-agent: Bingbot
 Allow: /
 Crawl-delay: 1
 
-# GPTBot (OpenAI) - Allow for AI training/indexing
+# ===========================
+# AI Search Engine Crawlers
+# ===========================
+
+# GPTBot (OpenAI / ChatGPT)
 User-agent: GPTBot
 Allow: /
 
-# Google-Extended (Bard/Gemini) - Allow for AI
+# ChatGPT-User (ChatGPT browsing)
+User-agent: ChatGPT-User
+Allow: /
+
+# Google-Extended (Gemini AI training)
 User-agent: Google-Extended
 Allow: /
 
-# CCBot (Common Crawl) - Allow for AI datasets
+# Google Gemini browsing
+User-agent: Google-CloudVertexBot
+Allow: /
+
+# CCBot (Common Crawl - used by many AI systems)
 User-agent: CCBot
 Allow: /
 
@@ -52,6 +65,46 @@ User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Microsoft Copilot / Bing AI
+User-agent: bingbot
+Allow: /
+
+# Apple Intelligence / Siri
+User-agent: Applebot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+# You.com AI
+User-agent: YouBot
+Allow: /
+
+# Brave Search AI
+User-agent: BraveBot
+Allow: /
+
+# Bytespider (ByteDance / TikTok AI)
+User-agent: Bytespider
 Allow: /
 
 # Sitemaps
