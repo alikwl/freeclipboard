@@ -1,350 +1,2156 @@
 ---
 layout: tool
-title: Free Clipboard Manager - Store & Organize Clipboard History
-description: Store, manage, and organize unlimited clipboard items with smart categorization, advanced search, tagging system, and export/import. Never lose your copied text again with this powerful clipboard history tool.
-keywords: clipboard manager, clipboard history, clipboard organizer, copy paste manager, text storage, clipboard tool, clipboard saver, clipboard memory, clipboard tags
+title: "Free Clipboard Manager - Store & Organize Clipboard History | FreeClipboard.com"
+description: "The best free online clipboard manager. Store unlimited clipboard items, organize with tags & categories, search history, and export/import your data. 100% private, works offline. No signup needed."
+keywords: "free clipboard manager, clipboard history, clipboard organizer, online clipboard, clipboard storage, copy paste manager, text storage tool, clipboard saver, clipboard memory, clipboard tags, clipboard search, free clipboard tool"
 schema_type: WebApplication
 permalink: /tools/free-clipboard/
-category_name: Clipboard & Text Tools
+category_name: "Clipboard & Text Tools"
 category_url: /clipboard-tools/
 rating: 4.9
 rating_count: 1350
 features:
   - Unlimited clipboard storage
   - Smart auto-categorization
-  - Advanced search & filter
+  - "Advanced search & filter"
   - Tagging system
   - Favorites management
-  - Export/import data (JSON)
-  - 100% private & secure
+  - "Export/import data (JSON)"
+  - "100% private & secure"
   - Works offline
+  - Keyboard shortcuts
+  - Edit clipboard items
+  - Copy count tracking
+  - Date-based search
 ---
 
-<section class="tool-interface" aria-labelledby="clipboard-heading">
-  <h2 id="clipboard-heading" class="sr-only">Clipboard Manager Interface</h2>
+<!-- ═══════════════════════════════════════════════════════
+     SEO: JSON-LD Structured Data
+═══════════════════════════════════════════════════════ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Free Clipboard Manager",
+  "url": "https://freeclipboard.com/tools/free-clipboard/",
+  "description": "Store, organize and search unlimited clipboard items with smart categorization, tags, favorites, and export/import. 100% free, private, and works offline.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Any (Web Browser)",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "1350",
+    "bestRating": "5"
+  },
+  "featureList": [
+    "Unlimited clipboard storage",
+    "Smart auto-categorization",
+    "Advanced search and filter",
+    "Custom tagging system",
+    "Favorites management",
+    "Export and import JSON",
+    "100% private and secure",
+    "Works offline",
+    "Keyboard shortcuts",
+    "Edit clipboard items"
+  ],
+  "screenshot": "https://freeclipboard.com/assets/images/clipboard-manager-screenshot.png",
+  "author": {
+    "@type": "Organization",
+    "name": "FreeClipboard.com",
+    "url": "https://freeclipboard.com"
+  }
+}
+</script>
 
-<div class="clipboard-wrapper">
-  <!-- Quick Actions Bar -->
-  <div class="quick-actions" role="toolbar" aria-label="Clipboard actions">
-    <div class="search-wrapper">
-      <label for="searchInput" class="sr-only">Search clipboard history</label>
-      <input 
-        type="search" 
-        id="searchInput" 
-        placeholder="🔍 Search clipboard history (title, content, tags)..." 
-        class="search-input"
-        aria-label="Search clipboard items">
-      <button onclick="toggleAdvancedSearch()" class="btn-icon" title="Advanced Search" aria-label="Toggle advanced search">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <path d="m21 21-4.35-4.35"></path>
-          <path d="M11 8v6"></path>
-          <path d="M8 11h6"></path>
-        </svg>
-      </button>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my clipboard data stored on your servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. All clipboard items are stored exclusively in your browser's local storage on your device. Nothing is uploaded to our servers, transmitted over the internet, or accessible to anyone but you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many clipboard items can I store?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no hard limit set by our tool. The practical limit depends on your browser's local storage capacity (typically 5–10 MB), allowing thousands of text items."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use this clipboard manager across multiple devices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Since data is stored locally, it doesn't auto-sync between devices. You can export your clipboard from one device and import it on another using the JSON export/import feature."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does auto-categorization work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The tool uses pattern matching: URLs are identified by http/https prefixes, emails by the @ symbol, code by programming keywords and syntax. You can always manually override the detected category."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- ═══════════════════════════════════════════════════════
+     STYLES
+═══════════════════════════════════════════════════════ -->
+<style>
+  /* ── Google Fonts ── */
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+
+  /* ── Design Tokens ── */
+  :root {
+    --cb-bg: #f8f7ff;
+    --cb-surface: #ffffff;
+    --cb-surface2: #f1f0fa;
+    --cb-border: #e4e2f5;
+    --cb-border-soft: #ede9ff;
+
+    --cb-primary: #4f3eff;
+    --cb-primary-dk: #3b2de8;
+    --cb-primary-lt: #ede9ff;
+    --cb-accent: #7c6bff;
+    --cb-accent2: #ff6b6b;
+
+    --cb-text: #1a1635;
+    --cb-text-2: #4d4875;
+    --cb-text-3: #8e89b0;
+    --cb-text-inv: #ffffff;
+
+    --cb-code-bg: #1e1b4b;
+    --cb-code-text: #c4b5fd;
+
+    --cb-success: #10b981;
+    --cb-warn: #f59e0b;
+    --cb-danger: #ef4444;
+
+    --cb-radius: 12px;
+    --cb-radius-sm: 8px;
+    --cb-radius-lg: 18px;
+
+    --cb-shadow: 0 2px 12px rgba(79, 62, 255, 0.08);
+    --cb-shadow-md: 0 6px 28px rgba(79, 62, 255, 0.13);
+    --cb-shadow-lg: 0 16px 48px rgba(79, 62, 255, 0.18);
+
+    --cb-font: 'DM Sans', sans-serif;
+    --cb-mono: 'DM Mono', monospace;
+
+    --cb-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* ── Base ── */
+  .cb-root,
+  .cb-root * {
+    box-sizing: border-box;
+  }
+
+  .cb-root {
+    font-family: var(--cb-font);
+    color: var(--cb-text);
+    background: var(--cb-bg);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* ── Hero Banner ── */
+  .cb-hero {
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f3eff 100%);
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cb-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(124, 107, 255, 0.3), transparent);
+    pointer-events: none;
+  }
+
+  .cb-hero::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    pointer-events: none;
+  }
+
+  .cb-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #c4b5fd;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+  }
+
+  .cb-hero h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin: 0 0 14px;
+    line-height: 1.15;
+  }
+
+  .cb-hero h1 span {
+    color: #a78bfa;
+  }
+
+  .cb-hero-sub {
+    font-size: clamp(15px, 2.5vw, 18px);
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 580px;
+    margin: 0 auto 28px;
+    font-weight: 400;
+  }
+
+  .cb-hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .cb-hero-pill {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ── Main Wrapper ── */
+  .cb-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+
+  /* ── Toolbar ── */
+  .cb-toolbar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    background: var(--cb-surface);
+    border: 1px solid var(--cb-border);
+    border-radius: var(--cb-radius-lg);
+    padding: 14px 18px;
+    box-shadow: var(--cb-shadow);
+    margin-bottom: 14px;
+  }
+
+  .cb-search-wrap {
+    flex: 1;
+    min-width: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .cb-search-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--cb-text-3);
+    pointer-events: none;
+  }
+
+  .cb-search-input {
+    width: 100%;
+    padding: 10px 12px 10px 38px;
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius-sm);
+    font: 500 14px var(--cb-font);
+    color: var(--cb-text);
+    background: var(--cb-bg);
+    outline: none;
+    transition: var(--cb-transition);
+  }
+
+  .cb-search-input:focus {
+    border-color: var(--cb-primary);
+    box-shadow: 0 0 0 3px rgba(79, 62, 255, 0.1);
+  }
+
+  .cb-search-input::placeholder {
+    color: var(--cb-text-3);
+  }
+
+  .cb-toolbar-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* ── Buttons ── */
+  .cb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: var(--cb-radius-sm);
+    font: 600 13px var(--cb-font);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: var(--cb-transition);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+
+  .cb-btn-primary {
+    background: var(--cb-primary);
+    color: #fff;
+  }
+
+  .cb-btn-primary:hover {
+    background: var(--cb-primary-dk);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(79, 62, 255, 0.3);
+  }
+
+  .cb-btn-ghost {
+    background: transparent;
+    color: var(--cb-text-2);
+    border: 1.5px solid var(--cb-border);
+  }
+
+  .cb-btn-ghost:hover {
+    background: var(--cb-surface2);
+    color: var(--cb-text);
+    border-color: var(--cb-primary);
+  }
+
+  .cb-btn-danger {
+    background: transparent;
+    color: var(--cb-danger);
+    border: 1.5px solid #fecaca;
+  }
+
+  .cb-btn-danger:hover {
+    background: #fef2f2;
+  }
+
+  .cb-btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--cb-radius-sm);
+    background: var(--cb-surface2);
+    border: 1.5px solid var(--cb-border);
+    color: var(--cb-text-2);
+    cursor: pointer;
+    outline: none;
+    transition: var(--cb-transition);
+  }
+
+  .cb-btn-icon:hover {
+    background: var(--cb-primary-lt);
+    color: var(--cb-primary);
+    border-color: var(--cb-primary);
+  }
+
+  /* ── Advanced Search Panel ── */
+  .cb-adv-panel {
+    background: var(--cb-surface);
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    display: none;
+    animation: slideDown 0.2s ease;
+  }
+
+  .cb-adv-panel.open {
+    display: block;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cb-adv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px 16px;
+    align-items: end;
+  }
+
+  .cb-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cb-text-2);
+    margin-bottom: 5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .cb-field select,
+  .cb-field input[type="date"],
+  .cb-field input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius-sm);
+    font: 14px var(--cb-font);
+    color: var(--cb-text);
+    background: var(--cb-bg);
+    outline: none;
+    transition: var(--cb-transition);
+  }
+
+  .cb-field select:focus,
+  .cb-field input:focus {
+    border-color: var(--cb-primary);
+  }
+
+  .cb-field-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 2px;
+  }
+
+  .cb-field-check input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--cb-primary);
+    cursor: pointer;
+  }
+
+  .cb-field-check label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--cb-text-2);
+    cursor: pointer;
+  }
+
+  /* ── Category Tabs ── */
+  .cb-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    background: var(--cb-surface);
+    border: 1px solid var(--cb-border);
+    border-radius: var(--cb-radius);
+    padding: 10px 12px;
+    box-shadow: var(--cb-shadow);
+  }
+
+  .cb-tab {
+    padding: 7px 16px;
+    border-radius: 8px;
+    font: 600 13px var(--cb-font);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--cb-text-2);
+    transition: var(--cb-transition);
+  }
+
+  .cb-tab:hover {
+    background: var(--cb-surface2);
+    color: var(--cb-text);
+  }
+
+  .cb-tab.active {
+    background: var(--cb-primary);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(79, 62, 255, 0.3);
+  }
+
+  /* ── Add New Item Card ── */
+  .cb-add-card {
+    background: var(--cb-surface);
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+    box-shadow: var(--cb-shadow);
+  }
+
+  .cb-add-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--cb-text);
+    margin: 0 0 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cb-add-card h3::before {
+    content: '+';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--cb-primary);
+    color: #fff;
+    border-radius: 50%;
+    font-size: 14px;
+  }
+
+  .cb-textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius-sm);
+    font: 14px var(--cb-mono);
+    color: var(--cb-text);
+    background: var(--cb-bg);
+    resize: vertical;
+    min-height: 100px;
+    outline: none;
+    transition: var(--cb-transition);
+    line-height: 1.7;
+  }
+
+  .cb-textarea:focus {
+    border-color: var(--cb-primary);
+    box-shadow: 0 0 0 3px rgba(79, 62, 255, 0.09);
+  }
+
+  .cb-add-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    align-items: flex-end;
+  }
+
+  .cb-add-row .cb-field {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .cb-add-row .cb-field.grow {
+    flex: 2;
+  }
+
+  .cb-add-submit {
+    align-self: flex-end;
+  }
+
+  /* ── Stats Bar ── */
+  .cb-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .cb-stat {
+    background: var(--cb-surface);
+    border: 1px solid var(--cb-border);
+    border-radius: var(--cb-radius);
+    padding: 16px 20px;
+    text-align: center;
+    box-shadow: var(--cb-shadow);
+    transition: var(--cb-transition);
+  }
+
+  .cb-stat:hover {
+    border-color: var(--cb-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--cb-shadow-md);
+  }
+
+  .cb-stat-num {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--cb-primary);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .cb-stat-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cb-text-3);
+    margin-top: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Clipboard Items ── */
+  .cb-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cb-item {
+    background: var(--cb-surface);
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius);
+    padding: 16px 18px;
+    box-shadow: var(--cb-shadow);
+    transition: var(--cb-transition);
+    position: relative;
+    animation: fadeIn 0.25s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cb-item:hover {
+    border-color: var(--cb-accent);
+    box-shadow: var(--cb-shadow-md);
+  }
+
+  .cb-item.is-favorite {
+    border-left: 3px solid var(--cb-warn);
+  }
+
+  .cb-item-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .cb-item-badge {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .badge-text {
+    background: #ede9ff;
+    color: #4f3eff;
+  }
+
+  .badge-code {
+    background: #1e1b4b;
+    color: #c4b5fd;
+  }
+
+  .badge-url {
+    background: #ecfdf5;
+    color: #059669;
+  }
+
+  .badge-email {
+    background: #fff7ed;
+    color: #d97706;
+  }
+
+  .cb-item-title {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--cb-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cb-item-title.no-title {
+    color: var(--cb-text-3);
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .cb-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 11px;
+    color: var(--cb-text-3);
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  .cb-item-body {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--cb-text-2);
+    max-height: 80px;
+    overflow: hidden;
+    position: relative;
+    white-space: pre-wrap;
+    word-break: break-word;
+    border-radius: 6px;
+    padding: 10px 12px;
+    background: var(--cb-bg);
+    border: 1px solid var(--cb-border-soft);
+  }
+
+  .cb-item.code-item .cb-item-body {
+    font-family: var(--cb-mono);
+    font-size: 12px;
+    background: var(--cb-code-bg);
+    color: var(--cb-code-text);
+    border-color: #312e81;
+  }
+
+  .cb-item-body.expanded {
+    max-height: none;
+  }
+
+  .cb-item-fade {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 32px;
+    background: linear-gradient(transparent, var(--cb-bg));
+    border-radius: 0 0 6px 6px;
+    cursor: pointer;
+  }
+
+  .cb-item.code-item .cb-item-fade {
+    background: linear-gradient(transparent, var(--cb-code-bg));
+  }
+
+  .cb-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .cb-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--cb-primary-lt);
+    color: var(--cb-primary);
+    cursor: pointer;
+    transition: var(--cb-transition);
+  }
+
+  .cb-tag:hover {
+    background: var(--cb-primary);
+    color: #fff;
+  }
+
+  .cb-item-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid var(--cb-border-soft);
+  }
+
+  .cb-item-date {
+    font-size: 11px;
+    color: var(--cb-text-3);
+  }
+
+  .cb-item-copy-count {
+    font-size: 11px;
+    color: var(--cb-text-3);
+  }
+
+  .cb-item-actions {
+    display: flex;
+    gap: 4px;
+  }
+
+  .cb-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--cb-text-3);
+    outline: none;
+    transition: var(--cb-transition);
+  }
+
+  .cb-action:hover {
+    background: var(--cb-surface2);
+    color: var(--cb-text);
+  }
+
+  .cb-action.star {
+    color: var(--cb-text-3);
+  }
+
+  .cb-action.star.on {
+    color: var(--cb-warn);
+  }
+
+  .cb-action.star.on:hover {
+    color: var(--cb-warn);
+    background: #fff7ed;
+  }
+
+  .cb-action.copy:hover {
+    background: var(--cb-primary-lt);
+    color: var(--cb-primary);
+  }
+
+  .cb-action.del:hover {
+    background: #fef2f2;
+    color: var(--cb-danger);
+  }
+
+  /* ── Toast ── */
+  .cb-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    background: var(--cb-text);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: var(--cb-radius-sm);
+    font: 600 13px var(--cb-font);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    transform: translateY(60px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+    max-width: 300px;
+  }
+
+  .cb-toast.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .cb-toast.success {
+    background: #065f46;
+  }
+
+  .cb-toast.error {
+    background: #991b1b;
+  }
+
+  /* ── Empty State ── */
+  .cb-empty {
+    text-align: center;
+    padding: 60px 20px;
+    display: none;
+  }
+
+  .cb-empty.show {
+    display: block;
+  }
+
+  .cb-empty-icon {
+    font-size: 52px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .cb-empty h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cb-text);
+    margin: 0 0 8px;
+  }
+
+  .cb-empty p {
+    font-size: 14px;
+    color: var(--cb-text-3);
+  }
+
+  /* ── Edit Modal ── */
+  .cb-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(30, 27, 75, 0.55);
+    backdrop-filter: blur(6px);
+    z-index: 9000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .cb-modal-overlay.open {
+    display: flex;
+    animation: fadeIn 0.15s ease;
+  }
+
+  .cb-modal {
+    background: var(--cb-surface);
+    border-radius: var(--cb-radius-lg);
+    padding: 28px;
+    width: 100%;
+    max-width: 560px;
+    box-shadow: var(--cb-shadow-lg);
+    border: 1px solid var(--cb-border);
+  }
+
+  .cb-modal h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 20px;
+  }
+
+  .cb-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+
+  /* ── Keyboard Shortcut Hint ── */
+  .cb-shortcut-hint {
+    text-align: center;
+    font-size: 12px;
+    color: var(--cb-text-3);
+    margin-bottom: 10px;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: var(--cb-surface2);
+    border: 1px solid var(--cb-border);
+    font: 600 11px var(--cb-mono);
+    color: var(--cb-text-2);
+  }
+
+  /* ── Content Sections (SEO) ── */
+  .cb-content {
+    margin-top: 56px;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 20px 60px;
+  }
+
+  .cb-content h2 {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--cb-text);
+    margin: 48px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--cb-primary-lt);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cb-content h2::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 22px;
+    background: var(--cb-primary);
+    border-radius: 4px;
+  }
+
+  .cb-content p {
+    font-size: 15px;
+    color: var(--cb-text-2);
+    line-height: 1.8;
+    margin: 0 0 16px;
+  }
+
+  /* Feature Grid */
+  .cb-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+
+  .cb-feature-card {
+    background: var(--cb-surface);
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius);
+    padding: 20px 18px;
+    transition: var(--cb-transition);
+  }
+
+  .cb-feature-card:hover {
+    border-color: var(--cb-primary);
+    transform: translateY(-3px);
+    box-shadow: var(--cb-shadow-md);
+  }
+
+  .cb-feature-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .cb-feature-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--cb-text);
+    margin: 0 0 6px;
+  }
+
+  .cb-feature-card p {
+    font-size: 13px;
+    color: var(--cb-text-2);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Instructions */
+  .cb-instructions ol {
+    padding-left: 0;
+    list-style: none;
+    counter-reset: steps;
+  }
+
+  .cb-instructions li {
+    counter-increment: steps;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--cb-border-soft);
+    font-size: 14px;
+    color: var(--cb-text-2);
+  }
+
+  .cb-instructions li::before {
+    content: counter(steps);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--cb-primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  /* Use Cases */
+  .cb-use-cases ul {
+    padding-left: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+
+  .cb-use-cases li {
+    background: var(--cb-surface);
+    border: 1px solid var(--cb-border);
+    border-radius: var(--cb-radius-sm);
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--cb-text-2);
+  }
+
+  .cb-use-cases li strong {
+    display: block;
+    color: var(--cb-text);
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+
+  /* Tips */
+  .cb-tips ul {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 16px 0;
+  }
+
+  .cb-tips li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    background: var(--cb-surface);
+    border: 1px solid var(--cb-border);
+    border-radius: var(--cb-radius-sm);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--cb-text-2);
+    line-height: 1.65;
+  }
+
+  .cb-tips li::before {
+    content: '💡';
+    flex-shrink: 0;
+  }
+
+  /* FAQ */
+  .cb-faq {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .cb-faq-item {
+    background: var(--cb-surface);
+    border: 1.5px solid var(--cb-border);
+    border-radius: var(--cb-radius);
+    overflow: hidden;
+  }
+
+  .cb-faq-q {
+    width: 100%;
+    text-align: left;
+    padding: 16px 20px;
+    font: 600 14px var(--cb-font);
+    color: var(--cb-text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    outline: none;
+    transition: var(--cb-transition);
+  }
+
+  .cb-faq-q:hover {
+    background: var(--cb-bg);
+  }
+
+  .cb-faq-q svg {
+    flex-shrink: 0;
+    color: var(--cb-primary);
+    transition: transform 0.25s ease;
+  }
+
+  .cb-faq-item.open .cb-faq-q svg {
+    transform: rotate(180deg);
+  }
+
+  .cb-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 20px;
+    font-size: 14px;
+    color: var(--cb-text-2);
+    line-height: 1.75;
+  }
+
+  .cb-faq-item.open .cb-faq-a {
+    max-height: 200px;
+    padding: 0 20px 18px;
+  }
+
+  /* Related Tools */
+  .cb-related {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+  }
+
+  .cb-related a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: var(--cb-radius-sm);
+    background: var(--cb-surface);
+    border: 1.5px solid var(--cb-border);
+    font: 600 13px var(--cb-font);
+    color: var(--cb-primary);
+    text-decoration: none;
+    transition: var(--cb-transition);
+  }
+
+  .cb-related a:hover {
+    background: var(--cb-primary);
+    color: #fff;
+    border-color: var(--cb-primary);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .cb-toolbar {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cb-search-wrap {
+      width: 100%;
+    }
+
+    .cb-toolbar-actions {
+      width: 100%;
+      justify-content: flex-end;
+    }
+
+    .cb-stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .cb-stat-num {
+      font-size: 22px;
+    }
+
+    .cb-add-row {
+      flex-direction: column;
+    }
+
+    .cb-item-head {
+      flex-wrap: wrap;
+    }
+
+    .cb-item-meta {
+      margin-left: 0;
+    }
+
+    .cb-adv-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cb-use-cases ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .cb-tabs {
+      gap: 4px;
+    }
+
+    .cb-tab {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+
+    .cb-stats {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    .cb-stat {
+      padding: 12px 8px;
+    }
+  }
+
+  /* ── Progress bar for long text ── */
+  .cb-item-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--cb-primary);
+    cursor: pointer;
+    margin-top: 4px;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    transition: var(--cb-transition);
+  }
+
+  .cb-item-toggle:hover {
+    opacity: 0.75;
+  }
+
+  /* ── Import file hidden ── */
+  #cb-import-file {
+    display: none;
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════ -->
+<div class="cb-root">
+  <header class="cb-hero" itemscope itemtype="https://schema.org/WebApplication">
+    <meta itemprop="name" content="Free Clipboard Manager">
+    <meta itemprop="applicationCategory" content="ProductivityApplication">
+    <meta itemprop="operatingSystem" content="Web Browser">
+    <div class="cb-hero-badge">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      100% Free &amp; Private
     </div>
-    <div class="action-buttons">
-      <button onclick="clearAllClipboard()" class="btn-sm btn-outline" aria-label="Clear all clipboard items">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 6h18"></path>
-          <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
-          <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
-        </svg>
-        Clear All
-      </button>
-      <button onclick="exportClipboard()" class="btn-sm btn-primary" aria-label="Export clipboard data">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
-        Export
-      </button>
-      <button onclick="importClipboard()" class="btn-sm btn-secondary" aria-label="Import clipboard data">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-          <polyline points="17 8 12 3 7 8"></polyline>
-          <line x1="12" y1="3" x2="12" y2="15"></line>
-        </svg>
-        Import
-      </button>
+    <h1>Free <span>Clipboard Manager</span></h1>
+    <p class="cb-hero-sub">Store, organize &amp; search unlimited clipboard items. Smart categories, tags, favorites —
+      all in your browser. No signup, no server.</p>
+    <div class="cb-hero-pills">
+      <span class="cb-hero-pill">📋 Unlimited Storage</span>
+      <span class="cb-hero-pill">🔒 100% Private</span>
+      <span class="cb-hero-pill">⚡ Works Offline</span>
+      <span class="cb-hero-pill">🔍 Advanced Search</span>
+      <span class="cb-hero-pill">🏷️ Tags &amp; Favorites</span>
     </div>
-  </div>
+  </header>
 
-  <!-- Advanced Search Panel (Hidden by default) -->
-  <div id="advancedSearchPanel" class="advanced-search-panel" style="display: none;">
-    <div class="search-filters">
-      <div class="filter-group">
-        <label for="searchCategory">Category:</label>
-        <select id="searchCategory" class="filter-select">
-          <option value="">All Categories</option>
-          <option value="text">Text</option>
-          <option value="code">Code</option>
-          <option value="url">URL</option>
-          <option value="email">Email</option>
-        </select>
+  <!-- ═══════════════════════════════════════════════════════
+     TOOL INTERFACE
+═══════════════════════════════════════════════════════ -->
+  <main class="cb-wrapper" id="cb-app" role="main" aria-label="Clipboard Manager">
+
+    <!-- Keyboard hint -->
+    <p class="cb-shortcut-hint">
+      Tip: Press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to quickly add &bull; <kbd>Ctrl</kbd>+<kbd>F</kbd> to focus search
+    </p>
+
+    <!-- Toolbar -->
+    <div class="cb-toolbar" role="toolbar" aria-label="Clipboard toolbar">
+      <div class="cb-search-wrap">
+        <svg class="cb-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" aria-hidden="true">
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.35-4.35" />
+        </svg>
+        <input type="search" id="cb-search" class="cb-search-input"
+          placeholder="Search clipboard history (title, content, tags)…" aria-label="Search clipboard items"
+          autocomplete="off">
       </div>
-      <div class="filter-group">
-        <label for="searchTag">Tag:</label>
-        <select id="searchTag" class="filter-select">
-          <option value="">All Tags</option>
-        </select>
+      <div class="cb-toolbar-actions">
+        <button class="cb-btn-icon" onclick="cbToggleAdv()" title="Advanced Search" aria-label="Toggle advanced search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M7 12h10M10 18h4" />
+          </svg>
+        </button>
+        <button class="cb-btn cb-btn-ghost" onclick="cbExport()" aria-label="Export clipboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Export
+        </button>
+        <button class="cb-btn cb-btn-ghost" onclick="cbImportClick()" aria-label="Import clipboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+            <polyline points="17 8 12 3 7 8" />
+            <line x1="12" y1="3" x2="12" y2="15" />
+          </svg>
+          Import
+        </button>
+        <button class="cb-btn cb-btn-danger" onclick="cbClearAll()" aria-label="Clear all items">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M3 6h18" />
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+          </svg>
+          Clear All
+        </button>
       </div>
-      <div class="filter-group">
-        <label for="searchDateFrom">From Date:</label>
-        <input type="date" id="searchDateFrom" class="filter-input">
-      </div>
-      <div class="filter-group">
-        <label for="searchDateTo">To Date:</label>
-        <input type="date" id="searchDateTo" class="filter-input">
-      </div>
-      <div class="filter-group">
-        <label>
-          <input type="checkbox" id="searchFavoritesOnly">
-          Favorites Only
-        </label>
-      </div>
-      <button onclick="applyAdvancedSearch()" class="btn-sm btn-primary">Apply Filters</button>
-      <button onclick="clearAdvancedSearch()" class="btn-sm btn-outline">Clear</button>
     </div>
-  </div>
 
-  <!-- Category Filter -->
-  <nav class="category-filter" role="navigation" aria-label="Filter clipboard by category">
-    <button onclick="filterCategory('all')" class="category-btn active" data-category="all" aria-pressed="true">All</button>
-    <button onclick="filterCategory('text')" class="category-btn" data-category="text" aria-pressed="false">📝 Text</button>
-    <button onclick="filterCategory('code')" class="category-btn" data-category="code" aria-pressed="false">💻 Code</button>
-    <button onclick="filterCategory('url')" class="category-btn" data-category="url" aria-pressed="false">🔗 URLs</button>
-    <button onclick="filterCategory('email')" class="category-btn" data-category="email" aria-pressed="false">📧 Emails</button>
-    <button onclick="filterCategory('favorite')" class="category-btn" data-category="favorite" aria-pressed="false">⭐ Favorites</button>
-  </nav>
-
-  <!-- New Clipboard Entry -->
-  <form class="new-entry-section card" onsubmit="event.preventDefault(); addClipboardItem();" aria-labelledby="new-entry-heading">
-    <h3 id="new-entry-heading">Add New Clipboard Item</h3>
-    <label for="newClipboardText" class="sr-only">Enter text to add to clipboard</label>
-    <textarea 
-      id="newClipboardText" 
-      placeholder="Paste or type your text here..." 
-      rows="4"
-      aria-label="Text content for new clipboard item"></textarea>
-    <div class="entry-options">
-      <div class="entry-row">
-        <div class="input-group">
-          <label for="entryCategory">Category:</label>
-          <select id="entryCategory" class="category-select" aria-label="Category for clipboard item">
+    <!-- Advanced Search -->
+    <div id="cb-adv" class="cb-adv-panel" aria-label="Advanced search filters">
+      <div class="cb-adv-grid">
+        <div class="cb-field">
+          <label for="adv-cat">Category</label>
+          <select id="adv-cat">
+            <option value="">All Categories</option>
             <option value="text">📝 Text</option>
             <option value="code">💻 Code</option>
             <option value="url">🔗 URL</option>
             <option value="email">📧 Email</option>
           </select>
         </div>
-        <div class="input-group flex-grow">
-          <label for="entryTitle">Title (optional):</label>
-          <input 
-            type="text" 
-            id="entryTitle" 
-            placeholder="Add a descriptive title" 
-            class="title-input"
-            aria-label="Optional title for clipboard item">
+        <div class="cb-field">
+          <label for="adv-tag">Tag</label>
+          <select id="adv-tag">
+            <option value="">All Tags</option>
+          </select>
+        </div>
+        <div class="cb-field">
+          <label for="adv-from">From Date</label>
+          <input type="date" id="adv-from">
+        </div>
+        <div class="cb-field">
+          <label for="adv-to">To Date</label>
+          <input type="date" id="adv-to">
+        </div>
+        <div class="cb-field">
+          <div class="cb-field-check" style="padding-top:20px">
+            <input type="checkbox" id="adv-fav">
+            <label for="adv-fav">Favorites Only</label>
+          </div>
+        </div>
+        <div class="cb-field" style="display:flex;gap:8px;align-items:flex-end">
+          <button class="cb-btn cb-btn-primary" onclick="cbApplyAdv()" style="flex:1">Apply</button>
+          <button class="cb-btn cb-btn-ghost" onclick="cbClearAdv()">Clear</button>
         </div>
       </div>
-      <div class="entry-row">
-        <div class="input-group flex-grow">
-          <label for="entryTags">Tags (comma-separated):</label>
-          <input 
-            type="text" 
-            id="entryTags" 
-            placeholder="e.g., work, important, project-x" 
-            class="tags-input"
-            aria-label="Tags for clipboard item">
+    </div>
+
+    <!-- Category Tabs -->
+    <nav class="cb-tabs" role="tablist" aria-label="Filter by category">
+      <button class="cb-tab active" data-cat="all" onclick="cbSetCat(this)" role="tab" aria-selected="true">All</button>
+      <button class="cb-tab" data-cat="text" onclick="cbSetCat(this)" role="tab" aria-selected="false">📝 Text</button>
+      <button class="cb-tab" data-cat="code" onclick="cbSetCat(this)" role="tab" aria-selected="false">💻 Code</button>
+      <button class="cb-tab" data-cat="url" onclick="cbSetCat(this)" role="tab" aria-selected="false">🔗 URLs</button>
+      <button class="cb-tab" data-cat="email" onclick="cbSetCat(this)" role="tab" aria-selected="false">📧
+        Emails</button>
+      <button class="cb-tab" data-cat="favorite" onclick="cbSetCat(this)" role="tab" aria-selected="false">⭐
+        Favorites</button>
+    </nav>
+
+    <!-- Add New Item -->
+    <section class="cb-add-card" aria-labelledby="add-heading">
+      <h3 id="add-heading">Add New Clipboard Item</h3>
+      <textarea id="cb-text" class="cb-textarea" placeholder="Paste or type your text here… (Ctrl+Enter to save)"
+        aria-label="Text content for new clipboard item" rows="4"></textarea>
+      <div class="cb-add-row">
+        <div class="cb-field">
+          <label for="cb-cat">Category</label>
+          <select id="cb-cat" aria-label="Category">
+            <option value="text">📝 Text</option>
+            <option value="code">💻 Code</option>
+            <option value="url">🔗 URL</option>
+            <option value="email">📧 Email</option>
+          </select>
         </div>
-        <button type="submit" class="btn-primary" aria-label="Add item to clipboard">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
+        <div class="cb-field grow">
+          <label for="cb-title">Title (optional)</label>
+          <input type="text" id="cb-title" placeholder="Add a descriptive title…" aria-label="Title">
+        </div>
+        <div class="cb-field grow">
+          <label for="cb-tags">Tags (comma-separated)</label>
+          <input type="text" id="cb-tags" placeholder="e.g. work, project-x, important" aria-label="Tags">
+        </div>
+        <button class="cb-btn cb-btn-primary cb-add-submit" onclick="cbAdd()" aria-label="Add to clipboard">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="5" x2="12" y2="19" />
+            <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
           Add to Clipboard
         </button>
       </div>
-    </div>
-  </form>
+    </section>
 
-  <!-- Stats -->
-  <div class="clipboard-stats" role="region" aria-live="polite" aria-label="Clipboard statistics">
-    <div class="stat-item">
-      <span class="stat-number" id="totalItems" aria-label="Total clipboard items">0</span>
-      <span class="stat-label">Total Items</span>
+    <!-- Stats -->
+    <div class="cb-stats" role="region" aria-live="polite" aria-label="Statistics">
+      <div class="cb-stat">
+        <div class="cb-stat-num" id="stat-total">0</div>
+        <div class="cb-stat-label">Total Items</div>
+      </div>
+      <div class="cb-stat">
+        <div class="cb-stat-num" id="stat-favs">0</div>
+        <div class="cb-stat-label">Favorites</div>
+      </div>
+      <div class="cb-stat">
+        <div class="cb-stat-num" id="stat-size">0 KB</div>
+        <div class="cb-stat-label">Storage Used</div>
+      </div>
     </div>
-    <div class="stat-item">
-      <span class="stat-number" id="favoriteCount" aria-label="Favorite items count">0</span>
-      <span class="stat-label">Favorites</span>
+
+    <!-- List -->
+    <div id="cb-list" class="cb-list" role="list" aria-label="Clipboard items"></div>
+
+    <!-- Empty State -->
+    <div id="cb-empty" class="cb-empty" role="status" aria-live="polite">
+      <div class="cb-empty-icon">📋</div>
+      <h3>Your clipboard is empty</h3>
+      <p>Start by pasting or typing text above — your items appear here instantly!</p>
     </div>
-    <div class="stat-item">
-      <span class="stat-number" id="storageUsed" aria-label="Storage space used">0 KB</span>
-      <span class="stat-label">Storage Used</span>
+
+    <!-- Import hidden -->
+    <input type="file" id="cb-import-file" accept=".json" onchange="cbHandleImport(event)"
+      aria-label="Import clipboard file">
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════
+     EDIT MODAL
+═══════════════════════════════════════════════════════ -->
+  <div id="cb-modal" class="cb-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-heading"
+    onclick="cbCloseModal(event)">
+    <div class="cb-modal" onclick="event.stopPropagation()">
+      <h3 id="modal-heading">✏️ Edit Clipboard Item</h3>
+      <input type="hidden" id="modal-id">
+      <div class="cb-field" style="margin-bottom:12px">
+        <label for="modal-title">Title</label>
+        <input type="text" id="modal-title" placeholder="Descriptive title…">
+      </div>
+      <div class="cb-field" style="margin-bottom:12px">
+        <label for="modal-text">Content</label>
+        <textarea id="modal-text" class="cb-textarea" rows="5"></textarea>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="cb-field" style="flex:1;min-width:120px">
+          <label for="modal-cat">Category</label>
+          <select id="modal-cat">
+            <option value="text">📝 Text</option>
+            <option value="code">💻 Code</option>
+            <option value="url">🔗 URL</option>
+            <option value="email">📧 Email</option>
+          </select>
+        </div>
+        <div class="cb-field" style="flex:2;min-width:180px">
+          <label for="modal-tags">Tags (comma-separated)</label>
+          <input type="text" id="modal-tags" placeholder="e.g. work, project-x">
+        </div>
+      </div>
+      <div class="cb-modal-actions">
+        <button class="cb-btn cb-btn-ghost" onclick="cbCloseModal()">Cancel</button>
+        <button class="cb-btn cb-btn-primary" onclick="cbSaveEdit()">Save Changes</button>
+      </div>
     </div>
   </div>
 
-  <!-- Clipboard Items List -->
-  <div id="clipboardList" class="clipboard-list" role="list" aria-label="Clipboard items">
-    <!-- Items will be dynamically inserted here -->
-  </div>
+  <!-- Toast -->
+  <div id="cb-toast" class="cb-toast" role="alert" aria-live="assertive"></div>
 
-  <!-- Empty State -->
-  <div id="emptyState" class="empty-state" role="status" aria-live="polite">
-    <div class="empty-icon" aria-hidden="true">📋</div>
-    <h3>Your clipboard is empty</h3>
-    <p>Start by adding text above or copying text from anywhere!</p>
-  </div>
-</section>
+  <!-- ═══════════════════════════════════════════════════════
+     SEO CONTENT SECTION
+═══════════════════════════════════════════════════════ -->
+  <article class="cb-content" itemscope itemtype="https://schema.org/Article">
 
-<!-- Hidden file input for import -->
-<label for="importFile" class="sr-only">Import clipboard data file</label>
-<input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)" aria-label="Import clipboard JSON file">
+    <h2>What Is a Free Clipboard Manager — And Why You Need One</h2>
+    <p>Your operating system's built-in clipboard can only hold <strong>one item at a time</strong>. Every time you copy
+      something new, the previous item is permanently lost. For developers, writers, designers, and anyone who works
+      with text daily, this is a serious productivity bottleneck. A clipboard manager solves this by maintaining a
+      searchable, organized history of every item you copy.</p>
+    <p>FreeClipboard.com's <strong>free online clipboard manager</strong> takes this further — adding smart
+      auto-categorization, a custom tagging system, favorites, advanced search filters, and JSON export/import. All data
+      stays in your browser's local storage. Zero accounts, zero uploads, zero tracking.</p>
 
-</section>
-
-<!-- Content Sections -->
-<section class="tool-content-section">
-  <div class="content-body">
-    
-    <h2>About This Tool</h2>
-    <p>The Free Clipboard Manager is a powerful browser-based tool that stores and organizes unlimited clipboard items with smart categorization, advanced search, and tagging capabilities. Unlike your system clipboard that only remembers one item at a time, this manager maintains a complete history of everything you copy, making it easy to retrieve text, code snippets, URLs, and emails whenever you need them.</p>
-    <p>Perfect for developers managing code snippets, writers organizing research quotes, content creators juggling multiple social media posts, and anyone who frequently copies and pastes information. The intelligent auto-categorization system automatically detects whether your content is plain text, code, a URL, or an email address, while the tagging system lets you create custom organizational structures that match your workflow.</p>
-    <p>Everything runs locally in your browser with zero server uploads, ensuring complete privacy. Your clipboard history is stored securely on your device and can be exported or imported as JSON files for backup or transfer between computers.</p>
-
-    <h2>Key Features</h2>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feature-icon">📋</div>
+    <h2>Key Features of Our Free Clipboard Manager</h2>
+    <div class="cb-feature-grid">
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">📋</div>
         <h3>Unlimited Storage</h3>
-        <p>Store thousands of clipboard items without limits. Your complete clipboard history is always accessible and searchable.</p>
+        <p>Store thousands of clipboard entries with no artificial limits — only your browser's local storage cap
+          applies (typically 5–10 MB).</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤖</div>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">🤖</div>
         <h3>Smart Auto-Categorization</h3>
-        <p>Automatically detects and categorizes content as Text, Code, URL, or Email using intelligent pattern recognition.</p>
+        <p>Automatically detects and categorizes pasted content as Text, Code, URL, or Email using intelligent pattern
+          recognition.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔍</div>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">🔍</div>
         <h3>Advanced Search</h3>
-        <p>Search by content, title, tags, category, date range, or favorites. Find any clipboard item instantly with powerful filters.</p>
+        <p>Search by content, title, tags, category, and date range simultaneously. Find any saved snippet in
+          milliseconds.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🏷️</div>
-        <h3>Tagging System</h3>
-        <p>Organize items with custom tags like "work", "personal", or "project-x". Filter and manage items by tags for better organization.</p>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">🏷️</div>
+        <h3>Custom Tagging</h3>
+        <p>Create tags like "work", "client-x", or "urgent" to organize items by project, priority, or any custom
+          taxonomy.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">⭐</div>
-        <h3>Favorites Management</h3>
-        <p>Mark frequently used items as favorites for quick access. Perfect for templates, common responses, and important snippets.</p>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">⭐</div>
+        <h3>Favorites</h3>
+        <p>Star frequently used templates, snippets, or responses for instant retrieval without searching.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Usage Statistics</h3>
-        <p>Track how many times you've copied each item, total storage used, and favorite counts to understand your clipboard patterns.</p>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">📊</div>
+        <h3>Copy Count Tracking</h3>
+        <p>See how many times you've reused each item to identify your most valuable snippets.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">💾</div>
-        <h3>Export & Import</h3>
-        <p>Export your entire clipboard history as JSON for backup or transfer. Import previously saved clipboards to restore your data.</p>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">💾</div>
+        <h3>Export &amp; Import JSON</h3>
+        <p>Back up your entire clipboard history as a JSON file. Import it later or transfer it to another device.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
+      <div class="cb-feature-card">
+        <div class="cb-feature-icon">🔒</div>
         <h3>100% Private</h3>
-        <p>All data stays in your browser's local storage. Nothing is uploaded to servers or tracked. Your clipboard history is completely private.</p>
+        <p>All data lives in your browser. Nothing is sent to our servers. Fully works offline after first page load.
+        </p>
       </div>
     </div>
 
     <h2>How to Use the Clipboard Manager</h2>
-    <ol class="instructions-list">
-      <li>Paste or type text into the input area at the top of the page</li>
-      <li>The category will be automatically detected, or you can manually select Text, Code, URL, or Email</li>
-      <li>Add an optional title to make the item easier to find later</li>
-      <li>Add tags (comma-separated) to organize items by project, topic, or any custom category</li>
-      <li>Click "Add to Clipboard" to save the item to your history</li>
-      <li>Use the search bar to find items by content, title, or tags</li>
-      <li>Click the category buttons to filter items by type (Text, Code, URLs, Emails, or Favorites)</li>
-      <li>Click the star icon on any item to mark it as a favorite for quick access</li>
-      <li>Click the copy icon to copy an item back to your system clipboard</li>
-      <li>Use "Export" to download your clipboard history as a JSON file for backup</li>
-      <li>Use "Import" to restore a previously exported clipboard file</li>
-    </ol>
+    <div class="cb-instructions">
+      <ol>
+        <li>Paste or type your content into the text area at the top of the tool</li>
+        <li>The category is auto-detected, or manually select Text, Code, URL, or Email</li>
+        <li>Add an optional title to make the item easy to identify later</li>
+        <li>Add comma-separated tags to group items by project, topic, or priority</li>
+        <li>Click <strong>Add to Clipboard</strong> or press <kbd>Ctrl</kbd>+<kbd>Enter</kbd> to save</li>
+        <li>Use the search bar to find any item by content, title, or tags in real time</li>
+        <li>Click a category tab (Text, Code, URLs, Emails, Favorites) to filter the list</li>
+        <li>Click the ⭐ star icon to mark important items as favorites</li>
+        <li>Click the copy icon to push any saved item back to your system clipboard</li>
+        <li>Click the pencil icon to edit an item's content, title, category, or tags</li>
+        <li>Use <strong>Export</strong> to download your history as JSON for backup</li>
+        <li>Use <strong>Import</strong> to restore a previously exported JSON file</li>
+      </ol>
+    </div>
 
     <h2>Common Use Cases</h2>
-    <ul class="use-cases-list">
-      <li><strong>Developer Code Snippets:</strong> Store frequently used code blocks, regex patterns, SQL queries, and configuration snippets for quick access during development</li>
-      <li><strong>Content Writing:</strong> Save research quotes, statistics, source URLs, and draft paragraphs while writing articles or blog posts</li>
-      <li><strong>Customer Support:</strong> Maintain a library of common responses, troubleshooting steps, and help documentation links for faster customer service</li>
-      <li><strong>Social Media Management:</strong> Organize post templates, hashtag sets, bio variations, and promotional copy for different platforms</li>
-      <li><strong>Email Templates:</strong> Store email signatures, common responses, meeting invites, and follow-up templates tagged by purpose</li>
-      <li><strong>Research & Study:</strong> Collect quotes, definitions, formulas, and reference URLs organized by subject or project</li>
-      <li><strong>Project Management:</strong> Keep project descriptions, status updates, meeting notes, and stakeholder communications organized by project tags</li>
-      <li><strong>Design & Creative Work:</strong> Store color codes, font names, design specifications, and client feedback organized by project</li>
-    </ul>
+    <div class="cb-use-cases">
+      <ul>
+        <li><strong>Developer Code Snippets</strong>Reusable regex patterns, SQL queries, API endpoints, and config
+          blocks — always one click away.</li>
+        <li><strong>Content Writing</strong>Save research quotes, source URLs, draft paragraphs, and statistics while
+          writing articles.</li>
+        <li><strong>Customer Support</strong>Maintain a library of canned responses, troubleshooting scripts, and help
+          links for rapid replies.</li>
+        <li><strong>Social Media Management</strong>Organize caption templates, hashtag sets, bio variations, and
+          promotional copy per platform.</li>
+        <li><strong>Email Templates</strong>Store signatures, follow-up scripts, meeting invites, and outreach templates
+          tagged by purpose.</li>
+        <li><strong>Research &amp; Study</strong>Collect definitions, quotes, citations, and URLs organized by subject
+          or assignment.</li>
+        <li><strong>Design &amp; Creative</strong>Keep color hex codes, font specs, client feedback notes, and design
+          tokens organized by project.</li>
+        <li><strong>Project Management</strong>Store status updates, stakeholder messages, meeting summaries, and
+          recurring task descriptions.</li>
+      </ul>
+    </div>
 
-    <h2>Tips & Best Practices</h2>
-    <ul class="tips-list">
-      <li>Use descriptive titles for items you'll need to find later - "Login API endpoint" is better than "code snippet"</li>
-      <li>Create a consistent tagging system (e.g., project names, content types, priority levels) to make filtering more effective</li>
-      <li>Mark your most frequently used items as favorites to access them quickly without searching</li>
-      <li>Export your clipboard history monthly as a backup in case you clear browser data or switch devices</li>
-      <li>Use the advanced search filters to find items by date range when you remember approximately when you saved something</li>
-      <li>The copy count statistic helps identify your most-used snippets - consider creating keyboard shortcuts for these in your workflow</li>
-      <li>For code snippets, include the programming language in the title or tags for easier filtering</li>
-      <li>Regularly review and delete outdated items to keep your clipboard history relevant and manageable</li>
-      <li>When importing a clipboard file, it merges with your existing items rather than replacing them, so you can combine multiple backups</li>
-    </ul>
+    <h2>Tips &amp; Best Practices</h2>
+    <div class="cb-tips">
+      <ul>
+        <li>Use descriptive titles — "Login API Endpoint - Production" is far easier to find than "code snippet"</li>
+        <li>Build a consistent tag taxonomy (project names, priority levels, content types) for powerful filtering</li>
+        <li>Star your 10–15 most-used templates as favorites for instant single-click access</li>
+        <li>Export your history monthly as a backup before clearing browser data or switching devices</li>
+        <li>Use date-range search in Advanced Search when you remember roughly when you saved something</li>
+        <li>For code, include the language in the title ("Python regex for email validation") or as a tag</li>
+        <li>Importing a JSON file merges data with existing items, so you can safely combine multiple backups</li>
+        <li>Regularly prune outdated items to keep your clipboard lean and search results relevant</li>
+      </ul>
+    </div>
 
     <h2>Frequently Asked Questions</h2>
-    <div class="faq-list">
-      <div class="faq-item">
-        <h3>Is my clipboard data stored on your servers?</h3>
-        <p>No, absolutely not. All clipboard items are stored exclusively in your browser's local storage on your device. Nothing is uploaded to our servers, transmitted over the internet, or accessible to anyone but you. This ensures complete privacy and works offline.</p>
+    <div class="cb-faq" itemscope itemtype="https://schema.org/FAQPage">
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">Is my clipboard data stored on your servers?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">No — absolutely not. All clipboard items are stored exclusively in your browser's local
+            storage on your own device. Nothing is uploaded to our servers, transmitted over the internet, or accessible
+            to anyone else. The tool works completely offline after first load.</p>
+        </div>
       </div>
-      
-      <div class="faq-item">
-        <h3>How many items can I store in my clipboard history?</h3>
-        <p>There's no hard limit set by the tool itself. The practical limit depends on your browser's local storage capacity (typically 5-10MB). Most users can store thousands of text items before reaching this limit. The statistics panel shows your current storage usage.</p>
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">How many items can I store in my clipboard history?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">There's no hard limit imposed by this tool. The practical limit is your browser's local
+            storage capacity, typically 5–10 MB. Most users can comfortably store thousands of text items before
+            approaching this limit. The stats bar shows your current storage usage in real time.</p>
+        </div>
       </div>
-      
-      <div class="faq-item">
-        <h3>What happens if I clear my browser data?</h3>
-        <p>Clearing your browser's local storage will delete your clipboard history. We strongly recommend exporting your clipboard regularly as a backup. The export creates a JSON file you can save to your computer and re-import later to restore your data.</p>
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">What happens if I clear my browser data?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Clearing browser local storage will delete your clipboard history permanently. We strongly
+            recommend using the Export button regularly to download a JSON backup to your computer. You can re-import
+            this file at any time to fully restore your data.</p>
+        </div>
       </div>
-      
-      <div class="faq-item">
-        <h3>Can I use this clipboard manager across multiple devices?</h3>
-        <p>Since data is stored locally in each browser, it doesn't automatically sync between devices. However, you can export your clipboard from one device and import it on another to transfer your history. This is useful for moving between work and home computers.</p>
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">Can I use this across multiple devices?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Since all data is stored locally in each browser, it doesn't automatically sync between
+            devices. You can export your clipboard from one device and import it on another to transfer your history —
+            useful when moving between work and home computers.</p>
+        </div>
       </div>
-      
-      <div class="faq-item">
-        <h3>How does the auto-categorization work?</h3>
-        <p>The tool uses pattern matching to detect content types. URLs are identified by http/https prefixes, emails by the @ symbol and domain structure, and code by common programming keywords and syntax. You can always manually change the category if the auto-detection is incorrect.</p>
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">How does auto-categorization work?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">The tool uses pattern matching: URLs are detected by http/https prefixes, email addresses
+            by the @ symbol and domain pattern, and code by the presence of common programming keywords and syntax. You
+            can always manually override the detected category for any item.</p>
+        </div>
       </div>
-      
-      <div class="faq-item">
-        <h3>Can I edit items after adding them to my clipboard?</h3>
-        <p>Yes! Click the edit icon (pencil) on any clipboard item to modify its text content, title, category, or tags. This is useful for updating templates or correcting information without having to delete and re-add items.</p>
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">Can I edit items after saving them?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Yes. Click the pencil (✏️) icon on any item to open the edit modal and modify its content,
+            title, category, or tags. Changes are saved instantly to local storage without losing copy count or date
+            information.</p>
+        </div>
       </div>
-      
-      <div class="faq-item">
-        <h3>What's the difference between categories and tags?</h3>
-        <p>Categories (Text, Code, URL, Email) are predefined types that help organize items by content format. Tags are custom labels you create to organize items by project, topic, priority, or any system that works for you. An item has one category but can have multiple tags.</p>
+      <div class="cb-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <button class="cb-faq-q" onclick="cbToggleFaq(this)" aria-expanded="false">
+          <span itemprop="name">What's the difference between categories and tags?</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
+        </button>
+        <div class="cb-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+          <p itemprop="text">Categories (Text, Code, URL, Email) are predefined content-type labels auto-detected from
+            the content format. Tags are unlimited custom labels you create freely — project names, priority levels,
+            client names, or any system that works for you. Each item has one category but can have many tags.</p>
+        </div>
       </div>
     </div>
 
-    <h2>Related Tools</h2>
-    <ul class="related-tools-list">
-      <li><a href="/tools/text-formatter/">Text Formatter</a> - Format and transform text with case conversion and cleanup</li>
-      <li><a href="/tools/word-counter/">Word Counter</a> - Count words, characters, and analyze text statistics</li>
-      <li><a href="/tools/character-counter/">Character Counter</a> - Detailed character analysis and counting</li>
-      <li><a href="/tools/text-to-handwriting/">Text to Handwriting</a> - Convert text to handwritten style</li>
-    </ul>
+    <h2>Related Free Tools</h2>
+    <div class="cb-related">
+      <a href="/tools/text-formatter/">📝 Text Formatter</a>
+      <a href="/tools/word-counter/">🔢 Word Counter</a>
+      <a href="/tools/character-counter/">📊 Character Counter</a>
+      <a href="/tools/text-to-handwriting/">✍️ Text to Handwriting</a>
+      <a href="/tools/case-converter/">🔠 Case Converter</a>
+      <a href="/tools/duplicate-remover/">🔁 Duplicate Remover</a>
+    </div>
 
+  </article>
+</div><!-- /.cb-root -->
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT — Full Working Clipboard Manager
+═══════════════════════════════════════════════════════ -->
+<script>
+  (function () {
+    'use strict';
+
+    /* ── Storage Key ── */
+    const STORE_KEY = 'freeclipboard_v2';
+
+    /* ── State ── */
+    let items = [];
+    let curCat = 'all';
+    let curSearch = '';
+    let advFilters = { cat: '', tag: '', from: '', to: '', fav: false };
+    let advActive = false;
+
+    /* ── Load / Save ── */
+    function load() {
+      try { items = JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+      catch (e) { items = []; }
+    }
+    function save() {
+      try { localStorage.setItem(STORE_KEY, JSON.stringify(items)); }
+      catch (e) { cbToast('Storage full! Export and clear some items.', 'error'); }
+    }
+
+    /* ── Auto-detect category ── */
+    function autoDetect(text) {
+      const t = text.trim();
+      if (/^https?:\/\//i.test(t)) return 'url';
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t)) return 'email';
+      if (/(function|const |let |var |class |import |export |def |return |=>|{|}|\(\)|#include|<\?php|SELECT |INSERT |UPDATE |DELETE )/i.test(t)) return 'code';
+      return 'text';
+    }
+
+    /* ── Add Item ── */
+    window.cbAdd = function () {
+      const text = document.getElementById('cb-text').value.trim();
+      if (!text) { cbToast('Please enter some text first.', 'error'); return; }
+      const cat = document.getElementById('cb-cat').value || autoDetect(text);
+      const title = document.getElementById('cb-title').value.trim();
+      const rawTags = document.getElementById('cb-tags').value;
+      const tags = rawTags.split(',').map(t => t.trim()).filter(Boolean);
+      const item = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        text, cat,
+        title: title || '',
+        tags,
+        fav: false,
+        copies: 0,
+        created: new Date().toISOString()
+      };
+      items.unshift(item);
+      save(); render(); updateStats();
+      document.getElementById('cb-text').value = '';
+      document.getElementById('cb-title').value = '';
+      document.getElementById('cb-tags').value = '';
+      document.getElementById('cb-text').focus();
+      cbToast('✅ Added to clipboard!', 'success');
+    };
+
+    /* ── Delete ── */
+    window.cbDelete = function (id) {
+      if (!confirm('Delete this item?')) return;
+      items = items.filter(i => i.id !== id);
+      save(); render(); updateStats();
+      cbToast('Deleted.', '');
+    };
+
+    /* ── Toggle Favorite ── */
+    window.cbToggleFav = function (id) {
+      const item = items.find(i => i.id === id);
+      if (item) { item.fav = !item.fav; save(); render(); updateStats(); }
+    };
+
+    /* ── Copy Item ── */
+    window.cbCopy = function (id) {
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      navigator.clipboard.writeText(item.text).then(() => {
+        item.copies = (item.copies || 0) + 1;
+        save(); render(); updateStats();
+        cbToast('📋 Copied to clipboard!', 'success');
+      }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = item.text;
+        document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+        document.body.removeChild(ta);
+        item.copies = (item.copies || 0) + 1;
+        save(); render(); updateStats();
+        cbToast('📋 Copied!', 'success');
+      });
+    };
+
+    /* ── Edit ── */
+    window.cbOpenEdit = function (id) {
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      document.getElementById('modal-id').value = id;
+      document.getElementById('modal-title').value = item.title;
+      document.getElementById('modal-text').value = item.text;
+      document.getElementById('modal-cat').value = item.cat;
+      document.getElementById('modal-tags').value = (item.tags || []).join(', ');
+      document.getElementById('cb-modal').classList.add('open');
+    };
+    window.cbCloseModal = function (e) {
+      if (e && e.target !== document.getElementById('cb-modal')) return;
+      document.getElementById('cb-modal').classList.remove('open');
+    };
+    window.cbSaveEdit = function () {
+      const id = document.getElementById('modal-id').value;
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      item.text = document.getElementById('modal-text').value.trim();
+      item.title = document.getElementById('modal-title').value.trim();
+      item.cat = document.getElementById('modal-cat').value;
+      item.tags = document.getElementById('modal-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+      save(); render(); updateStats();
+      document.getElementById('cb-modal').classList.remove('open');
+      cbToast('✅ Changes saved!', 'success');
+    };
+
+    /* ── Clear All ── */
+    window.cbClearAll = function () {
+      if (!confirm('Delete ALL clipboard items? This cannot be undone.')) return;
+      items = []; save(); render(); updateStats();
+      cbToast('All items cleared.', '');
+    };
+
+    /* ── Filter & Search ── */
+    window.cbSetCat = function (btn) {
+      curCat = btn.dataset.cat;
+      document.querySelectorAll('.cb-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+      render();
+    };
+
+    document.getElementById('cb-search').addEventListener('input', function () { curSearch = this.value.toLowerCase(); render(); });
+
+    window.cbToggleAdv = function () {
+      const el = document.getElementById('cb-adv');
+      el.classList.toggle('open');
+    };
+    window.cbApplyAdv = function () {
+      advFilters = {
+        cat: document.getElementById('adv-cat').value,
+        tag: document.getElementById('adv-tag').value,
+        from: document.getElementById('adv-from').value,
+        to: document.getElementById('adv-to').value,
+        fav: document.getElementById('adv-fav').checked
+      };
+      advActive = true;
+      render();
+      cbToast('Filters applied.', 'success');
+    };
+    window.cbClearAdv = function () {
+      ['adv-cat', 'adv-tag', 'adv-from', 'adv-to'].forEach(id => { document.getElementById(id).value = ''; });
+      document.getElementById('adv-fav').checked = false;
+      advFilters = { cat: '', tag: '', from: '', to: '', fav: false };
+      advActive = false;
+      render();
+    };
+
+    /* ── Filtered items ── */
+    function getFiltered() {
+      return items.filter(item => {
+        // Category tab
+        if (curCat === 'favorite' && !item.fav) return false;
+        if (curCat !== 'all' && curCat !== 'favorite' && item.cat !== curCat) return false;
+        // Text search
+        if (curSearch) {
+          const hay = (item.text + ' ' + (item.title || '') + ' ' + (item.tags || []).join(' ')).toLowerCase();
+          if (!hay.includes(curSearch)) return false;
+        }
+        // Advanced
+        if (advActive) {
+          if (advFilters.cat && item.cat !== advFilters.cat) return false;
+          if (advFilters.tag && !(item.tags || []).includes(advFilters.tag)) return false;
+          if (advFilters.fav && !item.fav) return false;
+          if (advFilters.from && item.created < advFilters.from) return false;
+          if (advFilters.to && item.created.slice(0, 10) > advFilters.to) return false;
+        }
+        return true;
+      });
+    }
+
+    /* ── Render ── */
+    function render() {
+      const list = document.getElementById('cb-list');
+      const empty = document.getElementById('cb-empty');
+      const filtered = getFiltered();
+
+      if (filtered.length === 0) {
+        list.innerHTML = '';
+        empty.classList.add('show');
+        return;
+      }
+      empty.classList.remove('show');
+
+      list.innerHTML = filtered.map(item => {
+        const badgeCls = 'badge-' + item.cat;
+        const badgeLabel = { text: '📝 Text', code: '💻 Code', url: '🔗 URL', email: '📧 Email' }[item.cat] || item.cat;
+        const date = new Date(item.created).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+        const hasTitle = item.title && item.title.trim();
+        const tags = (item.tags || []).map(t => `<button class="cb-tag" onclick="cbSearchTag('${esc(t)}')">#${esc(t)}</button>`).join('');
+        const isLong = item.text.length > 200;
+        const bodyTxt = esc(isLong ? item.text.slice(0, 200) + '…' : item.text);
+        const codeCls = item.cat === 'code' ? ' code-item' : '';
+        const favCls = item.fav ? ' is-favorite' : '';
+        const starOn = item.fav ? ' on' : '';
+        const copies = item.copies ? `<span class="cb-item-copy-count">Copied ${item.copies}×</span>` : '';
+
+        return `<div class="cb-item${codeCls}${favCls}" role="listitem" id="item-${item.id}">
+  <div class="cb-item-head">
+    <span class="cb-item-badge ${badgeCls}">${badgeLabel}</span>
+    <span class="cb-item-title${hasTitle ? '' : ' no-title'}">${hasTitle ? esc(item.title) : 'Untitled'}</span>
+    <div class="cb-item-meta">
+      ${copies}
+      <span>${date}</span>
+    </div>
   </div>
-</section>
+  <div class="cb-item-body" id="body-${item.id}">${bodyTxt}</div>
+  ${isLong ? `<button class="cb-item-toggle" onclick="cbExpand('${item.id}',this)">▼ Show more</button>` : ''}
+  ${tags ? `<div class="cb-item-tags">${tags}</div>` : ''}
+  <div class="cb-item-footer">
+    <span class="cb-item-date">🕒 ${date}</span>
+    <div class="cb-item-actions">
+      <button class="cb-action star${starOn}" onclick="cbToggleFav('${item.id}')" title="${item.fav ? 'Unstar' : 'Star'}" aria-label="${item.fav ? 'Remove from favorites' : 'Add to favorites'}">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="${item.fav ? '#f59e0b' : 'none'}" stroke="${item.fav ? '#f59e0b' : 'currentColor'}" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </button>
+      <button class="cb-action copy" onclick="cbCopy('${item.id}')" title="Copy to clipboard" aria-label="Copy to clipboard">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      </button>
+      <button class="cb-action edit" onclick="cbOpenEdit('${item.id}')" title="Edit" aria-label="Edit item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+      </button>
+      <button class="cb-action del" onclick="cbDelete('${item.id}')" title="Delete" aria-label="Delete item">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>`;
+      }).join('');
 
-<script src="{{ '/assets/js/free-clipboard.js' | relative_url }}"></script>
+      updateAdvTagSelect();
+    }
+
+    /* ── Expand long items ── */
+    window.cbExpand = function (id, btn) {
+      const item = items.find(i => i.id === id);
+      if (!item) return;
+      const body = document.getElementById('body-' + id);
+      if (btn.textContent.includes('more')) {
+        body.textContent = item.text;
+        btn.textContent = '▲ Show less';
+      } else {
+        body.textContent = item.text.slice(0, 200) + '…';
+        btn.textContent = '▼ Show more';
+      }
+    };
+
+    /* ── Tag click search ── */
+    window.cbSearchTag = function (tag) {
+      const input = document.getElementById('cb-search');
+      input.value = tag; curSearch = tag.toLowerCase(); render();
+      input.focus();
+    };
+
+    /* ── Stats ── */
+    function updateStats() {
+      document.getElementById('stat-total').textContent = items.length;
+      document.getElementById('stat-favs').textContent = items.filter(i => i.fav).length;
+      try {
+        const bytes = new Blob([localStorage.getItem(STORE_KEY) || '']).size;
+        const kb = (bytes / 1024).toFixed(1);
+        document.getElementById('stat-size').textContent = kb > 1024 ? (kb / 1024).toFixed(2) + ' MB' : kb + ' KB';
+      } catch (e) { document.getElementById('stat-size').textContent = '—'; }
+    }
+
+    /* ── Tag select in advanced panel ── */
+    function updateAdvTagSelect() {
+      const allTags = [...new Set(items.flatMap(i => i.tags || []))].sort();
+      const sel = document.getElementById('adv-tag');
+      const cur = sel.value;
+      sel.innerHTML = '<option value="">All Tags</option>' + allTags.map(t => `<option value="${esc(t)}"${t === cur ? ' selected' : ''}>${esc(t)}</option>`).join('');
+    }
+
+    /* ── Export ── */
+    window.cbExport = function () {
+      const data = JSON.stringify({ exported: new Date().toISOString(), count: items.length, items }, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'clipboard-backup-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      cbToast('📦 Exported ' + items.length + ' items!', 'success');
+    };
+
+    /* ── Import ── */
+    window.cbImportClick = function () { document.getElementById('cb-import-file').click(); };
+    window.cbHandleImport = function (e) {
+      const file = e.target.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function (ev) {
+        try {
+          const data = JSON.parse(ev.target.result);
+          const imported = Array.isArray(data) ? data : (data.items || []);
+          const existing = new Set(items.map(i => i.id));
+          let added = 0;
+          imported.forEach(item => {
+            if (!existing.has(item.id)) { items.push(item); added++; }
+          });
+          save(); render(); updateStats();
+          cbToast('✅ Imported ' + added + ' new items!', 'success');
+        } catch (err) { cbToast('Invalid JSON file.', 'error'); }
+      };
+      reader.readAsText(file);
+      e.target.value = '';
+    };
+
+    /* ── Toast ── */
+    window.cbToast = function (msg, type) {
+      const t = document.getElementById('cb-toast');
+      t.textContent = msg; t.className = 'cb-toast show' + (type ? ' ' + type : '');
+      clearTimeout(t._t);
+      t._t = setTimeout(() => { t.classList.remove('show'); }, 2800);
+    };
+
+    /* ── FAQ Accordion ── */
+    window.cbToggleFaq = function (btn) {
+      const item = btn.closest('.cb-faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.cb-faq-item.open').forEach(el => { el.classList.remove('open'); el.querySelector('.cb-faq-q').setAttribute('aria-expanded', 'false'); });
+      if (!isOpen) { item.classList.add('open'); btn.setAttribute('aria-expanded', 'true'); }
+    };
+
+    /* ── Keyboard shortcuts ── */
+    document.addEventListener('keydown', function (e) {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && document.activeElement.id !== 'modal-text') {
+        e.preventDefault(); cbAdd();
+      }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+        e.preventDefault(); document.getElementById('cb-search').focus();
+      }
+      if (e.key === 'Escape') {
+        document.getElementById('cb-modal').classList.remove('open');
+      }
+    });
+
+    /* ── Escape helper ── */
+    function esc(str) { return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+
+    /* ── Init ── */
+    load(); render(); updateStats();
+
+  })();
+</script>

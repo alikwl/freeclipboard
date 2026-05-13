@@ -1,0 +1,966 @@
+---
+layout: tool
+title: "Online Notepad - Free Browser Notepad with Auto-Save | FreeClipboard"
+description: "Free online notepad with auto-save, multiple tabs, dark mode, and download. Type notes in your browser —
+no signup, no download needed. Works offline. 100% private."
+keywords: "online notepad, free online notepad, browser notepad, notepad online, online text editor, scratch pad online,
+auto save notepad, quick notes online, free notepad no signup, notepad in browser"
+schema_type: WebApplication
+permalink: /tools/online-notepad/
+canonical: https://freeclipboard.com/tools/online-notepad/
+category_name: Clipboard & Text Tools
+category_url: /clipboard-tools/
+rating: 4.9
+rating_count: 0
+features:
+- Auto-save every 2 seconds
+- Multiple note tabs (up to 5)
+- Dark mode
+- Download as .txt
+- Live word & character count
+- Works offline
+- 100% private & secure
+---
+
+<style>
+  /* ── Notepad Tool Styles ─────────────────────────────────────────── */
+  #notepadWrapper {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  /* Toolbar */
+  .notepad-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+    gap: 8px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .toolbar-stats {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: #6b7280;
+  }
+
+  .toolbar-stats .stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .toolbar-stats .stat-pill b {
+    color: #3B82F6;
+  }
+
+  .toolbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .tool-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 11px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+
+  .tool-btn:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+  }
+
+  .tool-btn.btn-danger:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    color: #dc2626;
+  }
+
+  .tool-btn.btn-blue {
+    background: #3B82F6;
+    color: #fff;
+    border-color: #3B82F6;
+  }
+
+  .tool-btn.btn-blue:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+  }
+
+  .font-size-group {
+    display: flex;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .font-size-group .tool-btn {
+    border: none;
+    border-radius: 0;
+    border-right: 1px solid #e5e7eb;
+    padding: 5px 9px;
+  }
+
+  .font-size-group .tool-btn:last-child {
+    border-right: none;
+  }
+
+  /* Tabs */
+  .notepad-tabs-bar {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .notepad-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  #tabsContainer {
+    display: flex;
+    align-items: stretch;
+  }
+
+  .notepad-tab {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: #6b7280;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .notepad-tab:hover {
+    color: #374151;
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .notepad-tab.active {
+    color: #3B82F6;
+    border-bottom-color: #3B82F6;
+    background: #fff;
+    font-weight: 600;
+  }
+
+  .tab-name {
+    cursor: pointer;
+  }
+
+  .tab-close {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0 2px;
+    border-radius: 3px;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .tab-close:hover {
+    color: #ef4444;
+    background: #fee2e2;
+  }
+
+  .tab-add {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 6px 12px;
+    line-height: 1;
+    transition: color 0.15s;
+    align-self: center;
+  }
+
+  .tab-add:hover {
+    color: #3B82F6;
+  }
+
+  /* Editor */
+  .notepad-editor {
+    width: 100%;
+    min-height: 380px;
+    padding: 18px 20px;
+    font-size: 15px;
+    line-height: 1.75;
+    color: #1f2937;
+    background: #fff;
+    border: none;
+    outline: none;
+    resize: vertical;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    box-sizing: border-box;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .notepad-editor::placeholder {
+    color: #d1d5db;
+  }
+
+  /* Status bar */
+  .notepad-statusbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 14px;
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    font-size: 11px;
+    color: #9ca3af;
+    flex-wrap: wrap;
+    gap: 8px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  #saveIndicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+    color: #10b981;
+  }
+
+  #saveIndicator::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .shortcuts-hint {
+    font-style: italic;
+  }
+
+  /* Toast */
+  #npToast {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1f2937;
+    color: #fff;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.25s, transform 0.25s;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
+  }
+
+  #npToast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  #npToast.toast-error {
+    background: #dc2626;
+  }
+
+  /* ── Dark Mode ───────────────────────────────────────── */
+  #notepadWrapper.dark {
+    background: #111827;
+    border-color: #374151;
+  }
+
+  #notepadWrapper.dark .notepad-toolbar {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  #notepadWrapper.dark .notepad-tabs-bar {
+    background: #1a2535;
+    border-color: #374151;
+  }
+
+  #notepadWrapper.dark .notepad-tab {
+    color: #9ca3af;
+  }
+
+  #notepadWrapper.dark .notepad-tab:hover {
+    color: #e5e7eb;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  #notepadWrapper.dark .notepad-tab.active {
+    color: #60a5fa;
+    background: #111827;
+    border-bottom-color: #60a5fa;
+  }
+
+  #notepadWrapper.dark .notepad-editor {
+    background: #111827;
+    color: #e5e7eb;
+  }
+
+  #notepadWrapper.dark .notepad-editor::placeholder {
+    color: #4b5563;
+  }
+
+  #notepadWrapper.dark .notepad-statusbar {
+    background: #1f2937;
+    border-color: #374151;
+    color: #6b7280;
+  }
+
+  #notepadWrapper.dark .tool-btn {
+    background: #1f2937;
+    border-color: #374151;
+    color: #d1d5db;
+  }
+
+  #notepadWrapper.dark .tool-btn:hover {
+    background: #374151;
+    border-color: #4b5563;
+  }
+
+  #notepadWrapper.dark .tool-btn.btn-blue {
+    background: #3B82F6;
+    color: #fff;
+    border-color: #3B82F6;
+  }
+
+  #notepadWrapper.dark .font-size-group {
+    border-color: #374151;
+  }
+
+  #notepadWrapper.dark .font-size-group .tool-btn {
+    border-right-color: #374151;
+  }
+
+  #notepadWrapper.dark .toolbar-stats .stat-pill {
+    background: #1f2937;
+    border-color: #374151;
+    color: #9ca3af;
+  }
+
+  #notepadWrapper.dark .tab-add {
+    color: #6b7280;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .notepad-toolbar {
+      padding: 8px 10px;
+    }
+
+    .toolbar-stats {
+      gap: 8px;
+    }
+
+    .stat-pill {
+      padding: 3px 7px;
+    }
+
+    .tool-btn {
+      padding: 5px 8px;
+      font-size: 11px;
+    }
+
+    .notepad-editor {
+      min-height: 300px;
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .shortcuts-hint {
+      display: none;
+    }
+  }
+</style>
+
+<section class="tool-interface" aria-labelledby="notepad-heading">
+  <h2 id="notepad-heading" class="sr-only">Online Notepad</h2>
+
+  <div id="notepadWrapper">
+
+    <!-- Toolbar -->
+    <div class="notepad-toolbar" role="toolbar" aria-label="Notepad toolbar">
+      <div class="toolbar-stats" aria-live="polite" aria-label="Text statistics">
+        <div class="stat-pill" title="Word count">✏️ <b id="wordCount">0</b> words</div>
+        <div class="stat-pill" title="Character count"><b id="charCount">0</b> chars</div>
+        <div class="stat-pill" title="Line count"><b id="lineCount">1</b> lines</div>
+      </div>
+      <div class="toolbar-actions">
+        <div class="font-size-group" title="Adjust font size">
+          <button class="tool-btn" onclick="changeFontSize('down')" aria-label="Decrease font size"
+            title="Smaller text">A-</button>
+          <button class="tool-btn" onclick="changeFontSize('up')" aria-label="Increase font size"
+            title="Larger text">A+</button>
+        </div>
+        <button class="tool-btn" id="darkModeBtn" onclick="toggleDarkMode()" aria-label="Toggle dark mode"
+          title="Toggle dark mode">🌙 Dark</button>
+        <button class="tool-btn btn-blue" onclick="copyAll()" aria-label="Copy all text" title="Copy all text">📋 Copy
+          All</button>
+        <button class="tool-btn" onclick="downloadNote()" aria-label="Download note as text file"
+          title="Download as .txt">💾 Download</button>
+        <button class="tool-btn btn-danger" onclick="clearNote()" aria-label="Clear note" title="Clear current note">🗑️
+          Clear</button>
+      </div>
+    </div>
+
+    <!-- Tabs Bar -->
+    <div class="notepad-tabs-bar" role="tablist" aria-label="Note tabs">
+      <div id="tabsContainer"></div>
+    </div>
+
+    <!-- Editor -->
+    <textarea id="notepadEditor" class="notepad-editor"
+      placeholder="Start typing... your notes are saved automatically every 2 seconds. ✍️" aria-label="Note editor"
+      spellcheck="true"></textarea>
+
+    <!-- Status Bar -->
+    <div class="notepad-statusbar" role="status" aria-live="polite">
+      <span id="saveIndicator">Auto-save enabled</span>
+      <span class="shortcuts-hint">💡 Ctrl+S to save &nbsp;•&nbsp; Tab = 4 spaces &nbsp;•&nbsp; Double-click tab to
+        rename</span>
+      <span id="lastSavedText"></span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- Toast -->
+<div id="npToast" role="alert" aria-live="assertive"></div>
+
+<!-- Content Sections -->
+<section class="tool-content-section">
+  <div class="content-body">
+
+    <h2>About This Tool</h2>
+    <p>The FreeClipboard Online Notepad is a fast, distraction-free writing space that lives entirely in your browser.
+      No account creation, no app to install, no slow loading screens — just open the page and start typing. Your notes
+      are automatically saved to your browser's local storage every 2 seconds, so you never lose a single word even if
+      you accidentally close the tab.</p>
+    <p>Unlike basic text editors, this notepad supports multiple tabs so you can keep separate notes for different
+      projects or topics. It also features dark mode for comfortable late-night writing, adjustable font sizes,
+      one-click download as a .txt file, and detailed live stats including word count, character count, and line count.
+      Everything runs locally in your browser — your notes never leave your device and are never visible to us or anyone
+      else.</p>
+
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Auto-Save Every 2 Seconds</h3>
+        <p>Your notes are silently saved to browser storage every 2 seconds. Come back hours or days later — your notes
+          will be right there waiting.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📑</div>
+        <h3>Multiple Note Tabs</h3>
+        <p>Create up to 5 separate note tabs. Double-click any tab to rename it. Each tab has its own independently
+          saved content.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌙</div>
+        <h3>Dark Mode</h3>
+        <p>Toggle between light and dark themes. Your preference is saved, so the notepad always opens in the mode you
+          prefer.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Live Word & Character Count</h3>
+        <p>Word count, character count, and line count update instantly as you type — perfect for meeting essay
+          requirements or social media limits.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💾</div>
+        <h3>Download as .txt</h3>
+        <p>Export any note as a plain text file with one click. The file is named after your tab, making it easy to
+          organize saved notes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⌨️</div>
+        <h3>Keyboard Shortcuts</h3>
+        <p>Ctrl+S for manual save, Tab key inserts 4 spaces for clean indentation — especially useful for writing code
+          or structured lists.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📵</div>
+        <h3>Works Offline</h3>
+        <p>After your first visit, the tool works completely without an internet connection. Your notes stay accessible
+          even when Wi-Fi is unavailable.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>100% Private</h3>
+        <p>All data is stored exclusively in your browser's local storage. Nothing is uploaded to any server. Your notes
+          are completely private.</p>
+      </div>
+    </div>
+
+    <h2>How to Use the Online Notepad</h2>
+    <ol class="instructions-list">
+      <li>Click anywhere in the text area and start typing — no setup or login required</li>
+      <li>Your notes are saved automatically every 2 seconds; the status bar at the bottom confirms each save</li>
+      <li>Click the <strong>+</strong> button next to the tabs to create a new note tab (up to 5 tabs)</li>
+      <li>Double-click any tab name to rename it for easier organization</li>
+      <li>Use the <strong>A-</strong> and <strong>A+</strong> buttons to decrease or increase the font size</li>
+      <li>Click <strong>🌙 Dark</strong> to switch to dark mode — great for low-light environments</li>
+      <li>Click <strong>📋 Copy All</strong> to copy your entire note to your system clipboard in one click</li>
+      <li>Click <strong>💾 Download</strong> to save your note as a .txt file on your computer</li>
+      <li>Press <strong>Ctrl+S</strong> at any time for an instant manual save with a confirmation toast</li>
+      <li>Press <strong>Tab</strong> inside the editor to insert 4 spaces for indentation (great for code and lists)
+      </li>
+    </ol>
+
+    <h2>Who Uses This Online Notepad?</h2>
+    <ul class="use-cases-list">
+      <li><strong>Students:</strong> Quickly jot down notes during lectures, track essay word counts, and keep separate
+        tabs for different subjects without needing a dedicated app</li>
+      <li><strong>Writers & Bloggers:</strong> Draft articles, track word counts toward writing goals, and save multiple
+        draft versions in separate tabs</li>
+      <li><strong>Developers:</strong> Use as a quick scratch pad for code snippets, console outputs, or temporary
+        config values while working on projects</li>
+      <li><strong>Office Workers:</strong> Keep a running note of tasks, draft emails before pasting them, or store
+        frequently used text snippets across the day</li>
+      <li><strong>Content Creators:</strong> Track character counts for tweets and Instagram captions, draft post copy,
+        and store hashtag sets in separate tabs</li>
+      <li><strong>Researchers:</strong> Collect quotes and references from multiple browser tabs without switching away
+        to a separate app</li>
+    </ul>
+
+    <h2>Tips & Best Practices</h2>
+    <ul class="tips-list">
+      <li>Rename your tabs immediately after creating them — a tab named "Blog Draft" is far easier to find than "Note
+        3"</li>
+      <li>Use the Download button regularly if you write important content, since clearing browser data will erase
+        localStorage</li>
+      <li>The Tab key shortcut makes this notepad surprisingly effective for writing code, structured lists, or outlined
+        notes</li>
+      <li>Dark mode + large font size is the most comfortable setting for long writing sessions at night</li>
+      <li>Keep one tab as a permanent "Inbox" for random thoughts throughout the day, and create project-specific tabs
+        only when needed</li>
+      <li>The Copy All button makes it easy to paste your note directly into email, Google Docs, or any other tool in
+        one step</li>
+      <li>Because notes auto-save to localStorage, different browsers and devices have separate note storage — use
+        Download + paste to move notes between devices</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <h3>Does the online notepad save automatically?</h3>
+        <p>Yes — your notes are saved to your browser's local storage automatically every 2 seconds. You can also press
+          Ctrl+S at any time for an instant manual save. The status bar at the bottom of the editor always shows the
+          last save time.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Is my notepad data private?</h3>
+        <p>Completely. All notes are stored only in your browser's local storage on your own device. Nothing is sent to
+          our servers, no account is required, and no one else can access your notes. They are as private as files saved
+          on your hard drive.</p>
+      </div>
+      <div class="faq-item">
+        <h3>What happens if I close the browser tab?</h3>
+        <p>Nothing bad — your notes are auto-saved every 2 seconds to local storage. When you reopen the page, all your
+          tabs and their content will be restored exactly as you left them.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Can I use this on my phone?</h3>
+        <p>Yes. The notepad is fully responsive and works on mobile browsers on iPhone and Android. The toolbar adapts
+          to smaller screens, and the editor is touch-friendly. For the best mobile experience, use it in your phone's
+          browser just like on desktop.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How many notes/tabs can I create?</h3>
+        <p>You can have up to 5 note tabs open at the same time. Each tab saves its content independently. If you need
+          more, simply download completed notes as .txt files to free up tab slots.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Will my notes be deleted if I clear browser history?</h3>
+        <p>Yes — clearing your browser's local storage or site data will delete your saved notes. We strongly recommend
+          downloading important notes as .txt files using the Download button before clearing browser data.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Does this work without internet?</h3>
+        <p>After your first visit, the page and all its features work completely offline. Auto-save, dark mode, tabs,
+          and downloads all function without any internet connection.</p>
+      </div>
+      <div class="faq-item">
+        <h3>How is this different from the Clipboard Manager on this site?</h3>
+        <p>The Clipboard Manager is designed for storing and organizing many short copied items (snippets, URLs, code)
+          with search, tags, and categories. The Online Notepad is a continuous writing space for longer, ongoing notes
+          — more like a traditional text editor. Use both together for a complete workflow.</p>
+      </div>
+    </div>
+
+    <h2>Related Tools</h2>
+    <ul class="related-tools-list">
+      <li><a href="/tools/free-clipboard/">Free Clipboard Manager</a> — Store, organize, and search unlimited clipboard
+        snippets</li>
+      <li><a href="/tools/word-counter/">Word Counter</a> — Detailed word, character, sentence, and reading time
+        analysis</li>
+      <li><a href="/tools/character-counter/">Character Counter</a> — Breakdown by letters, numbers, spaces, and special
+        characters</li>
+      <li><a href="/tools/text-formatter/">Text Formatter</a> — Format and transform text with case conversion and
+        cleanup</li>
+    </ul>
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    'use strict';
+
+    /* ── State ──────────────────────────────────────────── */
+    var tabs = [];
+    var currentIdx = 0;
+    var darkMode = false;
+    var fontSize = 'medium'; // small | medium | large
+    var lastSaved = null;
+    var saveStatusTimer = null;
+
+    var FONT_SIZES = { small: '13px', medium: '15px', large: '19px' };
+    var STORAGE_KEYS = {
+      tabs: 'np_tabs_v1',
+      current: 'np_current_v1',
+      dark: 'np_dark_v1',
+      font: 'np_font_v1'
+    };
+
+    /* ── Init ───────────────────────────────────────────── */
+    function init() {
+      loadStorage();
+      if (!tabs.length) createTab('Note 1');
+      renderTabs();
+      loadTab(currentIdx);
+      applyDark();
+      applyFont();
+      bindEditor();
+      startAutoSave();
+      updateStats();
+    }
+
+    /* ── Storage ────────────────────────────────────────── */
+    function loadStorage() {
+      try {
+        var t = localStorage.getItem(STORAGE_KEYS.tabs);
+        if (t) tabs = JSON.parse(t);
+        var c = localStorage.getItem(STORAGE_KEYS.current);
+        if (c !== null) currentIdx = parseInt(c, 10);
+        if (currentIdx >= tabs.length) currentIdx = 0;
+      } catch (e) { tabs = []; }
+      darkMode = localStorage.getItem(STORAGE_KEYS.dark) === 'true';
+      fontSize = localStorage.getItem(STORAGE_KEYS.font) || 'medium';
+    }
+
+    function saveTabs() {
+      try {
+        localStorage.setItem(STORAGE_KEYS.tabs, JSON.stringify(tabs));
+        localStorage.setItem(STORAGE_KEYS.current, String(currentIdx));
+      } catch (e) { showToast('Storage full — please download your notes!', 'error'); }
+    }
+
+    /* ── Tab management ─────────────────────────────────── */
+    function createTab(name) {
+      tabs.push({ id: Date.now(), name: name || ('Note ' + (tabs.length + 1)), content: '' });
+      currentIdx = tabs.length - 1;
+      saveTabs();
+    }
+
+    function renderTabs() {
+      var c = document.getElementById('tabsContainer');
+      c.innerHTML = '';
+      tabs.forEach(function (tab, i) {
+        var div = document.createElement('div');
+        div.className = 'notepad-tab' + (i === currentIdx ? ' active' : '');
+        div.setAttribute('role', 'tab');
+        div.setAttribute('aria-selected', i === currentIdx ? 'true' : 'false');
+
+        var span = document.createElement('span');
+        span.className = 'tab-name';
+        span.textContent = tab.name;
+        span.title = 'Click to switch · Double-click to rename';
+        span.onclick = function () { switchTab(i); };
+        span.ondblclick = function () { renameTab(i); };
+        div.appendChild(span);
+
+        if (tabs.length > 1) {
+          var btn = document.createElement('button');
+          btn.className = 'tab-close';
+          btn.textContent = '×';
+          btn.title = 'Close tab';
+          btn.setAttribute('aria-label', 'Close tab ' + tab.name);
+          btn.onclick = function (e) { e.stopPropagation(); closeTab(i); };
+          div.appendChild(btn);
+        }
+
+        c.appendChild(div);
+      });
+
+      if (tabs.length < 5) {
+        var addBtn = document.createElement('button');
+        addBtn.className = 'tab-add';
+        addBtn.textContent = '+';
+        addBtn.title = 'New note tab';
+        addBtn.setAttribute('aria-label', 'Add new note tab');
+        addBtn.onclick = function () {
+          saveCurrentContent();
+          createTab();
+          renderTabs();
+          loadTab(currentIdx);
+          updateStats();
+        };
+        c.appendChild(addBtn);
+      }
+    }
+
+    function switchTab(i) {
+      saveCurrentContent();
+      currentIdx = i;
+      saveTabs();
+      renderTabs();
+      loadTab(i);
+      updateStats();
+    }
+
+    function closeTab(i) {
+      if (!confirm('Delete "' + tabs[i].name + '"? This cannot be undone.')) return;
+      tabs.splice(i, 1);
+      if (currentIdx >= tabs.length) currentIdx = tabs.length - 1;
+      saveTabs();
+      renderTabs();
+      loadTab(currentIdx);
+      updateStats();
+    }
+
+    function renameTab(i) {
+      var n = prompt('Rename this tab:', tabs[i].name);
+      if (n && n.trim()) {
+        tabs[i].name = n.trim().substring(0, 30);
+        saveTabs();
+        renderTabs();
+      }
+    }
+
+    function loadTab(i) {
+      document.getElementById('notepadEditor').value = (tabs[i] && tabs[i].content) ? tabs[i].content : '';
+    }
+
+    function saveCurrentContent() {
+      if (tabs[currentIdx] !== undefined) {
+        tabs[currentIdx].content = document.getElementById('notepadEditor').value;
+      }
+    }
+
+    /* ── Auto-save ──────────────────────────────────────── */
+    function startAutoSave() {
+      setInterval(function () {
+        saveCurrentContent();
+        saveTabs();
+        lastSaved = new Date();
+      }, 2000);
+
+      setInterval(updateSaveIndicator, 1000);
+    }
+
+    function updateSaveIndicator() {
+      var el = document.getElementById('saveIndicator');
+      if (!lastSaved) { el.textContent = 'Auto-save enabled'; return; }
+      var s = Math.floor((new Date() - lastSaved) / 1000);
+      if (s < 4) el.textContent = 'Saved ✓';
+      else if (s < 60) el.textContent = 'Saved ' + s + 's ago';
+      else el.textContent = 'Saved ' + Math.floor(s / 60) + 'm ago';
+    }
+
+    /* ── Stats ──────────────────────────────────────────── */
+    function updateStats() {
+      var text = document.getElementById('notepadEditor').value;
+      var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      var chars = text.length;
+      var lines = text.split('\n').length;
+      document.getElementById('wordCount').textContent = words.toLocaleString();
+      document.getElementById('charCount').textContent = chars.toLocaleString();
+      document.getElementById('lineCount').textContent = lines.toLocaleString();
+
+      // Dynamic page title
+      var preview = text.trim().substring(0, 28);
+      document.title = preview
+        ? preview + '... | Online Notepad'
+        : 'Online Notepad - Free Browser Notepad | FreeClipboard';
+    }
+
+    /* ── Toolbar actions ────────────────────────────────── */
+    window.copyAll = function () {
+      var text = document.getElementById('notepadEditor').value;
+      if (!text.trim()) { showToast('Nothing to copy yet!', 'error'); return; }
+      navigator.clipboard.writeText(text)
+        .then(function () { showToast('Copied to clipboard! 📋'); })
+        .catch(function () {
+          // Fallback for older browsers
+          document.getElementById('notepadEditor').select();
+          document.execCommand('copy');
+          showToast('Copied! 📋');
+        });
+    };
+
+    window.downloadNote = function () {
+      var text = document.getElementById('notepadEditor').value;
+      if (!text.trim()) { showToast('Nothing to download!', 'error'); return; }
+      var name = (tabs[currentIdx] && tabs[currentIdx].name) ? tabs[currentIdx].name : 'note';
+      var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = name.replace(/[^a-z0-9_\-\s]/gi, '').trim() + '.txt';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Downloaded as ' + a.download + ' 💾');
+    };
+
+    window.clearNote = function () {
+      if (!confirm('Clear this note? All text in the current tab will be permanently deleted.')) return;
+      document.getElementById('notepadEditor').value = '';
+      saveCurrentContent();
+      saveTabs();
+      updateStats();
+      showToast('Note cleared 🗑️');
+    };
+
+    window.toggleDarkMode = function () {
+      darkMode = !darkMode;
+      localStorage.setItem(STORAGE_KEYS.dark, String(darkMode));
+      applyDark();
+    };
+
+    function applyDark() {
+      var wrap = document.getElementById('notepadWrapper');
+      var btn = document.getElementById('darkModeBtn');
+      if (darkMode) {
+        wrap.classList.add('dark');
+        btn.textContent = '☀️ Light';
+        btn.title = 'Switch to light mode';
+      } else {
+        wrap.classList.remove('dark');
+        btn.textContent = '🌙 Dark';
+        btn.title = 'Switch to dark mode';
+      }
+    }
+
+    window.changeFontSize = function (dir) {
+      var sizes = ['small', 'medium', 'large'];
+      var i = sizes.indexOf(fontSize);
+      if (dir === 'up' && i < 2) i++;
+      if (dir === 'down' && i > 0) i--;
+      fontSize = sizes[i];
+      localStorage.setItem(STORAGE_KEYS.font, fontSize);
+      applyFont();
+      showToast('Font size: ' + fontSize);
+    };
+
+    function applyFont() {
+      document.getElementById('notepadEditor').style.fontSize = FONT_SIZES[fontSize];
+    }
+
+    /* ── Keyboard shortcuts ─────────────────────────────── */
+    function bindEditor() {
+      var ed = document.getElementById('notepadEditor');
+
+      ed.addEventListener('input', updateStats);
+
+      ed.addEventListener('keydown', function (e) {
+        // Ctrl+S — manual save
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+          e.preventDefault();
+          saveCurrentContent();
+          saveTabs();
+          lastSaved = new Date();
+          showToast('Saved! ✓');
+        }
+        // Tab — insert 4 spaces
+        if (e.key === 'Tab') {
+          e.preventDefault();
+          var start = ed.selectionStart;
+          var end = ed.selectionEnd;
+          ed.value = ed.value.substring(0, start) + '    ' + ed.value.substring(end);
+          ed.selectionStart = ed.selectionEnd = start + 4;
+          updateStats();
+        }
+      });
+    }
+
+    /* ── Toast ──────────────────────────────────────────── */
+    function showToast(msg, type) {
+      var t = document.getElementById('npToast');
+      t.textContent = msg;
+      t.className = 'toast' + (type === 'error' ? ' toast-error' : '');
+      // Force reflow then show
+      void t.offsetWidth;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(function () { t.classList.remove('show'); }, 2600);
+    }
+
+    /* ── Boot ───────────────────────────────────────────── */
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+
+  })();
+</script>

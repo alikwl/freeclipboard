@@ -1,13 +1,13 @@
 ---
 layout: default
-title: Clipboard & Text Tools - Free Clipboard Manager, Word Counter & Character Counter
+title: Clipboard & Text Tools - Free Clipboard, Notepad, Scratch Pad & More
 meta_description: "Free clipboard & text tools: Clipboard manager, word counter, character counter. Real-time analysis, unlimited storage. 100% private. Try now!"
 description: "Professional clipboard and text analysis tools including clipboard manager, word counter, and character counter. Manage text efficiently with real-time analysis. 100% free, no signup."
 keywords: "clipboard tools, clipboard manager, word counter, character counter, text analysis tools, copy paste manager, clipboard history, text counter"
 schema_type: CollectionPage
 og_type: website
 category_name: Clipboard & Text Tools
-tools_count: 3
+tools_count: 6
 faqs:
 - question: "What is a clipboard manager?"
   answer: "A clipboard manager stores your copy history, allowing you to access previously copied items. Our free clipboard manager saves unlimited items with search, categories, and favorites."
@@ -30,8 +30,8 @@ faqs:
 
   <div class="category-hero-stats">
     <div class="category-hero-stat">
-      <strong>3</strong>
-      <span>Pro Tools</span>
+      <strong>6</strong>
+      <span>Free Tools</span>
     </div>
     <div class="category-hero-stat">
       <strong>98K+</strong>
@@ -53,43 +53,125 @@ faqs:
 <section class="category-tools-section" id="tools">
   <div class="category-section-header">
     <h2>📋 Clipboard Tools Collection</h2>
-    <p>Professional tools for managing clipboard and analyzing text</p>
+    <p>Professional tools for managing clipboard, writing, and sharing text</p>
   </div>
 
-  {% assign clipboardTools = site.data.tools-metadata.tools | where: 'category', 'clipboard' | sort: 'name' %}
-
   <div class="category-tools-grid">
-    {% for tool in clipboardTools %}
-    <article class="category-tool-card">
+
+    <!-- Card 1: Free Clipboard Manager -->
+    <article class="category-tool-card" style="border-left: 3px solid #3B82F6;">
       <div class="category-tool-visual">
-        <div class="category-tool-icon">{{ tool.icon }}</div>
-        {% if tool.featured %}
+        <div class="category-tool-icon">📋</div>
         <span class="category-tool-badge featured">⭐ Featured</span>
-        {% elsif tool.popular %}
-        <span class="category-tool-badge popular">🔥 Popular</span>
-        {% elsif tool.new %}
-        <span class="category-tool-badge new">✨ New</span>
-        {% endif %}
       </div>
-
       <div class="category-tool-content">
-        <h3 class="category-tool-name">{{ tool.name }}</h3>
-        <p class="category-tool-desc">{{ tool.description }}</p>
-
+        <h3 class="category-tool-name">Free Clipboard Manager</h3>
+        <p class="category-tool-desc">Manage clipboard history with search, categories, and favorites. Store unlimited items privately in your browser.</p>
         <div class="category-tool-tags">
-          {% for keyword in tool.keywords limit:3 %}
-          <span class="category-tool-tag">{{ keyword }}</span>
-          {% endfor %}
+          <span class="category-tool-tag">clipboard manager</span>
+          <span class="category-tool-tag">clipboard history</span>
         </div>
       </div>
-
       <div class="category-tool-footer">
-        <a href="{{ tool.url | relative_url }}" class="category-tool-btn">
-          Try {{ tool.name }} →
-        </a>
+        <a href="{{ site.baseurl }}/tools/free-clipboard/" class="category-tool-btn">Try Clipboard Manager →</a>
       </div>
     </article>
-    {% endfor %}
+
+    <!-- Card 2: Online Notepad -->
+    <article class="category-tool-card">
+      <div class="category-tool-visual">
+        <div class="category-tool-icon">📝</div>
+        <span class="category-tool-badge new">🆕 New</span>
+      </div>
+      <div class="category-tool-content">
+        <h3 class="category-tool-name">Online Notepad</h3>
+        <p class="category-tool-desc">Free browser notepad with auto-save. Multiple tabs, dark mode, word count, and download as .txt. No signup needed.</p>
+        <div class="category-tool-tags">
+          <span class="category-tool-tag">notepad</span>
+          <span class="category-tool-tag">auto-save</span>
+          <span class="category-tool-tag">multiple tabs</span>
+        </div>
+      </div>
+      <div class="category-tool-footer">
+        <a href="{{ site.baseurl }}/tools/online-notepad/" class="category-tool-btn">Try Online Notepad →</a>
+      </div>
+    </article>
+
+    <!-- Card 3: Scratch Pad -->
+    <article class="category-tool-card">
+      <div class="category-tool-visual">
+        <div class="category-tool-icon">✏️</div>
+        <span class="category-tool-badge new">🆕 New</span>
+      </div>
+      <div class="category-tool-content">
+        <h3 class="category-tool-name">Scratch Pad</h3>
+        <p class="category-tool-desc">Ultra-minimal scratch pad. Open and start typing instantly. Zero friction, distraction-free, auto-saves every second.</p>
+        <div class="category-tool-tags">
+          <span class="category-tool-tag">quick notes</span>
+          <span class="category-tool-tag">distraction-free</span>
+        </div>
+      </div>
+      <div class="category-tool-footer">
+        <a href="{{ site.baseurl }}/tools/scratch-pad/" class="category-tool-btn">Try Scratch Pad →</a>
+      </div>
+    </article>
+
+    <!-- Card 4: Share Clipboard -->
+    <article class="category-tool-card">
+      <div class="category-tool-visual">
+        <div class="category-tool-icon">🔗</div>
+        <span class="category-tool-badge new">🆕 New</span>
+      </div>
+      <div class="category-tool-content">
+        <h3 class="category-tool-name">Share Clipboard</h3>
+        <p class="category-tool-desc">Share any text via link or QR code. No signup, no server storage. Works cross-device instantly.</p>
+        <div class="category-tool-tags">
+          <span class="category-tool-tag">share text</span>
+          <span class="category-tool-tag">QR code</span>
+          <span class="category-tool-tag">cross-device</span>
+        </div>
+      </div>
+      <div class="category-tool-footer">
+        <a href="{{ site.baseurl }}/tools/clipboard-share/" class="category-tool-btn">Try Share Clipboard →</a>
+      </div>
+    </article>
+
+    <!-- Card 5: Word Counter -->
+    <article class="category-tool-card">
+      <div class="category-tool-visual">
+        <div class="category-tool-icon">📊</div>
+      </div>
+      <div class="category-tool-content">
+        <h3 class="category-tool-name">Word Counter</h3>
+        <p class="category-tool-desc">Count words, sentences, paragraphs, and estimate reading time. Industry-standard counting like Microsoft Word.</p>
+        <div class="category-tool-tags">
+          <span class="category-tool-tag">word count</span>
+          <span class="category-tool-tag">character count</span>
+        </div>
+      </div>
+      <div class="category-tool-footer">
+        <a href="{{ site.baseurl }}/tools/word-counter/" class="category-tool-btn">Try Word Counter →</a>
+      </div>
+    </article>
+
+    <!-- Card 6: Character Counter -->
+    <article class="category-tool-card">
+      <div class="category-tool-visual">
+        <div class="category-tool-icon">🔢</div>
+      </div>
+      <div class="category-tool-content">
+        <h3 class="category-tool-name">Character Counter</h3>
+        <p class="category-tool-desc">Break down text into letters, numbers, spaces, and special characters. Perfect for social media limits.</p>
+        <div class="category-tool-tags">
+          <span class="category-tool-tag">character count</span>
+          <span class="category-tool-tag">letter count</span>
+        </div>
+      </div>
+      <div class="category-tool-footer">
+        <a href="{{ site.baseurl }}/tools/character-counter/" class="category-tool-btn">Try Character Counter →</a>
+      </div>
+    </article>
+
   </div>
 </section>
 
@@ -180,7 +262,7 @@ faqs:
     <div class="category-step">
       <div class="category-step-number">1</div>
       <h3>Choose Your Tool</h3>
-      <p>Select from clipboard manager, word counter, or character counter based on your needs.</p>
+      <p>Select from clipboard manager, notepad, scratch pad, share clipboard, word counter, or character counter.</p>
     </div>
 
     <div class="category-step">
@@ -277,8 +359,8 @@ faqs:
   <p class="category-cta-subtitle">Start using our professional clipboard and text tools now — no signup required!</p>
   <div class="category-cta-buttons">
     <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn-category-primary">Try Clipboard Manager</a>
-    <a href="{{ site.baseurl }}/tools/word-counter/" class="btn-category-secondary">Try Word Counter</a>
-    <a href="{{ site.baseurl }}/tools/character-counter/" class="btn-category-secondary">Try Character Counter</a>
+    <a href="{{ site.baseurl }}/tools/online-notepad/" class="btn-category-secondary">Try Online Notepad</a>
+    <a href="{{ site.baseurl }}/tools/clipboard-share/" class="btn-category-secondary">Try Clipboard Share</a>
   </div>
 </section>
 
@@ -332,7 +414,7 @@ faqs:
   </div>
 
   <div class="view-all-categories-btn">
-    <a href="{{ site.baseurl }}/all-tools/">View All 41+ Tools →</a>
+    <a href="{{ site.baseurl }}/all-tools/">View All 46+ Tools →</a>
   </div>
 </section>
 
@@ -346,7 +428,7 @@ faqs:
   "url": "{{ page.url | absolute_url }}",
   "mainEntity": {
     "@type": "ItemList",
-    "numberOfItems": 3,
+    "numberOfItems": 6,
     "itemListElement": [
       {
         "@type": "ListItem",
@@ -357,12 +439,30 @@ faqs:
       {
         "@type": "ListItem",
         "position": 2,
+        "name": "Online Notepad",
+        "url": "{{ '/tools/online-notepad/' | absolute_url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Scratch Pad",
+        "url": "{{ '/tools/scratch-pad/' | absolute_url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "Share Clipboard",
+        "url": "{{ '/tools/clipboard-share/' | absolute_url }}"
+      },
+      {
+        "@type": "ListItem",
+        "position": 5,
         "name": "Word Counter",
         "url": "{{ '/tools/word-counter/' | absolute_url }}"
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 6,
         "name": "Character Counter",
         "url": "{{ '/tools/character-counter/' | absolute_url }}"
       }

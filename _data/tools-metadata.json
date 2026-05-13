@@ -66,6 +66,72 @@
       "usageCount": 15000
     },
     {
+      "id": "online-notepad",
+      "name": "Online Notepad",
+      "slug": "online-notepad",
+      "description": "Free browser notepad with auto-save, multiple tabs, dark mode, and download. Type notes in your browser — no signup needed.",
+      "shortDescription": "Browser notepad with auto-save",
+      "category": "clipboard",
+      "keywords": [
+        "online notepad",
+        "browser notepad",
+        "auto-save notepad",
+        "quick notes",
+        "free notepad"
+      ],
+      "icon": "📝",
+      "featured": false,
+      "popular": true,
+      "new": true,
+      "url": "/tools/online-notepad/",
+      "rating": 4.9,
+      "usageCount": 1200
+    },
+    {
+      "id": "scratch-pad",
+      "name": "Scratch Pad",
+      "slug": "scratch-pad",
+      "description": "Ultra-minimal scratch pad. Open and start typing instantly. Zero friction, distraction-free, auto-saves every second.",
+      "shortDescription": "Distraction-free writing space",
+      "category": "clipboard",
+      "keywords": [
+        "scratch pad",
+        "quick notes",
+        "distraction-free",
+        "instant notepad",
+        "minimal editor"
+      ],
+      "icon": "✏️",
+      "featured": false,
+      "popular": false,
+      "new": true,
+      "url": "/tools/scratch-pad/",
+      "rating": 4.9,
+      "usageCount": 800
+    },
+    {
+      "id": "clipboard-share",
+      "name": "Share Clipboard",
+      "slug": "clipboard-share",
+      "description": "Share any text via link or QR code. No signup, no server storage. Text is encoded in the URL itself — 100% private.",
+      "shortDescription": "Share text via link & QR",
+      "category": "clipboard",
+      "keywords": [
+        "share clipboard",
+        "share text online",
+        "clipboard to phone",
+        "QR code share",
+        "cross-device clipboard"
+      ],
+      "icon": "🔗",
+      "featured": false,
+      "popular": true,
+      "new": true,
+      "url": "/tools/clipboard-share/",
+      "rating": 4.8,
+      "usageCount": 600
+    },
+    {
       "id": "password-generator",
       "name": "Password Generator",
       "slug": "password-generator",
@@ -885,6 +951,50 @@
       "url": "/tools/micro-crm/",
       "rating": 5.0,
       "usageCount": 500
+    },
+    {
+      "id": "glassmorphism-generator",
+      "name": "Glassmorphism CSS Generator",
+      "slug": "glassmorphism-generator",
+      "description": "Generate frosted glass CSS effects with customizable blur, opacity, and border-radius. Copy clean CSS code instantly.",
+      "shortDescription": "Create frosted glass effects",
+      "category": "design",
+      "keywords": [
+        "glassmorphism",
+        "css generator",
+        "frosted glass",
+        "glass effect",
+        "backdrop blur"
+      ],
+      "icon": "🪟",
+      "featured": false,
+      "popular": true,
+      "new": true,
+      "url": "/tools/glassmorphism-generator/",
+      "rating": 4.8,
+      "usageCount": 3200
+    },
+    {
+      "id": "discord-spoiler-text-generator",
+      "name": "Discord Spoiler Text Generator",
+      "slug": "discord-spoiler-text-generator",
+      "description": "Generate spoiler-tagged text for Discord. Wrap words or characters individually with customizable spoiler effects.",
+      "shortDescription": "Create Discord spoiler text",
+      "category": "text",
+      "keywords": [
+        "discord spoiler",
+        "spoiler text",
+        "discord formatting",
+        "spoiler tag",
+        "discord text tools"
+      ],
+      "icon": "🫣",
+      "featured": false,
+      "popular": true,
+      "new": true,
+      "url": "/tools/discord-spoiler-text-generator/",
+      "rating": 4.7,
+      "usageCount": 4000
     }
   ],
   "categories": [
