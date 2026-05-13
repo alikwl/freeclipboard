@@ -28,11 +28,12 @@
       </div>
     </div>
 
-    <!-- Quick Links Column -->
+    <!-- Quick Links Column (Reordered) -->
     <div class="footer-links-col">
       <h4>Quick Links</h4>
       <ul class="footer-links-list">
         <li><a href="{{ site.baseurl }}/all-tools/">All Tools</a></li>
+        <li><a href="{{ site.baseurl }}/blog/#popular">Popular Tools</a></li>
         <li><a href="{{ site.baseurl }}/free-resources/">Extensions</a></li>
         <li><a href="{{ site.baseurl }}/blog/">Blog</a></li>
         <li><a href="{{ site.baseurl }}/about/">About Us</a></li>
@@ -50,25 +51,43 @@
         <li><a href="{{ site.baseurl }}/utilities/">💼 Developer Tools</a></li>
         <li><a href="{{ site.baseurl }}/calculators/">🧮 Calculators</a></li>
       </ul>
+    </div>
 
-      <div class="footer-made-with">
-        Made with Jekyll ❤️
-      </div>
+    <!-- Popular Tools Column (SEO Links) -->
+    <div class="footer-links-col">
+      <h4>Popular Tools</h4>
+      <ul class="footer-links-list" style="font-size: 0.875rem;">
+        <li><a href="{{ site.baseurl }}/tools/json-formatter/">JSON Formatter</a></li>
+        <li><a href="{{ site.baseurl }}/tools/image-converter/">Image Converter</a></li>
+        <li><a href="{{ site.baseurl }}/tools/password-generator/">Password Generator</a></li>
+        <li><a href="{{ site.baseurl }}/tools/word-counter/">Word Counter</a></li>
+        <li><a href="{{ site.baseurl }}/tools/base64-encoder/">Base64 Encoder</a></li>
+        <li><a href="{{ site.baseurl }}/tools/hash-generator/">Hash Generator</a></li>
+      </ul>
     </div>
   </div>
 
   <!-- Bottom Bar -->
-  <div style="border-top: 1px solid #1e293b; margin-top: 2rem; padding-top: 2rem; text-align: center;">
-    <p style="color: #64748b; font-size: 0.75rem;">
+  <div style="border-top: 1px solid #1e293b; margin-top: 2.5rem; padding-top: 2rem;">
+    <!-- Trust Message -->
+    <p style="color: #94a3b8; font-size: 0.875rem; text-align: center; margin-bottom: 1.5rem; font-weight: 500;">
       🔒 All tools run in your browser. Your data never leaves your device. 100% private and secure.
     </p>
-    <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap;">
+
+    <!-- Policy Links -->
+    <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
       <a href="{{ site.baseurl }}/privacy-policy/"
         style="color: #64748b; font-size: 0.75rem; text-decoration: none;">Privacy Policy</a>
       <a href="{{ site.baseurl }}/terms-of-service/"
         style="color: #64748b; font-size: 0.75rem; text-decoration: none;">Terms of Service</a>
       <a href="#" onclick="window.cookieConsent && window.cookieConsent.showSettings(); return false;"
         style="color: #64748b; font-size: 0.75rem; text-decoration: none;">Cookie Settings</a>
+    </div>
+
+    <!-- "Made with Jekyll" - Subtle -->
+    <div class="footer-made-with"
+      style="text-align: center; color: #475569; font-size: 0.7rem; opacity: 0.6; margin-top: 1rem;">
+      Made with Jekyll ❤️
     </div>
   </div>
 </footer>

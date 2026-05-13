@@ -1,538 +1,1383 @@
 ---
 layout: tool
-title: Text to Handwriting Converter - Free Online Handwriting Generator
-description: Convert typed text to realistic handwriting instantly. Customize fonts, colors, paper styles, and download as PNG or PDF. Perfect for assignments, notes, and letters.
-keywords: text to handwriting, handwriting converter, handwriting generator, text to handwritten, convert text to handwriting, handwriting font, handwritten text generator
+title: "Free Text to Handwriting Converter - Generate Realistic Notes Online"
+meta_description: "Convert typed text into realistic human handwriting instantly. Free online handwriting generator with
+multiple fonts, paper styles, and PDF export. Perfect for assignments and notes."
+description: "Convert typed text to realistic handwriting instantly. Customize fonts, colors, paper styles, and download
+as PNG or PDF. Perfect for assignments, notes, and letters."
+keywords: "text to handwriting, handwriting converter, handwriting generator, text to handwritten, convert text to
+handwriting, handwriting font, handwritten text generator"
 schema_type: WebApplication
 permalink: /tools/text-to-handwriting/
-category_name: Text Utilities
+category_name: "Text Utilities"
 category_url: /text-utilities/
+category_icon: 📝
 rating: 4.9
 rating_count: 1280
-og_image: /assets/images/og/text-to-handwriting.png
-twitter_image: /assets/images/twitter/text-to-handwriting.png
-features:
-  - Multiple handwriting styles
-  - Customizable pen colors
-  - Various paper types
-  - Adjustable text size and spacing
-  - Download as PNG or PDF
-  - Real-time preview
-  - Mobile-friendly
-  - 100% free and private
 ---
 
-<section class="tool-wrapper" aria-labelledby="handwriting-heading">
-  <h2 id="handwriting-heading" class="sr-only">Text to Handwriting Converter</h2>
-  
-  <!-- Input Section -->
-  <div class="handwriting-input-section">
-    <div class="label-row">
-      <label for="textInput">Enter Your Text</label>
-      <div class="input-stats">
-        <span id="charCount">0</span> characters
-      </div>
-    </div>
-    <textarea 
-      id="textInput" 
-      placeholder="Type or paste your text here... It will be converted to handwriting in real-time!"
-      rows="8"
-      aria-label="Text input for handwriting conversion"></textarea>
-    
-    <div class="quick-actions">
-      <button id="clearBtn" class="btn-sm btn-outline" aria-label="Clear text">
-        <span>🗑️</span> Clear
-      </button>
-      <button id="sampleBtn" class="btn-sm btn-outline" aria-label="Load sample text">
-        <span>📝</span> Load Sample
-      </button>
-    </div>
-  </div>
 
-  <!-- Customization Panel -->
-  <div class="customization-panel">
-    <h3>Customize Handwriting</h3>
-    
-    <div class="customization-grid">
-      <!-- Handwriting Style -->
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&family=Caveat:wght@400;700&family=Patrick+Hand&family=Homemade+Apple&display=swap"
+  rel="stylesheet">
+
+<!-- Antigravity Container -->
+<div class="antigravity-container">
+
+  <!-- Glassmorphism Control Sidebar -->
+  <aside class="glass-sidebar floating-card" id="controlSidebar">
+    <div class="sidebar-header">
+      <h2>✨ Customize</h2>
+      <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <span>☰</span>
+      </button>
+    </div>
+
+    <div class="sidebar-content">
+
+      <!-- Handwriting Font -->
       <div class="control-group">
-        <label for="fontStyle">Handwriting Style</label>
-        <select id="fontStyle" class="form-select">
-          <option value="style1">Casual Script</option>
-          <option value="style2">Elegant Cursive</option>
-          <option value="style3">Print Style</option>
-          <option value="style4">Bold Script</option>
-          <option value="style5">Neat Handwriting</option>
+        <label for="fontSelect">
+          <span class="control-icon">✍️</span>
+          Handwriting Style
+        </label>
+        <select id="fontSelect" class="glass-input">
+          <option value="Dancing Script">Dancing Script (Elegant)</option>
+          <option value="Indie Flower">Indie Flower (Casual)</option>
+          <option value="Shadows Into Light" selected>Shadows Into Light (Clean)</option>
+          <option value="Caveat">Caveat (Bold)</option>
+          <option value="Patrick Hand">Patrick Hand (Neat)</option>
+          <option value="Homemade Apple">Homemade Apple (Authentic)</option>
         </select>
       </div>
 
       <!-- Pen Color -->
       <div class="control-group">
-        <label for="penColor">Pen Color</label>
-        <div class="color-picker-group">
-          <input type="color" id="penColor" value="#0000ff">
+        <label for="penColor">
+          <span class="control-icon">🎨</span>
+          Pen Color
+        </label>
+        <div class="color-control">
+          <input type="color" id="penColor" value="#003366" class="glass-color-input">
           <div class="color-presets">
-            <button class="color-preset" data-color="#0000ff" style="background: #0000ff" aria-label="Blue"></button>
-            <button class="color-preset" data-color="#000000" style="background: #000000" aria-label="Black"></button>
-            <button class="color-preset" data-color="#ff0000" style="background: #ff0000" aria-label="Red"></button>
-            <button class="color-preset" data-color="#008000" style="background: #008000" aria-label="Green"></button>
+            <button class="color-preset" data-color="#000000" style="background: #000000;" title="Black"></button>
+            <button class="color-preset" data-color="#003366" style="background: #003366;" title="Blue"></button>
+            <button class="color-preset" data-color="#8B0000" style="background: #8B0000;" title="Red"></button>
+            <button class="color-preset" data-color="#006400" style="background: #006400;" title="Green"></button>
           </div>
         </div>
       </div>
 
-      <!-- Text Size -->
+      <!-- Font Size -->
       <div class="control-group">
-        <label for="textSize">Text Size: <span id="textSizeValue">18</span>px</label>
-        <input type="range" id="textSize" min="12" max="32" value="18" class="slider">
+        <label for="fontSize">
+          <span class="control-icon">🔤</span>
+          Font Size: <span id="fontSizeValue">28</span>px
+        </label>
+        <input type="range" id="fontSize" min="16" max="48" value="28" class="glass-slider">
       </div>
 
-      <!-- Line Spacing -->
+      <!-- Letter Spacing -->
       <div class="control-group">
-        <label for="lineSpacing">Line Spacing: <span id="lineSpacingValue">1.5</span></label>
-        <input type="range" id="lineSpacing" min="1" max="3" step="0.1" value="1.5" class="slider">
+        <label for="letterSpacing">
+          <span class="control-icon">↔️</span>
+          Letter Spacing: <span id="letterSpacingValue">0</span>px
+        </label>
+        <input type="range" id="letterSpacing" min="-2" max="8" value="0" step="0.5" class="glass-slider">
+      </div>
+
+      <!-- Line Height -->
+      <div class="control-group">
+        <label for="lineHeight">
+          <span class="control-icon">↕️</span>
+          Line Spacing: <span id="lineHeightValue">1.6</span>
+        </label>
+        <input type="range" id="lineHeight" min="1.2" max="2.5" value="1.6" step="0.1" class="glass-slider">
       </div>
 
       <!-- Paper Type -->
       <div class="control-group">
-        <label for="paperType">Paper Type</label>
-        <select id="paperType" class="form-select">
+        <label for="paperType">
+          <span class="control-icon">📄</span>
+          Paper Type
+        </label>
+        <select id="paperType" class="glass-input">
           <option value="plain">Plain White</option>
-          <option value="lined">Lined Paper</option>
+          <option value="lined" selected>Lined Paper</option>
           <option value="grid">Grid Paper</option>
-          <option value="dotted">Dotted Paper</option>
           <option value="vintage">Vintage Paper</option>
+          <option value="darkgrid">Dark Grid</option>
         </select>
       </div>
 
-      <!-- Page Margins -->
-      <div class="control-group">
-        <label for="pageMargin">Page Margins: <span id="pageMarginValue">40</span>px</label>
-        <input type="range" id="pageMargin" min="20" max="80" value="40" class="slider">
+      <!-- Advanced Options -->
+      <details class="advanced-section">
+        <summary class="advanced-toggle">⚙️ Advanced Settings</summary>
+        <div class="advanced-content">
+
+          <!-- Realism Effect -->
+          <div class="control-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="realismEffect" checked>
+              <span>✨ Realistic Variations</span>
+              <small>Random rotation & baseline shifts</small>
+            </label>
+          </div>
+
+          <!-- Page Margins -->
+          <div class="control-group">
+            <label for="pageMargin">
+              Margins: <span id="pageMarginValue">60</span>px
+            </label>
+            <input type="range" id="pageMargin" min="30" max="100" value="60" class="glass-slider">
+          </div>
+
+          <!-- Text Shadow -->
+          <div class="control-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="textShadow">
+              <span>Add Text Shadow</span>
+            </label>
+          </div>
+
+        </div>
+      </details>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <button id="renderBtn" class="btn-primary-glass">
+          <span>🎨</span> Render Handwriting
+        </button>
+        <button id="clearBtn" class="btn-outline-glass">
+          <span>🗑️</span> Clear
+        </button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- Main Canvas Area -->
+  <main class="canvas-main">
+
+    <!-- Text Input (Floating Card) -->
+    <div class="input-card floating-card">
+      <div class="card-header">
+        <h3>📝 Your Text</h3>
+        <span class="char-count" id="charCount">0 / 5000</span>
+      </div>
+      <textarea id="textInput"
+        placeholder="Type or paste your text here... Watch it transform into beautiful handwriting! ✍️" maxlength="5000"
+        rows="6"></textarea>
+      <div class="input-actions">
+        <button id="sampleTextBtn" class="btn-sm-glass">Load Sample</button>
       </div>
     </div>
 
-    <!-- Advanced Options Toggle -->
-    <button id="advancedToggle" class="btn-outline btn-sm" style="margin-top: 1rem;">
-      <span>⚙️</span> Advanced Options
-    </button>
-
-    <!-- Advanced Options Panel -->
-    <div id="advancedOptions" class="advanced-options" style="display: none;">
-      <div class="customization-grid">
-        <div class="control-group">
-          <label for="letterSpacing">Letter Spacing: <span id="letterSpacingValue">0</span>px</label>
-          <input type="range" id="letterSpacing" min="-2" max="5" step="0.5" value="0" class="slider">
+    <!-- Canvas Preview (Floating Card) -->
+    <div class="canvas-card floating-card" id="canvasCard">
+      <div class="card-header">
+        <h3>👁️ Live Preview</h3>
+        <div class="canvas-actions">
+          <button id="zoomOut" class="btn-icon-glass" title="Zoom Out">🔍-</button>
+          <span id="zoomLevel">100%</span>
+          <button id="zoomIn" class="btn-icon-glass" title="Zoom In">🔍+</button>
         </div>
-
-        <div class="control-group">
-          <label for="wordSpacing">Word Spacing: <span id="wordSpacingValue">0</span>px</label>
-          <input type="range" id="wordSpacing" min="0" max="10" value="0" class="slider">
-        </div>
-
-        <div class="control-group">
-          <label for="textAlign">Text Alignment</label>
-          <select id="textAlign" class="form-select">
-            <option value="left">Left</option>
-            <option value="center">Center</option>
-            <option value="right">Right</option>
-            <option value="justify">Justify</option>
-          </select>
-        </div>
-
-        <div class="control-group">
-          <label>
-            <input type="checkbox" id="addShadow">
-            Add Text Shadow
-          </label>
-        </div>
-
-        <div class="control-group">
-          <label>
-            <input type="checkbox" id="randomVariation">
-            Random Letter Variation
-          </label>
-        </div>
-
-        <div class="control-group">
-          <label for="pageWidth">Page Width: <span id="pageWidthValue">800</span>px</label>
-          <input type="range" id="pageWidth" min="600" max="1200" step="50" value="800" class="slider">
+      </div>
+      <div class="canvas-wrapper" id="canvasWrapper">
+        <canvas id="handwritingCanvas" width="1240" height="1754"></canvas>
+        <div class="canvas-placeholder" id="canvasPlaceholder">
+          <div class="placeholder-content">
+            <span class="placeholder-icon">✨</span>
+            <p>Your handwritten text will appear here</p>
+            <small>Type some text and click "Render Handwriting"</small>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Preview Section -->
-  <div class="preview-section">
-    <div class="preview-header">
-      <h3>Live Preview</h3>
-      <div class="preview-actions">
-        <button id="zoomOut" class="btn-icon" aria-label="Zoom out">🔍-</button>
-        <button id="zoomReset" class="btn-icon" aria-label="Reset zoom">100%</button>
-        <button id="zoomIn" class="btn-icon" aria-label="Zoom in">🔍+</button>
+    <!-- Download Section (Floating Card) -->
+    <div class="download-card floating-card">
+      <div class="card-header">
+        <h3>💾 Download Options</h3>
+      </div>
+      <div class="download-grid">
+        <button id="downloadPNG" class="btn-download-glass">
+          <span class="download-icon">📥</span>
+          <span class="download-text">
+            <strong>Download PNG</strong>
+            <small>High quality image</small>
+          </span>
+        </button>
+        <button id="downloadPDF" class="btn-download-glass">
+          <span class="download-icon">📄</span>
+          <span class="download-text">
+            <strong>Download PDF</strong>
+            <small>Printable document</small>
+          </span>
+        </button>
       </div>
     </div>
-    
-    <div class="preview-container" id="previewContainer">
-      <div class="handwriting-canvas" id="handwritingCanvas">
-        <div class="placeholder-text">
-          Your handwritten text will appear here...
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Download Section -->
-  <div class="download-section">
-    <h3>Download Options</h3>
-    <div class="download-grid">
-      <button id="downloadPNG" class="btn-primary">
-        <span>📥</span> Download as PNG
-      </button>
-      <button id="downloadPDF" class="btn-secondary">
-        <span>📄</span> Download as PDF
-      </button>
-      <button id="copyImage" class="btn-outline">
-        <span>📋</span> Copy to Clipboard
-      </button>
-      <button id="printBtn" class="btn-outline">
-        <span>🖨️</span> Print
-      </button>
-    </div>
-  </div>
+  </main>
 
-</section>
+</div>
 
-<!-- Tool Content Section -->
+<!-- SEO Content Section -->
 <section class="tool-content-section">
   <div class="content-body">
-    
-    <h2>Text to Handwriting Converter</h2>
-    <p>Ever wished you could turn your typed text into beautiful handwriting without picking up a pen? That's exactly what our Text to Handwriting Converter does! Whether you're a student looking to submit handwritten assignments, someone who wants to add a personal touch to letters, or just curious about how your words would look in different handwriting styles, this tool has you covered.</p>
-    
-    <p>What makes this converter special is how natural and realistic the results look. You can choose from five distinct handwriting styles—from casual everyday script to elegant cursive—and customize everything from pen color to paper type. The best part? You see your changes in real-time, so you know exactly what you're getting before you download. It's like having a personal handwriting assistant that never gets tired!</p>
-    
-    <h2>How to Use the Handwriting Converter</h2>
-    <p>Getting started is incredibly simple, and you'll have your handwritten text ready in just a few clicks:</p>
-    
-    <div class="how-to-steps">
-      <div class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3>Type Your Text</h3>
-          <p>Start by typing or pasting your text into the input box. You can write anything—a letter, notes, an assignment, or even a poem. The tool supports up to 10,000 characters, which is plenty for most documents. Don't worry about formatting yet; just get your words in there!</p>
-        </div>
-      </div>
-      
-      <div class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3>Pick Your Style</h3>
-          <p>Now comes the fun part! Choose a handwriting style that matches your mood or purpose. Want something casual and friendly? Go with Casual Script. Need something more formal? Elegant Cursive is your friend. Each style has its own personality, so feel free to experiment until you find the perfect match.</p>
-        </div>
-      </div>
-      
-      <div class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3>Customize the Look</h3>
-          <p>This is where you make it truly yours. Select your pen color (blue and black are classics, but why not try something bold?), adjust the text size for readability, and choose your paper type. Lined paper for that school assignment feel, or vintage paper for something more artistic—the choice is yours!</p>
-        </div>
-      </div>
-      
-      <div class="step-item">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h3>Fine-Tune (Optional)</h3>
-          <p>Want to get fancy? Click on "Advanced Options" to adjust letter spacing, add text shadows, or enable random variation for an even more natural look. These tweaks can make the difference between "nice" and "wow, did you really write this by hand?"</p>
-        </div>
-      </div>
-      
-      <div class="step-item">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <h3>Download and Use</h3>
-          <p>Happy with how it looks? Great! Click the download button to save your handwritten text as a PNG image or PDF document. You can also copy it directly to your clipboard or print it right away. Whatever works best for your needs!</p>
-        </div>
-      </div>
-    </div>
-    
-    <h2>Why Choose Our Text to Handwriting Converter?</h2>
-    <p>You might be wondering, "Why this tool and not others?" Fair question! Here's what sets us apart:</p>
-    
-    <p><strong>It's genuinely free and always will be.</strong> No hidden costs, no "upgrade to premium" pop-ups, no watermarks on your downloads. We believe everyone should have access to great tools without breaking the bank.</p>
-    
-    <p><strong>Your privacy matters to us.</strong> Everything happens right in your browser. Your text never touches our servers, which means your personal letters, assignments, or notes stay completely private. We don't see them, we don't store them, and we definitely don't share them.</p>
-    
-    <p><strong>It actually looks like handwriting.</strong> We've carefully selected fonts and added features like random letter variation to make the output look natural and authentic. It's not just typed text in a fancy font—it's designed to mimic real handwriting.</p>
-    
-    <p><strong>It works everywhere.</strong> Whether you're on your phone during your commute, on a tablet in bed, or at your desktop computer, the tool adapts perfectly. The interface is clean, intuitive, and works smoothly on any device.</p>
-    
-    <h2>Benefits You'll Love</h2>
-    
-    <div class="benefits-grid">
-      <div class="benefit-item">
-        <h3>⏱️ Save Tons of Time</h3>
-        <p>Writing by hand is beautiful but time-consuming. Type at your normal speed and convert it to handwriting in seconds. What used to take an hour now takes minutes.</p>
-      </div>
-      
-      <div class="benefit-item">
-        <h3>✨ Perfect Every Time</h3>
-        <p>No more crossed-out words, smudged ink, or cramped hands. Make unlimited changes until it's exactly right, then download the perfect version.</p>
-      </div>
-      
-      <div class="benefit-item">
-        <h3>🎨 Express Your Style</h3>
-        <p>Switch between different handwriting styles to match your mood or purpose. Casual for friends, elegant for formal occasions, neat for professional documents.</p>
-      </div>
-      
-      <div class="benefit-item">
-        <h3>📱 Use Anywhere</h3>
-        <p>Create handwritten text on your phone while waiting for coffee, on your tablet while relaxing, or on your computer at your desk. It's always available.</p>
-      </div>
-      
-      <div class="benefit-item">
-        <h3>🌍 Eco-Friendly</h3>
-        <p>Save paper by creating digital handwritten documents. Only print what you absolutely need, and keep digital copies of everything else.</p>
-      </div>
-      
-      <div class="benefit-item">
-        <h3>🔄 Unlimited Revisions</h3>
-        <p>Made a typo? Want to change the color? No problem! Edit and regenerate as many times as you need without wasting paper or ink.</p>
-      </div>
-    </div>
-    
-    <h2>Advanced Features for Power Users</h2>
-    <p>Once you're comfortable with the basics, dive into these advanced features to take your handwritten text to the next level:</p>
-    
-    <div class="advanced-features">
-      <div class="feature-detail">
-        <h3>Random Letter Variation</h3>
-        <p>This clever feature adds subtle variations to each letter, making your text look more natural and less "computer-generated." It's like how your handwriting isn't perfectly identical every time you write the same letter. Enable this for the most realistic results.</p>
-      </div>
-      
-      <div class="feature-detail">
-        <h3>Custom Spacing Controls</h3>
-        <p>Fine-tune the space between letters and words to match your preferred writing style. Tight spacing for a compact look, or generous spacing for an airy, easy-to-read feel. You can even adjust line spacing to prevent text from looking cramped.</p>
-      </div>
-      
-      <div class="feature-detail">
-        <h3>Text Alignment Options</h3>
-        <p>Choose how your text aligns on the page—left, center, right, or justified. This is especially useful when creating formal documents or artistic pieces where alignment matters.</p>
-      </div>
-      
-      <div class="feature-detail">
-        <h3>Shadow Effects</h3>
-        <p>Add a subtle shadow to your text for depth and dimension. It's a small touch that can make your handwriting look more three-dimensional and realistic, especially when printed.</p>
-      </div>
-      
-      <div class="feature-detail">
-        <h3>Multiple Paper Styles</h3>
-        <p>Beyond plain white, choose from lined paper (perfect for assignments), grid paper (great for technical notes), dotted paper (ideal for bullet journaling), or vintage paper (adds character to letters and creative projects).</p>
-      </div>
-      
-      <div class="feature-detail">
-        <h3>Zoom and Preview</h3>
-        <p>Use the zoom controls to inspect your handwriting up close before downloading. This helps you catch any spacing issues or make final adjustments to ensure everything looks perfect.</p>
-      </div>
-    </div>
-    
-    <h2>Frequently Asked Questions</h2>
-    
-    <div class="faq-section">
-      <div class="faq-item">
-        <h3>Is this tool really free to use?</h3>
-        <p>Absolutely! The Text to Handwriting Converter is 100% free with no hidden charges, subscriptions, or premium features locked behind a paywall. We believe great tools should be accessible to everyone. Use it as much as you want, download unlimited files, and enjoy all features without spending a penny.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I use this for school assignments?</h3>
-        <p>While our tool can convert text to handwriting, we encourage you to check with your teacher or professor first. Some educators have specific policies about digitally generated handwriting. That said, many students use it for legitimate purposes like creating neat copies of their handwritten notes or preparing study materials. When in doubt, ask your instructor!</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Will my text be stored on your servers?</h3>
-        <p>Nope! This is one of our favorite features. Everything happens entirely in your browser—your text never leaves your device. We don't see it, we don't store it, and we can't access it. Your privacy is completely protected. Once you close the browser tab, it's gone forever (unless you saved it, of course!).</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>What file formats can I download?</h3>
-        <p>You have three options: download as a PNG image (great for inserting into documents or sharing online), download as a PDF (perfect for printing or submitting assignments), or copy directly to your clipboard (super convenient for quick pasting). Choose whichever format works best for your needs!</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>How realistic does the handwriting look?</h3>
-        <p>Pretty darn realistic! We use authentic handwriting fonts and offer features like random letter variation to make it look natural. While it won't fool a handwriting expert, it looks convincingly handwritten for most purposes. The key is choosing the right style and enabling random variation for the most authentic results.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I use this on my phone or tablet?</h3>
-        <p>Yes! The tool is fully responsive and works beautifully on all devices. Whether you're on an iPhone, Android phone, iPad, or any tablet, you'll get the full experience. The interface adapts to your screen size, and all features remain accessible. Create handwritten text wherever you are!</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Is there a limit to how much text I can convert?</h3>
-        <p>You can convert up to 10,000 characters at once, which is roughly 1,500-2,000 words—plenty for most documents! If you need to convert more, simply break it into sections and create multiple files. This limit helps ensure the tool runs smoothly and generates high-quality output.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Why does my downloaded image look pixelated?</h3>
-        <p>If your image looks pixelated, try increasing the text size before downloading. Larger text creates higher resolution images. Also, make sure you're downloading as PNG (not copying and pasting), as PNG maintains the best quality. If you're printing, a text size of 18-20px usually works great.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I change the handwriting style after I've typed my text?</h3>
-        <p>Of course! That's the beauty of this tool. Type your text once, then experiment with different styles, colors, and settings as much as you want. The preview updates instantly, so you can try different combinations until you find the perfect look. No need to retype anything!</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>What's the difference between the handwriting styles?</h3>
-        <p>Each style has its own personality! Casual Script is relaxed and friendly (great for personal notes), Elegant Cursive is flowing and formal (perfect for invitations), Print Style is clear and legible (ideal for assignments), Bold Script is confident and eye-catching (good for titles), and Neat Handwriting is organized and tidy (excellent for professional documents). Try them all to see which fits your needs!</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Does this work offline?</h3>
-        <p>After your first visit, most of the tool works offline! The fonts need to be loaded initially (which requires internet), but once they're cached in your browser, you can use the tool without an internet connection. Perfect for working on the go or in areas with spotty WiFi.</p>
-      </div>
-      
-      <div class="faq-item">
-        <h3>Can I print directly from the tool?</h3>
-        <p>Yes! There's a print button that opens a print-friendly version of your handwritten text. It removes all the controls and buttons, showing just your handwritten content. This makes it easy to print exactly what you need without any extra clutter on the page.</p>
-      </div>
-    </div>
-    
-    <div class="cta-box">
-      <h3>Ready to Create Beautiful Handwriting?</h3>
-      <p>Start converting your text to handwriting right now—it's free, fast, and fun! No signup required, no credit card needed, just pure creative freedom.</p>
-      <a href="#textInput" class="btn-primary">Start Converting Now</a>
-    </div>
-    
-    <h2>Related Tools You Might Like</h2>
-    <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/text-formatter/">Text Formatter</a> - Transform text case and format in various ways</li>
-      <li><a href="{{ site.baseurl }}/tools/word-counter/">Word Counter</a> - Count words, characters, and reading time</li>
-      <li><a href="{{ site.baseurl }}/tools/character-counter/">Character Counter</a> - Detailed character analysis and counting</li>
-      <li><a href="{{ site.baseurl }}/text-utilities/">View All Text Tools</a> - Explore our complete collection</li>
-    </ul>
-  </div>
-</section>
 
-<script src="{{ site.baseurl }}/assets/js/text-to-handwriting.js"></script>
-      </div>
-      <textarea id="tthInput" placeholder="Type or paste your text here..." rows="8"></textarea>
-    </div>
+    <h1>Free Text to Handwriting Converter: Generate Realistic Notes Online</h1>
+    <p>Welcome to the most advanced <strong>Text to Handwriting Converter</strong> on the web. Do you need to submit a
+      handwritten assignment but only have the typed text? Our free online <strong>handwriting generator</strong>
+      converts your digital text into realistic, human-like handwriting in seconds. With our unique "Antigravity"
+      interface, creating handwritten documents has never been smoother.</p>
 
-    <div class="controls-area" id="controls-section">
-      <div class="controls-grid">
-        <div class="control">
-          <label for="tthFont">Handwriting Font</label>
-          <select id="tthFont">
-            <option>Patrick Hand</option>
-            <option>Shadows Into Light</option>
-            <option>Caveat</option>
-            <option>Dancing Script</option>
-            <option>Homemade Apple</option>
-          </select>
-        </div>
-
-        <div class="control">
-          <label for="tthFontSize">Font Size</label>
-          <input type="range" id="tthFontSize" min="14" max="48" value="28">
-        </div>
-
-        <div class="control">
-          <label for="tthPenColor">Pen Color</label>
-          <input type="color" id="tthPenColor" value="#111111">
-        </div>
-
-        <div class="control">
-          <label for="tthStroke">Stroke Thickness</label>
-          <input type="range" id="tthStroke" min="1" max="4" value="2">
-        </div>
-
-        <div class="control">
-          <label for="tthLineSpacing">Line Spacing</label>
-          <input type="range" id="tthLineSpacing" min="1" max="2.2" step="0.05" value="1.4">
-        </div>
-
-        <div class="control">
-          <label for="tthMargin">Margins (px)</label>
-          <input type="range" id="tthMargin" min="20" max="100" value="40">
-        </div>
-
-        <div class="control">
-          <label for="tthPaper">Paper Type</label>
-          <select id="tthPaper">
-            <option value="plain">Plain</option>
-            <option value="ruled">Ruled</option>
-            <option value="graph">Graph</option>
-          </select>
-        </div>
-
-        <div class="control">
-          <label for="tthPage">Page Size</label>
-          <select id="tthPage">
-            <option value="a4">A4 (1240×1754)</option>
-            <option value="letter">Letter (1275×1650)</option>
-          </select>
-        </div>
-
-        <div class="control">
-          <label class="checkbox">
-            <input type="checkbox" id="tthJitter">
-            <span>Handwriting realism (slight jitter)</span>
-          </label>
-        </div>
-      </div>
-
-      <div class="action-row" role="toolbar" aria-label="Export actions">
-        <button id="tthRender" class="btn-primary">Render</button>
-        <button id="tthDownloadPng" class="btn-outline">Download PNG</button>
-        <button id="tthDownloadJpg" class="btn-outline">Download JPG</button>
-        <button id="tthCopyImage" class="btn-outline">Copy Image</button>
-        <button id="tthPrint" class="btn-outline">Print</button>
-      </div>
-    </div>
-
-    <div class="preview-area" id="preview-section">
-      <canvas id="tthCanvas" width="1240" height="1754" aria-label="Handwriting preview"></canvas>
-    </div>
-    </div>
-  </div>
-
-  <script src="{{ site.baseurl }}/assets/js/text-to-handwriting.js"></script>
-</section>
-
-<section class="tool-content-section">
-  <div class="content-body">
-    <h2>About Text to Handwriting Converter</h2>
-    <p>Turn your typed text into beautiful, realistic handwritten notes. Choose from popular handwriting fonts, adjust line spacing and margins, and render on ruled or graph paper. Perfect for classroom notes, study guides, journals, and stylized documents.</p>
-
-    <h2>Key Features</h2>
+    <h2>Why Use Our Handwriting Generator?</h2>
+    <p>Unlike simple font changers, our tool uses advanced logic to mimic natural writing flow. Here's why users love
+      it:</p>
     <ul class="features-list">
-      <li><strong>Multiple handwriting styles:</strong> Patrick Hand, Shadows Into Light, Caveat, Dancing Script, Homemade Apple</li>
-      <li><strong>Paper backgrounds:</strong> Plain, ruled lines, or graph grid with realistic colors</li>
-      <li><strong>Controls:</strong> Font size, pen color, stroke thickness, line spacing, margins, page size</li>
-      <li><strong>Export & share:</strong> Download as PNG/JPG, print, or copy image to clipboard</li>
-      <li><strong>Private:</strong> Everything runs in your browser, your text never leaves your device</li>
+      <li><strong>Realistic Ink Flow:</strong> We randomize character spacing and rotation to ensure it doesn't look
+        like a computer font.</li>
+      <li><strong>Multiple Handwriting Styles:</strong> Choose from cursive, print, or messy handwriting fonts to match
+        your style.</li>
+      <li><strong>Custom Paper Backgrounds:</strong> Select lined paper, graph paper, or clean white backgrounds.</li>
+      <li><strong>100% Free & Secure:</strong> The conversion happens in your browser. Your text is never sent to a
+        server, ensuring total privacy.</li>
+      <li><strong>High-Quality Export:</strong> Download as PNG images or compile into PDF documents.</li>
+      <li><strong>No Watermarks:</strong> All exports are completely free with no branding or limitations.</li>
     </ul>
 
-    <h2>How to Use</h2>
+    <h2>How to Convert Text to Handwriting (Step-by-Step)</h2>
+    <p>Follow these simple steps to generate your handwritten document:</p>
     <ol class="instructions-list">
-      <li>Type or paste your text into the input box</li>
-      <li>Select a handwriting font and adjust size, spacing, color, and margins</li>
-      <li>Choose your paper type and page size</li>
-      <li>Click <em>Render</em> to generate the handwritten note</li>
-      <li>Download the image, copy to clipboard, or print</li>
+      <li><strong>Type or Paste Text:</strong> Enter your content in the input box above.</li>
+      <li><strong>Customize Your Style:</strong> Use the floating sidebar to pick a font, ink color (Blue/Black/Red),
+        and paper type.</li>
+      <li><strong>Adjust Realism:</strong> Tweak the font size and letter spacing to make it look authentic. Enable
+        "Realistic Variations" for natural imperfections.</li>
+      <li><strong>Preview:</strong> Click "Render Handwriting" to see your text transformed in real-time.</li>
+      <li><strong>Download:</strong> Click the "Download PNG" or "Download PDF" button to save your work.</li>
     </ol>
 
-    <h2>SEO & Discoverability</h2>
-    <p>This tool includes structured data and highly relevant metadata to ensure search engines can index and rank it. It’s designed to be fast, accessible, and mobile-friendly.</p>
+    <h2>Use Cases for Text to Handwriting Tools</h2>
+    <div class="use-cases-grid"
+      style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; border-left: 4px solid #3b82f6;">
+        <h3 style="color: #1f2937; margin-top: 0;">📚 Students</h3>
+        <p style="color: #4b5563;">Quickly convert typed essays into handwritten assignments. Perfect for homework that
+          requires handwritten submission.</p>
+      </div>
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; border-left: 4px solid #8b5cf6;">
+        <h3 style="color: #1f2937; margin-top: 0;">🎨 Designers</h3>
+        <p style="color: #4b5563;">Create authentic handwritten notes for mood boards, social media posts, or design
+          presentations.</p>
+      </div>
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; border-left: 4px solid #10b981;">
+        <h3 style="color: #1f2937; margin-top: 0;">👨‍🏫 Teachers</h3>
+        <p style="color: #4b5563;">Generate worksheets that look hand-crafted. Create personalized notes for students.
+        </p>
+      </div>
+      <div style="background: #f8fafc; padding: 1.5rem; border-radius: 0.75rem; border-left: 4px solid #f59e0b;">
+        <h3 style="color: #1f2937; margin-top: 0;">💌 Personal Use</h3>
+        <p style="color: #4b5563;">Write digital love letters, thank you notes, or journal entries with a personal
+          touch.</p>
+      </div>
+    </div>
+
+    <h2>Key Features of Our Handwriting Converter</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+      <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🎨</div>
+        <h3 style="color: #1f2937;">6 Handwriting Fonts</h3>
+        <p style="color: #6b7280;">Choose from Dancing Script (elegant cursive), Indie Flower (casual), Shadows Into
+          Light (clean), Caveat (bold), Patrick Hand (neat), and Homemade Apple (authentic).</p>
+      </div>
+      <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📄</div>
+        <h3 style="color: #1f2937;">5 Paper Types</h3>
+        <p style="color: #6b7280;">Select from Plain White, Lined Paper, Grid Paper, Vintage Paper, and Dark Grid to
+          match your requirement.</p>
+      </div>
+      <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">✨</div>
+        <h3 style="color: #1f2937;">Realistic Variations</h3>
+        <p style="color: #6b7280;">Our "humanize" algorithm adds random rotation (-2° to +2°), baseline shifts, and
+          opacity variations for authentic handwriting.</p>
+      </div>
+      <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <div style="font-size: 2.5rem; margin-bottom: 1rem;">💾</div>
+        <h3 style="color: #1f2937;">Multiple Export Formats</h3>
+        <p style="color: #6b7280;">Download as high-resolution PNG images or professional PDF documents ready for
+          printing or submission.</p>
+      </div>
+    </div>
+
+    <h2>Frequently Asked Questions (FAQs)</h2>
+    <div class="faq-section" style="max-width: 48rem; margin: 2rem auto;">
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">Is this handwriting converter free?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">Yes, our Text to Handwriting tool is <strong>100% free</strong> to
+          use with no daily limits. You can generate as many pages as you need without any charges or subscriptions.</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">Does the handwriting look real?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">Absolutely. We use a "humanize" algorithm that adds slight
+          imperfections, variable spacing, and tilt to characters, making it indistinguishable from real pen-on-paper
+          writing. The realistic variations ensure your handwritten text doesn't look computer-generated.</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">Can I download the output as a PDF?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">Yes, you can export your handwritten notes as high-quality images
+          (PNG) or compile them into a <strong>PDF document</strong> for easy submission, printing, or sharing.</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">Is my data safe?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">Your privacy is our priority. This tool runs locally on your
+          browser using JavaScript. <strong>No text or data is ever uploaded to our servers.</strong> Everything happens
+          on your device, ensuring complete confidentiality.</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">What fonts can I use for handwriting?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">We offer 6 authentic handwriting fonts: Dancing Script (elegant
+          cursive), Indie Flower (casual friendly), Shadows Into Light (clean modern), Caveat (bold script), Patrick
+          Hand (neat print), and Homemade Apple (authentic handwritten).</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">Can I customize the paper type?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">Yes! Choose from 5 paper backgrounds: Plain White, Lined Paper
+          (like notebook pages), Grid Paper (graph paper), Vintage Paper (aged look), and Dark Grid (dark theme).
+          Perfect for different use cases.</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">How realistic are the handwriting variations?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">Our tool applies random rotation (±2 degrees), baseline shifts (±3
+          pixels), and opacity variations (85%-100%) to each character. This creates natural imperfections that mimic
+          real human handwriting.</p>
+      </div>
+
+      <div
+        style="background: white; padding: 2rem; border-radius: 1rem; margin-bottom: 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+        <h3 style="color: #1f2937; margin-top: 0;">Can I use this for school assignments?</h3>
+        <p style="color: #4b5563; margin-bottom: 0;">While our tool can convert text to handwriting, we encourage honest
+          use. It's perfect for creating neat copies of your own handwritten notes, formatting typed content in
+          handwriting style, or creating study materials. Always follow your school's policies.</p>
+      </div>
+    </div>
 
     <h2>Related Tools</h2>
     <ul class="related-tools-list">
-      <li><a href="{{ site.baseurl }}/tools/text-formatter/">Text Formatter</a> – Clean up and style your text</li>
-      <li><a href="{{ site.baseurl }}/tools/markdown-preview/">Markdown Preview</a> – Render markdown live</li>
-      <li><a href="{{ site.baseurl }}/text-utilities/">View All Text Utilities</a></li>
+      <li><a href="{{ site.baseurl }}/tools/text-formatter/">Text Formatter</a> - Transform text case and format in
+        various ways</li>
+      <li><a href="{{ site.baseurl }}/tools/word-counter/">Word Counter</a> - Count words, characters, and reading time
+      </li>
+      <li><a href="{{ site.baseurl }}/tools/character-counter/">Character Counter</a> - Detailed character analysis</li>
+      <li><a href="{{ site.baseurl }}/text-utilities/">View All Text Tools</a> - Explore our complete collection</li>
     </ul>
+
   </div>
 </section>
+
+<!-- Include jsPDF for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- Custom Styles -->
+<style>
+  /* Antigravity Handwriting Converter Styles */
+
+  .antigravity-container {
+    display: grid !important;
+    grid-template-columns: 320px 1fr !important;
+    gap: 1.5rem !important;
+    min-height: 80vh !important;
+    padding: 1rem 1rem 2rem !important;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    z-index: 2 !important;
+  }
+
+  @media (max-width: 1024px) {
+    .antigravity-container {
+      grid-template-columns: 1fr !important;
+      padding: 1rem 0.5rem !important;
+    }
+  }
+
+  /* Animated Background Orbs */
+  .antigravity-container::before,
+  .antigravity-container::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .antigravity-container::before {
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.1);
+    top: -100px;
+    right: -100px;
+  }
+
+  .antigravity-container::after {
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    bottom: -80px;
+    left: -80px;
+    animation-delay: -10s;
+  }
+
+  /* Floating Animation */
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px) translateX(0px);
+    }
+
+    25% {
+      transform: translateY(-20px) translateX(10px);
+    }
+
+    50% {
+      transform: translateY(-10px) translateX(-10px);
+    }
+
+    75% {
+      transform: translateY(-30px) translateX(5px);
+    }
+  }
+
+  /* Floating Cards */
+  .floating-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+    padding: 1.5rem !important;
+    transition: all 0.3s ease !important;
+    border: none !important;
+  }
+
+  .floating-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Glassmorphism Sidebar */
+  .glass-sidebar {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.25) !important;
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .glass-sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .glass-sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  .glass-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+  }
+
+  .sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-header h2 {
+    color: white;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .sidebar-toggle {
+    display: none;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  /* Control Groups */
+  .control-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .control-group label {
+    display: block;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .control-icon {
+    margin-right: 0.5rem;
+  }
+
+  /* Glass Inputs */
+  .glass-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.75rem;
+    color: white;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+
+  .glass-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+
+  .glass-input option {
+    background: #667eea;
+    color: white;
+  }
+
+  /* Color Control */
+  .color-control {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .glass-color-input {
+    width: 60px;
+    height: 40px;
+    border-radius: 0.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+  }
+
+  .color-presets {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .color-preset {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .color-preset:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Glass Slider */
+  .glass-slider {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .glass-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .glass-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border: none;
+  }
+
+  /* Advanced Section */
+  .advanced-section {
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 1rem;
+  }
+
+  .advanced-toggle {
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+
+  .advanced-content {
+    margin-top: 1rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    margin-top: 0.25rem;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .checkbox-label small {
+    display: block;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .btn-primary-glass {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1) !important;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  }
+
+  .btn-primary-glass:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+  }
+
+  .btn-outline-glass {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-outline-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Canvas Main Area */
+  .canvas-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .card-header h3 {
+    margin: 0 !important;
+    color: #1f2937 !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+  }
+
+  .char-count {
+    font-size: 0.875rem !important;
+    color: #6b7280 !important;
+  }
+
+  #textInput {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.3s;
+  }
+
+  #textInput:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+
+  .input-actions {
+    margin-top: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .btn-sm-glass {
+    padding: 0.5rem 1rem;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-sm-glass:hover {
+    background: #e5e7eb;
+  }
+
+  /* Canvas Card */
+  .canvas-card {
+    animation-delay: 0.4s;
+    min-height: 600px;
+  }
+
+  .canvas-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .btn-icon-glass {
+    padding: 0.5rem 0.75rem;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
+  }
+
+  .btn-icon-glass:hover {
+    background: #e5e7eb;
+  }
+
+  #zoomLevel {
+    font-size: 0.875rem;
+    color: #6b7280;
+    min-width: 45px;
+    text-align: center;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    overflow: auto;
+    max-height: 800px;
+  }
+
+  #handwritingCanvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+  }
+
+  .canvas-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+  }
+
+  .canvas-placeholder.hidden {
+    display: none;
+  }
+
+  .placeholder-content {
+    text-align: center;
+    color: #9ca3af;
+  }
+
+  .placeholder-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .placeholder-content p {
+    font-size: 1.125rem;
+    margin: 0.5rem 0;
+  }
+
+  .placeholder-content small {
+    font-size: 0.875rem;
+  }
+
+  /* Download Card */
+  .download-card {
+    animation-delay: 0.5s;
+  }
+
+  .download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .btn-download-glass {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1) !important;
+    color: white;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  }
+
+  .btn-download-glass:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+  }
+
+  .download-icon {
+    font-size: 2rem;
+  }
+
+  .download-text {
+    text-align: left;
+  }
+
+  .download-text strong {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .download-text small {
+    font-size: 0.8rem;
+    opacity: 0.9;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .antigravity-container {
+      grid-template-columns: 1fr;
+    }
+
+    .glass-sidebar {
+      position: relative;
+      max-height: none;
+      top: 0;
+    }
+
+    .sidebar-toggle {
+      display: block;
+    }
+
+    .sidebar-content {
+      display: none;
+    }
+
+    .sidebar-content.active {
+      display: block;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .antigravity-container {
+      padding: 1rem 0.5rem;
+      gap: 1rem;
+    }
+
+    .floating-card {
+      padding: 1rem;
+      border-radius: 1rem;
+    }
+
+    .download-grid {
+      grid-template-columns: 1fr;
+    }
+
+    #textInput {
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<!-- JavaScript Implementation -->
+<script>
+  // Text to Handwriting - Antigravity Implementation
+  (function () {
+    'use strict';
+
+    // DOM Elements
+    const elements = {
+      textInput: document.getElementById('textInput'),
+      canvas: document.getElementById('handwritingCanvas'),
+      fontSelect: document.getElementById('fontSelect'),
+      penColor: document.getElementById('penColor'),
+      fontSize: document.getElementById('fontSize'),
+      letterSpacing: document.getElementById('letterSpacing'),
+      lineHeight: document.getElementById('lineHeight'),
+      paperType: document.getElementById('paperType'),
+      realismEffect: document.getElementById('realismEffect'),
+      pageMargin: document.getElementById('pageMargin'),
+      textShadow: document.getElementById('textShadow'),
+      charCount: document.getElementById('charCount'),
+      renderBtn: document.getElementById('renderBtn'),
+      clearBtn: document.getElementById('clearBtn'),
+      sampleTextBtn: document.getElementById('sampleTextBtn'),
+      downloadPNG: document.getElementById('downloadPNG'),
+      downloadPDF: document.getElementById('downloadPDF'),
+      zoomIn: document.getElementById('zoomIn'),
+      zoomOut: document.getElementById('zoomOut'),
+      zoomLevel: document.getElementById('zoomLevel'),
+      placeholder: document.getElementById('canvasPlaceholder'),
+      sidebarToggle: document.getElementById('sidebarToggle'),
+      sidebarContent: document.querySelector('.sidebar-content')
+    };
+
+    const ctx = elements.canvas.getContext('2d');
+    let zoomScale = 1;
+
+    // Sample text
+    const sampleText = "The quick brown fox jumps over the lazy dog. This is a sample of beautiful handwriting created with our Antigravity converter. You can customize every aspect of this text to match your style!";
+
+    // Initialize
+    function init() {
+      setupEventListeners();
+      updateAllValueDisplays();
+      drawPaperBackground();
+    }
+
+    // Setup Event Listeners
+    function setupEventListeners() {
+      // Input events
+      elements.textInput.addEventListener('input', updateCharCount);
+      elements.renderBtn.addEventListener('click', renderHandwriting);
+      elements.clearBtn.addEventListener('click', clearCanvas);
+      elements.sampleTextBtn.addEventListener('click', loadSampleText);
+
+      // Download events
+      elements.downloadPNG.addEventListener('click', downloadAsPNG);
+      elements.downloadPDF.addEventListener('click', downloadAsPDF);
+
+      // Zoom events
+      elements.zoomIn.addEventListener('click', () => zoom(1.2));
+      elements.zoomOut.addEventListener('click', () => zoom(0.8));
+
+      // Control change events
+      elements.fontSelect.addEventListener('change', handleControlChange);
+      elements.penColor.addEventListener('input', handleControlChange);
+      elements.fontSize.addEventListener('input', () => {
+        updateValueDisplay('fontSize');
+        handleControlChange();
+      });
+      elements.letterSpacing.addEventListener('input', () => {
+        updateValueDisplay('letterSpacing');
+        handleControlChange();
+      });
+      elements.lineHeight.addEventListener('input', () => {
+        updateValueDisplay('lineHeight');
+        handleControlChange();
+      });
+      elements.pageMargin.addEventListener('input', () => {
+        updateValueDisplay('pageMargin');
+        handleControlChange();
+      });
+      elements.paperType.addEventListener('change', handleControlChange);
+
+      // Color presets
+      document.querySelectorAll('.color-preset').forEach(btn => {
+        btn.addEventListener('click', () => {
+          elements.penColor.value = btn.dataset.color;
+          handleControlChange();
+        });
+      });
+
+      // Sidebar toggle
+      if (elements.sidebarToggle) {
+        elements.sidebarToggle.addEventListener('click', () => {
+          elements.sidebarContent.classList.toggle('active');
+        });
+      }
+    }
+
+    // Update character count
+    function updateCharCount() {
+      const count = elements.textInput.value.length;
+      elements.charCount.textContent = `${count} / 5000`;
+    }
+
+    // Update value displays
+    function updateValueDisplay(id) {
+      const valueSpan = document.getElementById(`${id}Value`);
+      if (valueSpan) {
+        valueSpan.textContent = elements[id].value;
+      }
+    }
+
+    function updateAllValueDisplays() {
+      updateValueDisplay('fontSize');
+      updateValueDisplay('letterSpacing');
+      updateValueDisplay('lineHeight');
+      updateValueDisplay('pageMargin');
+    }
+
+    // Handle control changes
+    function handleControlChange() {
+      drawPaperBackground();
+    }
+
+    // Load sample text
+    function loadSampleText() {
+      elements.textInput.value = sampleText;
+      updateCharCount();
+    }
+
+    // Draw paper background
+    function drawPaperBackground() {
+      const paperType = elements.paperType.value;
+
+      // Set canvas background
+      ctx.fillStyle = getPaperColor(paperType);
+      ctx.fillRect(0, 0, elements.canvas.width, elements.canvas.height);
+
+      // Draw paper pattern
+      switch (paperType) {
+        case 'lined':
+          drawLinedPaper();
+          break;
+        case 'grid':
+          drawGridPaper();
+          break;
+        case 'vintage':
+          drawVintagePaper();
+          break;
+        case 'darkgrid':
+          drawDarkGridPaper();
+          break;
+      }
+    }
+
+    // Get paper color
+    function getPaperColor(type) {
+      const colors = {
+        plain: '#ffffff',
+        lined: '#ffffff',
+        grid: '#ffffff',
+        vintage: '#f4f1e8',
+        darkgrid: '#1a1a2e'
+      };
+      return colors[type] || '#ffffff';
+    }
+
+    // Draw lined paper
+    function drawLinedPaper() {
+      ctx.strokeStyle = '#d3d3d3';
+      ctx.lineWidth = 1;
+      const lineSpacing = 35;
+      const margin = parseInt(elements.pageMargin.value);
+
+      for (let y = margin; y < elements.canvas.height; y += lineSpacing) {
+        ctx.beginPath();
+        ctx.moveTo(margin, y);
+        ctx.lineTo(elements.canvas.width - margin, y);
+        ctx.stroke();
+      }
+
+      // Left margin line
+      ctx.strokeStyle = '#ff6b6b';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(margin + 40, 0);
+      ctx.lineTo(margin + 40, elements.canvas.height);
+      ctx.stroke();
+    }
+
+    // Draw grid paper
+    function drawGridPaper() {
+      ctx.strokeStyle = '#e0e0e0';
+      ctx.lineWidth = 1;
+      const gridSize = 25;
+
+      // Vertical lines
+      for (let x = 0; x < elements.canvas.width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, elements.canvas.height);
+        ctx.stroke();
+      }
+
+      // Horizontal lines
+      for (let y = 0; y < elements.canvas.height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(elements.canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
+    // Draw vintage paper
+    function drawVintagePaper() {
+      // Add subtle noise for vintage effect
+      const imageData = ctx.getImageData(0, 0, elements.canvas.width, elements.canvas.height);
+      const data = imageData.data;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const noise = (Math.random() - 0.5) * 10;
+        data[i] += noise;     // Red
+        data[i + 1] += noise; // Green
+        data[i + 2] += noise; // Blue
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+    }
+
+    // Draw dark grid paper
+    function drawDarkGridPaper() {
+      ctx.strokeStyle = '#2a2a3e';
+      ctx.lineWidth = 1;
+      const gridSize = 25;
+
+      // Vertical lines
+      for (let x = 0; x < elements.canvas.width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, elements.canvas.height);
+        ctx.stroke();
+      }
+
+      // Horizontal lines
+      for (let y = 0; y < elements.canvas.height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(elements.canvas.width, y);
+        ctx.stroke();
+      }
+    }
+
+    // Render handwriting with humanize effect
+    function renderHandwriting() {
+      const text = elements.textInput.value.trim();
+
+      if (!text) {
+        alert('Please enter some text first!');
+        return;
+      }
+
+      // Hide placeholder
+      elements.placeholder.classList.add('hidden');
+
+      // Redraw paper background
+      drawPaperBackground();
+
+      // Set font properties
+      const font = elements.fontSelect.value;
+      const fontSize = parseInt(elements.fontSize.value);
+      const color = elements.penColor.value;
+      const margin = parseInt(elements.pageMargin.value);
+      const letterSpacing = parseFloat(elements.letterSpacing.value);
+      const lineHeight = parseFloat(elements.lineHeight.value);
+      const useRealism = elements.realismEffect.checked;
+      const useShadow = elements.textShadow.checked;
+
+      ctx.font = `${fontSize}px "${font}", cursive`;
+      ctx.fillStyle = color;
+      ctx.textBaseline = 'top';
+
+      if (useShadow) {
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+        ctx.shadowBlur = 2;
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 1;
+      }
+
+      // Word wrap and draw
+      const words = text.split(' ');
+      let line = '';
+      let y = margin + 60;
+      const maxWidth = elements.canvas.width - (margin * 2);
+
+      for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i] + ' ';
+        const metrics = ctx.measureText(testLine);
+
+        if (metrics.width > maxWidth && line !== '') {
+          // Draw current line
+          if (useRealism) {
+            drawTextWithRealism(ctx, line, margin + 50, y, fontSize, color, letterSpacing);
+          } else {
+            drawTextNormal(ctx, line, margin + 50, y, letterSpacing);
+          }
+          line = words[i] + ' ';
+          y += fontSize * lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+
+      // Draw last line
+      if (line) {
+        if (useRealism) {
+          drawTextWithRealism(ctx, line, margin + 50, y, fontSize, color, letterSpacing);
+        } else {
+          drawTextNormal(ctx, line, margin + 50, y, letterSpacing);
+        }
+      }
+    }
+
+    // Draw text with humanize effect (CRITICAL FUNCTION)
+    function drawTextWithRealism(ctx, text, x, y, fontSize, color, letterSpacing) {
+      let currentX = x;
+
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+
+        // Random rotation (-2deg to +2deg)
+        const rotation = (Math.random() - 0.5) * 4 * (Math.PI / 180);
+
+        // Baseline shift (±3px)
+        const baselineShift = (Math.random() - 0.5) * 6;
+
+        // Opacity variation (0.85 to 1.0)
+        const opacity = 0.85 + Math.random() * 0.15;
+
+        ctx.save();
+        ctx.translate(currentX, y + baselineShift);
+        ctx.rotate(rotation);
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = color;
+        ctx.fillText(char, 0, 0);
+        ctx.restore();
+
+        // Move x position for next character
+        currentX += ctx.measureText(char).width + letterSpacing;
+      }
+    }
+
+    // Draw text normal (no variations)
+    function drawTextNormal(ctx, text, x, y, letterSpacing) {
+      if (letterSpacing === 0) {
+        ctx.fillText(text, x, y);
+      } else {
+        let currentX = x;
+        for (let i = 0; i < text.length; i++) {
+          const char = text[i];
+          ctx.fillText(char, currentX, y);
+          currentX += ctx.measureText(char).width + letterSpacing;
+        }
+      }
+    }
+
+    // Clear canvas
+    function clearCanvas() {
+      elements.textInput.value = '';
+      updateCharCount();
+      drawPaperBackground();
+      elements.placeholder.classList.remove('hidden');
+    }
+
+    // Download as PNG
+    function downloadAsPNG() {
+      const link = document.createElement('a');
+      link.download = 'handwriting.png';
+      link.href = elements.canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    // Download as PDF
+    function downloadAsPDF() {
+      try {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF({
+          orientation: 'portrait',
+          unit: 'px',
+          format: 'a4'
+        });
+
+        const imgData = elements.canvas.toDataURL('image/png');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('handwriting.pdf');
+      } catch (error) {
+        console.error('PDF generation error:', error);
+        alert('PDF library not loaded. Please refresh the page.');
+      }
+    }
+
+    // Zoom functionality
+    function zoom(factor) {
+      zoomScale *= factor;
+      zoomScale = Math.max(0.5, Math.min(2, zoomScale)); // Limit 50% to 200%
+      elements.canvas.style.transform = `scale(${zoomScale})`;
+      elements.zoomLevel.textContent = `${Math.round(zoomScale * 100)}%`;
+    }
+
+    // Initialize on page load
+    init();
+
+  })();
+</script>

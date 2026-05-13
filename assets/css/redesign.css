@@ -278,6 +278,11 @@ body {
     .new-header {
         padding: 1rem;
     }
+
+    /* Hide trust bar on mobile to prevent overlap with fixed header */
+    .trust-bar-top {
+        display: none !important;
+    }
 }
 
 /* =====================
@@ -789,6 +794,7 @@ main.page-content {
     font-weight: 900;
     margin-bottom: 1rem;
     line-height: 1.1;
+    color: white;
 }
 
 @media (min-width: 768px) {
@@ -1437,77 +1443,79 @@ main.page-content {
 .view-all-categories-btn a:hover {
     background: #374151;
     transform: translateY(-1px);
-}/* ==============================================
+}
+
+/* ==============================================
    TOOL CONTENT SECTION OVERRIDES - Remove Boxes
    ============================================== */
 
 /* Remove boxed styling from tool content sections */
 .tool-content-section {
-  background: #f8fafc !important;
-  padding: 3rem 1rem !important;
-  margin: 0 !important;
-  max-width: 100% !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+    background: #f8fafc !important;
+    padding: 3rem 1rem !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 .tool-content-section .content-body {
-  max-width: 60rem !important;
-  margin: 0 auto !important;
-  padding: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+    max-width: 60rem !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
 }
 
 .tool-content-section h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1f2937;
-  margin-top: 2.5rem;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 3px solid #3b82f6;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid #3b82f6;
 }
 
 .tool-content-section h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin-top: 1.5rem;
-  margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .tool-content-section p,
 .tool-content-section ul,
 .tool-content-section ol {
-  color: #4b5563;
-  line-height: 1.8;
-  margin-bottom: 1rem;
+    color: #4b5563;
+    line-height: 1.8;
+    margin-bottom: 1rem;
 }
 
 /* Remove feature cards backgrounds and borders */
 .tool-content-section .features-grid,
 .tool-content-section .feature-card {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
 }
 
 /* Remove FAQ section boxes */
 .tool-content-section .faq-section,
 .tool-content-section .faq-item {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 1rem 0 !important;
-  margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 1rem 0 !important;
+    margin: 0 !important;
 }
 
 .tool-content-section .faq-item {
-  border-bottom: 1px solid #e5e7eb !important;
-  padding-bottom: 1.5rem !important;
-  margin-bottom: 1.5rem !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    padding-bottom: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
 }

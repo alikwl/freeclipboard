@@ -1,6 +1,17 @@
 <!-- Skip to main content link for keyboard navigation -->
 <a href="#main-content" class="skip-to-main">Skip to main content</a>
 
+<!-- Trust Bar (Above Header) - Hidden on Mobile -->
+<div class="trust-bar-top"
+  style="background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 0.5rem 1rem; text-align: center;">
+  <div
+    style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap; font-size: 0.875rem;">
+    <span>🔒 No Signup Required</span>
+    <span>🚀 100% Free Tools</span>
+    <span>🛡️ Privacy First</span>
+  </div>
+</div>
+
 <!-- New Professional Header -->
 <header class="new-header">
   <!-- Logo -->
@@ -9,7 +20,7 @@
     <span>FreeClipboard</span>
   </a>
 
-  <!-- Center Search Bar -->
+  <!-- Center Search Bar with Better Placeholder -->
   <div class="header-search">
     <div class="header-search-wrapper">
       <svg class="header-search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none"
@@ -17,8 +28,9 @@
         <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" />
       </svg>
-      <input type="search" id="headerSearch" class="header-search-input" placeholder="Search 41+ free tools..."
-        aria-label="Search tools" autocomplete="off">
+      <input type="search" id="headerSearch" class="header-search-input"
+        placeholder="Search tools like JSON Formatter, Image Compressor, Word Counter..." aria-label="Search tools"
+        autocomplete="off">
     </div>
     <!-- Search Results Dropdown -->
     <div class="search-results" id="headerSearchResults" aria-live="polite" hidden>
@@ -28,42 +40,101 @@
 
   <!-- Right Navigation -->
   <nav class="header-nav">
-    <!-- Tools Dropdown -->
+    <!-- Tools Dropdown with Popular Tools -->
     <div class="tools-dropdown">
       <button class="tools-dropdown-btn" aria-expanded="false" aria-haspopup="true">
         Tools <span>▼</span>
       </button>
-      <div class="tools-dropdown-menu" aria-label="Tools submenu">
-        <a href="{{ site.baseurl }}/text-utilities/" class="tools-dropdown-item">
-          <span class="icon">📝</span>
-          <span>Text & Writing</span>
-        </a>
-        <a href="{{ site.baseurl }}/image-tools/" class="tools-dropdown-item">
-          <span class="icon">🎨</span>
-          <span>Image & Design</span>
-        </a>
-        <a href="{{ site.baseurl }}/generators-security/" class="tools-dropdown-item">
-          <span class="icon">🔐</span>
-          <span>Security & Generators</span>
-        </a>
-        <a href="{{ site.baseurl }}/utilities/" class="tools-dropdown-item">
-          <span class="icon">💼</span>
-          <span>Developer Tools</span>
-        </a>
-        <a href="{{ site.baseurl }}/calculators/" class="tools-dropdown-item">
-          <span class="icon">🧮</span>
-          <span>Calculators & Utilities</span>
-        </a>
+      <div class="tools-dropdown-menu" aria-label="Tools submenu" style="min-width: 280px;">
+        <!-- Categories -->
+        <div style="padding: 0.25rem 0;">
+          <a href="{{ site.baseurl }}/text-utilities/" class="tools-dropdown-item">
+            <span class="icon">📝</span>
+            <span>Text & Writing <span style="color: #ef4444; font-size: 0.75rem; font-weight: 600;">🔥 Most
+                Used</span></span>
+          </a>
+          <a href="{{ site.baseurl }}/image-tools/" class="tools-dropdown-item">
+            <span class="icon">🎨</span>
+            <span>Image & Design</span>
+          </a>
+          <a href="{{ site.baseurl }}/utilities/" class="tools-dropdown-item">
+            <span class="icon">💼</span>
+            <span>Developer Tools</span>
+          </a>
+          <a href="{{ site.baseurl }}/generators-security/" class="tools-dropdown-item">
+            <span class="icon">🔐</span>
+            <span>Security & Generators</span>
+          </a>
+          <a href="{{ site.baseurl }}/calculators/" class="tools-dropdown-item">
+            <span class="icon">🧮</span>
+            <span>Calculators & Utilities</span>
+          </a>
+        </div>
+
         <hr style="margin: 0.5rem 0; border-color: #e5e7eb;">
+
+        <!-- Popular Tools Section -->
+        <div style="padding: 0.25rem 0;">
+          <div
+            style="padding: 0.5rem 1rem; font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase;">
+            ⭐ Popular Tools
+          </div>
+          <a href="{{ site.baseurl }}/tools/json-formatter/" class="tools-dropdown-item" style="padding-left: 2.5rem;">
+            JSON Formatter
+          </a>
+          <a href="{{ site.baseurl }}/tools/image-converter/" class="tools-dropdown-item" style="padding-left: 2.5rem;">
+            Image Converter
+          </a>
+          <a href="{{ site.baseurl }}/tools/password-generator/" class="tools-dropdown-item"
+            style="padding-left: 2.5rem;">
+            Password Generator
+          </a>
+          <a href="{{ site.baseurl }}/tools/word-counter/" class="tools-dropdown-item" style="padding-left: 2.5rem;">
+            Word Counter
+          </a>
+        </div>
+
+        <hr style="margin: 0.5rem 0; border-color: #e5e7eb;">
+
         <a href="{{ site.baseurl }}/all-tools/" class="tools-dropdown-item" style="color: #3b82f6; font-weight: 600;">
-          <span class="icon">🚀</span>
+          <span class="icon">👉</span>
           <span>View All 41+ Tools →</span>
         </a>
       </div>
     </div>
 
-    <a href="{{ site.baseurl }}/blog/" class="header-nav-link">Blog</a>
-    <a href="{{ site.baseurl }}/free-resources/" class="btn-extensions">Extensions</a>
+    <!-- Blog Dropdown with Categories -->
+    <div class="tools-dropdown">
+      <button class="tools-dropdown-btn" aria-expanded="false" aria-haspopup="true">
+        📝 Blog <span>▼</span>
+      </button>
+      <div class="tools-dropdown-menu" aria-label="Blog submenu">
+        <a href="{{ site.baseurl }}/blog/" class="tools-dropdown-item">
+          <span class="icon">📰</span>
+          <span>All Posts</span>
+        </a>
+        <hr style="margin: 0.5rem 0; border-color: #e5e7eb;">
+        <a href="{{ site.baseurl }}/blog/#guides" class="tools-dropdown-item">
+          <span class="icon">📖</span>
+          <span>Tool Guides</span>
+        </a>
+        <a href="{{ site.baseurl }}/blog/#tips" class="tools-dropdown-item">
+          <span class="icon">💡</span>
+          <span>Productivity Tips</span>
+        </a>
+        <a href="{{ site.baseurl }}/blog/#developer" class="tools-dropdown-item">
+          <span class="icon">👨‍💻</span>
+          <span>Developer Articles</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Extensions Button (Highlighted) -->
+    <a href="{{ site.baseurl }}/free-resources/" class="btn-extensions"
+      style="background: linear-gradient(135deg, #10b981, #059669); box-shadow: 0 2px 4px rgba(16, 185, 129, 0.3);"
+      title="Chrome & Browser Extensions – 100% Free">
+      🎁 Extensions
+    </a>
   </nav>
 
   <!-- Mobile Menu Toggle -->
@@ -80,19 +151,42 @@
 
 <!-- Mobile Menu Drawer -->
 <div class="mobile-menu-drawer" id="mobileMenuDrawer"
-  style="display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 80%; max-width: 320px; background: white; z-index: 45; padding: 2rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease;">
+  style="display: none; position: fixed; top: 0; right: 0; bottom: 0; width: 80%; max-width: 320px; background: white; z-index: 60; padding: 1.5rem; padding-top: 1rem; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; box-shadow: -4px 0 15px rgba(0,0,0,0.1);">
 
-  <!-- Mobile Search -->
-  <div style="margin-bottom: 2rem;">
+  <!-- Mobile Search (Top Priority) -->
+  <div style="margin-bottom: 1rem; margin-top: 0;">
     <input type="search" id="mobileSearchInput" placeholder="Search tools..."
-      style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; font-size: 1rem;">
+      style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e5e7eb; border-radius: 0.5rem; font-size: 0.9rem; outline: none;">
   </div>
 
-  <!-- Mobile Nav Links -->
+  <!-- Popular Tools Section (Quick Access) -->
+  <div style="margin-bottom: 1.5rem;">
+    <h3
+      style="font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
+      ⭐ Popular Tools
+    </h3>
+    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+      <a href="{{ site.baseurl }}/tools/json-formatter/"
+        style="padding: 0.75rem; background: #eff6ff; color: #1e40af; font-weight: 500; text-decoration: none; border-radius: 0.5rem; font-size: 0.875rem;">
+        JSON Formatter
+      </a>
+      <a href="{{ site.baseurl }}/tools/password-generator/"
+        style="padding: 0.75rem; background: #f0fdf4; color: #15803d; font-weight: 500; text-decoration: none; border-radius: 0.5rem; font-size: 0.875rem;">
+        Password Generator
+      </a>
+      <a href="{{ site.baseurl }}/tools/word-counter/"
+        style="padding: 0.75rem; background: #fef3c7; color: #92400e; font-weight: 500; text-decoration: none; border-radius: 0.5rem; font-size: 0.875rem;">
+        Word Counter
+      </a>
+    </div>
+  </div>
+
+  <!-- Categories -->
   <nav style="display: flex; flex-direction: column; gap: 0.5rem;">
     <h3
       style="font-size: 0.75rem; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
-      Categories</h3>
+      Categories
+    </h3>
     <a href="{{ site.baseurl }}/text-utilities/"
       style="display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; color: #374151; text-decoration: none; border-radius: 0.5rem; transition: background 0.15s;">
       <span>📝</span> Text & Writing
@@ -132,7 +226,7 @@
     <hr style="margin: 1rem 0; border-color: #e5e7eb;">
 
     <a href="{{ site.baseurl }}/free-resources/"
-      style="display: block; background: #10b981; color: white; padding: 0.875rem 1.5rem; border-radius: 0.5rem; text-align: center; text-decoration: none; font-weight: 600;">
+      style="display: block; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.875rem 1.5rem; border-radius: 0.5rem; text-align: center; text-decoration: none; font-weight: 600;">
       🎁 Free Extensions
     </a>
     <a href="{{ site.baseurl }}/all-tools/"
@@ -183,7 +277,6 @@
       headerSearch.addEventListener('input', function (e) {
         const query = e.target.value.trim().toLowerCase();
         if (query.length > 1) {
-          // Scroll to tools directory and filter
           const toolsDirectory = document.getElementById('tools-directory');
           const toolsSearchInput = document.getElementById('tools-search');
           if (toolsDirectory && toolsSearchInput) {
@@ -202,5 +295,35 @@
         }
       });
     }
+
+    // Dropdown functionality
+    document.querySelectorAll('.tools-dropdown-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const menu = this.nextElementSibling;
+        const isOpen = this.getAttribute('aria-expanded') === 'true';
+
+        // Close all other dropdowns
+        document.querySelectorAll('.tools-dropdown-btn').forEach(otherBtn => {
+          if (otherBtn !== this) {
+            otherBtn.setAttribute('aria-expanded', 'false');
+            otherBtn.nextElementSibling.style.display = 'none';
+          }
+        });
+
+        // Toggle this dropdown
+        this.setAttribute('aria-expanded', !isOpen);
+        menu.style.display = isOpen ? 'none' : 'block';
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.tools-dropdown')) {
+        document.querySelectorAll('.tools-dropdown-btn').forEach(btn => {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.nextElementSibling.style.display = 'none';
+        });
+      }
+    });
   })();
 </script>
