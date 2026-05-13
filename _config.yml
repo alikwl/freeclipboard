@@ -4,7 +4,7 @@ title: FreeClipboard - Free Online Tools
 description: "Free online tools for developers, writers, and professionals. Clipboard manager, text utilities, QR code generator, password generator, and 40+ more tools. No signup required, 100% privacy-focused."
 url: "https://freeclipboard.com"
 baseurl: ""
-author: "FreeClipboard Team"
+author: "Ali"
 keywords: "free online tools, clipboard manager, text tools, developer tools, online utilities, word counter, json formatter, password generator"
 lang: "en"
 locale: "en_US"
@@ -52,6 +52,9 @@ defaults:
       type: pages
     values:
       layout: default
+
+# Blog excerpt separator
+excerpt_separator: <!--more-->
 
 # Markdown processor
 markdown: kramdown

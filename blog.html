@@ -71,7 +71,7 @@ og_type: website
             style="background: #ede9fe; color: #7c3aed;">{{ post.date | date: "%B %d, %Y" }}</time>
         </div>
         <h3 class="category-tool-name" id="post-{{ forloop.index }}-title">{{ post.title }}</h3>
-        <p class="category-tool-desc">{% if post.description %}{{ post.description | truncate: 150 }}{% else %}{{ post.content | strip_html | truncatewords: 25 }}{% endif %}</p>
+        <p class="category-tool-desc">{% if post.description %}{{ post.description | strip_html | truncate: 160 }}{% elsif post.excerpt %}{{ post.excerpt | strip_html | truncatewords: 30 }}{% else %}{{ post.content | strip_html | truncatewords: 30 }}{% endif %}</p>
       </div>
 
       <div class="category-tool-footer">

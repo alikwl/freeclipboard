@@ -17,6 +17,8 @@ Every developer knows the feeling. You need to quickly format a JSON blob, test 
 
 No thanks.
 
+<!--more-->
+
 You're not trying to commit to a platform. You're trying to get something done in the next 30 seconds. You want a tool that loads, works, and gets out of your way. No email verification. No "free trial" that demands a credit card. Just a text box and a button.
 
 After years of bookmarking, testing, and abandoning dozens of browser tools, I've narrowed it down to 10 that I actually keep open in pinned tabs. Some are from FreeClipboard (full disclosure — that's us), and some are well-known community favorites. Every single one works without creating an account.
