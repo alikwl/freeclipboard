@@ -1,7 +1,7 @@
 /* =========================================
    FREECLIPBOARD GLOBAL DESIGN SYSTEM
    Premium SaaS-Level UI Framework
-   User Requirements: 1200px max-width, 4-2-1 grid, reduced padding
+   Color Scheme: Modern Blue (#2563eb)
    ========================================= */
 
 /* =========================================
@@ -25,18 +25,33 @@
     --text-tertiary: #94a3b8;
     /* Medium grey - Muted text */
 
-    /* Accent Colors - Indigo Primary (Standardized) */
-    --primary: #6366f1;
-    /* Indigo - Primary actions */
-    --primary-hover: #4f46e5;
-    /* Darker indigo */
-    --primary-light: #818cf8;
-    /* Lighter indigo */
+    /* Accent Colors - Modern Blue Primary */
+    --primary: #2563eb;
+    /* Modern Blue - Primary actions */
+    --primary-hover: #1e40af;
+    /* Darker blue */
+    --primary-light: #3b82f6;
+    /* Lighter blue */
+    --primary-pale: #dbeafe;
+    /* Very light blue for backgrounds */
 
     /* Semantic Colors */
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
+    --info: #06b6d4;
+
+    /* Category Colors */
+    --cat-text: #8b5cf6;
+    /* Purple */
+    --cat-image: #ec4899;
+    /* Pink */
+    --cat-security: #10b981;
+    /* Green */
+    --cat-business: #f59e0b;
+    /* Orange */
+    --cat-calculators: #06b6d4;
+    /* Cyan */
 
     /* Border & Dividers */
     --border-color: #334155;
@@ -52,12 +67,13 @@
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
 
-    /* Glow Effects */
-    --glow-primary: 0 0 20px rgba(99, 102, 241, 0.3);
+    /* Glow Effects - Blue */
+    --glow-primary: 0 0 20px rgba(37, 99, 235, 0.4);
 
-    /* Typography - Inter/Roboto */
-    --font-sans: 'Inter', 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Typography - Inter */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     /* Font Sizes - Reduced per user request */
     --text-xs: 0.75rem;
@@ -151,8 +167,8 @@
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 
-    /* Glow Effects */
-    --glow-primary: 0 0 20px rgba(99, 102, 241, 0.2);
+    /* Glow Effects - Blue */
+    --glow-primary: 0 0 20px rgba(37, 99, 235, 0.25);
 }
 
 /* =========================================
@@ -563,14 +579,16 @@ a:hover {
 }
 
 /* =========================================
-   10. RESPONSIVE UTILITIES
+   10. RESPONSIVE UTILITIES - GLOBAL
    ========================================= */
 
+/* Tablet and below (max 768px) */
 @media (max-width: 768px) {
     .md\:hidden {
-        display: none;
+        display: none !important;
     }
 
+    /* Typography - Reduced on mobile */
     h1 {
         font-size: var(--text-2xl);
     }
@@ -578,8 +596,109 @@ a:hover {
     h2 {
         font-size: var(--text-xl);
     }
+
+    h3 {
+        font-size: var(--text-lg);
+    }
+
+    /* Container - Reduced padding */
+    .container,
+    .container-narrow {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+    }
+
+    /* Section - Reduced spacing */
+    .section {
+        padding-top: var(--space-8);
+        padding-bottom: var(--space-8);
+    }
+
+    /* Grid - 2 columns on tablet */
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-4);
+    }
+
+    /* Cards - Reduced padding and height */
+    .tool-card {
+        padding: var(--space-3);
+        min-height: auto;
+    }
+
+    /* Buttons - Smaller on mobile */
+    .btn {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--text-sm);
+    }
+
+    .btn-lg {
+        padding: var(--space-2) var(--space-4);
+        font-size: var(--text-base);
+    }
 }
 
+/* Mobile and below (max 640px) */
+@media (max-width: 640px) {
+    .sm\:hidden {
+        display: none !important;
+    }
+
+    /* Grid - Single column on mobile */
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Full width buttons on small screens */
+    .btn-block-mobile {
+        width: 100%;
+    }
+
+    /* Stack flex items */
+    .sm\:flex-col {
+        flex-direction: column;
+    }
+
+    .sm\:gap-4 {
+        gap: var(--space-4);
+    }
+}
+
+/* Extra small devices (max 480px) */
+@media (max-width: 480px) {
+    .xs\:hidden {
+        display: none !important;
+    }
+
+    /* Container - Minimal padding */
+    .container,
+    .container-narrow {
+        padding-left: var(--space-3);
+        padding-right: var(--space-3);
+    }
+
+    /* Typography - Smaller */
+    h1 {
+        font-size: var(--text-xl);
+    }
+
+    h2 {
+        font-size: var(--text-lg);
+    }
+
+    /* Card title - Smaller */
+    .tool-card-title {
+        font-size: var(--text-base);
+    }
+
+    /* Section - Compact spacing */
+    .section {
+        padding-top: var(--space-6);
+        padding-bottom: var(--space-6);
+    }
+}
+
+/* Desktop and above (min 769px) */
 @media (min-width: 769px) {
     .md\:block {
         display: block;
@@ -587,5 +706,39 @@ a:hover {
 
     .md\:flex {
         display: flex;
+    }
+
+    .md\:grid {
+        display: grid;
+    }
+}
+
+/* Large screens (min 1024px) */
+@media (min-width: 1024px) {
+    .lg\:block {
+        display: block;
+    }
+
+    .lg\:flex {
+        display: flex;
+    }
+}
+
+/* =========================================
+   11. PRINT STYLES
+   ========================================= */
+
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    a {
+        text-decoration: underline;
     }
 }

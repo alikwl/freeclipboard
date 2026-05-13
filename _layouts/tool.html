@@ -3,93 +3,148 @@ layout: default
 ---
 {% assign tool_name = page.title | split: ' - ' | first | split: ' | ' | first %}
 
-<article class="tool-page" itemscope itemtype="https://schema.org/WebApplication">
-  <!-- Enhanced Breadcrumb Navigation -->
-  <nav aria-label="Breadcrumb">
+<!-- Tool Page Hero -->
+<section class="category-hero-new"
+  style="padding: 5rem 1rem 2rem; background: linear-gradient(135deg, #2563eb, #4f46e5);">
+  <nav aria-label="Breadcrumb" style="margin-bottom: 1rem; max-width: 80rem; margin-left: auto; margin-right: auto;">
     {% include breadcrumb.html %}
   </nav>
 
-  <!-- Tool Header with Microdata -->
-  <header class="tool-header">
-    <h1 itemprop="name">{{ tool_name }}</h1>
-    <p class="lead" itemprop="description">{{ page.description }}</p>
-    
-    <!-- Trust Signals for E-E-A-T -->
-    <div class="tool-trust-signals" aria-label="Tool information">
+  <div style="max-width: 48rem; margin: 0 auto; text-align: center;">
+    <div class="category-hero-badge">
+      <span>{{ page.category_icon | default: "🔧" }}</span>
+      <span>{{ page.category_name | default: "Tool" }}</span>
+    </div>
+
+    <h1 class="category-hero-title" itemprop="name"
+      style="margin-bottom: 0.75rem; font-size: clamp(1.75rem, 4vw, 2.5rem);">{{ tool_name }}</h1>
+    <p class="category-hero-subtitle" itemprop="description"
+      style="font-size: clamp(0.95rem, 2vw, 1.125rem); margin-bottom: 1.5rem;">{{ page.description }}</p>
+
+    <!-- Trust Signals -->
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; font-size: 0.875rem;">
       {% if page.rating %}
-      <span class="trust-badge" itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">
-        <span aria-hidden="true">⭐</span>
-        <span itemprop="ratingValue">{{ page.rating }}</span>/5
-        (<span itemprop="ratingCount">{{ page.rating_count | default: 500 }}</span> reviews)
+      <span class="category-hero-badge" itemprop="aggregateRating" itemscope
+        itemtype="https://schema.org/AggregateRating">
+        <span>⭐</span>
+        <span><span itemprop="ratingValue">{{ page.rating }}</span>/5 (<span itemprop="ratingCount">{{ page.rating_count
+            | default: 500 }}</span>)</span>
       </span>
       {% endif %}
-      <span class="trust-badge"><span aria-hidden="true">🔒</span> 100% Private</span>
-      <span class="trust-badge"><span aria-hidden="true">⚡</span> Instant Results</span>
-      <span class="trust-badge"><span aria-hidden="true">💎</span> Free Forever</span>
+      <span class="category-hero-badge"><span>🔒</span> 100% Private</span>
+      <span class="category-hero-badge"><span>⚡</span> Instant</span>
+      <span class="category-hero-badge"><span>💎</span> Free</span>
     </div>
-    
-    <!-- Hidden Microdata -->
-    <meta itemprop="applicationCategory" content="UtilityApplication">
-    <meta itemprop="operatingSystem" content="Any">
-    <span itemprop="offers" itemscope itemtype="https://schema.org/Offer" hidden>
-      <meta itemprop="price" content="0">
-      <meta itemprop="priceCurrency" content="USD">
-    </span>
-  </header>
+  </div>
+
+  <!-- Hidden Microdata -->
+  <meta itemprop="applicationCategory" content="UtilityApplication">
+  <meta itemprop="operatingSystem" content="Any">
+  <span itemprop="offers" itemscope itemtype="https://schema.org/Offer" hidden>
+    <meta itemprop="price" content="0">
+    <meta itemprop="priceCurrency" content="USD">
+  </span>
+</section>
+
+<article class="tool-page" itemscope itemtype="https://schema.org/WebApplication">
 
   <!-- Top Ad -->
-  <aside aria-label="Advertisement">
+  <aside style="background: #f8fafc; padding: 1.5rem 1rem; text-align: center;" aria-label="Advertisement">
     {% include ads.html %}
   </aside>
 
   <!-- Main Tool Interface -->
-  <main class="tool-interface" role="main" aria-label="Tool interface" itemprop="mainEntity">
-    {{ content }}
+  <main class="tool-interface" role="main" aria-label="Tool interface" itemprop="mainEntity"
+    style="background: white; padding: 2rem 1rem 3rem;">
+    <div style="max-width: 80rem; margin: 0 auto;">
+      {{ content }}
+    </div>
   </main>
 
   {% if page.instructions %}
-  <section class="tool-instructions" aria-labelledby="instructions-heading">
-    <h2 id="instructions-heading">How to Use {{ tool_name }}</h2>
-    {{ page.instructions }}
+  <!-- How to Use Section -->
+  <section style="background: #f8fafc; padding: 3rem 1rem;" aria-labelledby="instructions-heading">
+    <div style="max-width: 60rem; margin: 0 auto;">
+      <div class="category-section-header" style="margin-bottom: 2rem;">
+        <h2 id="instructions-heading">📖 How to Use {{ tool_name }}</h2>
+        <p>Step-by-step guide to get the most out of this tool</p>
+      </div>
+      <div
+        style="background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e5e7eb; line-height: 1.8; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        {{ page.instructions }}
+      </div>
+    </div>
   </section>
   {% endif %}
 
   <!-- Bottom Ad -->
-  <aside class="ad-container ad-bottom" aria-label="Advertisement">
-    <span class="ad-label">Advertisement</span>
+  <aside class="ad-container ad-bottom" style="background: #f8fafc; padding: 1.5rem 1rem; text-align: center;"
+    aria-label="Advertisement">
+    <span class="ad-label"
+      style="display: block; font-size: 0.75rem; color: #6b7280; margin-bottom: 0.5rem;">Advertisement</span>
   </aside>
 
   <!-- Related Tools Section -->
-  <section class="related-tools" aria-labelledby="related-tools-heading">
-    <h2 id="related-tools-heading">Related Tools You Might Like</h2>
-    <div class="tools-grid" role="list">
-      {% assign current_category = page.category_name | default: 'clipboard' %}
-      {% assign related_count = 0 %}
-      {% for tool in site.data.tools-metadata.tools %}
-        {% if tool.url != page.url and related_count < 4 %}
-          {% if tool.category == page.category or tool.featured %}
-          <a href="{{ site.baseurl }}{{ tool.url }}" class="tool-card" role="listitem" itemprop="relatedLink">
-            <div class="tool-card-icon" aria-hidden="true">{{ tool.icon }}</div>
-            <h3>{{ tool.name }}</h3>
-            <p>{{ tool.shortDescription | default: tool.description | truncate: 80 }}</p>
-            {% if tool.rating %}
-            <span class="tool-rating" aria-label="Rating: {{ tool.rating }} out of 5">⭐ {{ tool.rating }}</span>
-            {% endif %}
-            <span class="card-link" aria-hidden="true">Try Now →</span>
-          </a>
-          {% assign related_count = related_count | plus: 1 %}
-          {% endif %}
-        {% endif %}
-      {% endfor %}
-    </div>
-  </section>
+  <section style="background: white; padding: 3rem 1rem;" aria-labelledby="related-tools-heading">
+    <div style="max-width: 80rem; margin: 0 auto;">
+      <div class="category-section-header" style="margin-bottom: 2rem;">
+        <h2 id="related-tools-heading">🔗 Related Tools You Might Like</h2>
+        <p>Discover more professional tools in the same category</p>
+      </div>
 
-  <!-- Navigation Footer -->
-  <nav class="tool-footer-nav" aria-label="Tool navigation">
-    <a href="{{ site.baseurl }}/" class="btn-outline" aria-label="Go back to homepage">← Back to Home</a>
-    <a href="{{ site.baseurl }}{{ page.category_url | default: '/all-tools/' }}" class="btn-outline" aria-label="View more {{ page.category_name | default: 'tools' }}">More {{ page.category_name | default: 'Tools' }} →</a>
-    <a href="{{ site.baseurl }}/all-tools/" class="btn-outline" aria-label="View all available tools">All Tools →</a>
-  </nav>
+      <div class="category-tools-grid" role="list">
+        {% assign current_category = page.category_name | default: 'clipboard' %}
+        {% assign related_count = 0 %}
+        {% for tool in site.data.tools-metadata.tools %}
+        {% if tool.url != page.url and related_count < 4 %} {% if tool.category==page.category or tool.featured %}
+          <article class="category-tool-card" role="listitem">
+          <div class="category-tool-visual">
+            <div class="category-tool-icon">{{ tool.icon }}</div>
+            {% if tool.featured %}
+            <span class="category-tool-badge featured">⭐ Featured</span>
+            {% elsif tool.popular %}
+            <span class="category-tool-badge popular">🔥 Popular</span>
+            {% endif %}
+          </div>
+
+          <div class="category-tool-content">
+            <h3 class="category-tool-name">{{ tool.name }}</h3>
+            <p class="category-tool-desc">{{ tool.shortDescription | default: tool.description | truncate: 80 }}</p>
+
+            <div class="category-tool-tags">
+              {% for keyword in tool.keywords limit:2 %}
+              <span class="category-tool-tag">{{ keyword }}</span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="category-tool-footer">
+            <a href="{{ tool.url | relative_url }}" class="category-tool-btn" itemprop="relatedLink">
+              Try {{ tool.name }} →
+            </a>
+          </div>
+</article>
+{% assign related_count = related_count | plus: 1 %}
+{% endif %}
+{% endif %}
+{% endfor %}
+</div>
+</div>
+</section>
+
+<!-- Navigation Footer -->
+<nav class="category-cta-section" aria-label="Tool navigation"
+  style="padding: 2.5rem 1rem; background: linear-gradient(135deg, #1e40af, #3b82f6);">
+  <div style="display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; max-width: 48rem; margin: 0 auto;">
+    <a href="{{ site.baseurl }}/" class="btn-category-secondary" aria-label="Go back to homepage"
+      style="flex: 1 1 auto; min-width: 140px; text-align: center;">← Home</a>
+    <a href="{{ site.baseurl }}{{ page.category_url | default: '/all-tools/' }}" class="btn-category-secondary"
+      aria-label="View more {{ page.category_name | default: 'tools' }}"
+      style="flex: 1 1 auto; min-width: 140px; text-align: center;">More {{ page.category_name | default: 'Tools' }}</a>
+    <a href="{{ site.baseurl }}/all-tools/" class="btn-category-primary" aria-label="View all available tools"
+      style="flex: 1 1 auto; min-width: 140px; text-align: center;">All Tools →</a>
+  </div>
+</nav>
 </article>
 
 <!-- Additional Tool-Specific Schema -->
