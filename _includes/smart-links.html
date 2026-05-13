@@ -1,0 +1,104 @@
+{% comment %}
+=============================================================================
+SMART INTERNAL LINKING SYSTEM
+Provides contextual related tools, topic cluster navigation, and cross-links.
+Usage: {% include smart-links.html current_tool="json-formatter" max=4 %}
+=============================================================================
+{% endcomment %}
+
+{% assign all_tools = site.data.tools-metadata.tools %}
+{% assign clusters = site.data.topic-clusters.clusters %}
+
+{% comment %} Extract tool slug from URL: /tools/json-formatter/ → json-formatter {% endcomment %}
+{% if include.current_tool %}
+  {% assign current_slug = include.current_tool %}
+{% elsif page.tool_slug %}
+  {% assign current_slug = page.tool_slug %}
+{% else %}
+  {% assign url_parts = page.url | split: '/' %}
+  {% assign current_slug = url_parts | last %}
+  {% if current_slug == "" or current_slug == "index.html" %}
+    {% assign current_slug = url_parts[-2] %}
+  {% endif %}
+{% endif %}
+{% assign max_links = include.max | default: 4 %}
+
+{% comment %} Find which cluster the current tool belongs to {% endcomment %}
+{% assign current_cluster_key = "" %}
+{% assign current_cluster = nil %}
+{% for cluster_pair in clusters %}
+  {% assign ckey = cluster_pair[0] %}
+  {% assign cval = cluster_pair[1] %}
+  {% for tool_id in cval.tools %}
+    {% if tool_id == current_slug %}
+      {% assign current_cluster_key = ckey %}
+      {% assign current_cluster = cval %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% if current_cluster %}
+<section class="smart-links-section" aria-labelledby="smart-links-heading">
+  <div style="max-width: 48rem; margin: 2rem auto; padding: 0 1rem;">
+
+    <!-- Related Tools from Same Cluster -->
+    <div style="margin-bottom: 2rem;">
+      <h3 id="smart-links-heading" style="font-size: 1.1rem; font-weight: 700; color: #1f2937; margin: 0 0 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span aria-hidden="true">{{ current_cluster.icon }}</span> More {{ current_cluster.name }}
+      </h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem;">
+        {% assign link_count = 0 %}
+        {% for tool_id in current_cluster.tools %}
+          {% if tool_id != current_slug and link_count < max_links %}
+            {% for tool in all_tools %}
+              {% if tool.slug == tool_id or tool.id == tool_id %}
+                <a href="{{ site.baseurl }}{{ tool.url }}" 
+                   style="display: flex; align-items: center; gap: 0.625rem; padding: 0.75rem; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; text-decoration: none; transition: all 0.15s; color: inherit;"
+                   onmouseover="this.style.borderColor='#818cf8';this.style.background='#f5f3ff'"
+                   onmouseout="this.style.borderColor='#e2e8f0';this.style.background='#f8fafc'">
+                  <span style="font-size: 1.25rem; flex-shrink: 0;" aria-hidden="true">{{ tool.icon }}</span>
+                  <span style="font-size: 0.85rem; font-weight: 500; color: #374151; line-height: 1.3;">{{ tool.name }}</span>
+                </a>
+                {% assign link_count = link_count | plus: 1 %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Cross-Cluster Links (Explore Other Categories) -->
+    {% if current_cluster.related_clusters.size > 0 %}
+    <div style="border-top: 1px solid #e2e8f0; padding-top: 1.25rem;">
+      <h4 style="font-size: 0.9rem; font-weight: 600; color: #6b7280; margin: 0 0 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
+        Explore Related Categories
+      </h4>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        {% for related_key in current_cluster.related_clusters %}
+          {% assign related = clusters[related_key] %}
+          {% if related %}
+          <a href="{{ site.baseurl }}{{ related.pillar }}" 
+             style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1rem; background: white; border: 1px solid #d1d5db; border-radius: 999px; font-size: 0.8rem; font-weight: 500; color: #4b5563; text-decoration: none; transition: all 0.15s;"
+             onmouseover="this.style.borderColor='#818cf8';this.style.color='#4f46e5'"
+             onmouseout="this.style.borderColor='#d1d5db';this.style.color='#4b5563'">
+            <span aria-hidden="true">{{ related.icon }}</span>
+            {{ related.name }}
+          </a>
+          {% endif %}
+        {% endfor %}
+
+        <!-- Always link to All Tools as catch-all -->
+        <a href="{{ site.baseurl }}/all-tools/" 
+           style="display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.5rem 1rem; background: white; border: 1px solid #d1d5db; border-radius: 999px; font-size: 0.8rem; font-weight: 500; color: #4b5563; text-decoration: none; transition: all 0.15s;"
+           onmouseover="this.style.borderColor='#818cf8';this.style.color='#4f46e5'"
+           onmouseout="this.style.borderColor='#d1d5db';this.style.color='#4b5563'">
+          <span aria-hidden="true">🔍</span>
+          All 41+ Tools
+        </a>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endif %}

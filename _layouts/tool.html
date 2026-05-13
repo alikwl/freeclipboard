@@ -2,6 +2,8 @@
 layout: default
 ---
 {% assign tool_name = page.title | split: ' - ' | first | split: ' | ' | first %}
+{% assign url_segments = page.url | remove_first: '/' | split: '/' %}
+{% assign tool_slug = url_segments[1] | default: url_segments[0] %}
 
 <!-- Tool Page Hero -->
 <section class="category-hero-new"
@@ -85,6 +87,10 @@ layout: default
       </p>
     </div>
   </div>
+
+  <!-- Smart Internal Links (Topic Cluster Navigation) -->
+  {% include smart-links.html current_tool=tool_slug %}
+
   {% if page.howto_steps %}
   <!-- How to Use Section (Visual) -->
   <section class="tool-howto-section" aria-labelledby="howto-heading">

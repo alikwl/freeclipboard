@@ -1,0 +1,65 @@
+{
+  "clusters": {
+    "text-processing": {
+      "name": "Text & Writing Tools",
+      "pillar": "/text-utilities/",
+      "icon": "📝",
+      "description": "Transform, analyze, and format text with free browser-based tools",
+      "tools": ["word-counter", "character-counter", "text-formatter", "text-to-handwriting", "glitch-text-generator", "cursed-text-generator", "invisible-character", "small-caps-generator"],
+      "related_clusters": ["developer-tools", "clipboard-tools"]
+    },
+    "developer-tools": {
+      "name": "Developer & Code Tools",
+      "pillar": "/utilities/",
+      "icon": "💻",
+      "description": "Essential developer utilities for JSON, regex, encoding, and code formatting",
+      "tools": ["json-formatter", "base64-encoder", "url-encoder", "html-encoder", "regex-tester", "code-snippet-generator", "markdown-preview", "json-to-csv-converter", "robots-txt-generator", "meta-tag-generator"],
+      "related_clusters": ["text-processing", "security-tools"]
+    },
+    "image-design": {
+      "name": "Image & Design Tools",
+      "pillar": "/image-tools/",
+      "icon": "🎨",
+      "description": "Convert, resize, and create images and design assets",
+      "tools": ["image-converter", "qr-code-generator", "color-picker", "social-media-image-resizer", "screenshot-beautifier", "image-studio", "svg-blob-generator", "neumorphism-generator"],
+      "related_clusters": ["text-processing"]
+    },
+    "security-tools": {
+      "name": "Security & Generator Tools",
+      "pillar": "/generators-security/",
+      "icon": "🔐",
+      "description": "Generate passwords, hashes, UUIDs, and other security-related utilities",
+      "tools": ["password-generator", "hash-generator", "uuid-generator"],
+      "related_clusters": ["developer-tools"]
+    },
+    "clipboard-tools": {
+      "name": "Clipboard & Productivity Tools",
+      "pillar": "/clipboard-tools/",
+      "icon": "📋",
+      "description": "Manage clipboard history, organize snippets, and boost productivity",
+      "tools": ["free-clipboard"],
+      "related_clusters": ["text-processing"]
+    },
+    "calculators": {
+      "name": "Calculators & Converters",
+      "pillar": "/calculators/",
+      "icon": "🧮",
+      "description": "Useful calculators for everyday needs and conversions",
+      "tools": ["unit-converter", "cat-age-calculator", "holiday-countdown", "water-intake-calculator", "pizza-party-calculator", "energy-analyzer", "waste-tracker"],
+      "related_clusters": ["security-tools"]
+    }
+  },
+  "anchor_variants": {
+    "json-formatter": ["JSON formatter", "format JSON online", "free JSON validator", "beautify JSON", "JSON formatting tool"],
+    "word-counter": ["word counter", "count words online", "free word counter tool", "text analyzer", "word counting tool"],
+    "password-generator": ["password generator", "generate secure passwords", "free password creator", "strong password tool", "random password generator"],
+    "image-converter": ["image converter", "convert images online", "free image format converter", "PNG to JPG converter", "image conversion tool"],
+    "base64-encoder": ["Base64 encoder", "encode Base64 online", "Base64 decoder", "Base64 encoding tool", "free Base64 converter"],
+    "qr-code-generator": ["QR code generator", "create QR codes", "free QR code maker", "generate QR code online", "QR code tool"],
+    "free-clipboard": ["clipboard manager", "free clipboard tool", "clipboard history manager", "copy paste manager", "clipboard organizer"],
+    "regex-tester": ["regex tester", "test regular expressions", "regex validator online", "regex pattern matcher", "regular expression tool"],
+    "text-formatter": ["text formatter", "format text online", "case converter", "text transformation tool", "free text formatting"],
+    "hash-generator": ["hash generator", "generate MD5 hash", "SHA-256 hash tool", "free hash calculator", "hash generator online"],
+    "color-picker": ["color picker", "pick colors online", "HEX to RGB converter", "color conversion tool", "free color picker"]
+  }
+}
