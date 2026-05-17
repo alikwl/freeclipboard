@@ -100,32 +100,10 @@ Supports: WebApplication, SoftwareApplication, FAQPage, HowTo, Review
 }
 </script>
 
-{% comment %} SoftwareApplication Schema for broader coverage {% endcomment %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "{{ tool_name }}",
-  "description": "{{ page.description | escape }}",
-  "url": "{{ tool_url }}",
-  "applicationCategory": "WebApplication",
-  "operatingSystem": "Any",
-  "downloadUrl": "{{ tool_url }}",
-  "installUrl": "{{ tool_url }}",
-  "permissions": "browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "{{ page.rating | default: 4.8 }}",
-    "ratingCount": "{{ page.rating_count | default: 500 }}"
-  }
-}
-</script>
+{% comment %}
+Keep one canonical app schema with one aggregateRating.
+This avoids duplicate rating signals that can trigger Search Console review warnings.
+{% endcomment %}
 
 {% comment %} WebPage Schema with Speakable for Voice Search {% endcomment %}
 <script type="application/ld+json">

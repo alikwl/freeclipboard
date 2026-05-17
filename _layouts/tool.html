@@ -18,19 +18,18 @@ layout: default
       <span>{{ page.category_name | default: "Tool" }}</span>
     </div>
 
-    <h1 class="category-hero-title" itemprop="name"
+    <h1 class="category-hero-title"
       style="margin-bottom: 0.75rem; font-size: clamp(1.75rem, 4vw, 2.5rem); color: #ffffff !important;">{{ tool_name }}
     </h1>
-    <p class="category-hero-subtitle" itemprop="description"
+    <p class="category-hero-subtitle"
       style="font-size: clamp(0.95rem, 2vw, 1.125rem); margin-bottom: 1.5rem;">{{ page.description }}</p>
 
     <!-- Trust Signals -->
     <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; font-size: 0.875rem;">
       {% if page.rating %}
-      <span class="category-hero-badge" itemprop="aggregateRating" itemscope
-        itemtype="https://schema.org/AggregateRating">
+      <span class="category-hero-badge">
         <span>⭐</span>
-        <span><span itemprop="ratingValue">{{ page.rating }}</span>/5 (<span itemprop="ratingCount">{{ page.rating_count
+        <span><span>{{ page.rating }}</span>/5 (<span>{{ page.rating_count
             | default: 500 }}</span>)</span>
       </span>
       {% endif %}
@@ -40,16 +39,9 @@ layout: default
     </div>
   </div>
 
-  <!-- Hidden Microdata -->
-  <meta itemprop="applicationCategory" content="UtilityApplication">
-  <meta itemprop="operatingSystem" content="Any">
-  <span itemprop="offers" itemscope itemtype="https://schema.org/Offer" hidden>
-    <meta itemprop="price" content="0">
-    <meta itemprop="priceCurrency" content="USD">
-  </span>
 </section>
 
-<article class="tool-page" itemscope itemtype="https://schema.org/WebApplication">
+<article class="tool-page">
 
   <!-- Top Ad -->
   <aside style="background: #f8fafc; padding: 1.5rem 1rem; text-align: center;" aria-label="Advertisement">
@@ -57,7 +49,7 @@ layout: default
   </aside>
 
   <!-- Main Tool Interface -->
-  <main class="tool-interface" role="main" aria-label="Tool interface" itemprop="mainEntity"
+  <main class="tool-interface" role="main" aria-label="Tool interface"
     style="background: white; padding: 2rem 1rem 3rem;">
     <div style="max-width: 80rem; margin: 0 auto;">
       {{ content }}
@@ -66,12 +58,9 @@ layout: default
 
   <!-- AI Answer Block: Concise, citation-friendly tool summary -->
   <div class="ai-answer-block" role="complementary" aria-label="Tool summary" style="max-width: 48rem; margin: 0 auto; padding: 2rem 1rem 0;">
-    <div itemscope itemtype="https://schema.org/WebApplication" style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 0.75rem; padding: 1.5rem;">
+    <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 0.75rem; padding: 1.5rem;">
       <h2 style="font-size: 1.1rem; font-weight: 700; color: #0c4a6e; margin: 0 0 0.75rem;">What is {{ tool_name }}?</h2>
-      <p itemprop="description" style="color: #1e3a5f; font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.75rem;">{{ page.description }}</p>
-      <meta itemprop="name" content="{{ tool_name }}">
-      <meta itemprop="applicationCategory" content="UtilityApplication">
-      <meta itemprop="operatingSystem" content="Web Browser">
+      <p style="color: #1e3a5f; font-size: 0.95rem; line-height: 1.7; margin: 0 0 0.75rem;">{{ page.description }}</p>
       <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.5rem;">
         <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ 100% Free</li>
         <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ No Signup</li>
@@ -79,8 +68,8 @@ layout: default
         <li style="background: #e0f2fe; color: #0369a1; padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500;">✓ Works Offline</li>
       </ul>
       <p style="color: #64748b; font-size: 0.8rem; margin: 0.75rem 0 0;">
-        <span itemprop="author" itemscope itemtype="https://schema.org/Person">
-          Built by <span itemprop="name">Ali</span> at <a href="{{ site.url }}/about/" itemprop="url" style="color: #4f46e5;">Bismillah Tech</a>
+        <span>
+          Built by <span>Ali</span> at <a href="{{ site.url }}/about/" style="color: #4f46e5;">Bismillah Tech</a>
         </span>
         · <a href="{{ site.url }}/" style="color: #4f46e5;">FreeClipboard.com</a>
         {% if page.updated %} · Updated <time datetime="{{ page.updated }}">{{ page.updated | date: "%B %Y" }}</time>{% endif %}
