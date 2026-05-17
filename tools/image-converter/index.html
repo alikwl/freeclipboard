@@ -18,6 +18,15 @@ features:
   - Auto-orient via EXIF
   - Image filters (grayscale, brightness, contrast)
   - 100% private (client-side)
+faqs:
+  - question: "Does this tool upload my images?"
+    answer: "No. All conversions happen in your browser. Your images never leave your device."
+  - question: "Which formats are supported?"
+    answer: "PNG, JPG, WebP, and AVIF (if supported by your browser). SVG input is supported and can be converted to raster formats."
+  - question: "How do I keep transparency?"
+    answer: "Use PNG or WebP. For JPG, enable 'Flatten transparency' and choose a background color."
+  - question: "Can I convert multiple images?"
+    answer: "Yes. Upload multiple files, use Convert All, and download each or all at once."
 ---
 
 <style>
@@ -660,35 +669,5 @@ features:
   <a href="{{ site.baseurl }}/image-tools/" class="btn-outline">All Image Tools</a>
   <a href="{{ site.baseurl }}/tools/social-media-image-resizer/" class="btn-outline">Image Resizer →</a>
 </div>
-
-<!-- FAQPage Structured Data -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Does this tool upload my images?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. All conversions happen in your browser. Your images never leave your device." }
-    },
-    {
-      "@type": "Question",
-      "name": "Which formats are supported?",
-      "acceptedAnswer": { "@type": "Answer", "text": "PNG, JPG, WebP, and AVIF (if supported by your browser). SVG input is supported and can be converted to raster formats." }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I keep transparency?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Use PNG or WebP. For JPG, enable 'Flatten transparency' and choose a background color." }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I convert multiple images?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Upload multiple files, use Convert All, and download each or all at once." }
-    }
-  ]
-}
-</script>
 
 <script src="{{ '/assets/js/image-converter.js' | relative_url }}"></script>

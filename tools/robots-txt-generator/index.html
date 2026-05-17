@@ -8,6 +8,13 @@ permalink: /tools/robots-txt-generator/
 category_name: Generators & Security
 category_url: /generators-security/
 rating: 4.7
+faqs:
+  - question: "What should my User-agent be?"
+    answer: "Use * for all bots, or target a specific crawler like Googlebot."
+  - question: "Is Sitemap required?"
+    answer: "Not required, but recommended. Add a full URL to help crawlers discover pages."
+  - question: "Does Crawl-delay work for all bots?"
+    answer: "Not all bots honor it, but many do. Use it to reduce server load."
 ---
 
 <section class="tool-section" aria-labelledby="robotsTitle">
@@ -157,17 +164,5 @@ rating: 4.7
     </div>
   </div>
 </section>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question","name": "What should my User‑agent be?","acceptedAnswer": {"@type": "Answer","text": "Use * for all bots, or target a specific crawler like Googlebot."}},
-    {"@type": "Question","name": "Is Sitemap required?","acceptedAnswer": {"@type": "Answer","text": "Not required, but recommended. Add a full URL to help crawlers discover pages."}},
-    {"@type": "Question","name": "Does Crawl‑delay work for all bots?","acceptedAnswer": {"@type": "Answer","text": "Not all bots honor it, but many do. Use it to reduce server load."}}
-  ]
-}
-</script>
 
 <script src="{{ site.baseurl }}/assets/js/robots-txt-generator.js"></script>
