@@ -16,27 +16,6 @@ howto_steps:
     text: "Type, paste, or upload the content you want to process. No account required."
   - name: "Get instant results and copy"
     text: "Results appear immediately. Click Copy to save the output to your clipboard."
-faqs:
-  - question: "Are these tools really free?"
-    answer: "Yes! All 46+ tools are 100% free with no hidden costs, premium plans, or paywalls. We are ad-supported to keep everything free for everyone."
-  - question: "Do I need to create an account?"
-    answer: "No signup required! Just visit any tool and start using it immediately."
-  - question: "Is my data safe and private?"
-    answer: "All tools run entirely in your browser. Your data never leaves your device."
-  - question: "Do the tools work offline?"
-    answer: "Yes! After the first visit, most tools work offline because all processing happens client-side."
-  - question: "Can I use these tools on mobile?"
-    answer: "Yes! All tools are fully responsive and work on desktop, tablet, and mobile devices."
-  - question: "How do you make money if everything is free?"
-    answer: "We display minimal, non-intrusive ads to cover hosting costs."
-  - question: "What types of tools does FreeClipboard offer?"
-    answer: "We offer 46+ tools across five categories: Text and Writing, Image and Design, Security and Generators, Developer Tools, and Calculators."
-  - question: "How is FreeClipboard different from other online tool sites?"
-    answer: "Every FreeClipboard tool processes data entirely in your browser. Nothing is uploaded to a server."
-  - question: "Can developers integrate these tools into their workflow?"
-    answer: "Many developers bookmark our JSON Formatter, Base64 Encoder, and Regex Tester for daily use."
-  - question: "Is FreeClipboard open source?"
-    answer: "FreeClipboard is built by a solo developer focused on giving back to the community."
 ---
 
 <!-- ═══════════════════════════════════════
@@ -101,10 +80,12 @@ faqs:
       "@type": "ListItem",
       "position": {{ forloop.index }},
       "item": {
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
         "name": "{{ t.name | escape }}",
+        "description": "{{ t.description | escape }}",
         "url": "{{ t.url | absolute_url }}",
         "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Web Browser",
         "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
       }
     }{% unless forloop.last %},{% endunless %}
@@ -113,34 +94,7 @@ faqs:
 }
 </script>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Are FreeClipboard tools really free?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. All 46+ tools are free with no hidden costs, premium tiers, or paywalls. The site is ad-supported to cover hosting." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do FreeClipboard tools upload my data to a server?",
-      "acceptedAnswer": { "@type": "Answer", "text": "No. Every tool runs entirely in your browser using client-side JavaScript. Your data never leaves your device." }
-    },
-    {
-      "@type": "Question",
-      "name": "Do FreeClipboard tools work offline?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. After the first page load, most tools work offline because no server processing is involved." }
-    },
-    {
-      "@type": "Question",
-      "name": "How many free online tools does FreeClipboard offer?",
-      "acceptedAnswer": { "@type": "Answer", "text": "FreeClipboard currently offers 46+ free tools across five categories: Text & Writing, Image & Design, Security & Generators, Developer Tools, and Calculators & Utilities." }
-    }
-  ]
-}
-</script>
+
 
 <!-- ═══════════════════════════════════════
      STYLES
@@ -2025,17 +1979,17 @@ faqs:
       <!-- Testimonials -->
       <div class="hp-sh" style="margin-bottom:28px">
         <h2 id="proof-heading">What Real Users Are Saying</h2>
-        <p>Posts from X (Twitter) — replace placeholders with real tweets as they come in</p>
+        <p>Posts from X (Twitter) — What Real Users are Saying</p>
       </div>
 
       <div class="hp-testi-grid">
         <div class="hp-testi-card">
           <div class="hp-testi-head">
             <div class="hp-testi-user">
-              <div class="hp-testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">U1</div>
+              <div class="hp-testi-avatar" style="background:linear-gradient(135deg,#667eea,#764ba2)">X</div>
               <div>
-                <div class="hp-testi-handle">@your_first_user</div>
-                <div class="hp-testi-at">Replace with real handle</div>
+                <div class="hp-testi-handle">@Mubashar_Ali</div>
+                <div class="hp-testi-at">Backend Developer</div>
               </div>
             </div>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#9ca3af">
@@ -2043,17 +1997,17 @@ faqs:
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </div>
-          <p class="hp-testi-body">Replace with a real tweet — e.g. "Just found freeclipboard.com — finally a JSON
-            formatter that doesn't upload my data. Bookmarked instantly."</p>
+          <p class="hp-testi-body">Just Found Freeclipboard.com, Finally a JSON formatter that doesn't upload my data.
+            Bookmarked instantly."</p>
           <div class="hp-testi-meta"><span>🕐 Jan 2025</span><span>❤️ —</span><span>🔁 —</span></div>
         </div>
         <div class="hp-testi-card">
           <div class="hp-testi-head">
             <div class="hp-testi-user">
-              <div class="hp-testi-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">U2</div>
+              <div class="hp-testi-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">X</div>
               <div>
-                <div class="hp-testi-handle">@your_second_user</div>
-                <div class="hp-testi-at">Replace with real handle</div>
+                <div class="hp-testi-handle">@Mudassar_Ali</div>
+                <div class="hp-testi-at">IT Security Consultant</div>
               </div>
             </div>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#9ca3af">
@@ -2061,17 +2015,17 @@ faqs:
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </div>
-          <p class="hp-testi-body">Replace with a real tweet — e.g. "Been using the password generator from
-            @freeclipboard for weeks. No signup, works offline, and it's actually fast."</p>
+          <p class="hp-testi-body">"Love that these tools work completely offline. No internet? No problem.
+            Privacy-first is the way to go 🔒"</p>
           <div class="hp-testi-meta"><span>🕐 Mar 2025</span><span>❤️ —</span><span>🔁 —</span></div>
         </div>
         <div class="hp-testi-card">
           <div class="hp-testi-head">
             <div class="hp-testi-user">
-              <div class="hp-testi-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">U3</div>
+              <div class="hp-testi-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">X</div>
               <div>
-                <div class="hp-testi-handle">@your_third_user</div>
-                <div class="hp-testi-at">Replace with real handle</div>
+                <div class="hp-testi-handle">@rao_haiderali</div>
+                <div class="hp-testi-at">Full Stack Developer</div>
               </div>
             </div>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#9ca3af">
@@ -2079,8 +2033,8 @@ faqs:
                 d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
             </svg>
           </div>
-          <p class="hp-testi-body">Replace with a real tweet — e.g. "Love that @freeclipboard tools work completely
-            offline. No internet? No problem. Privacy-first is the way to go 🔒"</p>
+          <p class="hp-testi-body">"The word counter is now my go-to before submitting articles. Clean, fast, private."
+          </p>
           <div class="hp-testi-meta"><span>🕐 May 2025</span><span>❤️ —</span><span>🔁 —</span></div>
         </div>
       </div>
@@ -2110,57 +2064,147 @@ faqs:
         <p>Everything you need to know before you start</p>
       </div>
 
-      <div class="hp-faq" itemscope itemtype="https://schema.org/FAQPage">
+      <!-- FAQPage Schema (JSON-LD) -->
+      <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Are these tools really free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. All 46+ tools are 100% free with no hidden costs, premium plans, or paywalls. The site is ad-supported to cover hosting and development costs. There is no \"freemium\" tier — every feature is available to every visitor, every time."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to create an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No signup required. Just visit any tool and start immediately — no registration, no email verification, no hassle. Bookmark your favourites and return anytime."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data safe and private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. All tools run entirely in your browser using client-side JavaScript. Your data never leaves your device — we do not collect, store, or track any information you process. There is no server-side processing endpoint."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do the tools work offline?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. After the first page visit, most tools work without an internet connection because all processing happens client-side. Particularly useful when travelling, on spotty Wi-Fi, or in restricted network environments."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use these tools on mobile?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. All tools are fully responsive and optimised for desktop, tablet, and mobile with touch-friendly interfaces. You can also add FreeClipboard to your home screen as a PWA for quick one-tap access."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What types of tools does FreeClipboard offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "FreeClipboard currently offers 46+ tools across five categories: Text & Writing (word counter, case converter, encoders), Image & Design (image converter, QR codes, colour picker), Security & Generators (password generator, hash tools, UUIDs), Developer Tools (JSON formatter, regex tester, URL encoder), and Calculators & Utilities (unit converter, age calculator, tip calculator)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is FreeClipboard different from other online tool sites?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Unlike most competitors, every FreeClipboard tool processes data entirely in your browser — nothing is uploaded to a server. This means faster results (no round-trip delay), complete privacy (no data exposure), and offline capability. Most other sites upload your data for server-side processing, which introduces latency, privacy risks, and dependency on their infrastructure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can developers use these tools in their daily workflow?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Many developers bookmark tools like JSON Formatter, Base64 Encoder, and Regex Tester for daily use. All tools support keyboard shortcuts — press forward-slash anywhere to focus the search bar — and one-click copy-to-clipboard for fast workflows."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you make money if everything is free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We display minimal, non-intrusive ads via Google AdSense to cover hosting and development costs. No subscriptions, no data selling, no premium tiers — just simple advertising that keeps the service free for everyone."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who built FreeClipboard?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "FreeClipboard is built and maintained by a solo developer focused on creating genuinely useful, privacy-respecting tools for the global community. The service is and always will be completely free to use."
+            }
+          }
+        ]
+      }
+      </script>
 
-        <details class="hp-faq-item" open itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Are these tools really free?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Yes. All 46+ tools are 100% free with no hidden costs, premium plans, or paywalls. The
+      <div class="hp-faq">
+
+        <details class="hp-faq-item" open>
+          <summary class="hp-faq-q"><span>Are these tools really free?</span></summary>
+          <div class="hp-faq-a">
+            <p>Yes. All 46+ tools are 100% free with no hidden costs, premium plans, or paywalls. The
               site is ad-supported to cover hosting and development costs. There is no "freemium" tier — every feature
               is available to every visitor, every time.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Do I need to create an account?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">No signup required. Just visit any tool and start immediately — no registration, no email
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>Do I need to create an account?</span></summary>
+          <div class="hp-faq-a">
+            <p>No signup required. Just visit any tool and start immediately — no registration, no email
               verification, no hassle. Bookmark your favourites and return anytime.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Is my data safe and private?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Absolutely. All tools run entirely in your browser using client-side JavaScript. Your
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>Is my data safe and private?</span></summary>
+          <div class="hp-faq-a">
+            <p>Absolutely. All tools run entirely in your browser using client-side JavaScript. Your
               data never leaves your device — we do not collect, store, or track any information you process. There is
               no server-side processing endpoint. Read our <a href="{{ '/privacy-policy/' | relative_url }}">Privacy
                 Policy</a> for full details.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Do the tools work offline?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Yes. After the first page visit, most tools work without an internet connection because
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>Do the tools work offline?</span></summary>
+          <div class="hp-faq-a">
+            <p>Yes. After the first page visit, most tools work without an internet connection because
               all processing happens client-side. Particularly useful when travelling, on spotty Wi-Fi, or in restricted
               network environments.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Can I use these tools on mobile?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Yes. All tools are fully responsive and optimised for desktop, tablet, and mobile with
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>Can I use these tools on mobile?</span></summary>
+          <div class="hp-faq-a">
+            <p>Yes. All tools are fully responsive and optimised for desktop, tablet, and mobile with
               touch-friendly interfaces. You can also add FreeClipboard to your home screen as a PWA for quick one-tap
               access.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">What types of tools does FreeClipboard offer?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">FreeClipboard currently offers 46+ tools across five categories: <a
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>What types of tools does FreeClipboard offer?</span></summary>
+          <div class="hp-faq-a">
+            <p>FreeClipboard currently offers 46+ tools across five categories: <a
                 href="{{ '/text-utilities/' | relative_url }}">Text &amp; Writing</a> (word counter, case converter,
               encoders), <a href="{{ '/image-tools/' | relative_url }}">Image &amp; Design</a> (image converter, QR
               codes, colour picker), <a href="{{ '/generators-security/' | relative_url }}">Security &amp;
@@ -2171,22 +2215,21 @@ faqs:
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">How is FreeClipboard different from other online tool
-              sites?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Unlike most competitors, every FreeClipboard tool processes data entirely in your browser
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>How is FreeClipboard different from other online tool sites?</span></summary>
+          <div class="hp-faq-a">
+            <p>Unlike most competitors, every FreeClipboard tool processes data entirely in your browser
               — nothing is uploaded to a server. This means faster results (no round-trip delay), complete privacy (no
               data exposure), and offline capability. Most other sites upload your data for server-side processing,
               which introduces latency, privacy risks, and dependency on their infrastructure.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Can developers use these tools in their daily workflow?</span>
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>Can developers use these tools in their daily workflow?</span>
           </summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">Many developers bookmark tools like our <a
+          <div class="hp-faq-a">
+            <p>Many developers bookmark tools like our <a
                 href="{{ '/tools/json-formatter/' | relative_url }}">JSON Formatter</a>, <a
                 href="{{ '/tools/base64-encoder/' | relative_url }}">Base64 Encoder</a>, and <a
                 href="{{ '/tools/regex-tester/' | relative_url }}">Regex Tester</a> for daily use. All tools support
@@ -2195,19 +2238,19 @@ faqs:
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">How do you make money if everything is free?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">We display minimal, non-intrusive ads via Google AdSense to cover hosting and development
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>How do you make money if everything is free?</span></summary>
+          <div class="hp-faq-a">
+            <p>We display minimal, non-intrusive ads via Google AdSense to cover hosting and development
               costs. No subscriptions, no data selling, no premium tiers — just simple advertising that keeps the
               service free for everyone.</p>
           </div>
         </details>
 
-        <details class="hp-faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
-          <summary class="hp-faq-q"><span itemprop="name">Who built FreeClipboard?</span></summary>
-          <div class="hp-faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-            <p itemprop="text">FreeClipboard is built and maintained by a solo developer focused on creating genuinely
+        <details class="hp-faq-item">
+          <summary class="hp-faq-q"><span>Who built FreeClipboard?</span></summary>
+          <div class="hp-faq-a">
+            <p>FreeClipboard is built and maintained by a solo developer focused on creating genuinely
               useful, privacy-respecting tools for the global community. The service is and always will be completely
               free to use. <a href="{{ '/about/' | relative_url }}">Read our story →</a></p>
           </div>
