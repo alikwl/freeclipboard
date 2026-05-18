@@ -7,6 +7,8 @@ class CookieConsentManager {
     constructor() {
         this.cookieName = 'cookie_consent';
         this.cookieExpiry = 365; // days
+        this.gtagId = window.FREECLIPBOARD_CONFIG?.gtagId || null;
+        this.gtagScriptId = 'fc-gtag-script';
         this.preferences = {
             necessary: true, // Always true, cannot be disabled
             analytics: false,
@@ -133,43 +135,97 @@ class CookieConsentManager {
         // Apply preference cookies
         if (this.preferences.preferences) {
             this.enablePreferences();
+        } else {
+            this.disablePreferences();
         }
     }
 
     enableAnalytics() {
-        // Add Google Analytics or other analytics scripts here
-        console.log('Analytics enabled');
-        
-        // Example: Load Google Analytics
-        // if (typeof gtag === 'undefined') {
-        //     const script = document.createElement('script');
-        //     script.async = true;
-        //     script.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID';
-        //     document.head.appendChild(script);
-        // }
+        if (!this.gtagId) {
+            return;
+        }
+
+        this.loadGoogleTag();
+        window.gtag('consent', 'update', {
+            analytics_storage: 'granted'
+        });
     }
 
     disableAnalytics() {
-        console.log('Analytics disabled');
-        // Remove analytics cookies
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                analytics_storage: 'denied'
+            });
+        }
+
         this.deleteCookie('_ga');
         this.deleteCookie('_gid');
         this.deleteCookie('_gat');
+        this.deleteCookie(`_ga_${this.gtagId?.replace(/-/g, '_')}`);
     }
 
     enableMarketing() {
-        console.log('Marketing cookies enabled');
-        // Add marketing/advertising scripts here
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted'
+            });
+        }
     }
 
     disableMarketing() {
-        console.log('Marketing cookies disabled');
-        // Remove marketing cookies
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied'
+            });
+        }
     }
 
     enablePreferences() {
-        console.log('Preference cookies enabled');
-        // Enable preference cookies (theme, language, etc.)
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                functionality_storage: 'granted',
+                personalization_storage: 'granted'
+            });
+        }
+    }
+
+    disablePreferences() {
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                functionality_storage: 'denied',
+                personalization_storage: 'denied'
+            });
+        }
+    }
+
+    loadGoogleTag() {
+        if (!this.gtagId || document.getElementById(this.gtagScriptId)) {
+            if (typeof window.gtag === 'function' && !window.__fcGtagConfigured) {
+                window.gtag('js', new Date());
+                window.gtag('config', this.gtagId, {
+                    anonymize_ip: true
+                });
+                window.__fcGtagConfigured = true;
+            }
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.id = this.gtagScriptId;
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(this.gtagId)}`;
+        script.onload = () => {
+            window.gtag('js', new Date());
+            window.gtag('config', this.gtagId, {
+                anonymize_ip: true
+            });
+            window.__fcGtagConfigured = true;
+        };
+        document.head.appendChild(script);
     }
 
     attachEventListeners() {

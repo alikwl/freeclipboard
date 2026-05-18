@@ -5,9 +5,7 @@
 User-agent: *
 Allow: /
 
-# Disallow non-essential paths
-Disallow: /assets/js/
-Disallow: /assets/css/
+# Disallow non-essential source paths
 Disallow: /*.json$
 Disallow: /_includes/
 Disallow: /_layouts/
@@ -17,7 +15,9 @@ Disallow: /.git/
 Disallow: /.github/
 Disallow: /.vscode/
 
-# Allow important assets for rich results
+# Allow important assets so crawlers can render pages correctly
+Allow: /assets/js/
+Allow: /assets/css/
 Allow: /assets/images/
 Allow: /assets/downloads/
 Allow: /llms.txt

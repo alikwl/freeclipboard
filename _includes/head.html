@@ -31,16 +31,25 @@
   <!-- Comprehensive SEO, Schema, and Meta Tags -->
   {% include seo.html %}
 
-  {% if jekyll.environment == "production" and site.gtag_id %}
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.gtag_id }}"></script>
   <script>
+    window.FREECLIPBOARD_CONFIG = {
+      gtagId: {% if site.gtag_id %}"{{ site.gtag_id }}"{% else %}null{% endif %},
+      adsenseClient: "ca-pub-4980642476233510"
+    };
+
     window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', '{{ site.gtag_id }}');
+    window.gtag = window.gtag || function () { dataLayer.push(arguments); };
+
+    window.gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      functionality_storage: 'denied',
+      personalization_storage: 'denied',
+      wait_for_update: 500
+    });
   </script>
-  {% endif %}
 
   <!-- Favicons and Touch Icons -->
   <link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">

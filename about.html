@@ -1,7 +1,7 @@
 ---
 layout: default
 title: About FreeClipboard - Our Story & Mission | Built in Pakistan 🇵🇰
-description: FreeClipboard is built by a solo developer from Pakistan under Bismillah Tech. 46+ free, privacy-first online tools — no signups, no data collection. Here's the real story.
+description: FreeClipboard is built by a solo developer from Pakistan under Bismillah Tech. Free, privacy-first online tools with no signup required. Here's the real story.
 keywords: about freeclipboard, bismillah tech, privacy-focused tools, free online tools, built in pakistan, founder story, ali developer
 og_type: website
 last_updated: 2026-05-13
@@ -10,6 +10,7 @@ author: Ali
 
 <!-- Hero Section -->
 <section class="category-hero-new" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">
+  {% assign tool_count = site.data.tools-metadata.tools | size %}
   <div class="category-hero-badge">
     <span>👋</span>
     <span>Our Story</span>
@@ -19,19 +20,18 @@ author: Ali
 
   <div class="category-hero-stats">
     <div class="category-hero-stat">
-      <strong>46+</strong>
+      <strong>{{ tool_count }}</strong>
       <span>Free Tools</span>
     </div>
     <div class="category-hero-stat">
-      <strong>100K+</strong>
-      <span>Monthly Users</span>
+      <strong>Solo</strong>
+      <span>Built by Ali</span>
     </div>
     <div class="category-hero-stat">
       <strong>100%</strong>
       <span>Privacy First</span>
     </div>
   </div>
-  <p style="color: rgba(255,255,255,0.6); font-size: 0.75rem; margin-top: 0.5rem;">* Stats are estimated from Google Analytics data</p>
 
   <div class="category-hero-cta">
     <a href="{{ site.baseurl }}/all-tools/" class="btn-category-primary">Explore Tools</a>
@@ -44,7 +44,7 @@ author: Ali
   <div style="max-width: 60rem; margin: 0 auto;">
     <div class="category-section-header">
       <h2>🧑‍💻 The Founder's Story</h2>
-      <p>How a small frustration turned into 46+ tools</p>
+      <p>How a small frustration turned into {{ tool_count }} practical tools</p>
     </div>
 
     <div style="background: #f8fafc; border-radius: 1rem; padding: 2rem; border-left: 4px solid #7c3aed; margin-bottom: 2rem;">
@@ -55,7 +55,7 @@ author: Ali
         It started with a simple frustration: I needed to format some JSON. Every tool I found either wanted me to create an account, bombarded me with ads, or — worst of all — sent my data to some unknown server. For a <em>text formatter</em>. Really?
       </p>
       <p style="font-size: 1.05rem; line-height: 1.9; color: #374151; margin: 0 0 1.25rem 0;">
-        So I built my own. Then I built a word counter. Then a password generator. Then a clipboard manager. One tool became five. Five became twenty. And now there are over 41 tools — all running 100% in your browser, all completely free, all respecting your privacy.
+        So I built my own. Then I built a word counter. Then a password generator. Then a clipboard manager. One tool became five. Five became twenty. Today, FreeClipboard includes {{ tool_count }} tools that run in the browser, stay free to use, and aim to respect your privacy.
       </p>
       <p style="font-size: 1.05rem; line-height: 1.9; color: #374151; margin: 0;">
         FreeClipboard is a project of <strong>Bismillah Tech</strong>. It's not backed by venture capital or a big corporation. It's just me, building things I genuinely find useful and sharing them with the world. If it helps you save even 5 minutes a day, that's enough for me.
@@ -84,11 +84,11 @@ author: Ali
     <div class="category-benefit-card">
       <div class="category-benefit-icon">🔒</div>
       <h3 class="category-benefit-title">Your Data is Yours</h3>
-      <p class="category-benefit-desc">Every single tool processes data in your browser. Nothing goes to a server. Nothing is stored. Nothing is tracked. I built it this way because that's how I'd want tools to work for me.</p>
+      <p class="category-benefit-desc">The core tool processing happens in your browser, which means the text and files you work with are not uploaded to a FreeClipboard server for conversion. I built it this way because that's how I want utility tools to behave.</p>
       <ul class="category-benefit-list">
-        <li>Zero server uploads — ever</li>
+        <li>No server-side processing for tool input</li>
         <li>No accounts, no login walls</li>
-        <li>No analytics on your content</li>
+        <li>No analytics on your tool content</li>
         <li>Works offline after first load</li>
       </ul>
     </div>
@@ -177,7 +177,7 @@ author: Ali
 
     <div class="category-faq-item">
       <h3>How do you protect user privacy?</h3>
-      <p>Every tool runs entirely in your browser using JavaScript. Your data doesn't go to any server — not mine, not anyone else's. I use Google Analytics for page views (not content tracking), and that's the only external service involved.</p>
+      <p>The tools themselves run in your browser using JavaScript, so the content you process is not sent to a FreeClipboard server. The site may use optional analytics and advertising services, but those services do not receive the text or files you use inside the tools themselves.</p>
     </div>
 
     <div class="category-faq-item">
@@ -190,7 +190,7 @@ author: Ali
 <!-- CTA Section -->
 <section class="category-cta-section" style="background: linear-gradient(135deg, #7c3aed, #a855f7);">
   <h2 class="category-cta-title">That's the Story. Now Try the Tools.</h2>
-  <p class="category-cta-subtitle">46+ free tools, zero signups, total privacy. Built with care in Pakistan 🇵🇰</p>
+  <p class="category-cta-subtitle">{{ tool_count }} free tools, no signup required, built with care in Pakistan 🇵🇰</p>
   <div class="category-cta-buttons">
     <a href="{{ site.baseurl }}/all-tools/" class="btn-category-primary">Browse All Tools</a>
     <a href="{{ site.baseurl }}/contact/" class="btn-category-secondary">Say Hello</a>
@@ -207,7 +207,7 @@ author: Ali
     "@id": "{{ site.url }}/#founder",
     "name": "Ali",
     "jobTitle": "Founder & Lead Developer",
-    "description": "Solo developer from Pakistan who built FreeClipboard — a collection of 46+ free, privacy-first online tools used by 100K+ people monthly.",
+    "description": "Solo developer from Pakistan who built FreeClipboard, a browser-based collection of free privacy-first online tools.",
     "knowsAbout": [
       "Web Development",
       "JavaScript",

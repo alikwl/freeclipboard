@@ -10,7 +10,6 @@
     const searchData = [
         // Clipboard Tools
         { title: 'Free Clipboard Manager', description: 'Advanced clipboard manager with history and sync', category: 'Clipboard', icon: '📋', url: '/tools/free-clipboard/' },
-        { title: 'Multi-Clipboard Manager', description: 'Manage multiple clipboards simultaneously', category: 'Clipboard', icon: '📋', url: '/tools/multi-clipboard/' },
 
         // Text Utilities
         { title: 'Word Counter', description: 'Count words, characters, and paragraphs', category: 'Text', icon: '📝', url: '/tools/word-counter/' },
@@ -22,13 +21,13 @@
         { title: 'HTML Encoder/Decoder', description: 'Encode and decode HTML entities', category: 'Text', icon: '🌐', url: '/tools/html-encoder/' },
         { title: 'Text to Handwriting', description: 'Convert text to handwriting style', category: 'Text', icon: '✒️', url: '/tools/text-to-handwriting/' },
         { title: 'Regex Tester', description: 'Test regular expressions', category: 'Text', icon: '🔍', url: '/tools/regex-tester/' },
-        { title: 'Discord Spoiler Text', description: 'Generate Discord spoiler text', category: 'Text', icon: '||', url: '/tools/discord-spoiler/' },
-        { title: 'Glitch Text Generator', description: 'Create glitchy text effects', category: 'Text', icon: '⚡', url: '/tools/glitch-text/' },
+        { title: 'Discord Spoiler Text', description: 'Generate Discord spoiler text', category: 'Text', icon: '||', url: '/tools/discord-spoiler-text-generator/' },
+        { title: 'Glitch Text Generator', description: 'Create glitchy text effects', category: 'Text', icon: '⚡', url: '/tools/glitch-text-generator/' },
         { title: 'Cursed Text Generator', description: 'Generate cursed Zalgo text', category: 'Text', icon: '👹', url: '/tools/cursed-text-generator/' },
         { title: 'Invisible Character', description: 'Copy invisible Unicode characters', category: 'Text', icon: '⠀', url: '/tools/invisible-character/' },
         { title: 'Small Caps Generator', description: 'Convert text to small caps', category: 'Text', icon: 'ᴀʙᴄ', url: '/tools/small-caps-generator/' },
         { title: 'Markdown Preview', description: 'Preview Markdown in real-time', category: 'Text', icon: '#', url: '/tools/markdown-preview/' },
-        { title: 'JSON to CSV Converter', description: 'Convert JSON to CSV format', category: 'Text', icon: '📊', url: '/tools/json-to-csv/' },
+        { title: 'JSON to CSV Converter', description: 'Convert JSON to CSV format', category: 'Text', icon: '📊', url: '/tools/json-to-csv-converter/' },
 
         // Design Tools
         { title: 'Glassmorphism Generator', description: 'Generate glassmorphism CSS', category: 'Design', icon: '🎨', url: '/tools/glassmorphism-generator/' },
@@ -40,7 +39,7 @@
         // Image Tools
         { title: 'Image Converter', description: 'Convert images to different formats', category: 'Image', icon: '🖼️', url: '/tools/image-converter/' },
         { title: 'QR Code Generator', description: 'Generate QR codes instantly', category: 'Image', icon: '📱', url: '/tools/qr-code-generator/' },
-        { title: 'Social Media Image Resizer', description: 'Resize images for social media', category: 'Image', icon: '📐', url: '/tools/social-media-resizer/' },
+        { title: 'Social Media Image Resizer', description: 'Resize images for social media', category: 'Image', icon: '📐', url: '/tools/social-media-image-resizer/' },
 
         // Generators & Security
         { title: 'Password Generator', description: 'Generate strong secure passwords', category: 'Security', icon: '🔐', url: '/tools/password-generator/' },
@@ -69,7 +68,7 @@
         { title: 'Meta Tag Generator', description: 'Generate SEO meta tags', category: 'Utility', icon: '🏷️', url: '/tools/meta-tag-generator/' },
 
         // Pages
-        { title: 'All Tools', description: 'Browse all 41 tools', category: 'Page', icon: '🔧', url: '/all-tools/' },
+        { title: 'All Tools', description: 'Browse the full FreeClipboard tool directory', category: 'Page', icon: '🔧', url: '/all-tools/' },
         { title: 'Blog', description: 'Read our latest articles', category: 'Page', icon: '📰', url: '/blog/' },
         { title: 'About', description: 'Learn about FreeClipboard', category: 'Page', icon: 'ℹ️', url: '/about/' },
         { title: 'Contact', description: 'Get in touch with us', category: 'Page', icon: '✉️', url: '/contact/' },

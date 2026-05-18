@@ -11,17 +11,18 @@ tools_count: 46
 
 <!-- Hero Section -->
 <section class="category-hero-new" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">
+  {% assign tool_count = site.data.tools-metadata.tools | size %}
   <div class="category-hero-badge">
     <span>🔧</span>
     <span>Complete Tools Directory</span>
   </div>
   <h1 class="category-hero-title">All Free Online Tools</h1>
-  <p class="category-hero-subtitle">Browse our complete collection of 46+ professional-grade tools organized by
+  <p class="category-hero-subtitle">Browse our complete collection of {{ tool_count }} professional-grade tools organized by
     category. Everything you need for text processing, image conversion, design, security, and more.</p>
 
   <div class="category-hero-stats">
     <div class="category-hero-stat">
-      <strong>46+</strong>
+      <strong>{{ tool_count }}</strong>
       <span>Free Tools</span>
     </div>
     <div class="category-hero-stat">
@@ -29,8 +30,8 @@ tools_count: 46
       <span>Categories</span>
     </div>
     <div class="category-hero-stat">
-      <strong>100K+</strong>
-      <span>Monthly Users</span>
+      <strong>Browser</strong>
+      <span>No Signup Needed</span>
     </div>
     <div class="category-hero-stat">
       <strong>100%</strong>
@@ -162,11 +163,11 @@ tools_count: 46
     <div class="category-benefit-card">
       <div class="category-benefit-icon">🔒</div>
       <h3 class="category-benefit-title">Privacy First</h3>
-      <p class="category-benefit-desc">Your data never leaves your device. Complete privacy guaranteed.</p>
+      <p class="category-benefit-desc">Tool processing happens in your browser, so the text and files you use in the tools are not uploaded to a FreeClipboard server.</p>
       <ul class="category-benefit-list">
-        <li>No data collection</li>
-        <li>100% secure</li>
-        <li>Privacy guaranteed</li>
+        <li>No server-side processing for tool input</li>
+        <li>No signup required</li>
+        <li>Privacy-focused by design</li>
       </ul>
     </div>
 
@@ -248,7 +249,7 @@ tools_count: 46
 <!-- CTA Section -->
 <section class="category-cta-section" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">
   <h2 class="category-cta-title">Ready to Get Started?</h2>
-  <p class="category-cta-subtitle">Choose from 46+ professional tools and start working instantly!</p>
+  <p class="category-cta-subtitle">Choose from {{ tool_count }} professional tools and start working instantly!</p>
   <div class="category-cta-buttons">
     <a href="{{ site.baseurl }}/tools/free-clipboard/" class="btn-category-primary">Try Clipboard Manager</a>
     <a href="{{ site.baseurl }}/tools/password-generator/" class="btn-category-secondary">Generate Password</a>
